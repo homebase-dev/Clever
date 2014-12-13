@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @novelty.title %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @novelty.text %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @novelty.published %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @novelty.priority %>
+</p>
+
+<%= link_to 'Edit', edit_novelty_path(@novelty) %> |
+<%= link_to 'Back', novelties_path %>

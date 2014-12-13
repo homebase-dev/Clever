@@ -1,0 +1,76 @@
+#myCarousel.carousel.slide{"data-ride" => "carousel"}
+  / Indicators
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+  .carousel-inner{:role => "listbox"}
+    .item.active
+      = image_tag("landing.jpg", alt: "First slide")
+      .container
+        .carousel-caption
+          %h1 Wir helfen dir das Examen zu bestehen!
+          %p
+          %p
+            %a.btn.btn-lg.btn-primary{:href => "#", :role => "button"} Starte gleich los und registriere dich
+
+  %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %span.sr-only Next
+    
+
+
+
+.container
+  .marketing-area
+    .row
+      .col-md-4
+        .box
+          = image_tag("result_15.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+          %h2 Kostenlos testen
+          %p Versuche dich am kostenlosen Testfragebogen und prüfe deinen Vorbereitungsstatus auf eine Prüfung. Der Fragebogen besteht aus 20 Fragen aus dem Fachgebiet Medizin. Erhalte hiermit auch einen Einblick wie unser einfaches aber effektives Lernsystem funktioniert.
+          %a.btn.btn-default{:href => "#{static_pages_quiz_path}", :role => "button"} Kostenlos Testen
+      .col-md-4
+        .box
+          = image_tag("book.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+          %h2 Fragen?
+          %p Erfahre mehr über unser Lernsystem: wie funktioniert es, wo kann es dir helfen, wieviel kostet es? Häufig gestellte Fragen werden hier beantwortet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+          %a.btn.btn-default{:href => "#{static_pages_faq_path}", :role => "button"} Zu den Antworten
+      .col-md-4
+        .box
+          = image_tag("news.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
+          %h2 Neuigkeiten
+          %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
+  
+  %hr.featurette-divider/
+  .row.featurette
+    .col-md-7
+      %h2.featurette-heading
+        Hab mich damit auf die Aufnahmeprüfung vorbereitet,
+        %span.text-muted es motiviert!
+      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+    .col-md-5
+      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('student1.jpg')}"}/
+  %hr.featurette-divider/
+  .row.featurette
+    .col-md-5
+      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('studentin1.jpg')}"}/
+    .col-md-7
+      %h2.featurette-heading
+        Die Tests helfen wirklich weiter,
+        %span.text-muted da das Material gut vorsortiert wurde
+      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+  %hr.featurette-divider/
+  .row.featurette
+    .col-md-7
+      %h2.featurette-heading
+        Hab sogar am Smartphone gequizt,
+        %span.text-muted endlich bestanden!
+      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+    .col-md-5
+      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('studentin2.jpg')}"}/
+  %hr.featurette-divider/

@@ -1,0 +1,33 @@
+<%= form_for(@novelty) do |f| %>
+  <% if @novelty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@novelty.errors.count, "error") %> prohibited this novelty from being saved:</h2>
+
+      <ul>
+      <% @novelty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.check_box :published %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= f.number_field :priority %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

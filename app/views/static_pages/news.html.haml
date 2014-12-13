@@ -1,0 +1,18 @@
+.page-header
+  %h1
+    Neuigkeiten
+    / <small>Subtext for header</small>
+.row
+  .col-lg-2
+    %a.thumbnail.category{:href => "#"}
+      = image_tag("news.png", alt: "Neuigkeiten icon")
+      %p.text-center
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
+  .col-lg-10
+    - if @top_novelty
+      = render "shared/panel", panel_css_class: "panel-primary", title: @top_novelty.title, body: @top_novelty.text, created_at: @top_novelty.created_at
+
+  
+    - @older_novelties.each do |novelty|
+      = render "shared/panel", panel_css_class: "panel-default", title: novelty.title, body: novelty.text, created_at: novelty.created_at
+          

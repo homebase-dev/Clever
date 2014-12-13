@@ -1,0 +1,60 @@
+%script{:src => "https://maps.googleapis.com/maps/api/js"}
+:javascript
+  function initialize() {
+    var cleverLearningLatLng = new google.maps.LatLng(47.306863, 11.072543);
+
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: cleverLearningLatLng, //44.5403, -78.5463
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+
+    var marker = new google.maps.Marker({
+        position: cleverLearningLatLng,
+        map: map,
+        title: 'Clever Learning!'
+    });
+
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+.page-header
+  %h1
+    Kontakt
+    / <small>Subtext for header</small>
+.row
+  .col-lg-2
+    %a.thumbnail.category{:href => "#"}
+      = image_tag("service.png", alt: "Kontakt icon")
+      %p.text-center
+  .col-lg-10
+    %address
+      %strong Clever Learning
+      %br/
+      Untermarkt 9 / Eingang Wallnöfer-Platz Ost / 1.Stock
+      %br/
+      6410 Telfs
+      %br/
+      Österreich
+      %br/
+      %abbr{:title => "Phone"} Tel.
+      +4369917288735
+      %br/
+      %abbr{:title => "Web"} Web
+      %a{:href => "http://www.clever-learning.at/"} http://www.clever-learning.at/
+      %br/
+    %address
+      %strong Mag. Stefan Stillebacher
+      %br/
+      %abbr{:title => "E-Mail"} E-mail
+      %a{:href => "mailto:#"} office@clever-learning.at
+      %br/
+.row
+  .col-lg-2
+    / <a href="#" class="thumbnail category"><img src="res/img/location.png" alt="..."><p class="text-center"></p></a>
+  .col-lg-10
+    #map-canvas.thumbnail{:style => "height: 40em"}

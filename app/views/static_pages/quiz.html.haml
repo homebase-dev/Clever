@@ -1,0 +1,19 @@
+.page-header
+  %h1
+    Kategorien
+    / <small>Subtext for header</small>
+%p
+  Wähle eine Kategorie für die dein Test zusammengestellt werden soll. Es gibt auch eine <strong> Durchmischt </strong>
+  Kategorie, wählst du diese, werden Fragen aus allen Kategorien zusammengemischt.
+%br/
+
+
+- (Quiz.all.published).each_slice(4) do |quiz_row|
+  .row
+    - quiz_row.each do |quiz|
+      .col-lg-3
+        %a.thumbnail.category{:href => "quiz_question.html"}
+          = image_tag(quiz.image.url, alt: "") 
+          %p.text-center=quiz.name
+
+

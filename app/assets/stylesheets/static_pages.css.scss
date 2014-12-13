@@ -1,0 +1,66 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* LANDING PAGE */
+
+.marketing-area .box {
+  /*background-color: #F8F8F8;*/
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.marketing-area .box p {
+  text-align: justify;
+}
+
+.marketing-area .box  {
+  text-align: center;
+}
+
+/* nice brown rgba(255, 126, 0, 0.04) */
+
+.carousel-inner > .item > img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+.background-area {
+  /*background-color: rgba(255, 126, 0, 0.04);*/
+}
+
+/*body.landing-page {
+  background-color: rgba(255, 126, 0, 0.04) !important;
+}*/
+
+.carousel {
+  margin-top: -20px;
+}
+
+.no-border {
+  border: none !important;
+}
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+
+
+/* Quiz overwiev */
+
+.thumbnail.category img {
+  margin-top: 15px;
+}
+
+.thumbnail.category.header {
+  margin-bottom: 0px;
+}
