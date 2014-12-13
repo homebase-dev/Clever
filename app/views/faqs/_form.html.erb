@@ -1,33 +1,52 @@
-<%= form_for(@faq) do |f| %>
-  <% if @faq.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
+<%= form_for @faq, :html => { :class => "form-horizontal faq" } do |f| %>
 
-      <ul>
-      <% @faq.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @faq.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@faq.errors.count, "error") %> prohibited this faq from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @faq.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%= error_span(@faq[:title]) %>
   </div>
-  <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
+  <div class="control-group">
+    <%= f.label :text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :text, :class => 'form-control' %>
+    </div>
+    <%= error_span(@faq[:text]) %>
   </div>
-  <div class="field">
-    <%= f.label :published %><br>
-    <%= f.check_box :published %>
+  <div class="control-group">
+    <%= f.label :priority, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :priority, :class => 'form-control' %>
+    </div>
+    <%= error_span(@faq[:priority]) %>
   </div>
-  <div class="field">
-    <%= f.label :priority %><br>
-    <%= f.number_field :priority %>
+  <div class="control-group">
+    <%= f.label :published, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :published %>
+    </div>
+    <%= error_span(@faq[:published]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            faqs_path, :class => 'btn btn-default' %>
+
 <% end %>
