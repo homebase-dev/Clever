@@ -2,9 +2,11 @@
   %h1
     Benutzer
     
+%a.btn.btn-default.pull-right{:href => "#{static_pages_admin_path}", :role => "button"} Zurück
+    
 %p Anzahl der Nutzer #{@users.size}
     
 - @users.each do |user|
-  %p user.firstname 
+  %p=user.inspect 
 
 

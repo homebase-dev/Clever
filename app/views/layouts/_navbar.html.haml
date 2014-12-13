@@ -14,8 +14,6 @@
           %li
             =link_to "Admin", static_pages_admin_path
       
-      
-      
         /- if current_page?(url_for(:controller => 'static_pages', :action => 'home')) 
         /  %li{:class => "active"}
         /    =link_to "Home", static_pages_home_path
@@ -32,6 +30,10 @@
           =link_to "About", static_pages_about_path
       %ul.nav.navbar-nav.navbar-right
         %li
-          %a{:href => "#"} Abmelden
+          -if user_signed_in?
+            = link_to "Abmelden", destroy_user_session_path, :method => :delete
+          -else
+            = link_to "Anmelden", new_user_session_path
     / /.nav-collapse
   / /.container-fluid
+  

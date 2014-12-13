@@ -1,0 +1,35 @@
+- model_class = Novelty
+.page-header
+  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+%a.btn.btn-default.pull-right{:href => "#{static_pages_admin_path}", :role => "button"} Zurück
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:text)
+      %th= model_class.human_attribute_name(:published)
+      %th= model_class.human_attribute_name(:priority)
+      %th= model_class.human_attribute_name(:created_at)
+      %th= t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @novelties.each do |novelty|
+      %tr
+        %td= link_to novelty.id, novelty_path(novelty)
+        %td= novelty.title
+        %td= novelty.text
+        %td= novelty.published
+        %td= novelty.priority
+        %td= l novelty.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")),       
+            edit_novelty_path(novelty), :class => 'btn btn-default btn-xs' 
+          
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               
+            novelty_path(novelty),                                                                                       
+            :method => :delete,                                                                                          
+            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, 
+            :class => 'btn btn-xs btn-danger'                                                                            
+= link_to t('.new', :default => t("helpers.links.new")), 
+  new_novelty_path,                                      
+  :class => 'btn btn-primary'                            

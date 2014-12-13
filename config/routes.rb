@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'index/update'
 
   resources :quizzes
-  resources :users
+  #resources :users
 
   root 'static_pages#home'
 
