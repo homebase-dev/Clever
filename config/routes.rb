@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'static_pages/profile_status'
   get 'static_pages/profile_data'
   get 'static_pages/admin'
+  get 'static_pages/payment'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 

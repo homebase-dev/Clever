@@ -1,0 +1,35 @@
+.page-header
+  %h1
+    Registration
+    / <small>Subtext for header</small>
+.row
+  .col-lg-2
+    %a.thumbnail.category{:href => "#"}
+      = image_tag("creditcard.png", alt: "Payment icon")
+      %p.text-center
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Nicht jetzt
+  .col-lg-10
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Schritt 2/2: Account freischalten
+      .panel-body
+        %p
+          Gib deine Kreditkarteninformationen ein und bezahlte 29,90€ für die Freischaltung deines Accounts.
+          %br>/
+          Damit erhälst du für 1 Jahr vollen Zugriff auf unser gesamtes Fortbildungsangebot!
+        %p.form-control-static.account-status.inactive
+          %span.label.label-warning Preis: 29,90€ für 1 Jahr
+        %br/
+        %br/
+        %form{:role => "form"}
+          .form-group
+            %label{:for => "exampleInputEmail1"} Kreditkartennummer
+            %input#inputCreditCardNumber.form-control{:placeholder => "Nummer eingeben", :type => "email"}/
+          .form-group
+            %label{:for => "exampleInputEmail1"} Verfallsdatum
+            %input#inputCreditCardExpiration.form-control{:placeholder => "Verfallsdatum Eingeben z.B. '01/2019'", :type => "email"}/
+          .form-group
+            %label{:for => "exampleInputEmail1"} Dreistellige Prüfnummer
+            %input#inputCreditCardCvc.form-control{:placeholder => "Dreistellige Prüfnummer eingeben (Rückseite der Karte)", :type => "email"}/
+          %br/
+          %a.btn.btn-success.pull-right{:href => "profile_tab_status.html", :type => "submit"} Bezahlen und Registration abschließen

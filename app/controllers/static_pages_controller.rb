@@ -42,4 +42,10 @@ class StaticPagesController < ApplicationController
     
     
   end
+  
+  
+  def payment
+    @user = current_user
+  end
+  
 end
