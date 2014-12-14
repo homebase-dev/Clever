@@ -10,16 +10,15 @@
       %a.navbar-brand{:href => "#"} Clever Learning
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
-        - if current_user.try(:admin?) 
-          %li
-            =link_to "Admin", static_pages_admin_path
-      
         /- if current_page?(url_for(:controller => 'static_pages', :action => 'home')) 
         /  %li{:class => "active"}
         /    =link_to "Home", static_pages_home_path
         /- else
         %li 
           =link_to "Home", static_pages_home_path
+        - if current_user.admin? 
+          %li
+            =link_to "Verwaltung", static_pages_admin_path
         %li
           =link_to "Quiz", static_pages_quiz_path
         %li

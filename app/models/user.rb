@@ -3,4 +3,28 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  belongs_to :role
+  
+  before_create :set_default_role
+
+  def role_name
+    role.try(:name)
+  end
+  
+  def moderator?
+    role_name == 'moderator'
+  end
+  
+  def admin?
+    role_name == 'admin'
+  end
+  
+
+  private
+
+  def set_default_role
+    self.role ||= Role.find_by_name('registered')
+  end
+  
 end

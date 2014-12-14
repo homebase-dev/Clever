@@ -1,6 +1,9 @@
 - model_class = Novelty
+
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h1
+    Neuigkeiten
+
 %a.btn.btn-default.pull-right{:href => "#{static_pages_admin_path}", :role => "button"} Zurück
 %table.table.table-striped
   %thead

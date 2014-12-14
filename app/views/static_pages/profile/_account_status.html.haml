@@ -1,0 +1,13 @@
+.row
+  .col-lg-2
+    %a.thumbnail.category{:href => "#"}
+      = image_tag("#{img}", alt: "Account status icon")
+      %p.text-center
+  .col-lg-10
+    %form{:role => "form"}
+      .form-group
+        %label{:for => "accountStatus"} Account Status
+        %p.form-control-static.account-status.active
+          %span.label{:class => "#{label_css_class}"}= status_label
+        %p= status_msg
+    %button.btn.btn-default{:type => "button"}= button_caption

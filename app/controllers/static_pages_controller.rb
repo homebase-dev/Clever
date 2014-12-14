@@ -30,6 +30,8 @@ class StaticPagesController < ApplicationController
   
   def profile_status
     @user = current_user
+    logger.debug "CURRENT USER: ROLE"
+    logger.debug @user.role_name
   end
   
   def profile_data

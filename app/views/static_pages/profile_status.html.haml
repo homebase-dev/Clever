@@ -14,33 +14,33 @@
 %br/
 %br/
 
-.row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("creditcard.png", alt: "Profil status icon")
-      %p.text-center
-  .col-lg-10
-    %form{:role => "form"}
-      .form-group
-        %label{:for => "accountStatus"} Account Status
-        %p.form-control-static.account-status.inactive
-          %span.label.label-warning Eingeschränkt
-        %p Dein Account ist derzeit eingeschränkt und du hast damit nur eingeschränkten Zugriff auf unsere Lerninhalte. Aktiviere deinen Account für 29,90€ mit der Kreditkarte, dies ermöglicht dir vollen Zugriff auf unser Angebot und du kannst dich uneingeschränkt weiterbilden. Wir freuen uns, dich effizient auf deine Prüfungen vorzubereiten!
-      %button.btn.btn-default{:type => "button"} Account für 29,90€ aktivieren
-%br/
-%br/
-.row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("unlocked.png", alt: "Profil status icon")
-      %p.text-center
-  .col-lg-10
-    %form{:role => "form"}
-      .form-group
-        %label{:for => "accountStatus"} Account Status
-        %p.form-control-static.account-status.active
-          %span.label.label-success Uneingeschränkt
-        %p Dein Account ist bis zum bis 29.11.2014 uneingeschränkt aktiv, innerhalb dieses Zeitraumes kannst du auf unser gesamtes Angebot zurückgreifen und dich uneingeschränkt fortbilden. Wenn du mit unserem Angebot zufrieden bist, hast du hier auch die Möglichkeit dienen Account für ein weiteres Jahr zu verlängern.
-    %button.btn.btn-default{:type => "button"} Account für 29,90€ ein weiteres Jahr verlängern
-%br/
-%br/
+-if current_user.role_name == 'registered'
+  = render "static_pages/profile/account_status", 
+    label_css_class: "label-warning", 
+    img: "creditcard.png", 
+    status_label: "Eingeschränkt", 
+    status_msg: "Dein Account ist derzeit eingeschränkt und du hast damit nur eingeschränkten Zugriff auf unsere Lerninhalte. Aktiviere deinen Account für 29,90€ mit der Kreditkarte, dies ermöglicht dir vollen Zugriff auf unser Angebot und du kannst dich uneingeschränkt weiterbilden. Wir freuen uns, dich effizient auf deine Prüfungen vorzubereiten!", 
+    button_caption: "Account für 29,90€ aktivieren"
+-elsif current_user.role_name == 'member'
+  = render "static_pages/profile/account_status", 
+    label_css_class: "label-success", 
+    img: "unlocked.png", 
+    status_label: "Uneingeschränkt", 
+    status_msg: "Dein Account ist bis zum bis 29.11.2014 uneingeschränkt aktiv, innerhalb dieses Zeitraumes kannst du auf unser gesamtes Angebot zurückgreifen und dich uneingeschränkt fortbilden. Wenn du mit unserem Angebot zufrieden bist, hast du hier auch die Möglichkeit dienen Account für ein weiteres Jahr zu verlängern.", 
+    button_caption: "Account für 29,90€ ein weiteres Jahr verlängern"
+-elsif current_user.role_name == 'banned'
+  = render "static_pages/profile/account_status", 
+    label_css_class: "label-danger", 
+    img: "service.png", 
+    status_label: "Gesperrt", 
+    status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: support@clever-learning.at", 
+    button_caption: "E-mail an das Support-team schreiben"
+-else
+  = render "static_pages/profile/account_status", 
+    label_css_class: "label-success", 
+    img: "unlocked.png", 
+    status_label: current_user.role_name, 
+    status_msg: "Bei Fragen wende dich an das Support Team: support@clever-learning.at", 
+    button_caption: "E-mail an das Support-team schreiben"
+
+        
