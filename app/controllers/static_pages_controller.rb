@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   layout "application"
   
+  before_action :authenticate_user!, only: [:profile_status, :profile_data]
+  
   def home
     logger.debug "HOME ACTION"
   end
@@ -26,7 +28,12 @@ class StaticPagesController < ApplicationController
   def quiz
   end
   
-  def profile
+  def profile_status
+    @user = current_user
+  end
+  
+  def profile_data
+    @user = current_user
   end
   
   def admin

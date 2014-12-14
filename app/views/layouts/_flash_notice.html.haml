@@ -1,7 +1,23 @@
 - flash.each do |key, msg|
   - if key == "notice"
-    = content_tag :div, msg, class: "alert alert-success"
+    / = content_tag :div, msg, class: "alert alert-success"
+    .alert.alert-success
+      #{msg}
+      %button.close{"data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+        %span.sr-only Close
   - elsif key == "alert"
-    = content_tag :div, msg, class: "alert alert-warning"
+    / = content_tag :div, msg, class: "alert alert-warning"
+    .alert.alert-warning
+      #{msg}
+      %button.close{"data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+        %span.sr-only Close
   - elsif key == "error"
-    = content_tag :div, msg, class: "alert alert-error"
+    / = content_tag :div, msg, class: "alert alert-error"
+    .alert.alert-warning
+      #{msg}
+      %button.close{"data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+        %span.sr-only Close
+        

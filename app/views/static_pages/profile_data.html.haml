@@ -1,0 +1,55 @@
+.page-header
+  %h1
+    Profil
+    / <small>Subtext for header</small>
+    
+%ul.nav.nav-tabs
+  %li{:role => "presentation"}
+    = link_to "Dein Account Status", static_pages_profile_status_path 
+  %li.active{:role => "presentation"}
+    = link_to "Deine Daten", "#"
+    
+%br/
+%br/
+
+.row
+  .col-lg-2
+    %a.thumbnail.category{:href => "#"}
+      = image_tag("profile1.png", alt: "Profil Informationen icon")
+      %p.text-center
+  .col-lg-10
+    = form_for @user, :url => users_update_path do |f|
+      .form-group
+        = f.label :email, :class => 'control-label'
+        %p
+          =@user.email
+          =link_to "E-mail Adresse ändern ", users_edit_email_path, :class => 'btn btn-default space-left'
+      .form-group
+        = f.label :password, :class => 'control-label'
+        %p
+          =link_to "Passwort ändern", users_edit_password_path, :class => 'btn btn-default space-left'
+      .form-group
+        = f.label :firstname, :class => 'control-label'
+        = f.text_field :firstname, :class => 'form-control'
+      .form-group
+        = f.label :lastname, :class => 'control-label'
+        = f.text_field :lastname, :class => 'form-control'
+      .form-group
+        = f.label :phone, :class => 'control-label'
+        = f.text_field :phone, :class => 'form-control'
+      .form-group
+        = f.label :birthdate, :class => 'control-label'
+        = f.date_field :birthdate, :class => 'form-control'
+      .form-group
+        = f.label :street, :class => 'control-label'
+        = f.text_field :street, :class => 'form-control'
+      .form-group
+        = f.label :zip, :class => 'control-label'
+        = f.text_field :zip, :class => 'form-control'
+      .form-group
+        = f.label :city, :class => 'control-label'
+        = f.text_field :city, :class => 'form-control'
+      .form-group
+        = f.label :country, :class => 'control-label'
+        = f.text_field :country, :class => 'form-control'
+      = f.submit "Speichern", :class => 'btn btn-default'

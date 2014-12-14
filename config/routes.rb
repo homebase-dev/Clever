@@ -21,11 +21,26 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
   get 'static_pages/news'
   get 'static_pages/quiz'
-  get 'static_pages/profile'
+  get 'static_pages/profile_status'
+  get 'static_pages/profile_data'
   get 'static_pages/admin'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
+  get 'users/edit_password'
+  get 'users/edit_email'
   
+  resource :user, only: [:edit_password] do
+    collection do
+      patch 'update_password'
+    end
+  end
+  
+  resource :user, only: [:edit_email] do
+    collection do
+      patch 'update_email'
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
