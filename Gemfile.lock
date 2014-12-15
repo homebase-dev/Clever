@@ -64,6 +64,8 @@ GEM
     json (1.8.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mathjax-rails (2.3.0)
+      railties (>= 3.0)
     mime-types (2.4.3)
     mini_magick (4.0.1)
     minitest (5.4.3)
@@ -83,9 +85,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.8)
       sprockets-rails (~> 2.0)
-    rails-i18n (4.0.3)
-      i18n (~> 0.6)
-      railties (~> 4.0)
     railties (4.1.8)
       actionpack (= 4.1.8)
       activesupport (= 4.1.8)
@@ -144,10 +143,10 @@ DEPENDENCIES
   haml (~> 4.0.5)
   jbuilder (~> 2.0)
   jquery-rails
+  mathjax-rails
   mini_magick
   mysql2
   rails (= 4.1.8)
-  rails-i18n (~> 4.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   turbolinks

@@ -22,8 +22,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 #simple form
 #gem 'simple_form'
-#rails-i18n
-gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+#rails-i18n - does not work??
+#gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+gem 'mathjax-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
