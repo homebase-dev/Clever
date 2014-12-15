@@ -25,12 +25,15 @@ Rails.application.routes.draw do
   get 'static_pages/profile_data'
   get 'static_pages/admin'
   get 'static_pages/payment'
+  post 'static_pages/pay'
+
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   get 'users/edit_password'
   get 'users/edit_email'
-  
+  patch 'users/update'
+    
   resource :user, only: [:edit_password] do
     collection do
       patch 'update_password'

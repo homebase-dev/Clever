@@ -11,7 +11,15 @@ class UsersController < ApplicationController
   
 
   def update
+    @user = current_user
     
+    if @user.update(user_params)
+      flash[:notice] = "Änderungen erfolgreich durchgeführt"
+    else
+      flash[:error] = "Beim Ändern trat ein Fehler auf."
+    end
+    
+    redirect_to static_pages_profile_data_path
   end
   
   
@@ -68,7 +76,7 @@ class UsersController < ApplicationController
 
   def user_params
     # NOTE: Using `strong_parameters` gem
-    params.required(:user).permit(:password, :password_confirmation, :email)
+    params.required(:user).permit(:password, :password_confirmation, :email, :firstname, :lastname, :phone, :birthdate, :street, :zip, :city, :country)
   end
   
 end

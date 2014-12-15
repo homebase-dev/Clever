@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
     role_name == 'admin'
   end
   
+  def banned?
+    role_name == 'banned'
+  end
+  
+  def member?
+    role_name == 'member'
+  end
 
   private
 

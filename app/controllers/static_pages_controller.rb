@@ -48,4 +48,24 @@ class StaticPagesController < ApplicationController
     @user = current_user
   end
   
+  def pay
+    @creditcard_number = params[:creditcard_number]
+    @creditcard_expiration_date  = params[:creditcard_expiration_date]
+    @creditcard_cnc = params[:creditcard_cnc]
+    
+    #TODO do payment processing
+    
+    payment_successful = true
+    if payment_successful
+      flash[:notice] = 'Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!'
+      current_user.role = Role.find_by_name('member')
+      #TODO set membership_expiration_date
+      current_user.save!
+    else
+      flash[:error] = 'Bei der Bezahlung trat ein Fehler auf, versuchen Sie es später nocheinmal.'
+    end
+    
+    redirect_to static_pages_profile_status_path
+  end
+  
 end

@@ -10,4 +10,4 @@
         %p.form-control-static.account-status.active
           %span.label{:class => "#{label_css_class}"}= status_label
         %p= status_msg
-    %button.btn.btn-default{:type => "button"}= button_caption
+    %a.btn.btn-default{:href => "#{button_path}", :type => "button"}= button_caption
