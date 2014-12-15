@@ -24,10 +24,45 @@ class UsersController < ApplicationController
   
   
   
-
-  def edit
-    @user = current_user
+  #TODO add authentication
+  def edit_admin
+    if !current_user.admin?
+      flash[:error] = "Sie sind nicht berechtigt diese Operation auszuführen."
+      redirect_to static_pages_home_path and return
+    end
+    
+    @user = User.find_by_id(params[:id])
   end
+  
+  #TODO put authentication outside
+  def update_admin
+    if !current_user.admin?
+      flash[:error] = "Sie sind nicht berechtigt diese Operation auszuführen."
+      redirect_to users_index_path and return
+    end
+    
+    @user = User.find_by_email(user_params[:email])
+    role_id = params[:user][:role]
+    role = Role.find_by_id(role_id)
+    
+    if @user.update(user_params)
+      if role.present?
+        @user.role = role
+        @user.save!
+        flash[:notice] = "Der Benutzer hat jetzt die Rolle: "+role.name+"."
+      end
+      flash[:notice] = "Änderungen erfolgreich durchgeführt."
+    else
+      flash[:error] = "Beim Ändern trat ein Fehler auf."
+    end
+    
+    redirect_to users_index_path
+  end
+  
+  
+  
+  
+  
   
   def edit_email
     @user = current_user

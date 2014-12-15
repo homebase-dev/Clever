@@ -1,0 +1,54 @@
+= form_for @user, :url => update_admin_user_path do |f|
+  - if @user.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@user.errors.count, "error")
+          prohibited this novelty from being saved:
+      .panel-body
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+  .form-group
+    = f.label :email, :class => 'control-label'
+    = f.text_field :email, :class => 'form-control'
+    = error_span(@user[:email])         
+  .form-group
+    = f.label :firstname, :class => 'control-label'
+    = f.text_field :firstname, :class => 'form-control'
+    = error_span(@user[:firstname])
+  .form-group
+    = f.label :lastname, :class => 'control-label'
+    = f.text_field :lastname, :class => 'form-control'
+    = error_span(@user[:lastname])
+  .form-group
+    = f.label :phone, :class => 'control-label'
+    = f.text_field :phone, :class => 'form-control'
+    = error_span(@user[:phone])
+  .form-group
+    = f.label :birthdate, :class => 'control-label'
+    = f.date_field :birthdate, :class => 'form-control'
+    = error_span(@user[:birthdate])
+  .form-group
+    = f.label :street, :class => 'control-label'
+    = f.text_field :street, :class => 'form-control'
+    = error_span(@user[:street])
+  .form-group
+    = f.label :zip, :class => 'control-label'
+    = f.text_field :zip, :class => 'form-control'
+    = error_span(@user[:title])
+  .form-group
+    = f.label :city, :class => 'control-label'
+    = f.text_field :city, :class => 'form-control'
+    = error_span(@user[:city])
+  .form-group
+    = f.label :country, :class => 'control-label'
+    = f.text_field :country, :class => 'form-control'     
+    = error_span(@user[:country])  
+  .form-group
+    = f.collection_select :role, Role.all, :id, :name, :selected => @user.role.id
+    
+  = f.submit "Speichern", :class => 'btn btn-default'   
+  / = link_to t('.cancel', :default => t("helpers.links.cancel")), users_index_path, :class => 'btn btn-default'     
+
+

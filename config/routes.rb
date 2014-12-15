@@ -4,10 +4,6 @@ Rails.application.routes.draw do
 
   resources :faqs
 
-  get 'users/index'
-
-  get 'users/update'
-
   get 'index/update'
 
   resources :quizzes
@@ -30,9 +26,19 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
+  get 'users/index'
+  get 'users/update'
+  get 'users/edit_admin'
   get 'users/edit_password'
   get 'users/edit_email'
   patch 'users/update'
+    
+    
+  resource :user, only: [:edit_admin] do
+    collection do
+      patch 'update_admin'
+    end
+  end  
     
   resource :user, only: [:edit_password] do
     collection do

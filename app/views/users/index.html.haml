@@ -1,12 +1,30 @@
 .page-header
-  %h1
-    Benutzer
-    
+  %h1 Benutzer
+  
 %a.btn.btn-default.pull-right{:href => "#{static_pages_admin_path}", :role => "button"} Zurück
-    
-%p Anzahl der Nutzer #{@users.size}
-    
-- @users.each do |user|
-  %p=user.inspect 
 
-
+%table.table.table-striped
+  %thead
+    %tr
+      %th E-mail
+      %th Name
+      %th Geburtsdatum
+      %th Stadt
+      %th Land
+      %th Rolle
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.fullname
+        %td= user.birthdate
+        %td= user.city
+        %td= user.country
+        %td= user.role_name
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), users_edit_admin_path(:id => user.id), :class => 'btn btn-default btn-xs'
+          / = link_to t('.destroy', :default => t("helpers.links.destroy")), "", 
+          /  :method => :delete, 
+          /  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, 
+          /  :class => 'btn btn-xs btn-danger'            
+                                                                            
