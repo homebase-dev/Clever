@@ -1,0 +1,30 @@
+.page-header
+  %h1 Categories
+%a.btn.btn-default.pull-right{:href => "#{quizzes_path}", :role => "button"} Zurück
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Creator
+      %th Quiz
+      %th Published
+      %th Created_at
+      %th Actions
+  %tbody
+    - @quiz_categories.each do |category|
+      %tr
+        %td= category.name
+        %td= category.creator.id
+        %td= category.quiz.id
+        %td= category.published
+        %td= category.created_at_formatted
+        %td
+          = link_to 'Show', category, :class => 'btn btn-default btn-xs' 
+          
+          = link_to 'Edit', edit_category_path(category), :class => 'btn btn-default btn-xs' 
+          
+          = link_to 'Questions', "fix quiz_categories_path(@quiz)", :class => 'btn btn-default btn-xs' 
+          
+          = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' 
+          
+= link_to 'New Category', new_quiz_category_path(@quiz), :class => 'btn btn-primary'                                                                           

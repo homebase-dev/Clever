@@ -1,11 +1,6 @@
-class Quiz < ActiveRecord::Base
+class Category < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
-  scope :published, -> { where(published: true) }
-  
-  mount_uploader :image, ImageUploader
-  
-  has_many :categories
-  
+  belongs_to :quiz
   
   
   def created_at_formatted

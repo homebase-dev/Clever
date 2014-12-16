@@ -10,7 +10,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:title)
-      %th= model_class.human_attribute_name(:text)
+      / %th= model_class.human_attribute_name(:text)
       %th= model_class.human_attribute_name(:published)
       %th= model_class.human_attribute_name(:priority)
       %th= model_class.human_attribute_name(:created_at)
@@ -20,7 +20,7 @@
       %tr
         %td= link_to novelty.id, novelty_path(novelty)
         %td= novelty.title
-        %td= novelty.text
+        / %td= novelty.text
         %td= novelty.published
         %td= novelty.priority
         %td= l novelty.created_at

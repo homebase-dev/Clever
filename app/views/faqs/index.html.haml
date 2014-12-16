@@ -7,7 +7,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:title)
-      %th= model_class.human_attribute_name(:text)
+      / %th= model_class.human_attribute_name(:text)
       %th= model_class.human_attribute_name(:published)
       %th= model_class.human_attribute_name(:priority)
       %th= model_class.human_attribute_name(:created_at)
@@ -17,7 +17,7 @@
       %tr
         %td= link_to faq.id, faq_path(faq)
         %td= faq.title
-        %td= faq.text
+        / %td= faq.text
         %td= faq.published
         %td= faq.priority
         %td= l faq.created_at
