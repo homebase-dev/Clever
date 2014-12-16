@@ -24,7 +24,13 @@ gem 'mini_magick'
 #gem 'simple_form'
 #rails-i18n - does not work??
 #gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+#mathjax for math support
 gem 'mathjax-rails'
+
+#erb2haml converter
+#gem "erb2haml", :group => :development
+
+gem 'html2haml'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

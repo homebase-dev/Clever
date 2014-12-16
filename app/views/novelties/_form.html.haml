@@ -1,0 +1,34 @@
+= form_for @novelty, :html => { :class => "form-horizontal novelty" } do |f|
+  - if @novelty.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@novelty.errors.count, "error")
+          prohibited this novelty from being saved:
+      .panel-body
+        %ul
+          - @novelty.errors.full_messages.each do |msg|
+            %li= msg
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'form-control'
+    = error_span(@novelty[:title])
+  .control-group
+    = f.label :text, :class => 'control-label'
+    .controls
+      = f.text_field :text, :class => 'form-control'
+    = error_span(@novelty[:text])
+  .control-group
+    = f.label :priority, :class => 'control-label'
+    .controls
+      = f.text_field :priority, :class => 'form-control'
+    = error_span(@novelty[:priority])
+  .control-group
+    = f.label :published, :class => 'control-label'
+    .controls
+      = f.check_box :published
+    = error_span(@novelty[:published])
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+    novelties_path, :class => 'btn btn-default'                  |

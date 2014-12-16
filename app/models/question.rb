@@ -1,12 +1,11 @@
-class Category < ActiveRecord::Base
+class Question < ActiveRecord::Base
+  belongs_to :category
   belongs_to :creator, :class_name => "User"
-  belongs_to :quiz
-  
-  has_many :questions
+
+  #has_many :answers
   
   scope :published, -> { where(published: true) }
   
-  mount_uploader :image, ImageUploader
   
   
   def created_at_formatted
@@ -14,6 +13,5 @@ class Category < ActiveRecord::Base
       created_at.strftime("%d.%m.%Y %H:%M")
     end
   end
-
 
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
     
+  resources :questions
+
   resources :categories
 
   resources :novelties
@@ -12,11 +14,14 @@ Rails.application.routes.draw do
   #resources :users
   
   resources :quizzes do
-    resources :categories, :except => [:update, :destroy]
+    resources :categories, :except => [:update, :destroy] do
+      resources :questions, :except => [:destroy]
+    end
   end
 
   resources :categories, :only => [:update, :destroy]
-
+  resources :questions, :only => [:destroy]
+  
   root 'static_pages#home'
 
   get 'static_pages/home'
