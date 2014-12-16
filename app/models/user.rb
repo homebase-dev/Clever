@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     role.try(:name)
   end
   
+  def can_manage?
+    admin? || moderator?
+  end
+  
   def moderator?
     role_name == 'moderator'
   end

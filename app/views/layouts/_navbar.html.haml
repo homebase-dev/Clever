@@ -16,7 +16,7 @@
         /- else
         %li 
           =link_to "Home", static_pages_home_path
-        - if current_user.try(:admin?)
+        - if current_user.try(:can_manage?)
           %li
             =link_to "Verwaltung", static_pages_admin_path
         %li

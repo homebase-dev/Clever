@@ -33,10 +33,10 @@
 -elsif current_user.role_name == 'banned'
   = render "static_pages/profile/account_status", 
     label_css_class: "label-danger", 
-    img: "service.png", 
+    img: "lock.png", 
     status_label: "Gesperrt", 
     status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: support@clever-learning.at", 
-    button_caption: "E-mail an das Support-team schreiben",
+    button_caption: "E-mail an das Support-Team schreiben",
     button_path: "mailto:support@clever-learning.at"
 -else
   = render "static_pages/profile/account_status", 
@@ -44,7 +44,7 @@
     img: "unlocked.png", 
     status_label: current_user.role_name, 
     status_msg: "Bei Fragen wende dich an das Support Team: support@clever-learning.at", 
-    button_caption: "E-mail an das Support-team schreiben",
+    button_caption: "E-mail an das Support-Team schreiben",
     button_path: "mailto:support@clever-learning.at"
 
         
