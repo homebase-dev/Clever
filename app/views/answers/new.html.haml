@@ -1,0 +1,6 @@
+- model_class = Answer
+.page-header
+  %h1= t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+= render :partial => 'form'
+
+= link_to 'Back', quiz_category_question_answers_path(@quiz, @category, @question)

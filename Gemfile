@@ -27,9 +27,7 @@ gem 'mini_magick'
 #mathjax for math support
 gem 'mathjax-rails'
 
-#erb2haml converter
-#gem "erb2haml", :group => :development
-
+#converter for erbs -> haml
 gem 'html2haml'
 
 # Use SCSS for stylesheets

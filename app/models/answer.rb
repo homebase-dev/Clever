@@ -1,11 +1,8 @@
-class Question < ActiveRecord::Base
-  belongs_to :category
+class Answer < ActiveRecord::Base
+  belongs_to :question
   belongs_to :creator, :class_name => "User"
 
-  has_many :answers
-  
   scope :published, -> { where(published: true) }
-  
   
   
   def created_at_formatted
@@ -13,5 +10,5 @@ class Question < ActiveRecord::Base
       created_at.strftime("%d.%m.%Y %H:%M")
     end
   end
-
+  
 end

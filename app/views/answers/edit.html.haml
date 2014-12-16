@@ -1,0 +1,8 @@
+- model_class = Answer
+.page-header
+  %h1= t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+= render :partial => 'form'
+
+= link_to 'Show', [@answer.question.category.quiz, @answer.question.category, @answer.question, @answer]
+|
+\#{link_to 'Back', quiz_category_question_answers_path(@answer.question.category.quiz, @answer.question.category, @answer.question)}
