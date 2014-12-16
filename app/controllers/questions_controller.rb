@@ -23,8 +23,6 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
-    @category = @question.category
-    @quiz = @category.quiz
   end
 
   def create
@@ -42,8 +40,10 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @category = @question.category
+    @quiz = @category.quiz
     @question.destroy
-    respond_with(@question)
+    respond_with(@quiz, @category, @question)
   end
 
   private

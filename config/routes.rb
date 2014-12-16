@@ -15,12 +15,12 @@ Rails.application.routes.draw do
   
   resources :quizzes do
     resources :categories, :except => [:update, :destroy] do
-      resources :questions, :except => [:destroy]
+      resources :questions, :except => [:update, :destroy]
     end
   end
 
   resources :categories, :only => [:update, :destroy]
-  resources :questions, :only => [:destroy]
+  resources :questions, :only => [:update, :destroy]
   
   root 'static_pages#home'
 
