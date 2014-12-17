@@ -17,7 +17,7 @@
     - @category_questions.each do |question|
       %tr
         %td= link_to question.id, question_path(question)
-        %td= question.text
+        %td= preview_html_field(question.text, 50)
         %td= question.answers.count
         %td= question.category_id
         %td= question.creator_id

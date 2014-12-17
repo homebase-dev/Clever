@@ -15,7 +15,8 @@
     = error_span(@quiz[:name])
   .control-group
     = f.label :description, :class => 'control-label'
-    = f.text_area :description, :class => 'form-control', :rows => '10'
+    / = f.text_area :description, :class => 'form-control', :rows => '10'
+    = f.cktext_area :description, :class => 'form-control', :rows => 10
     = error_span(@quiz[:description])
   .control-group
     = f.label :creator_id, :class => 'control-label'

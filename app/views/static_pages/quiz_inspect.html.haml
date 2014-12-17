@@ -7,7 +7,7 @@
     %a.thumbnail.category{:href => "#"}
       = image_tag("news.png", alt: "Quiz icon")
       %p.text-center
-    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_quiz_path}", :role => "button"} Zurück
   .col-lg-10
     - @quiz.categories.each do |category|
       %h3=category.name
@@ -16,7 +16,7 @@
           .panel-heading
             %h3.panel-title Frage #{index+1}
           .panel-body
-            %p= question.text
+            %p=preview_html_field(question.text)
         - question.answers.each_with_index do |answer, index_2|
           %ul.list-group
             %a.list-group-item.no-boarder{:href => "#", :class => "#{answer.correct? ? 'selected-answer' : ''}"}
@@ -31,4 +31,4 @@
                     %i.fa.fa-square-o
                     =answer_char(index_2)
                     / =index_2
-                .answer-text=answer.text
+                .answer-text=preview_html_field(answer.text)

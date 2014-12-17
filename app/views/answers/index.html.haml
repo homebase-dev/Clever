@@ -17,7 +17,7 @@
     - @question_answers.each do |answer|
       %tr
         %td= link_to answer.id, answer_path(answer)
-        %td= answer.text
+        %td= preview_html_field(answer.text)
         %td= answer.correct
         %td= answer.question_id
         %td= answer.creator_id

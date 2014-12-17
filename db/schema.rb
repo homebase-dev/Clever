@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216151804) do
+ActiveRecord::Schema.define(version: 20141217163112) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -39,6 +39,22 @@ ActiveRecord::Schema.define(version: 20141216151804) do
 
   add_index "categories", ["creator_id"], name: "index_categories_on_creator_id", using: :btree
   add_index "categories", ["quiz_id"], name: "index_categories_on_quiz_id", using: :btree
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "faqs", force: true do |t|
     t.string   "title"

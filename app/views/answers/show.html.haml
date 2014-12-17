@@ -6,7 +6,7 @@
     %strong
       = model_class.human_attribute_name(:text)
       \:
-  %dd= @answer.text
+  %dd= preview_html_field(@answer.text)
   %dt
     %strong
       = model_class.human_attribute_name(:correct)

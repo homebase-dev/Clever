@@ -26,9 +26,11 @@ gem 'mini_magick'
 #gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 #mathjax for math support
 gem 'mathjax-rails'
-
 #converter for erbs -> haml
 gem 'html2haml'
+#ckeditor gem
+gem 'ckeditor'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
