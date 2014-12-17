@@ -4,7 +4,7 @@ class Quiz < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
-  has_many :categories
+  has_many :categories, :dependent => :destroy
   
   
   

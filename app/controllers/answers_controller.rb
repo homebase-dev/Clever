@@ -19,6 +19,7 @@ class AnswersController < ApplicationController
     @category = @question.category
     @quiz = @category.quiz
     @answer = Answer.new
+    @answer.published = true
     respond_with(@quiz, @category, @question, @answer)
   end
 

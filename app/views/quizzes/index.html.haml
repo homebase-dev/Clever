@@ -20,17 +20,16 @@
         / %td= quiz.description
         %td
           = quiz.creator_id
-          - if current_user.admin? and quiz.creator_id.present?
+          - if current_user.try(:admin?) and quiz.creator_id.present?
             = link_to 'Edit', users_edit_admin_path(:id => quiz.creator_id), :class => 'btn btn-xs btn-default' 
         %td= quiz.published
         %td= quiz.created_at_formatted
         %td
           = link_to 'Show', quiz, :class => 'btn btn-default btn-xs' 
           
-          = link_to t('.edit', :default => t("helpers.links.edit")), 
-            edit_quiz_path(quiz), :class => 'btn btn-default btn-xs' 
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_quiz_path(quiz), :class => 'btn btn-default btn-xs' 
           
-          = link_to 'Categories', quiz_categories_path(quiz), :class => 'btn btn-success btn-xs' 
+          = link_to 'Categories', quiz_categories_path(quiz), :class => 'btn btn-primary btn-xs' 
           
           = link_to t('.destroy', :default => t("helpers.links.destroy")),                                               
             quiz_path(quiz),                                                                                             
@@ -42,4 +41,4 @@
                                                                                        
 = link_to t('.new', :default => t("helpers.links.new")), 
   new_quiz_path,                                         
-  :class => 'btn btn-primary'                            
+  :class => 'btn btn-success'                            

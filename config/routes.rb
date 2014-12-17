@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
   get 'static_pages/news'
   get 'static_pages/quiz'
+  get 'static_pages/quiz_inspect'
   get 'static_pages/profile_status'
   get 'static_pages/profile_data'
   get 'static_pages/admin'

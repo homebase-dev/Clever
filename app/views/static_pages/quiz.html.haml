@@ -12,7 +12,7 @@
   .row
     - quiz_row.each do |quiz|
       .col-lg-3
-        %a.thumbnail.category{:href => "quiz_question.html"}
+        %a.thumbnail.category{:href => "#{static_pages_quiz_inspect_path(:id => quiz.id)}"}
           = image_tag(quiz.image.url, alt: "") 
           %p.text-center=quiz.name
 

@@ -3,6 +3,180 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+
+/* different stuff */
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+
+
+
+.bs-callout-danger {
+border-left-color: #d9534f;
+}
+.bs-callout {
+padding: 20px;
+margin: 20px 0;
+border: 1px solid #eee;
+border-left-width: 5px;
+border-radius: 3px;
+}
+
+.bs-callout-info {
+border-left-color: #5bc0de;
+}
+
+.bs-callout-info h4 {
+color: #5bc0de;
+}
+.bs-callout h4 {
+margin-top: 0;
+margin-bottom: 5px;
+}
+h4, .h4 {
+font-size: 18px;
+}
+
+
+.answer-orange {
+  border-color: rgba(255, 252, 0, 0.17) !important; /* ausgangsfarbe #FFC261 !important; */
+  background-color: rgba(255, 252, 0, 0.17) !important; /* sun */
+  /* orange background-color: rgba(255, 194, 97, 0.17) !important; */
+}
+
+.answer-red {
+  border-color: #C34F4A !important;
+  background-color: #C34F4A !important;
+}
+
+.answer-blue {
+  border-color: #0F2537 !important;
+  background-color: #0F2537 !important;
+}
+
+.answer-badge {
+  font-weight: bold;
+  width: 2em;
+  float: left;
+}
+
+.list-group-item.selected-answer {
+  /*color: #337ab7 !important;*/
+  background-color: rgba(245, 245, 245, 0.25);
+  /*border-color: rgba(255, 252, 0, 0.17) !important; /* ausgangsfarbe #FFC261 !important; /
+  background-color: rgba(255, 252, 0, 0.17) !important; /* sun */
+}
+
+.list-group-item.correct-answer {
+  background-color: rgba(38, 197, 13, 0.13);
+}
+
+.list-group-item.wrong-answer {
+  background-color: rgba(197, 13, 13, 0.13);
+}
+
+
+
+/* Liste hintergrundfarbe */
+.list-group-item.answer {
+  /*background-color: rgba(176, 176, 176, 0.07);
+   blue background-color: rgba(51, 122, 183, 0.10);*/
+}
+
+
+
+.thumbnail.category img {
+  margin-top: 15px;
+}
+
+.thumbnail.category.header {
+  margin-bottom: 0px;
+}
+
+/* angeklickte antwort
+.list-group-item.active {
+  border-color: #676767 !important;
+  background-color: #676767 !important;
+}*/
+
+.answer-text {
+}
+
+.answer-badge-q3 {
+  /*font-weight: bold;*/
+  font-size: 1em;
+  color: #337ab7;
+  width: 3em;
+  float: left;
+  display: inline-block;
+}
+
+.answer-badge-q3.selected {
+  color: #337ab7;
+  /*color: #FFC261;*/
+}
+
+.list-group-item.no-boarder {
+  border: none;
+}
+
+.blue{
+  color: #337ab7;
+}
+
+
+
+/* RESULT PAGE */
+
+.page-header .quiz-result-positiv {
+  color: #26C50D;
+  font-weight: bold;
+
+  font-size: 1.1em;
+}
+
+.panel-heading.wrong-answer{
+  color: #fff !important;
+  background-color: #C34F4A !important;
+}
+
+.panel-heading.correct-answer{
+  /*color: #fff !important;*/
+  /*background-color: #26C50D !important;*/
+}
+
+.btn.space-right {
+  margin-right: 1em;
+}
+
+.btn.space-left {
+  margin-left: 1em;
+}
+
+.form-control-static.account-status {
+  padding-bottom: 0.5em;
+}
+
+.form-control-static.account-status.active {
+  /*color: #26C50D;*/
+  font-size: 2.3em;
+}
+
+.form-control-static.account-status.inactive {
+  /*color: #26C50D;*/
+  font-size: 2.3em;
+}
+
+
+
 /* LANDING PAGE */
 
 .marketing-area .box {
@@ -18,6 +192,12 @@
 .marketing-area .box  {
   text-align: center;
 }
+
+/*body {
+  padding-top: 0 !important;
+}*/
+
+
 
 /* nice brown rgba(255, 126, 0, 0.04) */
 
@@ -40,27 +220,7 @@
   margin-top: -20px;
 }
 
+
 .no-border {
   border: none !important;
-}
-
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.navbar {
-  margin-bottom: 20px;
-}
-
-
-
-/* Quiz overwiev */
-
-.thumbnail.category img {
-  margin-top: 15px;
-}
-
-.thumbnail.category.header {
-  margin-bottom: 0px;
 }

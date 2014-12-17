@@ -7,7 +7,7 @@
     %ul.nav.nav-pills.nav-stacked
       %li{:role => "presentation"}
         %a{:href => "#{quizzes_path}"} Quiz
-      -if current_user.admin?
+      -if current_user.try(:admin?)
         %li{:role => "presentation"}
           %a{:href => "#{faqs_path}"} FAQ
         %li{:role => "presentation"}

@@ -67,4 +67,10 @@ class StaticPagesController < ApplicationController
     redirect_to static_pages_profile_status_path
   end
   
+  def quiz_inspect
+    puts "WAT"
+    puts params
+    @quiz = Quiz.find(params[:id])
+  end
+  
 end

@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
     @category = Category.find(params[:category_id])
     @quiz = @category.quiz
     @question = Question.new
+    @question.published = true
     respond_with(@quiz, @category, @question)
   end
 

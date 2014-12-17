@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :category
   belongs_to :creator, :class_name => "User"
 
-  has_many :answers
+  has_many :answers, :dependent => :destroy
   
   scope :published, -> { where(published: true) }
   

@@ -1,6 +1,7 @@
 - model_class = Answer
 .page-header
   %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+%a.btn.btn-default.pull-right{:href => "#{quiz_category_questions_path(@question.category.quiz, @question.category)}", :role => "button"} Zurück
 %table.table.table-striped
   %thead
     %tr
@@ -28,4 +29,4 @@
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_answer_path(answer), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), answer_path(answer), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'   
             
-= link_to t('.new', :default => t("helpers.links.new")), new_quiz_category_question_answer_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-primary'
+= link_to t('.new', :default => t("helpers.links.new")), new_quiz_category_question_answer_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-success'
