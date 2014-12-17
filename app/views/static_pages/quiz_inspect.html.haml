@@ -24,11 +24,13 @@
                 - if answer.correct?
                   .answer-badge-q3.selected
                     %i.fa.fa-check-square-o
+                    / %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
                     =answer_char(index_2)
                     / =index_2
                 - else
                   .answer-badge-q3
                     %i.fa.fa-square-o
+                    / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
                     =answer_char(index_2)
                     / =index_2
                 .answer-text=preview_html_field(answer.text)

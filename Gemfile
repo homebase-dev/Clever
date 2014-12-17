@@ -14,8 +14,8 @@ gem 'devise'
 #haml
 gem 'haml', '~> 4.0.5'
 #twitter-bootstrap
-#gem "therubyracer"
-#gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 #carrierwave (requires mini_magick)
 gem 'carrierwave'
