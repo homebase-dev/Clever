@@ -1,0 +1,30 @@
+- model_class = Test
+.page-header
+  %h1= t '.title', :default => model_class.model_name.human.titleize
+%dl.dl-horizontal
+  %dt
+    %strong
+      = model_class.human_attribute_name(:testee_id)
+      \:
+  %dd= @test.testee_id
+  %dt
+    %strong
+      = model_class.human_attribute_name(:start)
+      \:
+  %dd= @test.start
+  %dt
+    %strong
+      = model_class.human_attribute_name(:end)
+      \:
+  %dd= @test.end
+= link_to t('.back', :default => t("helpers.links.back")), |
+  tests_path, :class => 'btn btn-default'                  |
+-#
+= link_to t('.edit', :default => t("helpers.links.edit")), |
+  edit_test_path(@test), :class => 'btn btn-default'       |
+-#
+= link_to t('.destroy', :default => t("helpers.links.destroy")),                                               |
+  test_path(@test),                                                                                            |
+  :method => 'delete',                                                                                         |
+  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, |
+  :class => 'btn btn-danger'                                                                                   |

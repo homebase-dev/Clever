@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
     
+  resources :assignations
+
+  resources :tests
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :answers
 

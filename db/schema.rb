@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217231515) do
+ActiveRecord::Schema.define(version: 20141218012320) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20141217231515) do
 
   add_index "answers", ["creator_id"], name: "index_answers_on_creator_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "assignations", force: true do |t|
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignations", ["question_id"], name: "index_assignations_on_question_id", using: :btree
+  add_index "assignations", ["test_id"], name: "index_assignations_on_test_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -103,6 +113,16 @@ ActiveRecord::Schema.define(version: 20141217231515) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tests", force: true do |t|
+    t.integer  "testee_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tests", ["testee_id"], name: "index_tests_on_testee_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

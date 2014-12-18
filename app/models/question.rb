@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
 
   has_many :answers, :dependent => :destroy
+  has_many :assignations
+  has_many :tests, :through => :assignations
   
   scope :published, -> { where(published: true) }
   

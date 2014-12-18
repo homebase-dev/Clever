@@ -1,0 +1,30 @@
+= form_for @test do |f|
+  - if @test.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@test.errors.count, "error")
+          prohibited this test from being saved:
+      .panel-body
+        %ul
+          - @test.errors.full_messages.each do |msg|
+            %li= msg
+  .form-group
+    = f.label :testee_id, :class => 'control-label'
+    = f.text_field :testee_id, :class => 'form-control'
+    = error_span(@test[:testee_id])
+  .form-group
+    = f.label :category_id, :class => 'control-label'
+    = text_field_tag :category_id, nil, :class => 'form-control'
+    = error_span(@test[:category_id])
+  .form-group
+    = f.label :start, :class => 'control-label'
+    = f.text_field :start, :class => 'form-control', :disabled => true
+    = error_span(@test[:start])
+  .form-group
+    = f.label :end, :class => 'control-label'
+    = f.text_field :end, :class => 'form-control', :disabled => true
+    = error_span(@test[:end])
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+    tests_path, :class => 'btn btn-default'                      |

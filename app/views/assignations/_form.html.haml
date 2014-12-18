@@ -1,0 +1,24 @@
+= form_for @assignation, :html => { :class => "form-horizontal assignation" } do |f|
+  - if @assignation.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@assignation.errors.count, "error")
+          prohibited this assignation from being saved:
+      .panel-body
+        %ul
+          - @assignation.errors.full_messages.each do |msg|
+            %li= msg
+  .control-group
+    = f.label :test_id, :class => 'control-label'
+    .controls
+      = f.text_field :test_id, :class => 'form-control'
+    = error_span(@assignation[:test_id])
+  .control-group
+    = f.label :question_id, :class => 'control-label'
+    .controls
+      = f.text_field :question_id, :class => 'form-control'
+    = error_span(@assignation[:question_id])
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+    assignations_path, :class => 'btn btn-default'               |
