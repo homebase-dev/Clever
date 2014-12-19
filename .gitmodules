@@ -1,0 +1,3 @@
+[submodule "config/deploy/setup"]
+	path = config/deploy/setup
+	url = antiloop@git.antiloop.com:deploy.git
