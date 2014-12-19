@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218012320) do
+ActiveRecord::Schema.define(version: 20141219140547) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20141218012320) do
 
   add_index "categories", ["creator_id"], name: "index_categories_on_creator_id", using: :btree
   add_index "categories", ["quiz_id"], name: "index_categories_on_quiz_id", using: :btree
+
+  create_table "checks", force: true do |t|
+    t.integer  "assignation_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checks", ["answer_id"], name: "index_checks_on_answer_id", using: :btree
+  add_index "checks", ["assignation_id"], name: "index_checks_on_assignation_id", using: :btree
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false

@@ -2,12 +2,12 @@
   %h1
     =@question.category.name
     %small Test
-    /%small #{@question_number+1}/#{@test.questions.count}
+    /%small #{@assignation_number+1}/#{@test.assignations.count}
 .row
   .col-lg-12
     .progress
-      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@question_number+1)*100) / @test.questions.count}", :role => "progressbar", :style => "width: #{((@question_number+1)*100) / @test.questions.count}%"}
-        %span #{@question_number+1}/#{@test.questions.count}
+      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@assignation_number+1)*100) / @test.assignations.count}", :role => "progressbar", :style => "width: #{((@assignation_number+1)*100) / @test.assignations.count}%"}
+        %span #{@assignation_number+1}/#{@test.assignations.count}
     
     .panel.panel-primary
       .panel-heading
@@ -16,19 +16,25 @@
         %p=preview_html_field(@question.text)
     - @question.answers.each_with_index do |answer, index|
       %ul.list-group
-        / take_test_path(:id => @test, :question_number => @question_number+2)
-        = link_to "#", :class=> "list-group-item no-boarder" do 
+        / test_step_path(:id => @test, :question_number => @question_number+2)
+        = link_to "#", :onclick => "return false;", :class=> "list-group-item no-boarder" do 
           .answer{:id => "answer-#{answer.id}"}
             .answer-badge-q3
-              %i.fa.fa-square-o
+              -if @assignation.answer_checked?(answer)
+                %i.fa.fa-check-square-o
+              - else
+                %i.fa.fa-square-o
               / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
               =answer_char(index)
               / =index_2
           .answer-text=preview_html_field(answer.text)
 
-%a.btn.btn-default.pull-left{:href => take_test_path(:id => @test, :question_number => @question_number), :role => "button"} Zurück
-%a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
-/ take_test_path(:id => @test, :question_number => @question_number+2)
+.row
+  .col-lg-12
+    - if @assignation_number > 0
+      %a.btn.btn-default.pull-left{:href => test_step_path(:id => @test, :assignation_number => @assignation_number), :role => "button"} Zurück
+    %a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
+    / test_step_path(:id => @test, :question_number => @question_number+2)
 
 :javascript
   $('.list-group-item').click(function() {
@@ -41,11 +47,14 @@
       checkbox.addClass('fa-square-o');
       checkbox.removeClass('fa-check-square-o');
     }
+    
+    return false;
   });
   
-
   
-  $('a#next-link').on('click', function() {
+  
+  
+  function getCheckedAnswersParam() {
     var checked_answer_ids= new Array();
     console.info('looking for selected');
     $(".fa-check-square-o").each(function( index ) {
@@ -59,12 +68,15 @@
       checked_answer_param += "ca%5B%5D="+checked_answer.replace('answer-','')+"&";
     });
     
-    
-    console.info(checked_answer_param)
     console.info(checked_answer_ids);
-  
-    this.href = "/tests/"+"#{@test.id}"+"/take/"+"#{@question_number+2}?"+checked_answer_param;
     
+    return checked_answer_param;
+  }
+  
+  $('a#next-link').on('click', function() {
+    var checked_answer_param = getCheckedAnswersParam();
+    console.info(checked_answer_param)
+    this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
   });
   
 

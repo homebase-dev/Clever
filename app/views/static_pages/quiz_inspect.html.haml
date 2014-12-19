@@ -11,6 +11,8 @@
   .col-lg-10
     - @quiz.categories.each do |category|
       %h3=category.name
+      / %a.btn.btn-default.pull-right{:href => "#{static_pages_quiz_path}", :role => "button"} Starte Quiz
+      = link_to "Starte Quiz", tests_path(:category_id => category.id, :nb_of_questions => 10), :method => :post, :class => "btn btn-default pull-right"
       - category.questions.each_with_index do |question, index|
         .panel.panel-primary
           .panel-heading

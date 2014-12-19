@@ -17,47 +17,52 @@
   .col-lg-3
     %h1
       Ergebnis:
-      %small.quiz-result-positiv 80%
-    %p{:style => "font-size: 0.9em"} Du hast 8 von 10 Fragen richtig beantwortet
+      %small.quiz-result-positiv #{@test.result_in_percent} %
+    %p{:style => "font-size: 0.9em"} Du hast #{@test.passed_assignations} von #{@test.assignations.count} Fragen richtig beantwortet
+    %p{:style => "font-size: 0.9em"} Zeit: #{time_ago_in_words @test.duration_in_sec.seconds.from_now}
     %br/
   .col-lg-4
 %br/
 %br/
-%h3 Kontrolle
-#accordion.panel-group
-  - @test.questions.each_with_index do |question, index|
-    .panel.panel-default
-      .panel-heading.wrong-answer
-        %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
-      %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
-        .panel-body
-          
-          .panel.panel-primary
-            .panel-heading
-              %h3.panel-title
-              / Frage #{index+1}/#{@test.questions.count}
+.row 
+  .col-lg12
+    %h3 Kontrolle
+    #accordion.panel-group
+      - @test.assignations.each_with_index do |assignation, index|
+        .panel.panel-default
+          .panel-heading{:class => "#{assignation.passed? ? '' : 'wrong-answer'}"}
+            %h4.panel-title
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
+          %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
             .panel-body
-              =preview_html_field(question.text)
-          %br/
-          - question.answers.each_with_index do |answer, index_2|
-            %ul.list-group
-              %a.list-group-item.no-boarder{:href => "#", :class => "#{answer.correct? ? 'selected-answer' : ''}"}
-                .answer
-                  - if answer.correct?
-                    .answer-badge-q3.selected
-                      %i.fa.fa-check-square-o
-                      / %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
-                      =answer_char(index_2)
-                      / =index_2
-                  - else
-                    .answer-badge-q3
-                      %i.fa.fa-square-o
-                      / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
-                      =answer_char(index_2)
-                      / =index_2
-                  .answer-text=preview_html_field(answer.text)
+              
+              .panel.panel-primary
+                .panel-heading
+                  %h3.panel-title
+                  / Frage #{index+1}/#{@test.questions.count}
+                .panel-body
+                  =preview_html_field(assignation.question.text)
+              %br/
+              - assignation.question.answers.each_with_index do |answer, index_2|
+                %ul.list-group
+                  %a.list-group-item.no-boarder{:href => "#", :class => "#{assignation.answer_passed?(answer) ? 'correct-answer' : 'wrong-answer' }"}
+                    .answer
+                      - if assignation.answer_checked?(answer) 
+                        / answer.correct?
+                        .answer-badge-q3.selected
+                          %i.fa.fa-check-square-o
+                          / %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
+                          =answer_char(index_2)
+                          / =index_2
+                      - else
+                        .answer-badge-q3
+                          %i.fa.fa-square-o
+                          / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
+                          =answer_char(index_2)
+                          / =index_2
+                      .answer-text=preview_html_field(answer.text)
 
-      
-%a.btn.btn-default.pull-right{:href => "TODO.html"} Andere Kategorie
-%a.btn.btn-default.pull-right.space-right{:href => "TODO.html"} Nochmal
+.row 
+  .col-lg-12
+    %a.btn.btn-default.pull-right{:href => "TODO.html"} Andere Kategorie
+    %a.btn.btn-default.pull-right.space-right{:href => "TODO.html"} Nochmal

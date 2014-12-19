@@ -1,0 +1,24 @@
+= form_for @check, :html => { :class => "form-horizontal check" } do |f|
+  - if @check.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@check.errors.count, "error")
+          prohibited this check from being saved:
+      .panel-body
+        %ul
+          - @check.errors.full_messages.each do |msg|
+            %li= msg
+  .control-group
+    = f.label :assignation_id, :class => 'control-label'
+    .controls
+      = f.text_field :assignation_id, :class => 'form-control'
+    = error_span(@check[:assignation_id])
+  .control-group
+    = f.label :answer_id, :class => 'control-label'
+    .controls
+      = f.text_field :answer_id, :class => 'form-control'
+    = error_span(@check[:answer_id])
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+    checks_path, :class => 'btn btn-default'                     |

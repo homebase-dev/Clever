@@ -7,6 +7,13 @@ module ApplicationHelper
       field.strip.html_safe
     end
   end
+  
+  
+
+  
+  
+  
+
  
   
 end

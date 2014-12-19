@@ -21,7 +21,15 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.new(test_params)
+    @test = Test.new
+        
+    if params[:test].present?
+      @test = Test.new(test_params)
+    end
+    
+    @nb_of_questions = params[:nb_of_questions].to_i
+    
+    #TODO check if nb_of_questions >0 && <= category.question.count
     
     @test.testee = current_user
     @test.start = Time.now
@@ -37,7 +45,7 @@ class TestsController < ApplicationController
     
     $i = 0
     random_questions = []
-    while $i < 10 do
+    while $i < @nb_of_questions do
       all_questions = category.questions
       #puts "ALL QUESTIONS"
       #puts all_questions.inspect
@@ -58,15 +66,15 @@ class TestsController < ApplicationController
     
     
     
-    @test.save
+    @test.save!
     
     random_questions.each do |q|
       assignation = Assignation.new(:test => @test, :question => q)
       assignation.save!
     end
  
-    
-    respond_with(@test)
+    redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
+    #respond_with(@test)
   end
 
   def update
@@ -81,23 +89,54 @@ class TestsController < ApplicationController
   
   
   # ---------------- Perform a test actions  --------------------
-  
-  def start
-    
+
+  def new_test_from_category
+    @test = Test.new
+    respond_with(@test)
   end
   
-  def take
+  def step
     @test = Test.find_by_id(params[:id])
-    @question_number = params[:question_number].to_i - 1
-    @question =  @test.questions[@question_number]
-    @cheat = params[:cheat] 
+    @assignation_number = params[:assignation_number].to_i - 1
+    @checked_answers = params[:ca]
     
-    if @question_number == @test.questions.count
+    @assignation =  @test.assignations[@assignation_number]#@test.questions[@question_number]
+    @previous_assignation =  @test.assignations[@assignation_number-1]
+    
+    @question = @assignation.try(:question)
+
+    
+    if @previous_assignation.present?
+      #if there are any prevous checks, remove them, since now there are now ones
+      @previous_assignation.checks.destroy_all
+      
+      if @checked_answers.present? and @checked_answers.any?  
+        @checked_answers.each do |ca|
+          checked_answer = Answer.find_by_id(ca)
+          check = Check.new(:assignation => @previous_assignation, :answer => checked_answer)
+          begin
+            check.save!
+          rescue ActiveRecord::RecordInvalid => e
+            logger.info "Check already existing, not creating new one"
+          end
+        end
+      end
+      
+    end
+      
+    
+    if @assignation_number == @test.questions.count
       redirect_to test_result_path(:id => @test.id) and return
     end
     
     respond_with(@question)
   end
+  
+  
+  def post_answer
+    
+  end
+  
   
   def result
     @test = Test.find_by_id(params[:id])
