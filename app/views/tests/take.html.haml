@@ -1,0 +1,70 @@
+.page-header
+  %h1
+    =@question.category.name
+    %small Test
+    /%small #{@question_number+1}/#{@test.questions.count}
+.row
+  .col-lg-12
+    .progress
+      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@question_number+1)*100) / @test.questions.count}", :role => "progressbar", :style => "width: #{((@question_number+1)*100) / @test.questions.count}%"}
+        %span #{@question_number+1}/#{@test.questions.count}
+    
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title Frage
+      .panel-body
+        %p=preview_html_field(@question.text)
+    - @question.answers.each_with_index do |answer, index|
+      %ul.list-group
+        / take_test_path(:id => @test, :question_number => @question_number+2)
+        = link_to "#", :class=> "list-group-item no-boarder" do 
+          .answer{:id => "answer-#{answer.id}"}
+            .answer-badge-q3
+              %i.fa.fa-square-o
+              / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
+              =answer_char(index)
+              / =index_2
+          .answer-text=preview_html_field(answer.text)
+
+%a.btn.btn-default.pull-left{:href => take_test_path(:id => @test, :question_number => @question_number), :role => "button"} Zurück
+%a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
+/ take_test_path(:id => @test, :question_number => @question_number+2)
+
+:javascript
+  $('.list-group-item').click(function() {
+    var checkbox = $(this).find('i.fa');
+    
+    if(checkbox.hasClass('fa-square-o')) {
+      checkbox.removeClass('fa-square-o');
+      checkbox.addClass('fa-check-square-o');
+    } else {
+      checkbox.addClass('fa-square-o');
+      checkbox.removeClass('fa-check-square-o');
+    }
+  });
+  
+
+  
+  $('a#next-link').on('click', function() {
+    var checked_answer_ids= new Array();
+    console.info('looking for selected');
+    $(".fa-check-square-o").each(function( index ) {
+      console.info( "found" );
+      var id = $(this).closest('.answer').attr('id');
+      checked_answer_ids.push(id);
+    });
+    
+    var checked_answer_param = "";
+    jQuery.each(checked_answer_ids, function(index, checked_answer) {
+      checked_answer_param += "ca%5B%5D="+checked_answer.replace('answer-','')+"&";
+    });
+    
+    
+    console.info(checked_answer_param)
+    console.info(checked_answer_ids);
+  
+    this.href = "/tests/"+"#{@test.id}"+"/take/"+"#{@question_number+2}?"+checked_answer_param;
+    
+  });
+  
+

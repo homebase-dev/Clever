@@ -1,0 +1,63 @@
+.page-header
+  %h1
+    =@question.category.name
+    %small Test
+    /%small #{@question_number+1}/#{@test.questions.count}
+.row
+  .col-lg-12
+    .progress
+      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: 100%"}
+        %span.sr-only Auswertung 
+          
+    
+.row
+  .col-lg-4
+  .col-lg-1
+    = image_tag("result_15.png", alt: "Result icon", :style => "margin-top: 1em; height: 6em;")
+  .col-lg-3
+    %h1
+      Ergebnis:
+      %small.quiz-result-positiv 80%
+    %p{:style => "font-size: 0.9em"} Du hast 8 von 10 Fragen richtig beantwortet
+    %br/
+  .col-lg-4
+%br/
+%br/
+%h3 Kontrolle
+#accordion.panel-group
+  - @test.questions.each_with_index do |question, index|
+    .panel.panel-default
+      .panel-heading.wrong-answer
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
+      %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
+        .panel-body
+          
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title
+              / Frage #{index+1}/#{@test.questions.count}
+            .panel-body
+              =preview_html_field(question.text)
+          %br/
+          - question.answers.each_with_index do |answer, index_2|
+            %ul.list-group
+              %a.list-group-item.no-boarder{:href => "#", :class => "#{answer.correct? ? 'selected-answer' : ''}"}
+                .answer
+                  - if answer.correct?
+                    .answer-badge-q3.selected
+                      %i.fa.fa-check-square-o
+                      / %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
+                      =answer_char(index_2)
+                      / =index_2
+                  - else
+                    .answer-badge-q3
+                      %i.fa.fa-square-o
+                      / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
+                      =answer_char(index_2)
+                      / =index_2
+                  .answer-text=preview_html_field(answer.text)
+
+      
+%a.btn.btn-default.pull-right{:href => "TODO.html"} Andere Kategorie
+%a.btn.btn-default.pull-right.space-right{:href => "TODO.html"} Nochmal

@@ -17,6 +17,14 @@
       = model_class.human_attribute_name(:end)
       \:
   %dd= @test.end
+  
+  %dt
+    %strong Questions
+  - @test.questions.each_with_index do |q, index|
+    %dd 
+      #{index+1} #{preview_html_field(q.text)}
+  
+  
 = link_to t('.back', :default => t("helpers.links.back")), |
   tests_path, :class => 'btn btn-default'                  |
 -#

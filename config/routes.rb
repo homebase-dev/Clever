@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   get 'static_pages/payment'
   post 'static_pages/pay'
 
+  get "tests/:id/take/:question_number", :controller => "tests", :action => "take", :as => :take_test
+  get "tests/:id/result", :controller => "tests", :action => "result", :as => :test_result
+
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 

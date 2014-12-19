@@ -78,6 +78,36 @@ class TestsController < ApplicationController
     @test.destroy
     respond_with(@test)
   end
+  
+  
+  # ---------------- Perform a test actions  --------------------
+  
+  def start
+    
+  end
+  
+  def take
+    @test = Test.find_by_id(params[:id])
+    @question_number = params[:question_number].to_i - 1
+    @question =  @test.questions[@question_number]
+    @cheat = params[:cheat] 
+    
+    if @question_number == @test.questions.count
+      redirect_to test_result_path(:id => @test.id) and return
+    end
+    
+    respond_with(@question)
+  end
+  
+  def result
+    @test = Test.find_by_id(params[:id])
+    @question = @test.questions[0]
+    @test.end = Time.now
+    @test.save!
+    
+    respond_with(@test)
+  end
+  
 
   private
     def set_test
