@@ -30,6 +30,9 @@ gem 'mathjax-rails'
 gem 'html2haml'
 #ckeditor gem
 gem 'ckeditor'
+#facebook login
+gem 'omniauth-facebook'
+
 
 
 # Use SCSS for stylesheets

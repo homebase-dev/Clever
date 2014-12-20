@@ -8,6 +8,21 @@
       = image_tag("lock_key.png", alt: "Impressum icon")
       %p.text-center
   .col-lg-10
+    .text-center
+      %br/
+      %a.btn.btn-primary.btn.pull-center{:href => "#{user_omniauth_authorize_path(:facebook)}", :role => "button"} 
+        %i.fa.fa-facebook &nbsp;&nbsp;&nbsp;&nbsp; Mit Facebook Anmelden/Registrieren
+      %br/
+      %br/
+      
+    %table{:width => "100%"}
+      %td
+        %hr/
+      %td{:style => "width:1px; padding: 0 10px; white-space: nowrap;"} Oder
+      %td
+        %hr/
+    
+    
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-group
         = f.label :email, :class => 'control-label'

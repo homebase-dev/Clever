@@ -1,3 +1,22 @@
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '816766665050404',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+   
+   
+
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
   / Indicators
   %ol.carousel-indicators
@@ -45,6 +64,10 @@
           %h2 Neuigkeiten
           %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
           %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
+  
+
+  .fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
+  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
   
   %hr.featurette-divider/
   .row.featurette

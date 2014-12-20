@@ -117,7 +117,7 @@ class TestsController < ApplicationController
           begin
             check.save!
           rescue ActiveRecord::RecordInvalid => e
-            logger.info "Check already existing, not creating new one"
+            logger.info "Check for this Answer already existing, not creating new one"
           end
         end
       end

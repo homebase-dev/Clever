@@ -53,8 +53,7 @@ Rails.application.routes.draw do
   get "tests/:id/step/:assignation_number", :controller => "tests", :action => "step", :as => :test_step
   get "tests/:id/result", :controller => "tests", :action => "result", :as => :test_result
 
-
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'users/index'
   get 'users/update'
