@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
   def index
     @category = Category.find(params[:category_id])
-    @category_questions = @category.questions
+    @category_questions = @category.questions.order('id DESC').page(params[:page]).per(50)
     
     respond_with(@category_questions)
   end

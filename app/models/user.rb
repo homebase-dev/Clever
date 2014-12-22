@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :role
 
   def fullname
-    try(:firstname) + ' ' + try(:lastname)
+    "#{try(:firstname)} #{try(:lastname)}"
   end
 
   def role_name

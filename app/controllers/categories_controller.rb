@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def index
     @quiz = Quiz.find(params[:quiz_id])
-    @quiz_categories = @quiz.categories
+    @quiz_categories = @quiz.categories.order('id DESC').page(params[:page]).per(50)
     respond_with(@quiz_categories)
   end
 

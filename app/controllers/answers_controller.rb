@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
 
   def index
     @question = Question.find(params[:question_id])
-    @question_answers = @question.answers    
+    @question_answers = @question.answers.order('id DESC').page(params[:page]).per(20)
     
     respond_with(@question_answers)
   end

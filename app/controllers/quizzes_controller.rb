@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   respond_to :html
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.all.order('id DESC').page(params[:page]).per(20)
     respond_with(@quizzes)
   end
 

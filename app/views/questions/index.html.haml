@@ -35,3 +35,7 @@
 = link_to "Neu", new_quiz_category_question_path(@category.quiz, @category), :class => 'btn btn-success'
 %br
 \#{link_to 'Zurück', quiz_categories_path(@category.quiz)}
+
+.row
+  .col-lg-10
+    = paginate @category_questions

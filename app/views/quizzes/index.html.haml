@@ -9,6 +9,7 @@
       %th Name
       / %th= model_class.human_attribute_name(:description)
       %th Veröffentlicht?
+      %th #Kategorien
       %th Erstellt am
       %th Von
       %th 
@@ -19,6 +20,7 @@
         %td= quiz.name
         / %td= quiz.description
         %td= render_boolean(quiz.published)
+        %td= quiz.categories.count
         %td= quiz.created_at_formatted
         %td= quiz.creator_id
         %td
@@ -35,4 +37,8 @@
 /= link_to "Zurück", static_pages_admin_path, :class => "btn btn-default"                                                                                
 = link_to "Neu", new_quiz_path, :class => 'btn btn-success'
 %br
-\#{link_to 'Zurück', static_pages_admin_path}                         
+\#{link_to 'Zurück', static_pages_admin_path}           
+
+.row
+  .col-lg-10
+    = paginate @quizzes         

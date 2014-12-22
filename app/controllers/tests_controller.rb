@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   respond_to :html
 
   def index
-    @tests = Test.all
+    @tests = Test.all.order('id DESC').page(params[:page]).per(50)
     respond_with(@tests)
   end
 

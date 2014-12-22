@@ -9,6 +9,7 @@
       %th Name
       %th Quiz
       %th Veröffentlicht?
+      %th #Fragen
       %th Erstellt am
       %th Von
       %th 
@@ -18,6 +19,7 @@
         %td= category.name
         %td= category.quiz.id
         %td= render_boolean(category.published)
+        %td= category.questions.count
         %td= category.created_at_formatted
         %td= category.creator.id
         %td
@@ -31,3 +33,7 @@
 = link_to 'Neue Kategorie', new_quiz_category_path(@quiz), :class => 'btn btn-success'                                                                           
 %br
 \#{link_to 'Zurück', quizzes_path}
+
+.row
+  .col-lg-10
+    = paginate @quiz_categories

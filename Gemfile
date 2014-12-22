@@ -37,7 +37,8 @@ gem 'prawn'
 gem 'prawn-table'
 #devise localization
 gem 'devise-i18n'
-
+#pagination
+gem 'kaminari'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

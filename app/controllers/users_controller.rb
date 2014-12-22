@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   
   def index
-    @users = User.all
+    @users = User.all.order('id DESC').page(params[:page]).per(50)
     respond_with(@users)
   end
   
