@@ -8,24 +8,24 @@
         - @category.errors.full_messages.each do |message|
           %li= message
   .form-group
-    = f.label :name, :class => 'control-label'
-    = f.text_field :name, :class => 'form-control'
+    = f.label "Name", :class => 'control-label'
+    = f.text_field :name, :class => 'form-control', :autofocus => true
   .form-group
-    = f.label :description, :class => 'control-label'
+    = f.label "Beschreibung", :class => 'control-label'
     / = f.text_area :description, :class => 'form-control', :rows => 10
     = f.cktext_area :description, :class => 'form-control', :rows => 10
   .form-group
-    = f.label :creator_id, :class => 'control-label'
+    = f.label "Erstellt von", :class => 'control-label'
     = f.text_field :creator_id, :disabled => true, :class => 'form-control'
   .form-group
-    = f.label :quiz_id, :class => 'control-label'
+    = f.label "Quiz_id", :class => 'control-label'
     = f.text_field :quiz_id, :disabled => true, :class => 'form-control'
   .checkbox
     %label
       = f.check_box :published 
-      Published
+      Veröffentlicht?
   .control-group
-    = f.label :image, :class => 'control-label'
+    = f.label "Bild", :class => 'control-label'
     = f.file_field :image, multiple: false, :class => 'form-control'     
     %br/
   .control-group
@@ -35,4 +35,3 @@
     
     
   = f.submit nil, :class => 'btn btn-primary'
-    

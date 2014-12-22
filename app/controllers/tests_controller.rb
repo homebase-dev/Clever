@@ -43,10 +43,16 @@ class TestsController < ApplicationController
     puts "CATEGORY"
     puts category.inspect
     
+    if category.questions.empty?
+      flash[:error] = "Die Kategorie "+category.name+" hat leider noch keine Fragen, versuche es später nocheinmal."
+      redirect_to(:back) and return
+    end
+    
+    
     $i = 0
     random_questions = []
     while $i < @nb_of_questions do
-      all_questions = category.questions
+      all_questions = category.questions.shuffle
       #puts "ALL QUESTIONS"
       #puts all_questions.inspect
       
@@ -55,6 +61,8 @@ class TestsController < ApplicationController
       
       if question.present?
         random_questions << question
+      else
+        break
       end
       
       puts("Inside the loop i = #$i" )

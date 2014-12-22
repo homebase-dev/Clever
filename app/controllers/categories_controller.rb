@@ -44,6 +44,7 @@ class CategoriesController < ApplicationController
     respond_with(@quiz, @category)
   end
 
+
   private
     def set_category
       @category = Category.find(params[:id])

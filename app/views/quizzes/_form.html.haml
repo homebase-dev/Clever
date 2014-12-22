@@ -10,25 +10,25 @@
           - @quiz.errors.full_messages.each do |msg|
             %li= msg
   .control-group
-    = f.label :name, :class => 'control-label'
-    = f.text_field :name, :class => 'form-control'
+    = f.label "Name", :class => 'control-label'
+    = f.text_field :name, :class => 'form-control', :autofocus => true
     = error_span(@quiz[:name])
   .control-group
-    = f.label :description, :class => 'control-label'
+    = f.label "Beschreibung", :class => 'control-label'
     / = f.text_area :description, :class => 'form-control', :rows => '10'
     = f.cktext_area :description, :class => 'form-control', :rows => 10
     = error_span(@quiz[:description])
   .control-group
-    = f.label :creator_id, :class => 'control-label'
+    = f.label "Erstellt von", :class => 'control-label'
     = f.text_field :creator_id, :class => 'form-control', :disabled => true
     = error_span(@quiz[:creator_id])
   .checkbox
     %label
       = f.check_box :published 
-      Published
+      Veröffentlicht?
       = error_span(@quiz[:published])
   .control-group
-    = f.label :image, :class => 'control-label'
+    = f.label "Bild", :class => 'control-label'
     = f.file_field :image, multiple: false, :class => 'form-control'     
     = error_span(@quiz[:image])
     %br/
@@ -39,5 +39,3 @@
     
     %br/
   = f.submit nil, :class => 'btn btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), |
-    quizzes_path, :class => 'btn btn-default'                    |

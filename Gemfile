@@ -32,7 +32,11 @@ gem 'html2haml'
 gem 'ckeditor'
 #facebook login
 gem 'omniauth-facebook'
-
+#pdf generation
+gem 'prawn'
+gem 'prawn-table'
+#devise localization
+gem 'devise-i18n'
 
 
 # Use SCSS for stylesheets

@@ -1,31 +1,30 @@
 - model_class = Question
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.titleize
+  %h1 Frage
 %dl.dl-horizontal
   %dt
     %strong
-      = model_class.human_attribute_name(:text)
-      \:
+      Text :
   %dd= preview_html_field(@question.text)
   %dt
     %strong
-      = model_class.human_attribute_name(:category_id)
-      \:
+      Kategorie :
   %dd= @question.category_id
   %dt
     %strong
-      = model_class.human_attribute_name(:creator_id)
-      \:
+      Erstellt von :
   %dd= @question.creator_id
   %dt
     %strong
-      = model_class.human_attribute_name(:published)
-      \:
-  %dd= @question.published
-= link_to t('.back', :default => t("helpers.links.back")), quiz_category_questions_path(@question.category.quiz, @question.category), :class => 'btn btn-default'
--#
-= link_to t('.edit', :default => t("helpers.links.edit")), edit_question_path(@question), :class => 'btn btn-default' 
--#
-= link_to t('.new', :default => t("helpers.links.new")), new_quiz_category_question_path(@question.category.quiz, @question.category), :class => 'btn btn-success'
--#
-= link_to t('.destroy', :default => t("helpers.links.destroy")), question_path(@question), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |
+      Veröffentlicht :
+  %dd= render_boolean(@question.published)
+
+/= link_to "Zurück", quiz_category_questions_path(@question.category.quiz, @question.category), :class => 'btn btn-default'
+= link_to "Editieren", edit_question_path(@question), :class => 'btn btn-default' 
+= link_to "Neu", new_quiz_category_question_path(@question.category.quiz, @question.category), :class => 'btn btn-success'
+= link_to "Löschen", question_path(@question), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |
+= link_to 'Antworten',  quiz_category_question_answers_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-primary btn-xs' 
+= link_to "Neue Antwort", new_quiz_category_question_answer_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-success btn-xs'
+
+%br/
+\#{link_to 'Zurück', quiz_category_questions_path(@question.category.quiz, @question.category)}  

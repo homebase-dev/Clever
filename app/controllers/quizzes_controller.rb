@@ -9,7 +9,18 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    respond_with(@quiz)
+    #respond_with(@quiz)
+    
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = QuizPdf.new(@quiz)
+        send_data pdf.render, :filename => "quiz_#{@quiz.id}.pdf",
+                              :type => "application/pdf",
+                              :disposition => "inline"
+      end
+    end
+    
   end
 
   def new

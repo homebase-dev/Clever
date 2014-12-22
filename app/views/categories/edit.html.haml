@@ -1,12 +1,8 @@
 .page-header
   %h1
-    Edit Category
-    / <small>Subtext for header</small>
+    Kategorie editieren
 
 .row
   .col-lg-12
-
     = render 'form'
-    = link_to 'Show', [@category.quiz, @category]
-    |
-    \#{link_to 'Back', quiz_categories_path(@category.quiz)}
+    \#{link_to 'Zurück', quiz_categories_path(@category.quiz)}  

@@ -1,36 +1,30 @@
 - model_class = Quiz
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.titleize
+  %h1 Quiz
 %dl.dl-horizontal
   %dt
     %strong
-      = model_class.human_attribute_name(:name)
-      \:
+      Name :
   %dd= @quiz.name
   %dt
     %strong
-      = model_class.human_attribute_name(:description)
-      \:
+      Beschreibung :
   %dd= preview_html_field(@quiz.description)
   %dt
     %strong
-      = model_class.human_attribute_name(:creator_id)
-      \:
+      Erstellt von :
   %dd= @quiz.creator_id
   %dt
     %strong
-      = model_class.human_attribute_name(:published)
-      \:
-  %dd= @quiz.published
+      Veröffentlicht? :
+  %dd= render_boolean(@quiz.published)
   %dt
     %strong
-      = model_class.human_attribute_name(:image)
-      \:
+      Bild :
   %dd= image_tag @quiz.image.thumb.url
-= link_to t('.back', :default => t("helpers.links.back")), quizzes_path, :class => 'btn btn-default'
--#
-= link_to t('.edit', :default => t("helpers.links.edit")), edit_quiz_path(@quiz), :class => 'btn btn-default'
--#
-= link_to t('.new', :default => t("helpers.links.new")), new_quiz_path, :class => 'btn btn-success'
--#
-= link_to t('.destroy', :default => t("helpers.links.destroy")), quiz_path(@quiz), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |
+= link_to "Editieren", edit_quiz_path(@quiz), :class => 'btn btn-default'
+= link_to "Neu", new_quiz_path, :class => 'btn btn-success'
+= link_to "Löschen", quiz_path(@quiz), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |
+/= link_to "Pdf", quiz_path(@quiz, :format => "pdf"), :class => 'btn btn-default'
+%br/
+\#{link_to 'Zurück', quizzes_path}  

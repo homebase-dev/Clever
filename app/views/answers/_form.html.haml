@@ -10,28 +10,29 @@
           - @answer.errors.full_messages.each do |msg|
             %li= msg
   .form-group
-    = f.label :text, :class => 'control-label'
+    = f.label "Text", :class => 'control-label'
     / = f.text_area :text, :class => 'form-control', :rows => 10
-    = f.cktext_area :text, :class => 'form-control', :rows => 10
+    = f.cktext_area :text, :class => 'form-control', :rows => 10, :autofocus => true
     = error_span(@answer[:text])
   .checkbox
     %label
       = f.check_box :correct 
-      Correct
+      Korrekt?
     = error_span(@answer[:correct])
-  .form-group
-    = f.label :question_id, :class => 'control-label'
-    = f.text_field :question_id, :class => 'form-control', :disabled => true
-    = error_span(@answer[:question_id])
-  .form-group
-    = f.label :creator_id, :class => 'control-label'
-    = f.text_field :creator_id, :class => 'form-control', :disabled => true
-    = error_span(@answer[:creator_id])
   .checkbox
     %label
       = f.check_box :published 
-      Published
+      Veröffentlicht?
     = error_span(@answer[:published])
+  .form-group
+    = f.label "Frage", :class => 'control-label'
+    = f.text_field :question_id, :class => 'form-control', :disabled => true
+    = error_span(@answer[:question_id])
+  .form-group
+    = f.label "Erstellt von", :class => 'control-label'
+    = f.text_field :creator_id, :class => 'form-control', :disabled => true
+    = error_span(@answer[:creator_id])
+
   = f.submit nil, :class => 'btn btn-primary'
   / = link_to 'Back', answers_path, :class => 'btn btn-default'
 

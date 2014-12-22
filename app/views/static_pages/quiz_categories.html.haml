@@ -1,0 +1,19 @@
+.page-header
+  %h1
+    Wähle eine Kategorie
+    %small 
+      =@quiz.name 
+%p
+  Wähle eine Kategorie für die dein Test zusammengestellt werden soll. Es gibt auch eine <strong> Durchmischt </strong>
+  Kategorie, wählst du diese, werden Fragen aus allen Kategorien zusammengemischt.
+%br/
+
+
+- (@quiz.categories.published).each_slice(4) do |category_row|
+  .row
+    - category_row.each do |category|
+      .col-lg-3
+        =link_to tests_path(:category_id => category.id, :nb_of_questions => 10), :method => :post, :class => "a thumbnail category" do
+          = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+          %p.text-center=category.name
+

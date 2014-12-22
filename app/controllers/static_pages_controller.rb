@@ -5,7 +5,6 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
   def home
-    logger.debug "HOME ACTION"
   end
 
   def faq
@@ -31,8 +30,6 @@ class StaticPagesController < ApplicationController
   
   def profile_status
     @user = current_user
-    logger.debug "CURRENT USER: ROLE"
-    logger.debug @user.role_name
   end
   
   def profile_data
@@ -69,9 +66,15 @@ class StaticPagesController < ApplicationController
   end
   
   def quiz_inspect
-    puts "WAT"
-    puts params
     @quiz = Quiz.find(params[:id])
+  end
+  
+  def quiz_categories
+    @quiz = Quiz.find(params[:id])
+  end
+  
+  def category_overview
+    @category = Category.find(params[:id])
   end
   
 end
