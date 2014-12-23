@@ -48,16 +48,25 @@ class TestsController < ApplicationController
       redirect_to(:back) and return
     end
     
+    random_questions = pick_random_questions(category)
+    puts "RESULT QUESTIONS"
+    print_questions(random_questions)
     
-    $i = 0
+    @test.save!
+    
+    create_test_assignations(random_questions)
+ 
+    redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
+    #respond_with(@test)
+  end
+  
+  def pick_random_questions(category)
     random_questions = []
+    $i = 0
+    all_questions_mixed = category.questions.shuffle
     while $i < @nb_of_questions do
-      all_questions = category.questions.shuffle
-      #puts "ALL QUESTIONS"
-      #puts all_questions.inspect
-      
       #question = all_questions.shift
-      question = all_questions[$i]
+      question = all_questions_mixed[$i]
       
       if question.present?
         random_questions << question
@@ -65,24 +74,24 @@ class TestsController < ApplicationController
         break
       end
       
-      puts("Inside the loop i = #$i" )
+      #puts("Inside the loop i = #$i" )
       $i +=1
     end
     
-    puts "ALL THE RANDOM QUESTIONS"
-    puts random_questions.inspect
-    
-    
-    
-    @test.save!
-    
-    random_questions.each do |q|
+    random_questions
+  end
+  
+  def create_test_assignations(questions)
+    questions.each do |q|
       assignation = Assignation.new(:test => @test, :question => q)
       assignation.save!
     end
- 
-    redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
-    #respond_with(@test)
+  end
+  
+  def print_questions(questions)
+    questions.each do |q|
+      puts q.id
+    end
   end
 
   def update

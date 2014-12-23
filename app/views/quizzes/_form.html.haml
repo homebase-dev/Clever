@@ -18,10 +18,6 @@
     / = f.text_area :description, :class => 'form-control', :rows => '10'
     = f.cktext_area :description, :class => 'form-control', :rows => 10
     = error_span(@quiz[:description])
-  .control-group
-    = f.label "Erstellt von", :class => 'control-label'
-    = f.text_field :creator_id, :class => 'form-control', :disabled => true
-    = error_span(@quiz[:creator_id])
   .checkbox
     %label
       = f.check_box :published 
@@ -36,6 +32,10 @@
     %label
       Derzeitiges Bild
     = image_tag @quiz.image.thumb.url, :class => 'thumbnail'
+  .control-group
+    = f.label "Erstellt von", :class => 'control-label'
+    = f.text_field :creator_id, :class => 'form-control', :disabled => true
+    = error_span(@quiz[:creator_id])
     
     %br/
   = f.submit nil, :class => 'btn btn-primary'

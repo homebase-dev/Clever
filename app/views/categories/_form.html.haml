@@ -14,12 +14,6 @@
     = f.label "Beschreibung", :class => 'control-label'
     / = f.text_area :description, :class => 'form-control', :rows => 10
     = f.cktext_area :description, :class => 'form-control', :rows => 10
-  .form-group
-    = f.label "Erstellt von", :class => 'control-label'
-    = f.text_field :creator_id, :disabled => true, :class => 'form-control'
-  .form-group
-    = f.label "Quiz_id", :class => 'control-label'
-    = f.text_field :quiz_id, :disabled => true, :class => 'form-control'
   .checkbox
     %label
       = f.check_box :published 
@@ -32,6 +26,11 @@
     %label
       Derzeitiges Bild
     = image_tag @category.image.thumb.url, :class => 'thumbnail'
-    
+  .form-group
+    = f.label "Erstellt von", :class => 'control-label'
+    = f.text_field :creator_id, :disabled => true, :class => 'form-control'
+  .form-group
+    = f.label "Quiz_id", :class => 'control-label'
+    = f.text_field :quiz_id, :disabled => true, :class => 'form-control'
     
   = f.submit nil, :class => 'btn btn-primary'
