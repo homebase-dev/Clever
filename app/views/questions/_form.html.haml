@@ -27,5 +27,70 @@
     = f.label "Erstellt von", :class => 'control-label'
     = f.text_field :creator_id, :class => 'form-control', :disabled => true
     = error_span(@question[:creator_id])
+    
+  %h3 Optional gleich Fragen dazuerstellen
+  / Antworten
+  .row
+    .col-lg-11
+      = f.label "Antwort 1", :class => 'control-label'
+      = text_field_tag :answer1_text, nil, :class => 'form-control'
+      = error_span(@question[:answer1_text])
+    .col-lg-1
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag :answer1_correct 
+            Korrekt?
+          = error_span(@question[:answer1_correct])
+  .row
+    .col-lg-11
+      = f.label "Antwort 2", :class => 'control-label'
+      = text_field_tag :answer2_text, nil, :class => 'form-control'
+      = error_span(@question[:answer1_text])
+    .col-lg-1
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag :answer2_correct 
+            Korrekt?
+          = error_span(@question[:answer2_correct])
+  .row
+    .col-lg-11
+      = f.label "Antwort 3", :class => 'control-label'
+      = text_field_tag :answer3_text, nil, :class => 'form-control'
+      = error_span(@question[:answer3_text])
+    .col-lg-1
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag :answer3_correct 
+            Korrekt?
+          = error_span(@question[:answer3_correct])
+  .row
+    .col-lg-11
+      = f.label "Antwort 4", :class => 'control-label'
+      = text_field_tag :answer4_text, nil, :class => 'form-control'
+      = error_span(@question[:answer4_text])
+    .col-lg-1
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag :answer4_correct 
+            Korrekt?
+          = error_span(@question[:answer4_correct])
+  .row
+    .col-lg-11
+      = f.label "Antwort 5", :class => 'control-label'
+      = text_field_tag :answer5_text, nil, :class => 'form-control'
+      = error_span(@question[:answer1_text])
+    .col-lg-1
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag :answer5_correct 
+            Korrekt?
+          = error_span(@question[:answer5_correct])
+
+    
   = f.submit nil, :class => 'btn btn-primary'
      

@@ -32,7 +32,24 @@ class QuestionsController < ApplicationController
     @question.category = @category
     @question.creator_id = current_user.id
     @question.save
+    
+    create_answer_on_the_fly(params[:answer1_text], params[:answer1_correct], @question)
+    create_answer_on_the_fly(params[:answer2_text], params[:answer2_correct], @question)
+    create_answer_on_the_fly(params[:answer3_text], params[:answer3_correct], @question)
+    create_answer_on_the_fly(params[:answer4_text], params[:answer4_correct], @question)
+    create_answer_on_the_fly(params[:answer5_text], params[:answer5_correct], @question)
+    
     respond_with(@question)
+  end
+  
+  def create_answer_on_the_fly(text, correct, question)
+    if text.present?
+      answer = Answer.new(:text => text)
+      answer.published = true
+      answer.correct = true if (correct.present? && correct)
+      answer.question = question
+      answer.save!
+    end
   end
 
   def update
