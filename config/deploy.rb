@@ -2,7 +2,7 @@ set :stages, %w(production)
 set :default_stage, "production"
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
-require "rvm/capistrano" #"capistrano" #"rvm/capistrano"
+require "rvm/capistrano" #"capistrano"
 #load "lib/deploy/seed" #used for seeding the db
 
 set :user, "christianhofer"
