@@ -14,6 +14,11 @@
     = f.cktext_area :text, :class => 'form-control', :rows => 10, :autofocus => true
     / = f.text_area :text, :class => 'form-control', :rows => 10
     = error_span(@question[:text])
+  .form-group
+    = f.label "Lösung (optional)", :class => 'control-label'
+    = f.text_area :solution, :class => 'form-control', :rows => 3
+    / = f.text_area :solution, :class => 'form-control', :rows => 10
+    = error_span(@question[:solution])
   .checkbox
     %label
       = f.check_box :published 

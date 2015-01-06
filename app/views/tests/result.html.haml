@@ -39,6 +39,7 @@
               .panel.panel-primary
                 .panel-heading
                   %h3.panel-title
+                    Frage
                   / Frage #{index+1}/#{@test.questions.count}
                 .panel-body
                   =preview_html_field(assignation.question.text)
@@ -61,6 +62,14 @@
                           =answer_char(index_2)
                           / =index_2
                       .answer-text=preview_html_field(answer.text)
+              
+              - if assignation.question.try(:solution) && !assignation.question.solution.blank?
+                .panel.panel-success
+                  .panel-heading
+                    %h3.panel-title
+                      Lösung
+                  .panel-body
+                    = assignation.question.solution
 
 .row 
   .col-lg-12

@@ -36,47 +36,96 @@
     %a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
     / test_step_path(:id => @test, :question_number => @question_number+2)
 
-:javascript
-  $('.list-group-item').click(function() {
-    var checkbox = $(this).find('i.fa');
+-if @question.category.single_question_select?
+  :javascript
+    $('.list-group-item').click(function() {
+      var checkbox = $(this).find('i.fa');
+      
+      //uncheck all previous checked answers
+      $(".fa-check-square-o").each(function( index ) {
+        $(this).removeClass('fa-check-square-o');
+        $(this).addClass('fa-square-o');
+      });
+      
+      //check the clicked one
+      if(checkbox.hasClass('fa-square-o')) {
+        checkbox.removeClass('fa-square-o');
+        checkbox.addClass('fa-check-square-o');
+      } else {
+        checkbox.addClass('fa-square-o');
+        checkbox.removeClass('fa-check-square-o');
+      }
+      
+      return false;
+    });
     
-    if(checkbox.hasClass('fa-square-o')) {
-      checkbox.removeClass('fa-square-o');
-      checkbox.addClass('fa-check-square-o');
-    } else {
-      checkbox.addClass('fa-square-o');
-      checkbox.removeClass('fa-check-square-o');
+
+    
+    function getCheckedAnswersParam() {
+      var checked_answer_ids= new Array();
+      console.info('looking for selected');
+      $(".fa-check-square-o").each(function( index ) {
+        console.info( "found" );
+        var id = $(this).closest('.answer').attr('id');
+        checked_answer_ids.push(id);
+      });
+      
+      var checked_answer_param = "";
+      jQuery.each(checked_answer_ids, function(index, checked_answer) {
+        checked_answer_param += "ca%5B%5D="+checked_answer.replace('answer-','')+"&";
+      });
+      
+      console.info(checked_answer_ids);
+      
+      return checked_answer_param;
     }
     
-    return false;
-  });
-  
-  
-  
-  
-  function getCheckedAnswersParam() {
-    var checked_answer_ids= new Array();
-    console.info('looking for selected');
-    $(".fa-check-square-o").each(function( index ) {
-      console.info( "found" );
-      var id = $(this).closest('.answer').attr('id');
-      checked_answer_ids.push(id);
+    $('a#next-link').on('click', function() {
+      var checked_answer_param = getCheckedAnswersParam();
+      console.info(checked_answer_param)
+      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
+    });
+- else
+  :javascript
+    $('.list-group-item').click(function() {
+      var checkbox = $(this).find('i.fa');
+      
+      if(checkbox.hasClass('fa-square-o')) {
+        checkbox.removeClass('fa-square-o');
+        checkbox.addClass('fa-check-square-o');
+      } else {
+        checkbox.addClass('fa-square-o');
+        checkbox.removeClass('fa-check-square-o');
+      }
+      
+      return false;
     });
     
-    var checked_answer_param = "";
-    jQuery.each(checked_answer_ids, function(index, checked_answer) {
-      checked_answer_param += "ca%5B%5D="+checked_answer.replace('answer-','')+"&";
+    
+    
+    
+    function getCheckedAnswersParam() {
+      var checked_answer_ids= new Array();
+      console.info('looking for selected');
+      $(".fa-check-square-o").each(function( index ) {
+        console.info( "found" );
+        var id = $(this).closest('.answer').attr('id');
+        checked_answer_ids.push(id);
+      });
+      
+      var checked_answer_param = "";
+      jQuery.each(checked_answer_ids, function(index, checked_answer) {
+        checked_answer_param += "ca%5B%5D="+checked_answer.replace('answer-','')+"&";
+      });
+      
+      console.info(checked_answer_ids);
+      
+      return checked_answer_param;
+    }
+    
+    $('a#next-link').on('click', function() {
+      var checked_answer_param = getCheckedAnswersParam();
+      console.info(checked_answer_param)
+      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
     });
-    
-    console.info(checked_answer_ids);
-    
-    return checked_answer_param;
-  }
-  
-  $('a#next-link').on('click', function() {
-    var checked_answer_param = getCheckedAnswersParam();
-    console.info(checked_answer_param)
-    this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
-  });
-  
 

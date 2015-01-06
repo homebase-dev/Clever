@@ -16,6 +16,10 @@
     = f.cktext_area :description, :class => 'form-control', :rows => 10
   .checkbox
     %label
+      = f.check_box :single_question_select 
+      Nur eine Frage wählbar?    
+  .checkbox
+    %label
       = f.check_box :published 
       Veröffentlicht?
   .control-group

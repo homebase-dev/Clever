@@ -1,7 +1,7 @@
 module StaticPagesHelper
   
   def answer_char(index)
-    chars = "ABCD"
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     chars.at(index)
   end
  

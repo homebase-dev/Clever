@@ -70,6 +70,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:text, :category_id, :creator_id, :published)
+      params.require(:question).permit(:text, :category_id, :creator_id, :published, :solution)
     end
 end

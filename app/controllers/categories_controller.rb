@@ -51,6 +51,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:name, :creator, :quiz, :description, :published, :image)
+      params.require(:category).permit(:name, :creator, :quiz, :description, :published, :image, :single_question_select)
     end
 end
