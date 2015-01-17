@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap/dist/js/bootstrap
+
 //= require ckeditor/init
 //= require turbolinks
 //= require_tree .
