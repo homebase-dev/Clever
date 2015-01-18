@@ -9,4 +9,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Add ckeditor files - otherwise missing on production  Rails.application.config.assets.precompile += %w( ckeditor/* )
 # Add railsstrap glyphicons - otherwise missing on production   Rails.application.config.assets.precompile += %w( fontawesome/fonts/fontawesome-webfont.eot fontawesome/fonts/fontawesome-webfont.woff fontawesome/fonts/fontawesome-webfont.ttf fontawesome/fonts/fontawesome-webfont.svg)
-Rails.application.config.assets.precompile += %w( ckeditor/* bootstrap/fonts/* fontawesome/fonts/* )
+# Rails.application.config.assets.precompile += %w( ckeditor/* bootstrap/fonts/* fontawesome/fonts/* )
+Rails.application.config.assets.precompile += %w( ckeditor/* bootstrap/fonts/glyphicons-halflings-regular.eot bootstrap/fonts/glyphicons-halflings-regular.svg bootstrap/fonts/glyphicons-halflings-regular.ttf bootstrap/fonts/glyphicons-halflings-regular.woff fontawesome/fonts/fontawesome-webfont.eot fontawesome/fonts/fontawesome-webfont.woff fontawesome/fonts/fontawesome-webfont.ttf fontawesome/fonts/fontawesome-webfont.svg )
