@@ -15,7 +15,7 @@ set :socket, "none"
 set :scm, "git"
 set :repository,  "https://github.com/homebase-dev/Clever.git"
 
-set :shared_children, shared_children + %w{public/uploads}  #Add public/uploads to shared_folder and create symlink to it
+#set :shared_children, shared_children + %w{public/uploads}  #Add public/uploads to shared_folder and create symlink to it
 
 ["base", "rails", "nginx", "logrotate"].each { |recipe| 
   load(File.join("config", "deploy", "setup", recipe)) 

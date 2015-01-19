@@ -19,4 +19,5 @@
 /config/secrets.yml
 
 # Ignore upload folder (otherwise capistrano overwrites content while deploying!)
+/public/system
 /public/uploads
