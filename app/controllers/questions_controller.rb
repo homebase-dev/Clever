@@ -19,6 +19,9 @@ class QuestionsController < ApplicationController
     @quiz = @category.quiz
     @question = Question.new
     @question.published = true
+    
+    5.times { @question.answers.build }  
+
     respond_with(@quiz, @category, @question)
   end
 
@@ -33,24 +36,9 @@ class QuestionsController < ApplicationController
     @question.creator_id = current_user.id
     @question.save
     
-    create_answer_on_the_fly(params[:answer1_text], params[:answer1_correct], @question)
-    create_answer_on_the_fly(params[:answer2_text], params[:answer2_correct], @question)
-    create_answer_on_the_fly(params[:answer3_text], params[:answer3_correct], @question)
-    create_answer_on_the_fly(params[:answer4_text], params[:answer4_correct], @question)
-    create_answer_on_the_fly(params[:answer5_text], params[:answer5_correct], @question)
-    
     respond_with(@question)
   end
   
-  def create_answer_on_the_fly(text, correct, question)
-    if text.present?
-      answer = Answer.new(:text => text)
-      answer.published = true
-      answer.correct = true if (correct.present? && correct)
-      answer.question = question
-      answer.save!
-    end
-  end
 
   def update
     @question.update(question_params)
@@ -70,6 +58,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:text, :category_id, :creator_id, :published, :solution)
+      params.require(:question).permit(:text, :category_id, :creator_id, :published, :solution, answers_attributes: [:id, :text, :correct, :_destroy])
     end
 end

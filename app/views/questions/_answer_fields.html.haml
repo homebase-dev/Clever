@@ -1,0 +1,16 @@
+.row
+  .col-lg-11
+    .form-group
+      = f.label "Antwort", :class => 'control-label'
+      / = builder.cktext_area :text, :class => 'form-control', :rows => 3
+      = f.text_area :text, :class => 'form-control', :rows => 1
+      = error_span(@question[:correct])
+  .col-lg-1
+    .form-group
+      %label{:class => 'control-label'} 
+      .checkbox
+        = f.check_box :correct
+        Korrekt?
+        = f.hidden_field :_destroy
+        = link_to "Löschen", '#', :class => "remove_fields"
+      = error_span(@question[:correct])

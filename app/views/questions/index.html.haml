@@ -27,12 +27,12 @@
         %td= question.creator_id
         %td
           = link_to "Anzeigen", question_path(question), :class => 'btn btn-default btn-xs'
-          = link_to "Editieren", edit_question_path(question), :class => 'btn btn-default btn-xs'
+          = link_to "Editieren", edit_question_path(question), :class => 'btn btn-default btn-xs', data: { no_turbolink: true }
           = link_to "Antworten",  quiz_category_question_answers_path(@category.quiz, @category, question), :class => 'btn btn-primary btn-xs' 
           = link_to "Löschen", question_path(question), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 
 /= link_to "Zurück", quiz_categories_path(@category.quiz), :class => "btn btn-default"
-= link_to "Neu", new_quiz_category_question_path(@category.quiz, @category), :class => 'btn btn-success'
+= link_to "Neu", new_quiz_category_question_path(@category.quiz, @category), :class => 'btn btn-success', data: { no_turbolink: true }
 %br
 \#{link_to 'Zurück', quiz_categories_path(@category.quiz)}
 

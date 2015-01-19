@@ -8,6 +8,8 @@ class Question < ActiveRecord::Base
   
   scope :published, -> { where(published: true) }
   
+  accepts_nested_attributes_for :answers, :allow_destroy => true, :reject_if => proc { |attributes| attributes[:text].blank? }
+  
   
   
   def created_at_formatted
