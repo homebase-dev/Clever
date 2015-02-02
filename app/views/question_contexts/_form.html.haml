@@ -1,0 +1,33 @@
+= form_for [@quiz, @category, @question_context] do |f|
+  - if @question_context.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@question_context.errors.count, "error")
+          prohibited this question_context from being saved:
+      .panel-body
+        %ul
+          - @question_context.errors.full_messages.each do |msg|
+            %li= msg
+  .form-group
+    = f.label :content, :class => 'control-label'
+    = f.cktext_area :content, :class => 'form-control', :rows => 10, :autofocus => true
+    = f.error_span(:content)
+  .form-group
+    = f.collection_select :test_workflow_id, TestWorkflow.all, :id, :name, :selected => @question_context.try(:test_workflow).try(:id)
+        
+  .form-group
+    = f.label :category_id, :class => 'control-label'
+    = f.text_field :category_id, :class => 'form-control', :disabled => true
+    = f.error_span(:category_id)
+  .form-group
+    = f.label :creator_id, :class => 'control-label'
+    = f.text_field :creator_id, :class => 'form-control', :disabled => true
+    = f.error_span(:creator_id)
+  .checkbox
+    %label
+      = f.check_box :published 
+      Veröffentlicht?
+    = f.error_span(:published)
+  
+  = f.submit nil, :class => 'btn btn-primary'

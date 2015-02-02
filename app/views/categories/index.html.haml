@@ -1,31 +1,35 @@
 .page-header
   %h1 
     Kategorien
-    %small=@quiz.name
+    %small= @quiz.name
 /%a.btn.btn-default.pull-right{:href => "#{quizzes_path}", :role => "button"} Zurück
 %table.table.table-striped
   %thead
     %tr
+      %th Id
       %th Name
       %th Quiz
       %th Veröffentlicht?
-      %th #Fragen
+      %th #Fragenkontexte
       %th Erstellt am
       %th Von
       %th 
   %tbody
     - @quiz_categories.each do |category|
       %tr
+        %td= category.id
         %td= category.name
         %td= category.quiz.id
         %td= render_boolean(category.published)
-        %td= category.questions.count
+        /%td= category.questions.count
+        %td= category.question_contexts.count
         %td= category.created_at_formatted
         %td= category.creator.id
         %td
           = link_to 'Anzeigen', category, :class => 'btn btn-default btn-xs' 
           = link_to 'Editieren', edit_category_path(category), :class => 'btn btn-default btn-xs' 
-          = link_to 'Fragen', quiz_category_questions_path(@quiz, category), :class => 'btn btn-primary btn-xs' 
+          /= link_to 'Fragen', quiz_category_questions_path(@quiz, category), :class => 'btn btn-primary btn-xs' 
+          = link_to 'Fragenkontexte', quiz_category_question_contexts_path(@quiz, category), :class => 'btn btn-primary btn-xs' 
           = link_to 'Löschen', category, method: :delete, data: { confirm: 'Kategorie "'+category.name+ '" wirklich löschen?' }, :class => 'btn btn-xs btn-danger' 
           = link_to 'Übersicht', static_pages_category_overview_path(:id => category.id), :class => 'btn btn-xs btn-default'
            

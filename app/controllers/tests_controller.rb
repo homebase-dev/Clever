@@ -40,15 +40,15 @@ class TestsController < ApplicationController
     puts params[:category_id]
     
     category = Category.find_by_id(params[:category_id])
-    puts "CATEGORY"
-    puts category.inspect
     
-    if category.questions.empty?
-      flash[:error] = "Die Kategorie "+category.name+" hat leider noch keine Fragen, versuche es später nocheinmal."
+    if category.question_contexts.empty?
+      flash[:error] = "Die Kategorie "+category.name+" hat leider noch keine Fragenkontexte, versuche es später nocheinmal."
       redirect_to(:back) and return
     end
     
-    random_questions = pick_random_questions(category)
+    random_questions = pick_random_questions(category, @nb_of_questions)    
+    
+    #random_questions = pick_random_questions(category)
     puts "RESULT QUESTIONS"
     print_questions(random_questions)
     
@@ -60,12 +60,28 @@ class TestsController < ApplicationController
     #respond_with(@test)
   end
   
-  def pick_random_questions(category)
+  
+  
+  def pick_random_questions(category, nb_of_questions)
+    random_questions = []
+    
+    if category.question_contexts.count == 1
+      only_context = category.question_contexts.first
+      random_questions = pick_random_questions_from_question_context(only_context, nb_of_questions)
+    elsif category.question_contexts.count > 1
+      random_questions = pick_random_questions_from_category(category, nb_of_questions)
+    end
+        
+    random_questions
+  end
+  
+  def pick_random_questions_from_question_context(question_context, nb_of_questions) 
     random_questions = []
     $i = 0
-    all_questions_mixed = category.questions.shuffle
-    while $i < @nb_of_questions do
-      #question = all_questions.shift
+    
+    all_questions_mixed = question_context.questions.shuffle
+    
+    while $i < nb_of_questions do
       question = all_questions_mixed[$i]
       
       if question.present?
@@ -74,12 +90,43 @@ class TestsController < ApplicationController
         break
       end
       
-      #puts("Inside the loop i = #$i" )
       $i +=1
     end
     
     random_questions
   end
+  
+  
+  def pick_random_questions_from_category(category, nb_of_questions)
+    random_questions = []
+    
+    contexts = category.question_contexts.shuffle
+    
+    while contexts.any? do
+      context = contexts.first
+      
+      $i = 0
+      all_questions = context.questions
+      while random_questions.count < @nb_of_questions do
+        question = all_questions[$i]
+        
+        if question.present?
+          random_questions << question
+        else
+          break
+        end
+        
+        #puts("Inside the loop i = #$i" )
+        $i +=1
+      end
+      
+      contexts.delete(context)
+      
+    end
+    
+    random_questions
+  end
+  
   
   def create_test_assignations(questions)
     questions.each do |q|

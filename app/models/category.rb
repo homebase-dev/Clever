@@ -2,7 +2,8 @@ class Category < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
   belongs_to :quiz
   
-  has_many :questions, :dependent => :destroy
+  #has_many :questions, :dependent => :destroy
+  has_many :question_contexts, :dependent => :destroy
   
   scope :published, -> { where(published: true) }
   

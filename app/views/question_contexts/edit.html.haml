@@ -1,0 +1,9 @@
+- model_class = QuestionContext
+.page-header
+  %h1 Fragenkontext editieren
+= render :partial => 'form'
+
+
+/= link_to 'Anzeigen', [@question_context.category.quiz, @question_context.category, @question_context]
+/|
+\#{link_to 'Zurück', quiz_category_question_contexts_path(@question_context.category.quiz, @question_context.category)}

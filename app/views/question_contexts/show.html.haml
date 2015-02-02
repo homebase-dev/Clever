@@ -1,0 +1,35 @@
+- model_class = QuestionContext
+.page-header
+  /%h1= t '.title', :default => model_class.model_name.human.titleize
+  %h1 Fragenkontext
+%dl.dl-horizontal
+  %dt
+    %strong
+      = model_class.human_attribute_name(:content)
+      \:
+  %dd= @question_context.content
+  %dt
+    %strong
+      = model_class.human_attribute_name(:category_id)
+      \:
+  %dd= @question_context.category_id
+  %dt
+    %strong
+      = model_class.human_attribute_name(:creator_id)
+      \:
+  %dd= @question_context.creator_id
+  %dt
+    %strong
+      = model_class.human_attribute_name(:published)
+      \:
+  %dd= @question_context.published
+                 
+= link_to "Editieren", edit_question_context_path(@question_context), :class => 'btn btn-default' 
+= link_to "Neu", new_quiz_category_question_context_path(@question_context.category.quiz, @question_context.category), :class => 'btn btn-success'
+= link_to "Löschen", question_context_path(@question_context), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Bist du sicher?')) }, :class => 'btn btn-danger'                                                                                   |
+= link_to 'Fragen',  quiz_category_question_context_questions_path(@question_context.category.quiz, @question_context.category, @question_context), :class => 'btn btn-primary btn-xs' 
+= link_to "Neue Frage", new_quiz_category_question_context_question_path(@question_context.category.quiz, @question_context.category, @question_context), :class => 'btn btn-success btn-xs'
+
+%br/
+\#{link_to 'Zurück', quiz_category_question_contexts_path(@question_context.category.quiz, @question_context.category)}  
+

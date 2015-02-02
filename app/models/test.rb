@@ -4,7 +4,6 @@ class Test < ActiveRecord::Base
   has_many :questions, :through => :assignations
   
   
-  
   def passed_assignations
     count = 0;
     assignations.each do |a|

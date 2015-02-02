@@ -1,6 +1,6 @@
 .page-header
   %h1
-    =@question.category.name
+    =@question.question_context.category.name
     %small Test
     /%small #{@assignation_number+1}/#{@test.assignations.count}
 .row
@@ -36,7 +36,7 @@
     %a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
     / test_step_path(:id => @test, :question_number => @question_number+2)
 
--if @question.category.single_question_select?
+-if @question.question_context.category.single_question_select?
   :javascript
     $('.list-group-item').click(function() {
       var checkbox = $(this).find('i.fa');

@@ -9,7 +9,7 @@
   %dt
     %strong
       Kategorie :
-  %dd= @question.category_id
+  %dd= @question.question_context_id
   %dt
     %strong
       Erstellt von :
@@ -21,10 +21,10 @@
 
 /= link_to "Zurück", quiz_category_questions_path(@question.category.quiz, @question.category), :class => 'btn btn-default'
 = link_to "Editieren", edit_question_path(@question), :class => 'btn btn-default' 
-= link_to "Neu", new_quiz_category_question_path(@question.category.quiz, @question.category), :class => 'btn btn-success'
-= link_to "Löschen", question_path(@question), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |
-= link_to 'Antworten',  quiz_category_question_answers_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-primary btn-xs' 
-= link_to "Neue Antwort", new_quiz_category_question_answer_path(@question.category.quiz, @question.category, @question), :class => 'btn btn-success btn-xs'
+= link_to "Neu", new_quiz_category_question_context_question_path(@question.question_context.category.quiz, @question.question_context.category, @question.question_context), :class => 'btn btn-success'
+= link_to "Löschen", question_path(@question), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Bist du sicher?')) }, :class => 'btn btn-danger'                                                                                   |
+= link_to 'Antworten',  quiz_category_question_context_question_answers_path(@question.question_context.category.quiz, @question.question_context.category, @question.question_context, @question), :class => 'btn btn-primary btn-xs' 
+= link_to "Neue Antwort", new_quiz_category_question_context_question_answer_path(@question.question_context.category.quiz, @question.question_context.category, @question.question_context, @question), :class => 'btn btn-success btn-xs'
 
 %br/
-\#{link_to 'Zurück', quiz_category_questions_path(@question.category.quiz, @question.category)}  
+\#{link_to 'Zurück', quiz_category_question_context_questions_path(@question.question_context.category.quiz, @question.question_context.category, @question.question_context)}  

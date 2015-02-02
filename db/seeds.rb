@@ -9,3 +9,7 @@
 ['registered', 'member', 'banned', 'moderator', 'admin'].each do |role|
   Role.find_or_create_by({name: role})
 end
+
+['context_not_visible', 'context_always_visible', 'context_visible_at_beginning'].each do |test_workflow|
+  TestWorkflow.find_or_create_by({name: test_workflow})
+end

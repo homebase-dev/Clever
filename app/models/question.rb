@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-  belongs_to :category
+  #belongs_to :category
+  belongs_to :question_context
   belongs_to :creator, :class_name => "User"
 
   has_many :answers, :dependent => :destroy

@@ -6,4 +6,4 @@
 
 /= link_to 'Anzeigen', [@question.category.quiz, @question.category, @question]
 /|
-\#{link_to 'Zurück', quiz_category_questions_path(@question.category.quiz, @question.category)}
+\#{link_to 'Zurück', quiz_category_question_context_questions_path(@question.question_context.category.quiz, @question.question_context.category, @question.question_context)}

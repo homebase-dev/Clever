@@ -16,11 +16,12 @@ class AnswersController < ApplicationController
 
   def new
     @question = Question.find(params[:question_id])
-    @category = @question.category
+    @question_context = @question.question_context
+    @category = @question_context.category
     @quiz = @category.quiz
     @answer = Answer.new
     @answer.published = true
-    respond_with(@quiz, @category, @question, @answer)
+    respond_with(@quiz, @category, @question_context, @question, @answer)
   end
 
   def edit
@@ -42,10 +43,11 @@ class AnswersController < ApplicationController
 
   def destroy
     @question = @answer.question
-    @category = @question.category
+    @question_context = @question.question_context
+    @category = @question_context.category
     @quiz = @category.quiz
     @answer.destroy
-    respond_with(@quiz, @category, @question, @answer)
+    respond_with(@quiz, @category, @question_context, @question, @answer)
   end
 
   private

@@ -1,6 +1,6 @@
 .page-header
   %h1
-    =@question.category.name
+    =@question.question_context.category.name
     %small Test
     /%small #{@question_number+1}/#{@test.questions.count}
 .row

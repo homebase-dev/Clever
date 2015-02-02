@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
 
   def index
     @category = Category.find(params[:category_id])
-    @category_questions = @category.questions.order('id DESC').page(params[:page]).per(50)
+    @question_context = QuestionContext.find(params[:question_context_id])
+    @category_questions = @question_context.questions.order('id DESC').page(params[:page]).per(50)
     
     respond_with(@category_questions)
   end
@@ -16,6 +17,7 @@ class QuestionsController < ApplicationController
 
   def new
     @category = Category.find(params[:category_id])
+    @question_context = QuestionContext.find(params[:question_context_id])
     @quiz = @category.quiz
     @question = Question.new
     @question.published = true
@@ -30,9 +32,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @category = Category.find(params[:category_id])
+    #@category = Category.find(params[:category_id])
+    @question_context = QuestionContext.find(params[:question_context_id])
     @question = Question.new(question_params)
-    @question.category = @category
+    #@question.category = @question_context.category
+    @question.question_context = @question_context
     @question.creator_id = current_user.id
     @question.save
     
@@ -46,10 +50,11 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @category = @question.category
+    @question_context = @question.question_context
+    @category = @question_context.category
     @quiz = @category.quiz
     @question.destroy
-    respond_with(@quiz, @category, @question)
+    respond_with(@quiz, @category, @question_context, @question)
   end
 
   private
@@ -58,6 +63,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:text, :category_id, :creator_id, :published, :solution, answers_attributes: [:id, :text, :correct, :_destroy])
+      params.require(:question).permit(:text, :category_id, :creator_id, :published, :solution, answers_attributes: [:id, :text, :correct, :_destroy, :creator_id, :published])
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106223046) do
+ActiveRecord::Schema.define(version: 20150126150117) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -95,18 +95,32 @@ ActiveRecord::Schema.define(version: 20150106223046) do
     t.datetime "updated_at"
   end
 
-  create_table "questions", force: true do |t|
-    t.text     "text"
+  create_table "question_contexts", force: true do |t|
+    t.text     "content"
     t.integer  "category_id"
     t.integer  "creator_id"
     t.boolean  "published"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "solution"
+    t.integer  "test_workflow_id"
   end
 
-  add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
+  add_index "question_contexts", ["category_id"], name: "index_question_contexts_on_category_id", using: :btree
+  add_index "question_contexts", ["creator_id"], name: "index_question_contexts_on_creator_id", using: :btree
+  add_index "question_contexts", ["test_workflow_id"], name: "index_question_contexts_on_test_workflow_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.text     "text"
+    t.integer  "creator_id"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "solution"
+    t.integer  "question_context_id"
+  end
+
   add_index "questions", ["creator_id"], name: "index_questions_on_creator_id", using: :btree
+  add_index "questions", ["question_context_id"], name: "index_questions_on_question_context_id", using: :btree
 
   create_table "quizzes", force: true do |t|
     t.string   "name"
@@ -121,6 +135,12 @@ ActiveRecord::Schema.define(version: 20150106223046) do
   add_index "quizzes", ["creator_id"], name: "index_quizzes_on_creator_id", using: :btree
 
   create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test_workflows", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

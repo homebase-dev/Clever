@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
     
+  resources :question_contexts
+
   resources :checks
 
   resources :assignations
@@ -24,13 +26,16 @@ Rails.application.routes.draw do
   
   resources :quizzes do
     resources :categories, :except => [:update, :destroy] do
-      resources :questions, :except => [:update, :destroy] do
-        resources :answers, :except => [:update, :destroy]
+      resources :question_contexts, :except => [:update, :destroy] do
+        resources :questions, :except => [:update, :destroy] do
+          resources :answers, :except => [:update, :destroy]
+        end
       end
     end
   end
 
   resources :categories, :only => [:update, :destroy]
+  resources :questions_contexts, :only => [:update, :destroy]
   resources :questions, :only => [:update, :destroy]
   resources :answers, :only => [:update, :destroy]
   

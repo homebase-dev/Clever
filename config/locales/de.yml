@@ -136,6 +136,8 @@ de:
       create: ! '%{model} erstellen'
       submit: ! '%{model} speichern'
       update: ! '%{model} aktualisieren'
+    links:
+      confirm: 'Wirklich löschen?'
   number:
     currency:
       format:
@@ -199,4 +201,5 @@ de:
       default: ! '%A, %d. %B %Y, %H:%M Uhr'
       long: ! '%A, %d. %B %Y, %H:%M Uhr'
       short: ! '%d. %B, %H:%M Uhr'
+      normal: ! '%d.%m.%Y %H:%M'
     pm: nachmittags
