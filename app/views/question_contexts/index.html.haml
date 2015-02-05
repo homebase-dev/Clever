@@ -19,7 +19,7 @@
         %td= question_context.id
         %td= preview_html_field(question_context.content, 50)
         %td= question_context.questions.count
-        %td= question_context.published
+        %td= render_boolean(question_context.published)
         %td= l question_context.created_at, :format => :normal
         %td= question_context.creator_id
         %td

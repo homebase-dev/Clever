@@ -22,7 +22,8 @@
         %td= category.quiz.id
         %td= render_boolean(category.published)
         /%td= category.questions.count
-        %td= category.question_contexts.count
+        %td
+          ="#{category.question_contexts.count} / #{category.question_count}"
         %td= category.created_at_formatted
         %td= category.creator.id
         %td

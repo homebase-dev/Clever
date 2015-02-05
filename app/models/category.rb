@@ -15,6 +15,16 @@ class Category < ActiveRecord::Base
       created_at.strftime("%d.%m.%Y %H:%M")
     end
   end
+  
+  def question_count
+    question_count = 0
+    
+    question_contexts.each do |question_context| 
+      question_count += question_context.questions.count
+    end
+    
+    question_count
+  end
 
 
 end
