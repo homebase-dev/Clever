@@ -21,3 +21,4 @@
 # Ignore upload folder (otherwise capistrano overwrites content while deploying!)
 /public/system
 /public/uploads
+/public/assets/**
