@@ -9,9 +9,31 @@
   %body
     :javascript
       MathJax.Hub.Typeset();
+    
       
     .container
-      = render "layouts/navbar"
-      = render "layouts/flash_notice"
+      /%hr.blue-divider/
+      .row
+        .col-md-12
+          %p
+            %a.pull-right.btn.btn-primary{:href => "#{new_user_registration_path}", :role => "button"} Login 
+        
+      
+      .blue-block
+        .row
+          .col-md-12
+            %img.img-responsive{:alt => "Clever Learning Logo", :src => "#{image_path('logo2.png')}"}/
+          
+
+      /= render "layouts/navbar"
+      /= render "layouts/flash_notice"
       = yield
+      .blue-block
+        .row
+          .col-md-12
+            %p
+              =link_to "Impressum", static_pages_about_path
+              =link_to "Kontakt", static_pages_contact_path
+              
+      /%hr.blue-divider/
       = render "layouts/footer"

@@ -17,3 +17,40 @@
 a.btn-primary:visited {
 	color: #FFFFFF;
 }
+
+.blue-block {
+    background-color: #2F5D90;
+    min-height: 5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.blue-divider {
+    color: #2F5D90;
+    background-color: #2F5D90;
+    height: 5px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
+
+.rotate {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+}  
+ 
+.rotate:hover {
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+} 
