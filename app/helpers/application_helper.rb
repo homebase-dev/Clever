@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def preview_html_field(field, first_n_chars=nil)
-    if first_n_chars.present?
+    if first_n_chars.present? && field.length > first_n_chars
       "#{field[0..first_n_chars].strip.html_safe} ..."
     else
       field.strip.html_safe

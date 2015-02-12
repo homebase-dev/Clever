@@ -77,4 +77,8 @@ class StaticPagesController < ApplicationController
     @category = Category.find(params[:id])
   end
   
+  def quiz_readme
+    
+  end
+  
 end
