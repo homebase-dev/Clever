@@ -9,12 +9,488 @@
     %h2 Wie ist ein Quiz aufgebaut?
     
     %p
-      Ein Quiz besteht aus vier Ebenen
+      Das Quiz Modell besteht aus 5 Ebenen.
+      %br/
+      Ein Quiz enthält Kategorien
+      %br/
+      Eine Kategorie enthält Fragenkontexte
+      %br/
+      Ein Fragenkontext enthält Fragen
+    
+      = image_tag("readme/quiz_model.png", alt: "Quiz Modell")
+        
+
+    
+     
+   
+.row
+  .col-lg-12   
+    .panel.panel-primary
+      .panel-heading
+        %h3 Quiz
+      .panel-body
+        .row
+          .col-lg-12
+            %p
+              Im folgenden findest du die wichtigsten Eigenschaften des Quiz aufgelistet und erklärt
+       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Name
+                %br/ 
+                %br/
+                Ein Quiz-Name kann hier angegeben werden (z.b. 'Österreich')
+              .input-group
+                .input-group-addon Name
+                %input{:type => "text", :class => "form-control", :placeholder => "Österreich", "aria-describedby" => "sizing-addon2"}
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Beschreibung
+                %br/
+                %br/
+                Eine Beschreibung des Quiz kann hier eingegeben werden (z.b. 'Dieses Quiz deckt den österreichischen Raum ab')
+              .input-group
+                .input-group-addon Beschreibung
+                %input{:type => "text", :class => "form-control", :placeholder => "Dieses Quiz deckt den österreichischen Raum ab", "aria-describedby" => "sizing-addon2"}
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Veröffentlicht?
+                %br/
+                %br/
+                Die Eigenschaft Veröffentlicht? beschreibt, ob das Quiz öffentlich sichtbar ist.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Veröffentlicht?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Bild
+                %br/
+                %br/
+                Hier kann ein Bild für das Quiz hochgeladen werden. Es dient als Schaldfläche und erscheint auf der Quiz Seite (derzeit nicht verfügbar). 
+              %input{:type => "file", :class => "form-control", :name => "quiz[image]", :id => "quiz_image"} 
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Derzeitiges Bild
+                %br/
+                %br/
+                Falls bereits ein Bild für dieses Quiz hochgeladen wurde wird es hier angezeigt. 
+              %img{:src => "", :class => "thumbnail"}
+
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Erstellt von
+                %br/
+                %br/
+                Die ID des Benutzers der dieses Quiz erstellt hat.
+
       
-    %ul
-      %li Quiz
-      %li Kategorien
-      %li Fragenkontexte
-      %li Fragen
-      %li Antworten
+.row
+  .col-lg-12   
+    .panel.panel-success
+      .panel-heading
+        %h3 Kategorie
+      .panel-body
+        .row
+          .col-lg-12
+            %p
+              Im folgenden findest du die wichtigsten Eigenschaften der Kategorie aufgelistet und erklärt
+       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Name
+                %br/ 
+                %br/
+                Ein Kategorie-Name kann hier angegeben werden (z.b. 'Mathematik')
+              .input-group
+                .input-group-addon Name
+                %input{:type => "text", :class => "form-control", :placeholder => "Mathematik", "aria-describedby" => "sizing-addon2"}
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Beschreibung
+                %br/
+                %br/
+                Eine Beschreibung der Kategorie kann hier eingegeben werden (z.b. 'Mathematikfragen des Medizin Aufnahmetests')
+              .input-group
+                .input-group-addon Beschreibung
+                %input{:type => "text", :class => "form-control", :placeholder => "Mathematikfragen des Medizin Aufnahmetests", "aria-describedby" => "sizing-addon2"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Nur eine Frage wählbar?
+                %br/
+                %br/
+                Diese Eigenschaft beschreibt, wieviele Antworten der Benutzer in dieser Kategorie pro Frage markieren kann. 
+                Ist diese Eigenschaft gewählt, dann kann er nur eine Antwort als richtig markieren, sonst mehrere.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Nur eine Frage wählbar?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/ 
+           
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Veröffentlicht?
+                %br/
+                %br/
+                Die Eigenschaft Veröffentlicht? beschreibt, ob diese Kategorie öffentlich sichtbar ist.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Veröffentlicht?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Bild
+                %br/
+                %br/
+                Hier kann ein Bild für die Kategorie hochgeladen werden. Es dient als Schaldfläche und erscheint auf der Kategeroieauswahlseite. 
+              %input{:type => "file", :class => "form-control", :name => "quiz[image]", :id => "quiz_image"} 
+          %br/
+        
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Derzeitiges Bild
+                %br/
+                %br/
+                Falls bereits ein Bild für diese Kategorie hochgeladen wurde wird es hier angezeigt. 
+              %img{:src => "", :class => "thumbnail"}
+
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Quiz
+                %br/
+                %br/
+                Die ID des Quiz zu dem diese Kategorie gehört.
       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Erstellt von
+                %br/
+                %br/
+                Die ID des Benutzers der dieses Quiz erstellt hat.
+          %br/
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+.row
+  .col-lg-12   
+    .panel.panel-info
+      .panel-heading
+        %h3 Fragenkontext
+      .panel-body
+        .row
+          .col-lg-12
+            %p
+              Im folgenden findest du die wichtigsten Eigenschaften des Fragenkontextes aufgelistet und erklärt
+       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Inhalt
+                %br/ 
+                %br/
+                Der Kontext bzw. Inhalt zu einem Bündel von Fragen. Dies könnte z.B. ein Text sein oder mehrere Bilder zum memorieren.
+                Fragen die sich auf diesen Kontext beziehen, werden, unter diesem, später erstellt.
+                
+                Falls ein Set von Fragen vorliegt, das sich auf keinen Kontext bezieht, so muss trotzdem ein zugehöriger Kontext erstellt werden. 
+                Dieser (der Inhalt) kann dann aber leer sein, nur die Eigenschaft "Kontext-Typ"" sollte auf "context_not_visible" gesetzt werden,
+                damit wird sichergestellt, dass dieser, während der Benutzer as Quiz spielt, nicht angezeigt wird.
+              .input-group
+                .input-group-addon Name
+                %input{:type => "text", :class => "form-control", :placeholder => "Mathematik", "aria-describedby" => "sizing-addon2"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Workflow
+                %br/
+                %br/
+                Der Worklfow legt fest wie die Fragen des Fragenkontextes dem Benutzer präsentiert werden. Es stehen 3 Workflow-Strategien zur verfügung:
+                %br/
+                %br/
+                * "context_not_visible":
+                der Fragenkontext (in diesem Fall nicht benötigt) wird dem Benutzer nicht angezeigt. Die Fragen des Kontextes werden dem Benutzer in zufälliger Abfolge präsentiert.
+                %br/
+                * "context_always_visible":
+                der Fragenkontext (z.B. ein längerer Verständtnistext) ist dem Benutzer immer zugäglich. 
+                Bei jeder Frage zum Kontext kann der Benutzer auch den Fragenkontext einsehen (kann eingeblendet werden).
+                %br/
+                * "context_visible_at_beginning":
+                der Fragenkontext (z.B. ein Bild zum einprägen) ist dem Benutzer nur zu Beginn zugänglich.
+                Es folgen später die Fragen zu dem Kontext, den Kontext selbst kann der Benutzer dann aber nicht mehr einsehen. 
+                
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Veröffentlicht?
+                %br/
+                %br/
+                Die Eigenschaft Veröffentlicht? beschreibt, ob dieser Fragenkontext öffentlich sichtbar ist.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Veröffentlicht?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+      
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Kategorie
+                %br/
+                %br/
+                Die ID der Kategorie zu der dieser Fragenkontext gehört.
+         
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Erstellt von
+                %br/
+                %br/
+                Die ID des Benutzers der diesen Fragenkontext erstellt hat.
+          %br/
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+.row
+  .col-lg-12   
+    .panel.panel-warning
+      .panel-heading
+        %h3 Frage
+      .panel-body
+        .row
+          .col-lg-12
+            %p
+              Im folgenden findest du die wichtigsten Eigenschaften der Antwort aufgelistet und erklärt
+       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Text
+                %br/ 
+                %br/
+                Der Fragetext, er kann über den Editor bearbeitet werden. Es können z.b. auch Tabellen und Bilder eingefügt werden.
+              .input-group
+                .input-group-addon Text
+                %input{:type => "text", :class => "form-control", :placeholder => "Welcher Himmelskörper ist kein Planet?", "aria-describedby" => "sizing-addon2"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Lösung? (optional)
+                %br/
+                %br/
+                Der Lösungstext gibt Hinweise wie man zur richtigen Antwort auf eine Frage kommt oder enthält wichtige Hintergrundinformationen. 
+                Er wird angezeigt sobald der Benutzer das Quiz fertig gespielt hat.
+              .input-group
+                .input-group-addon Lösung
+                %input{:type => "text", :class => "form-control", :placeholder => "", "aria-describedby" => "sizing-addon2"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Veröffentlicht?
+                %br/
+                %br/
+                Ist die Frage öffentlich sichtbar oder nicht?
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Veröffentlicht?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+      
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Fragenkontext
+                %br/
+                %br/
+                ID des Fragenkontextes zu dem die Frage gehört
+         
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Erstellt von
+                %br/
+                %br/
+                ID des Erstellers
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Optional gleich Antworten dazuerstellen
+                %br/
+                %br/
+                Siehe Antwort für eine Erklärung der Antwort-Eigenschaften
+          %br/
+      
+      
+      
+      
+      
+.row
+  .col-lg-12   
+    .panel.panel-danger
+      .panel-heading
+        %h3 Antwort
+      .panel-body
+        .row
+          .col-lg-12
+            %p
+              Im folgenden findest du die wichtigsten Eigenschaften der Antwort aufgelistet und erklärt
+       
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Text
+                %br/ 
+                %br/
+                Der Text der die mögliche Antwort auf eine zugehörige Frage drastellt. 
+              .input-group
+                .input-group-addon Text
+                %input{:type => "text", :class => "form-control", :placeholder => "Pluto ist kein Planet", "aria-describedby" => "sizing-addon2"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Korrekt?
+                %br/
+                %br/
+                Die Eigenschaft Korrekt? beschreibt, ob die Antwort im Bezug auf ihre zugehörige Frage richtig oder falsch ist.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Korrekt?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+          
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Veröffentlicht?
+                %br/
+                %br/
+                Die Eigenschaft Veröffentlicht? beschreibt, ob diese Antwort öffentlich sichtbar ist.
+              .input-group
+                %span.input-group-addon 
+                  %input{:type => "checkbox", "aria-label" => "Checkbox for following text input"}
+                  Veröffentlicht?
+                %input{:type => "text", :class => "form-control", "aria-label" => "Text input with checkbox", :style => "width: 0px; padding: 0px;"}
+          %br/
+      
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Frage
+                %br/
+                %br/
+                Die ID der Frage zu der diese Antwort gehört.
+         
+        .row
+          .col-lg-12
+            .well
+              %samp
+                %b Erstellt von
+                %br/
+                %br/
+                Die ID des Benutzers der diese Antwort erstellt hat.
+          %br/
+      
+      
+     

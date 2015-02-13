@@ -10,24 +10,26 @@
           - @question_context.errors.full_messages.each do |msg|
             %li= msg
   .form-group
-    = f.label :content, :class => 'control-label'
+    = f.label "Inhalt", :class => 'control-label'
     = f.cktext_area :content, :class => 'form-control', :rows => 10, :autofocus => true
     = f.error_span(:content)
   .form-group
+    = f.label "Workflow", :class => 'control-label'
+    %br/
     = f.collection_select :test_workflow_id, TestWorkflow.all, :id, :name, :selected => @question_context.try(:test_workflow).try(:id)
-        
-  .form-group
-    = f.label :category_id, :class => 'control-label'
-    = f.text_field :category_id, :class => 'form-control', :disabled => true
-    = f.error_span(:category_id)
-  .form-group
-    = f.label :creator_id, :class => 'control-label'
-    = f.text_field :creator_id, :class => 'form-control', :disabled => true
-    = f.error_span(:creator_id)
   .checkbox
     %label
       = f.check_box :published 
       Veröffentlicht?
     = f.error_span(:published)
+  .form-group
+    = f.label "Kategorie", :class => 'control-label'
+    = f.text_field :category_id, :class => 'form-control', :disabled => true
+    = f.error_span(:category_id)
+  .form-group
+    = f.label "Erstellt von", :class => 'control-label'
+    = f.text_field :creator_id, :class => 'form-control', :disabled => true
+    = f.error_span(:creator_id)
+
   
   = f.submit nil, :class => 'btn btn-primary'
