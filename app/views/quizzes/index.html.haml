@@ -1,7 +1,11 @@
 - model_class = Quiz
 .page-header
-  %h1 Quizze
+  %h1 
+    Quizze
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_quiz_readme_path}", :role => "button"} Erklärung des Quiz Modells
+
 /%a.btn.btn-default.pull-right{:href => "#{static_pages_admin_path}", :role => "button"} Zurück
+
 %table.table.table-striped
   %thead
     %tr

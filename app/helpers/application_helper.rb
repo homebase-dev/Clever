@@ -4,7 +4,11 @@ module ApplicationHelper
     if first_n_chars.present? && field.length > first_n_chars
       "#{field[0..first_n_chars].strip.html_safe} ..."
     else
-      field.strip.html_safe
+      if field.blank?
+          "&nbsp;".html_safe
+        else
+          field.strip.html_safe
+      end
     end
   end
   

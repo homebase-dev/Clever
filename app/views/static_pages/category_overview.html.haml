@@ -19,7 +19,7 @@
             .panel-body
               =preview_html_field(question_context.content)
               %span.badge 
-                test_workflow: 
+                workflow: 
                 =question_context.test_workflow.name
           
           - question_context.questions.each_with_index do |question, index_2|
