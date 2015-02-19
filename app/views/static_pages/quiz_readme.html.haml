@@ -760,4 +760,37 @@
               %br/
           
           
-     
+.row
+  .col-lg-12
+    %h2 Wie gebe ich mathematische Ausdrücke ein?
+    
+    %p 
+      Mathematische Ausdrücke können durch die Verwendung der Tex Syntax eingegeben werden. Folgendes ist dabei zu beachten:
+      %br/
+      %ol
+        %li
+          Eckigen-Klammern müssen den Tex Ausdruck umschließen <code>\[ ... \]</code>
+        %li
+          Der Editor darf die Formel nicht in einen Code Block packen. <br/>
+          Falls dies geschieht, markieren die Formel und stelle den <b>Stil</b> auf <i>Stil</i> und das <b>Format</b> auf <i>Normal</i> <br/>
+          (siehe folgendes Bild).
+      
+      = image_tag("readme/mathjax_example.png", alt: "Mathjax Beispiel", style: "width: 80%;")
+      
+      %br/
+      
+    %h4 Beispiel
+    
+    %p
+      Die Formel des Pythagoras:
+    %samp
+      %code
+        \\[a^2 + b^2 = c^2\]
+        
+    
+          
+    %p
+      %br/
+      Die Ausgabe sieht folgendermaßen aus:
+    %samp
+      \\[a^2 + b^2 = c^2\]
