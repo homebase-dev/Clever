@@ -760,37 +760,66 @@
               %br/
           
           
+          
+          
 .row
   .col-lg-12
-    %h2 Wie gebe ich mathematische Ausdrücke ein?
-    
-    %p 
-      Mathematische Ausdrücke können durch die Verwendung der Tex Syntax eingegeben werden. Folgendes ist dabei zu beachten:
-      %br/
-      %ol
-        %li
-          Eckigen-Klammern müssen den Tex Ausdruck umschließen <code>\[ ... \]</code>
-        %li
-          Der Editor darf die Formel nicht in einen Code Block packen. <br/>
-          Falls dies geschieht, markieren die Formel und stelle den <b>Stil</b> auf <i>Stil</i> und das <b>Format</b> auf <i>Normal</i> <br/>
-          (siehe folgendes Bild).
-      
-      = image_tag("readme/mathjax_example.png", alt: "Mathjax Beispiel", style: "width: 80%;")
-      
-      %br/
-      
-    %h4 Beispiel
-    
-    %p
-      Die Formel des Pythagoras:
-    %samp
-      %code
-        \\[a^2 + b^2 = c^2\]
-        
-    
-          
-    %p
-      %br/
-      Die Ausgabe sieht folgendermaßen aus:
-    %samp
-      \\[a^2 + b^2 = c^2\]
+    %h2 Weiteres ...
+  
+.row
+  .col-lg-12
+    #desc-mathjax-accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+      .panel.panel-default
+        #headingDescMathjax.panel-heading{:role => "tab"}
+          %h2.panel-title
+            %a{"aria-controls" => "collapseDescMathjax", "aria-expanded" => "true", "data-parent" => "#desc-answer-accordion", "data-toggle" => "collapse", :href => "#collapseDescMathjax"}
+              Wie gebe ich mathematische Ausdrücke ein?
+        #collapseDescMathjax.panel-collapse.collapse{"aria-labelledby" => "headingDescMathjax", :role => "tabpanel"}
+          .panel-body
+            %h4 Eingabe
+            
+            %p 
+              Mathematische Ausdrücke können durch die Verwendung der TeX oder LaTeX Syntax eingegeben werden. Folgendes ist dabei zu beachten:
+              %br/
+              %ol
+                %li
+                  Umschließe den TeX oder LaTeX Ausdruck mit <code>\( ... \)</code>, um ihn inline (mit dem Textfluß) anzuzeigen
+                %li
+                  Umschließe den TeX oder LaTeX Ausdruck mit <code>\[ ... \]</code> oder <code>$$ ... $$</code>, um ihn zentriert und in einer neuen Zeile anzugeben
+                %li
+                  Der Editor darf die Formel nicht in einen Code Block packen. <br/>
+                  Falls dies geschieht, markieren die Formel und stelle den <b>Stil</b> auf <i>Stil</i> und das <b>Format</b> auf <i>Normal</i> <br/>
+                  (siehe folgendes Bild)
+              
+              = image_tag("readme/mathjax_example.png", alt: "Mathjax Beispiel", style: "width: 80%;")
+              
+              %br/
+              
+            %h4 Beispiel
+            
+            %p
+              Eingabe:
+            .well
+              %code
+                Sei \( f \) eine Funktion und \( f(x) = ax^3 + bx^2 + cx + d \)
+                %br/
+                Welche Aussage trifft dann zu?
+                %br/
+                %br/
+                Eine weitere wichtige zentrierte Formel:
+                \\[ a^2 + b^2 = c^2 \]
+                
+            
+                  
+            %p
+              %br/
+              Die Ausgabe sieht folgendermaßen aus:
+              .well
+                Sei \( f \) eine Funktion und \( f(x) = ax^3 + bx^2 + cx + d \). 
+                %br/
+                Welche Aussage trifft dann zu?
+                %br/
+                %br/
+                Eine weitere wichtige zentrierte Formel:
+                \\[ a^2 + b^2 = c^2 \]
+                
