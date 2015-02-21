@@ -40,6 +40,8 @@ gem 'prawn-table'
 gem 'devise-i18n'
 #pagination
 gem 'kaminari'
+#braintree support
+gem 'braintree'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

@@ -1,3 +1,9 @@
+
+= javascript_include_tag "https://js.braintreegateway.com/v2/braintree.js"
+
+
+
+
 .page-header
   %h1
     Registration
@@ -17,24 +23,50 @@
           Gib deine Kreditkarteninformationen ein und bezahlte 29,90€ für die Freischaltung deines Accounts.
           %br>/
           Damit erhälst du für 1 Jahr vollen Zugriff auf unser gesamtes Fortbildungsangebot!
+          
         %p.form-control-static.account-status.inactive
           %span.label.label-warning Preis: 29,90€ für 1 Jahr
         %br/
+        %h3 Bezahlen 
+        %hr
+        %br/        
+ 
+        = form_tag static_pages_pay_path, id: "checkout" do
+          #dropin  
+          %br/
+          = submit_tag "29,90€ bezahlen und Registration abschließen", :class => 'btn btn-success pull-right'
+       
         %br/
-        = form_tag static_pages_pay_path do
-          .form-group
-            %label.control-label Kreditkartennummer
-            = text_field_tag :creditcard_number, nil, :class => 'form-control', :placeholder => "Kreditkartennummer eingeben"
-          .form-group
-            %label.control-label Verfallsdatum
-            = text_field_tag :creditcard_expiration_date, nil, :class => 'form-control', :placeholder => "Verfallsdatum Eingeben z.B. '01/2019'"
-          .form-group
-            %label.control-label Dreistellige Prüfnummer
-            = text_field_tag :creditcard_cnc, nil, :class => 'form-control', :placeholder => "Dreistellige Prüfnummer eingeben (Rückseite der Karte)"
-          = submit_tag "Bezahlen und Registration abschließen", :class => 'btn btn-success pull-right'
         %br/
+        
+        /= form_tag static_pages_pay_path do
+        /  .form-group
+        /    %label.control-label Kreditkartennummer
+        /    = text_field_tag :creditcard_number, nil, :class => 'form-control', :placeholder => "Kreditkartennummer eingeben"
+        /  .form-group
+        /    %label.control-label Verfallsdatum
+        /    = text_field_tag :creditcard_expiration_date, nil, :class => 'form-control', :placeholder => "Verfallsdatum Eingeben z.B. '01/2019'"
+        /  .form-group
+        /    %label.control-label Dreistellige Prüfnummer
+        /    = text_field_tag :creditcard_cnc, nil, :class => 'form-control', :placeholder => "Dreistellige Prüfnummer eingeben (Rückseite der Karte)"
+        /  = submit_tag "Bezahlen und Registration abschließen", :class => 'btn btn-success pull-right'
+        /%br/
 
 
-
+:javascript
+  function setupBT() {
+    braintree.setup("#{@client_token}", 'dropin', {
+      container: 'dropin'
+    });
+  }
+  if (window.addEventListener) {
+    window.addEventListener("load", setupBT, false);
+  }
+  else if (window.attachEvent) {
+    window.attachEvent("onload", setupBT);
+  }
+  else {
+    window.onload = setupBT;
+  }
 
 
