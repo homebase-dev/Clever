@@ -15,7 +15,76 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
    
-   
+  $('.carousel').carousel({
+    interval: 5000
+  })
+  
+:javascript
+  $(document).ready(function(){ countdown() }) 
+  
+  // Ziel-Datum in MEZ
+  var jahr=2222, monat=2, tag=22, stunde=22, minute=22, sekunde=22;
+  var zielDatum=new Date(jahr,monat-1,tag,stunde,minute,sekunde);
+  
+  function countdown() {
+  startDatum=new Date(); // Aktuelles Datum
+  
+  // Countdown berechnen und anzeigen, bis Ziel-Datum erreicht ist
+  if(startDatum<zielDatum)  {
+  
+  var jahre=0, monate=0, tage=0, stunden=0, minuten=0, sekunden=0;
+  
+  // Jahre
+  while(startDatum<zielDatum) {
+  jahre++;
+  startDatum.setFullYear(startDatum.getFullYear()+1);
+  }
+  startDatum.setFullYear(startDatum.getFullYear()-1);
+  jahre--;
+  
+  // Monate
+  while(startDatum<zielDatum) {
+  monate++;
+  startDatum.setMonth(startDatum.getMonth()+1);
+  }
+  startDatum.setMonth(startDatum.getMonth()-1);
+  monate--;
+  
+  // Tage
+  while(startDatum.getTime()+(24*60*60*1000)<zielDatum) {
+  tage++;
+  startDatum.setTime(startDatum.getTime()+(24*60*60*1000));
+  }
+  
+  // Stunden
+  stunden=Math.floor((zielDatum-startDatum)/(60*60*1000));
+  startDatum.setTime(startDatum.getTime()+stunden*60*60*1000);
+  
+  // Minuten
+  minuten=Math.floor((zielDatum-startDatum)/(60*1000));
+  startDatum.setTime(startDatum.getTime()+minuten*60*1000);
+  
+  // Sekunden
+  sekunden=Math.floor((zielDatum-startDatum)/1000);
+  
+  // Anzeige formatieren
+  (jahre!=1)?jahre=jahre+" Jahre,  ":jahre=jahre+" Jahr,  ";
+  (monate!=1)?monate=monate+" Monate,  ":monate=monate+" Monat,  ";
+  (tage!=1)?tage=tage+" Tage,  ":tage=tage+" Tag,  ";
+  (stunden!=1)?stunden=stunden+" Stunden,  ":stunden=stunden+" Stunde,  ";
+  (minuten!=1)?minuten=minuten+" Minuten  und  ":minuten=minuten+" Minute  und  ";
+  if(sekunden<10) sekunden="0"+sekunden;
+  (sekunden!=1)?sekunden=sekunden+" Sekunden":sekunden=sekunden+" Sekunde";
+  
+  document.countdownform.countdowninput.value=
+  jahre+monate+tage+stunden+minuten+sekunden;
+  
+  setTimeout('countdown()',200);
+  }
+  // Anderenfalls alles auf Null setzen
+  else document.countdownform.countdowninput.value=
+  "0 Jahre,  0 Monate,  0 Tage,  0 Stunden,  0 Minuten  und  00 Sekunden";
+  }
 
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
   / Indicators
@@ -25,13 +94,19 @@
     %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
   .carousel-inner{:role => "listbox"}
     .item.active
-      = image_tag("placeholder_landing.png", alt: "First slide")
+      = image_tag("carousel/c1.png", alt: "First slide")
       .container
         .carousel-caption
           %h1 Wir helfen dir das Examen zu bestehen!
           %p
           %p
-            %a.btn.btn-lg.btn-primary{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
+            %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
+    .item
+      = image_tag("carousel/c2.png", alt: "First slide")
+    .item
+      = image_tag("carousel/c3.png", alt: "First slide")
+    .item
+      = image_tag("carousel/c4.png", alt: "First slide")
 
   %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
     %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
@@ -39,31 +114,30 @@
   %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
     %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
     %span.sr-only Next
-    
+        
 
 
-
-.container
-  .marketing-area
-    .row
-      .col-md-4
-        .box
-          = image_tag("placeholder_icon.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
-          %h2 Kostenlos testen
-          %p Versuche dich am kostenlosen Testfragebogen und prüfe deinen Vorbereitungsstatus auf eine Prüfung. Der Fragebogen besteht aus 20 Fragen aus dem Fachgebiet Medizin. Erhalte hiermit auch einen Einblick wie unser einfaches aber effektives Lernsystem funktioniert.
-          %a.btn.btn-default{:href => "#{static_pages_quiz_path}", :role => "button"} Kostenlos Testen
-      .col-md-4
-        .box
-          = image_tag("placeholder_icon.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
-          %h2 Fragen?
-          %p Erfahre mehr über unser Lernsystem: wie funktioniert es, wo kann es dir helfen, wieviel kostet es? Häufig gestellte Fragen werden hier beantwortet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
-          %a.btn.btn-default{:href => "#{static_pages_faq_path}", :role => "button"} Zu den Antworten
-      .col-md-4
-        .box
-          = image_tag("placeholder_icon.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
-          %h2 Neuigkeiten
-          %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
+/.container
+.marketing-area
+  .row
+    .col-md-4
+      .box
+        = image_tag("placeholder_icon.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        %h2 Kostenlos testen
+        %p Versuche dich am kostenlosen Testfragebogen und prüfe deinen Vorbereitungsstatus auf eine Prüfung. Der Fragebogen besteht aus 20 Fragen aus dem Fachgebiet Medizin. Erhalte hiermit auch einen Einblick wie unser einfaches aber effektives Lernsystem funktioniert.
+        %a.btn.btn-default{:href => "#{static_pages_quiz_path}", :role => "button"} Kostenlos Testen
+    .col-md-4
+      .box
+        = image_tag("placeholder_icon.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        %h2 Fragen?
+        %p Erfahre mehr über unser Lernsystem: wie funktioniert es, wo kann es dir helfen, wieviel kostet es? Häufig gestellte Fragen werden hier beantwortet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+        %a.btn.btn-default{:href => "#{static_pages_faq_path}", :role => "button"} Zu den Antworten
+    .col-md-4
+      .box
+        = image_tag("placeholder_icon.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        %h2 Neuigkeiten
+        %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
   
 
   /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
@@ -75,25 +149,32 @@
       %h2.featurette-heading
         Hab mich damit auf die Aufnahmeprüfung vorbereitet,
         %span.text-muted es motiviert!
-      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
     .col-md-5
-      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('student1.jpg')}"}/
+      %img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}
   %hr.featurette-divider/
   .row.featurette
     .col-md-5
-      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('studentin1.jpg')}"}/
+      %img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}/
     .col-md-7
       %h2.featurette-heading
         Die Tests helfen wirklich weiter,
         %span.text-muted da das Material gut vorsortiert wurde
-      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
   %hr.featurette-divider/
   .row.featurette
     .col-md-7
       %h2.featurette-heading
         Hab sogar am Smartphone gequizt,
         %span.text-muted endlich bestanden!
-      %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
     .col-md-5
-      /%img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('studentin2.jpg')}"}/
+      %img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}/
   %hr.featurette-divider/
+  
+  .row
+    .col-md-12
+      %form{:name => "countdownform"}
+        %p
+          %input{:name => "countdowninput", :size => "75"}/
+        

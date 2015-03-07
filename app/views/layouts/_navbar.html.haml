@@ -7,32 +7,90 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href => "#"} Clever Learning
-    #navbar.navbar-collapse.collapse
+      %a{:href => "#{static_pages_home_path}"}
+        =image_tag "logo.png", :class => "navbar-brand", :style => "min-height: 6em"
+    #navbar.navbar-collapse.collapse{:style => "margin-top: 5em"}
+      /%i.fa.fa-thumbs-o-up.navbar-thumb 
+      
+      /=image_tag "navbar/icon3.png", :id => "quality-seal"
+      
+      #jm-search-social.clearfix
+        #jm-social
+          .custom
+            .fb-like.fb_iframe_widget{"data-action" => "recommend", "data-href" => "https://www.facebook.com/cleverlearning", "data-layout" => "button_count", "data-share" => "true", "data-show-faces" => "true", "fb-iframe-plugin-query" => "action=recommend&app_id=&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", "fb-xfbml-state" => "rendered"}
+              %span{:style => "vertical-align: bottom; width: 160px; height: 20px;"}
+                %iframe{:allowtransparency => "true", :frameborder => "0", :height => "1000px", :name => "ff0cf456c3721e", :scrolling => "no", :src => "http://www.facebook.com/v2.0/plugins/like.php?action=recommend&app_id=&channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FrFG58m7xAig.js%3Fversion%3D41%23cb%3Dfc8918349fa8e4%26domain%3Dwww.clever-learning.at%26origin%3Dhttp%253A%252F%252Fwww.clever-learning.at%252Ff33473fdb0b9408%26relation%3Dparent.parent&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", :style => "border: medium none; visibility: visible; width: 160px; height: 20px;", :title => "fb:like Facebook Social Plugin", :width => "1000px"}
+          .custom
+            %p.jm-icons
+              %a{:href => "https://www.facebook.com/cleverlearning", :style => "display: inline-block;", :target => "_blank"}
+                =image_tag "navbar/facebook_small.png", :class => "rotate"
+              %a{:href => "http://www.youtube.com/watch?feature=player_embedded&v=B1lQCBUIAHs", :style => "display: inline-block;", :target => "_blank"}
+                =image_tag "navbar/youtube_small.png", :class => "rotate"
+              %a{:href => "http://www.youtube.com/watch?feature=player_embedded&v=MxP3UzzPdq4", :style => "display: inline-block;", :target => "_blank"}
+                =image_tag "navbar/youtube_small.png", :class => "rotate"
+                
+      
+      
       %ul.nav.navbar-nav
         /- if current_page?(url_for(:controller => 'static_pages', :action => 'home')) 
         /  %li{:class => "active"}
         /    =link_to "Home", static_pages_home_path
         /- else
-        %li 
-          =link_to "Home", static_pages_home_path
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Infos
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              =link_to "MedAT-Humanmedizin", static_pages_humanmedizin_path
+            %li
+              =link_to "MedAT-Zahnmedizin", static_pages_zahnmedizin_path
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Unser Angebot
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              =link_to "Ablauf Online Test", static_pages_ablauf_path
+            %li
+              =link_to "Vorbereitungskurse", static_pages_vorbereitungskurse_path
+        %li
+          =link_to "Kostenlos testen", static_pages_quiz_path
+        %li
+          =link_to "Meine Daten", static_pages_profile_status_path
         - if current_user.try(:can_manage?)
           %li
             =link_to "Verwaltung", static_pages_admin_path
-        %li
-          =link_to "Quiz", static_pages_quiz_path
-        %li
-          =link_to "Profil", static_pages_profile_status_path
-        %li{"data-no-turbolink" => ""}
-          =link_to "Kontakt", static_pages_contact_path
-        %li
-          =link_to "About", static_pages_about_path
       %ul.nav.navbar-nav.navbar-right
         %li
           -if user_signed_in?
             = link_to "Abmelden", destroy_user_session_path, :method => :delete
           -else
             = link_to "Anmelden", new_user_session_path
-    / /.nav-collapse
-  / /.container-fluid
-  
+
+
+
+
+
+/        %li 
+/          =link_to "Home", static_pages_home_path
+/        - if current_user.try(:can_manage?)
+/          %li
+/            =link_to "Verwaltung", static_pages_admin_path
+/        %li
+/          =link_to "Quiz", static_pages_quiz_path
+/        %li
+/          =link_to "Profil", static_pages_profile_status_path
+/        %li{"data-no-turbolink" => ""}
+/          =link_to "Kontakt", static_pages_contact_path
+/        %li
+/          =link_to "About", static_pages_about_path
+/      %ul.nav.navbar-nav.navbar-right
+/        %li
+/          -if user_signed_in?
+/            = link_to "Abmelden", destroy_user_session_path, :method => :delete
+/          -else
+/            = link_to "Anmelden", new_user_session_path
+/    / /.nav-collapse
+/  / /.container-fluid
+/  /= image_tag("logo.png", alt: "Logo")

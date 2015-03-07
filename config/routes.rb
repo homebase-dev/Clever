@@ -55,6 +55,12 @@ Rails.application.routes.draw do
   get 'static_pages/profile_data'
   get 'static_pages/admin'
   get 'static_pages/payment'
+  
+  get 'static_pages/ablauf'
+  get 'static_pages/humanmedizin'
+  get 'static_pages/zahnmedizin'
+  get 'static_pages/vorbereitungskurse'
+  
   post 'static_pages/pay'
 
   get "tests/:category_id/new", :controller => "tests", :action => "new", :as =>:new_test_from_category

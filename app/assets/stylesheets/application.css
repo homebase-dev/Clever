@@ -17,3 +17,121 @@
 a.btn-primary:visited {
 	color: #FFFFFF;
 }
+
+.navbar-thumb {
+	font-size: 2em;	
+	color: #F3DA52;
+	
+	position: absolute;
+	left: 15em;
+	top: 1em;
+}
+
+
+.rotate {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+ 
+    }  
+ 
+.rotate:hover  
+{
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+} 
+
+
+
+
+
+#quality-seal {
+	position: absolute;
+	left: 22em;
+	top: -1.5em;
+	width: 10em;
+}
+
+
+
+
+#jm-search-social {
+    float: right;
+    margin-top: -3.5em !important;
+    position: absolute;
+	top: 4.5em;
+	right: 2em;
+	/*left: 50%;
+	transform: translate(-50%, 0px);*/
+}
+.clearfix {
+    min-width: 0px;
+    display: block;
+}
+
+#jm-allpage {
+    position: relative;
+}
+#jm-allpage-in {
+    max-width: 960px;
+}
+#jm-allpage-in {
+    padding: 10px 20px;
+    margin: 0px auto;
+}
+#jm-logo-search-social {
+    margin-bottom: 5px;
+}
+#jm-logo-search-social #jm-logo-sitedesc {
+    float: left;
+}
+#jm-logo-search-social #jm-social {
+    float: right;
+}
+
+#jm-logo-search-social #jm-search-social {
+    float: right;
+}
+
+.jm-icons .jm-facebook {
+    background-image: url("navbar/facebook.png");
+}
+.jm-icons .jm-youtube {
+    background-image: url("navbar/youtube.png");
+}
+
+.jm-icons span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    transition: all 0.2s ease-out 0s;
+}
+.jm-icons {
+	padding-top: 7px;
+    text-align: right;
+    margin: 0px;
+}
+
+.jm-icons a:hover{
+	background-color: transparent;
+}
+
+
+
+
+/* cause of the fixed navbar (otherwise body behind navbar) */
+/*body { 
+	padding-top: 70px; 
+}*/
+
