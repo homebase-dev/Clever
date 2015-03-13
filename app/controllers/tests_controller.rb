@@ -27,6 +27,7 @@ class TestsController < ApplicationController
       @test = Test.new(test_params)
     end
     
+    @nb_of_contexts = params[:nb_of_contexts].to_i
     @nb_of_questions = params[:nb_of_questions].to_i
     
     #TODO check if nb_of_questions >0 && <= category.question.count
@@ -46,13 +47,14 @@ class TestsController < ApplicationController
       redirect_to(:back) and return
     end
     
-    random_questions = pick_random_questions(category, @nb_of_questions)    
+    random_questions = pick_random_questions(category, @nb_of_contexts, @nb_of_questions)    
     
     #random_questions = pick_random_questions(category)
     puts "RESULT QUESTIONS"
     print_questions(random_questions)
     
-    @test.save!
+    #TODO uncomment
+    #@test.save!
     
     create_test_assignations(random_questions)
  
@@ -62,17 +64,42 @@ class TestsController < ApplicationController
   
   
   
-  def pick_random_questions(category, nb_of_questions)
+  def pick_random_questions(category, nb_of_contexts, nb_of_questions)
     random_questions = []
     
     if category.question_contexts.count == 1
       only_context = category.question_contexts.first
       random_questions = pick_random_questions_from_question_context(only_context, nb_of_questions)
     elsif category.question_contexts.count > 1
-      random_questions = pick_random_questions_from_category(category, nb_of_questions)
+      random_contexts = pick_random_contexts_from_category(category, nb_of_contexts)
+      
+      random_contexts.each do |context|
+        random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)
+      end
+      
     end
         
     random_questions
+  end
+  
+  def pick_random_contexts_from_category(category, nb_of_contexts) 
+    random_contexts = []
+    $i = 0
+    all_contexts_mixed = category.question_contexts.shuffle
+    
+    while $i < nb_of_contexts do
+      context = all_contexts_mixed[$i]
+      
+      if context.present?
+        random_contexts << context
+      else
+        break
+      end
+      
+      $i +=1
+    end
+    
+    random_contexts
   end
   
   def pick_random_questions_from_question_context(question_context, nb_of_questions) 
@@ -95,39 +122,7 @@ class TestsController < ApplicationController
     
     random_questions
   end
-  
-  
-  def pick_random_questions_from_category(category, nb_of_questions)
-    random_questions = []
     
-    contexts = category.question_contexts.shuffle
-    
-    while contexts.any? do
-      context = contexts.first
-      
-      $i = 0
-      all_questions = context.questions
-      while random_questions.count < @nb_of_questions do
-        question = all_questions[$i]
-        
-        if question.present?
-          random_questions << question
-        else
-          break
-        end
-        
-        #puts("Inside the loop i = #$i" )
-        $i +=1
-      end
-      
-      contexts.delete(context)
-      
-    end
-    
-    random_questions
-  end
-  
-  
   def create_test_assignations(questions)
     questions.each do |q|
       assignation = Assignation.new(:test => @test, :question => q)
@@ -167,8 +162,17 @@ class TestsController < ApplicationController
     @assignation =  @test.assignations[@assignation_number]#@test.questions[@question_number]
     @previous_assignation =  @test.assignations[@assignation_number-1]
     
+    if no_more_steps?(@assignation, @assignation_number, @test.questions.count)
+      redirect_to test_result_path(:id => @test.id) and return
+    end
+    
+    
     @question = @assignation.try(:question)
-
+    
+    @workflow = @assignation.question.question_context.test_workflow
+    @did_context_change = did_context_change?(@assignation, @previous_assignation)
+    @show_context = show_context?(@assignation, @previous_assignation)
+    
     
     if @previous_assignation.present?
       #if there are any prevous checks, remove them, since now there are now ones
@@ -187,18 +191,40 @@ class TestsController < ApplicationController
       end
       
     end
-      
-    
-    if @assignation_number == @test.questions.count
-      redirect_to test_result_path(:id => @test.id) and return
-    end
     
     respond_with(@question)
   end
   
+  def no_more_steps?(assignation, assignation_number, test_questions_count)
+    no_more_steps = assignation.nil? || assignation_number == test_questions_count
+  end
   
   def post_answer
     
+  end
+  
+  def did_context_change?(assignation, previous_assignation)
+    did_context_changed = true 
+
+    if previous_assignation.present?
+      did_context_changed = false if assignation.question.question_context == previous_assignation.question.question_context
+    end
+    
+    did_context_changed
+  end
+  
+  def show_context?(assignation, previous_assignation)
+    show_context = false
+    context_test_workflow = assignation.question.question_context.test_workflow
+    
+    if context_test_workflow.not_visible?
+      return false
+    elsif context_test_workflow.always_visible?
+      return true
+    end
+    
+    show_context = did_context_change?(assignation, previous_assignation)
+    show_context
   end
   
   

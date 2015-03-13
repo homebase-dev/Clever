@@ -56,6 +56,6 @@ class QuestionContextsController < ApplicationController
     end
 
     def question_context_params
-      params.require(:question_context).permit(:content, :test_workflow_id, :category_id, :creator_id, :published)
+      params.require(:question_context).permit(:content, :display_time_minutes, :test_workflow_id, :category_id, :creator_id, :published)
     end
 end

@@ -98,9 +98,9 @@
       .container
         .carousel-caption
           %h1 Wir helfen dir das Examen zu bestehen!
-          %p
-          %p
-            %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
+          /%p
+          /%p
+          /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
     .item
       = image_tag("carousel/c2.png", alt: "First slide")
     .item
@@ -174,7 +174,18 @@
   
   .row
     .col-md-12
-      %form{:name => "countdownform"}
-        %p
-          %input{:name => "countdowninput", :size => "75"}/
+      .jumbotron.countdown{"data-no-turbolink" => true}
+        %h3 Der nächste Aufnahmetest beginnt in:
+        %form.countdownform{:name => "countdownform"}
+          %p
+            %input{:name => "countdowninput", :size => "75"}/
         
+  .row
+    .col-md-12
+      #getting-started
+        :javascript
+          $("#getting-started").countdown("2016/01/01", function(event) {
+            $(this).text(
+              event.strftime('%D days %H:%M:%S')
+            );
+          });

@@ -55,10 +55,10 @@ a.btn-primary:visited {
 
 
 #quality-seal {
-	position: absolute;
-	left: 22em;
-	top: -1.5em;
-	width: 10em;
+    position: absolute;
+    left: 23em;
+    top: 0.5em;
+    width: 8em;
 }
 
 
@@ -127,7 +127,26 @@ a.btn-primary:visited {
 	background-color: transparent;
 }
 
+.countdown {
+	text-align: center;
+	padding: 0.5em;
+	background-color: rgba(47, 93, 144, 1);
+}
 
+.countdown h3 {
+	color: #fff;
+}
+
+.countdownform {
+	text-align: center;
+}
+
+.countdownform input {
+	background-color: transparent;
+	color: #fff;
+	border-width: 0px;	
+	text-align: center;
+}
 
 
 /* cause of the fixed navbar (otherwise body behind navbar) */

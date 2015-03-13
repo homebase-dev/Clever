@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126150117) do
+ActiveRecord::Schema.define(version: 20150313185918) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150126150117) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "test_workflow_id"
+    t.decimal  "display_time_minutes", precision: 5, scale: 2
   end
 
   add_index "question_contexts", ["category_id"], name: "index_question_contexts_on_category_id", using: :btree

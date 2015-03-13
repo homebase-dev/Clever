@@ -23,6 +23,10 @@
       Veröffentlicht?
     = f.error_span(:published)
   .form-group
+    = f.label "Anzeigezeit (Minuten)", :class => 'control-label'
+    = f.number_field :display_time_minutes, :class => 'form-control', :step => 0.01, :min => 0, :max => 999
+    = f.error_span(:display_time_minutes)
+  .form-group
     = f.label "Kategorie", :class => 'control-label'
     = f.text_field :category_id, :class => 'form-control', :disabled => true
     = f.error_span(:category_id)
