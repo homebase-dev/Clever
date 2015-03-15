@@ -30,16 +30,17 @@
       = image_tag("carousel/c1.png", alt: "First slide")
       .container
         .carousel-caption
-          %h1 Wir helfen dir das Examen zu bestehen!
+          %h1.super MedAT - aufnahmetest.at
+          %h1 Dein Einstieg zur Medizinkarriere!
           /%p
           /%p
           /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
-    .item
-      = image_tag("carousel/c2.png", alt: "First slide")
-    .item
-      = image_tag("carousel/c3.png", alt: "First slide")
-    .item
-      = image_tag("carousel/c4.png", alt: "First slide")
+    /.item
+    /  = image_tag("carousel/c2.png", alt: "First slide")
+    /.item
+    /  = image_tag("carousel/c3.png", alt: "First slide")
+    /.item
+    /  = image_tag("carousel/c4.png", alt: "First slide")
 
   %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
     %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}

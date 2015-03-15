@@ -14,6 +14,12 @@
  *= require_self
  */
 
+/* cause of the fixed navbar (otherwise body behind navbar) */
+body { 
+	padding-top: 130px; 
+}
+
+
 a.btn-primary:visited {
 	color: #FFFFFF;
 }
@@ -28,7 +34,18 @@ a.btn-primary:visited {
 }
 
 
+h1.super {
+	font-size: 5em;
+	letter-spacing: -3px;
+	color: rgba(255, 255, 255, 0.53);
+	font-weight: bold;
+}
+
+
+
+
 .rotate {
+	margin-top: 3px;	
     -webkit-transition-duration: 0.8s;
     -moz-transition-duration: 0.8s;
     -o-transition-duration: 0.8s;
@@ -45,6 +62,7 @@ a.btn-primary:visited {
  
 .rotate:hover  
 {
+	margin-top: 3px;	
     -webkit-transform:rotate(360deg);
     -moz-transform:rotate(360deg);
     -o-transform:rotate(360deg);
@@ -55,21 +73,19 @@ a.btn-primary:visited {
 
 
 #quality-seal {
-    position: absolute;
-    left: 23em;
-    top: 0.5em;
-    width: 8em;
+	position: absolute;
+	width: 9em;
+	top: 0.2em;
+	right: -0.5em;
 }
 
 
-
-
 #jm-search-social {
-    float: right;
-    margin-top: -3.5em !important;
-    position: absolute;
-	top: 4.5em;
-	right: 2em;
+	float: right;
+	margin-top: -3.5em !important;
+	position: absolute;
+	top: 3.5em;
+	right: 9.5em;
 	/*left: 50%;
 	transform: translate(-50%, 0px);*/
 }
@@ -130,7 +146,8 @@ a.btn-primary:visited {
 .countdown {
 	text-align: center;
 	padding: 0.5em;
-	background-color: rgba(47, 93, 144, 1);
+	/*background-color: rgba(47, 93, 144, 1)*/;
+	background-color: #0081E0;
 }
 
 .countdown h3 {
@@ -141,7 +158,7 @@ a.btn-primary:visited {
 	color: #fff;
 	text-align: center;
 	font-size: 1.5em;
-	padding-bottom: 0.5em;
+	padding-bottom: 1em;
 }
 
 #timer {
@@ -150,9 +167,4 @@ a.btn-primary:visited {
 	right: 2em;
 	top: 2px;
 }
-
-/* cause of the fixed navbar (otherwise body behind navbar) */
-/*body { 
-	padding-top: 70px; 
-}*/
 

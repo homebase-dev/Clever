@@ -55,7 +55,7 @@
               .panel-heading
                 %h3.panel-title Kontext
               .panel-body
-                %p ALWAYS changed -> show
+                /%p ALWAYS changed -> show
                 =preview_html_field(@question.question_context.content)
                 %a.btn.btn-default.pull-right.first-question{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
           -else
@@ -76,7 +76,7 @@
                 .question_countdown
                   #getting-started
               .panel-body
-                %p ONLY AT BEGINNING changed -> show with counter
+                /%p ONLY AT BEGINNING changed -> show with counter
                 =preview_html_field(@question.question_context.content)
                 %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
         -else

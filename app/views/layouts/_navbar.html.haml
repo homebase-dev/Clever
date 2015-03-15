@@ -1,5 +1,5 @@
 / Static navbar
-%nav.navbar.navbar-default{:role => "navigation"}
+%nav.navbar.navbar-default.navbar-fixed-top.container{:role => "navigation"}
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -24,10 +24,6 @@
             %p.jm-icons
               %a{:href => "https://www.facebook.com/cleverlearning", :style => "display: inline-block;", :target => "_blank"}
                 =image_tag "navbar/facebook_small.png", :class => "rotate"
-              %a{:href => "http://www.youtube.com/watch?feature=player_embedded&v=B1lQCBUIAHs", :style => "display: inline-block;", :target => "_blank"}
-                =image_tag "navbar/youtube_small.png", :class => "rotate"
-              %a{:href => "http://www.youtube.com/watch?feature=player_embedded&v=MxP3UzzPdq4", :style => "display: inline-block;", :target => "_blank"}
-                =image_tag "navbar/youtube_small.png", :class => "rotate"
                 
       
       
@@ -67,7 +63,7 @@
             = link_to "Abmelden", destroy_user_session_path, :method => :delete
           -else
             = link_to "Anmelden", new_user_session_path
-
+  
 
 
 

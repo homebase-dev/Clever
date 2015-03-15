@@ -9,9 +9,9 @@
   %body
     :javascript
       MathJax.Hub.Typeset();
-      
+    
+    = render "layouts/navbar"
     .container
-      = render "layouts/navbar"
       = render "layouts/flash_notice"
       = yield
       = render "layouts/footer"
