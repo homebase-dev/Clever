@@ -16,7 +16,7 @@
   }(document, 'script', 'facebook-jssdk'));
    
   $('.carousel').carousel({
-    interval: 5000
+    interval: 10000
   })
 
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
@@ -27,7 +27,7 @@
     %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
   .carousel-inner{:role => "listbox"}
     .item.active
-      = image_tag("carousel/c1.png", alt: "First slide")
+      = image_tag("carousel/f1.jpg", alt: "First slide")
       .container
         .carousel-caption
           %h1.super MedAT - aufnahmetest.at
@@ -35,8 +35,8 @@
           /%p
           /%p
           /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
-    /.item
-    /  = image_tag("carousel/c2.png", alt: "First slide")
+    .item
+      = image_tag("carousel/f2.jpg", alt: "First slide")
     /.item
     /  = image_tag("carousel/c3.png", alt: "First slide")
     /.item
