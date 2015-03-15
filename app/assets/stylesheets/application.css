@@ -37,7 +37,7 @@ a.btn-primary:visited {
 h1.super {
 	font-size: 5em;
 	letter-spacing: -3px;
-	color: rgba(255, 255, 255, 0.53);
+	color: rgba(0, 224, 216, 0.54); /*rgba(255, 255, 255, 0.53);*/
 	font-weight: bold;
 }
 
