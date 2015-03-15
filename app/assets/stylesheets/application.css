@@ -137,17 +137,19 @@ a.btn-primary:visited {
 	color: #fff;
 }
 
-.countdownform {
-	text-align: center;
-}
-
-.countdownform input {
-	background-color: transparent;
+.countdown #getting-started {
 	color: #fff;
-	border-width: 0px;	
 	text-align: center;
+	font-size: 1.5em;
+	padding-bottom: 0.5em;
 }
 
+#timer {
+	font-size: 0.8em;
+	position: absolute;
+	right: 2em;
+	top: 2px;
+}
 
 /* cause of the fixed navbar (otherwise body behind navbar) */
 /*body { 

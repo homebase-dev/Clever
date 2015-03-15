@@ -192,6 +192,8 @@ class TestsController < ApplicationController
       
     end
     
+    @timer_elapsed_seconds = (Time.now - @test.start).to_i
+        
     respond_with(@question)
   end
   
