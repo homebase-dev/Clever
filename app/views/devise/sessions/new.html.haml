@@ -10,6 +10,9 @@
   .col-lg-10
     .text-center
       %br/
+      = link_to "Neu hier? Hier gehts zur Registration", new_registration_path(resource_name), :class => "btn btn-success", :style => "color: #fff;"
+      %br/
+      %br/
       %a.btn.btn-primary.btn.pull-center{:href => "#{user_omniauth_authorize_path(:facebook)}", :role => "button"} 
         %i.fa.fa-facebook &nbsp;&nbsp;&nbsp;&nbsp; Mit Facebook Anmelden/Registrieren
       %br/
@@ -25,16 +28,17 @@
     
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-group
-        = f.label :email, :class => 'control-label'
-        = f.email_field :email, autofocus: true, :class => 'form-control'
+        = f.label "E-mail", :class => 'control-label'
+        = f.email_field :email, autofocus: true, :class => 'form-control', :placeholder => 'E-mail Adresse eingeben' 
       .form-group
-        = f.label :password, :class => 'control-label'
-        = f.password_field :password, autocomplete: "off", :class => 'form-control'
+        = f.label "Passwort", :class => 'control-label'
+        = f.password_field :password, autocomplete: "off", :class => 'form-control', :placeholder => 'Passwort eingeben'
       - if devise_mapping.rememberable?
         .checkbox
           %label
             = f.check_box :remember_me 
-            Remember me?
+            Eingeloggt bleiben? 
+            /Remember me?
       = f.submit "Log in", :class => 'btn btn-default'
     %br/
     = render "devise/shared/links"

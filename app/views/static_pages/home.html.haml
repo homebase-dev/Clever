@@ -27,7 +27,7 @@
     %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
   .carousel-inner{:role => "listbox"}
     .item.active
-      = image_tag("carousel/f1.jpg", alt: "First slide")
+      = image_tag("home/carousel/f1.jpg", alt: "First slide")
       .container
         .carousel-caption
           %h1.super MedAT - aufnahmetest.at
@@ -36,7 +36,7 @@
           /%p
           /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
     .item
-      = image_tag("carousel/f2.jpg", alt: "First slide")
+      = image_tag("home/carousel/f2.jpg", alt: "First slide")
     /.item
     /  = image_tag("carousel/c3.png", alt: "First slide")
     /.item
@@ -56,19 +56,19 @@
   .row
     .col-md-4
       .box
-        = image_tag("placeholder_icon.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        = image_tag("home/Play.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
         %h2 Kostenlos testen
         %p Versuche dich am kostenlosen Testfragebogen und prüfe deinen Vorbereitungsstatus auf eine Prüfung. Der Fragebogen besteht aus 20 Fragen aus dem Fachgebiet Medizin. Erhalte hiermit auch einen Einblick wie unser einfaches aber effektives Lernsystem funktioniert.
         %a.btn.btn-default{:href => "#{static_pages_quiz_path}", :role => "button"} Kostenlos Testen
     .col-md-4
       .box
-        = image_tag("placeholder_icon.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
         %h2 Fragen?
         %p Erfahre mehr über unser Lernsystem: wie funktioniert es, wo kann es dir helfen, wieviel kostet es? Häufig gestellte Fragen werden hier beantwortet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
         %a.btn.btn-default{:href => "#{static_pages_faq_path}", :role => "button"} Zu den Antworten
     .col-md-4
       .box
-        = image_tag("placeholder_icon.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
+        = image_tag("home/daumen.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
         %h2 Neuigkeiten
         %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
         %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
