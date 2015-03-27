@@ -6,11 +6,60 @@
     
 .row
   .col-lg-12
-    #timer
+    #timer-placeholder{:style => "position: absolute; right: 2em; top: 2px; font-size: 0.8em;"}
+      Zeit?
+    #timer{:style => "display: none;"}
     :javascript
-      $('#timer').timer({
-        seconds: "#{@timer_elapsed_seconds}"
-      })
+      //TODO if needed again put into separate file
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
+    
+      function getCookie(cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for(var i=0; i<ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1);
+              if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+          }
+          return "";
+      }
+      //END TODO
+      
+      
+      $( document ).ready(function() {
+        var timer = $('#timer');
+        var timer_placeholder = $('#timer-placeholder');
+        
+        var isTimerOn = getCookie("isTimerOn");
+        if(!isTimerOn || isTimerOn === "true") {
+          timer_placeholder.hide();
+          timer.show();
+        } else {
+          timer.hide();
+          timer_placeholder.show();
+        }
+        
+        timer.timer({
+          seconds: "#{@timer_elapsed_seconds}"
+        })
+        
+        timer_placeholder.click(function (event) {
+          setCookie("isTimerOn", true, 365);
+          timer_placeholder.hide();
+          timer.show();
+        });
+        
+        timer.click(function (event) {
+          setCookie("isTimerOn", false, 365);
+          timer.hide();
+          timer_placeholder.show();
+        });
+      });
     .progress
       .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@assignation_number+1)*100) / @test.assignations.count}", :role => "progressbar", :style => "width: #{((@assignation_number+1)*100) / @test.assignations.count}%"}
         %span #{@assignation_number+1}/#{@test.assignations.count}
