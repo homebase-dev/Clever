@@ -1,0 +1,7 @@
+.news{:style => "margin-bottom: 5em;"}
+  %h3.news-headline
+    #{title}
+    %br/
+    <span class="" style="font-size: 0.6em">#{created_at.strftime("%d.%m.%Y %H:%M")}</span> 
+  %p
+    =body

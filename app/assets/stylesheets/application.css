@@ -19,6 +19,13 @@ body {
 	padding-top: 130px; 
 }
 
+.the-news, .news-headline {
+	color: #0081E0;
+}
+
+.the-news {
+	font-weight: bold;
+}
 
 a.btn-primary:visited {
 	color: #FFFFFF;

@@ -108,6 +108,19 @@
   %br/
   %br/
   
+  %hr.featurette-divider/
+  .row.featurette
+    .col-md-12
+      %h1.the-news Neuigkeiten
+      %br/
+      %br/
+      - @novelties.first(3).each do |novelty|
+        = render "shared/news", title: novelty.title, body: novelty.text, created_at: novelty.created_at
+        
+  %hr.featurette-divider/
+  %br/
+  %br/
+  
   .row
     .col-md-12
       .jumbotron.countdown{"data-no-turbolink" => true}

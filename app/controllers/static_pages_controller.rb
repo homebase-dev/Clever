@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
   def home
+    @novelties = (Novelty.all.published.order('created_at DESC'))
   end
 
   def faq
