@@ -34,14 +34,14 @@
             %h4.panel-title
               %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
           %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
-            .panel-body
+            .panel-body.scale-images 
               
               .panel.panel-primary
                 .panel-heading
                   %h3.panel-title
                     Frage
                   / Frage #{index+1}/#{@test.questions.count}
-                .panel-body
+                .panel-body.scale-images 
                   =preview_html_field(assignation.question.text)
               %br/
               - assignation.question.answers.each_with_index do |answer, index_2|
@@ -68,7 +68,7 @@
                   .panel-heading
                     %h3.panel-title
                       Lösung
-                  .panel-body
+                  .panel-body.scale-images 
                     = assignation.question.solution
 
 .row 

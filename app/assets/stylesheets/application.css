@@ -19,6 +19,12 @@ body {
 	padding-top: 130px; 
 }
 
+/* scale images within question or context panel-bodyies */
+.panel-body.scale-images img{
+	max-width: 100%;
+	height: auto !important;
+}
+
 .the-news, .news-headline {
 	color: #0081E0;
 }

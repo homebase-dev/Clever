@@ -103,7 +103,7 @@
             .panel.panel-primary
               .panel-heading
                 %h3.panel-title Kontext
-              .panel-body
+              .panel-body.scale-images
                 /%p ALWAYS changed -> show
                 =preview_html_field(@question.question_context.content)
                 %a.btn.btn-default.pull-right.first-question{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
@@ -124,7 +124,7 @@
                 %h3.panel-title Kontext
                 .question_countdown
                   #getting-started
-              .panel-body
+              .panel-body.scale-images
                 /%p ONLY AT BEGINNING changed -> show with counter
                 =preview_html_field(@question.question_context.content)
                 %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
@@ -141,14 +141,14 @@
             .panel.panel-primary
               .panel-heading
                 %h3.panel-title Kontext
-              .panel-body
+              .panel-body.scale-images
                 %p ALWAYS not changed -> MINIMIZED
                 =preview_html_field(@question.question_context.content)
           -else
             .panel-heading
               %h3.panel-title Kontext
             .panel.panel-primary
-              .panel-body
+              .panel-body.scale-images
                 %p ONLY AT BEGINNING -> not show
               
                 
@@ -162,7 +162,7 @@
       .panel.panel-primary
         .panel-heading
           %h3.panel-title Frage
-        .panel-body
+        .panel-body.scale-images
           =preview_html_field(@question.text)
       - @question.answers.each_with_index do |answer, index|
         %ul.list-group

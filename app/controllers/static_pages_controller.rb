@@ -95,6 +95,11 @@ class StaticPagesController < ApplicationController
         current_user.role = Role.find_by_name('member')
         current_user.save!
       end
+      
+      #TODO create pdf bill
+      #TODO test if works
+      UserMailer.bill_email(current_user).deliver_now
+      
       #TODO set success in order instance
       flash[:notice] = "Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!" 
     else

@@ -12,11 +12,11 @@
       .panel.panel-default
         .panel-heading
           = link_to "Fragenkontext #{index_1+1}", edit_question_context_path(question_context), :class => 'btn btn-default btn-xs', data: { no_turbolink: true }
-        .panel-body
+        .panel-body.scale-images 
           .panel.panel-default
             .panel-heading
               Kontext
-            .panel-body
+            .panel-body.scale-images 
               =preview_html_field(question_context.content)
               %span.badge 
                 workflow: 
@@ -27,7 +27,7 @@
               .panel-heading
                 /%h3.panel-title Frage #{index_2+1}
                 = link_to "Frage #{index_2+1}", edit_question_path(question), :class => 'btn btn-default btn-xs', data: { no_turbolink: true }
-              .panel-body
+              .panel-body.scale-images 
                 %p=preview_html_field(question.text)
             - question.answers.each_with_index do |answer, index_3|
               %ul.list-group
