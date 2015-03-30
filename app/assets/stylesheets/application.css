@@ -25,13 +25,14 @@ body {
 	height: auto !important;
 }
 
-.the-news, .news-headline {
+/*.the-news, .news-headline {
 	color: #0081E0;
 }
 
 .the-news {
+	text-align: center;
 	font-weight: bold;
-}
+}*/
 
 a.btn-primary:visited {
 	color: #FFFFFF;
@@ -156,15 +157,21 @@ h1.super {
 	background-color: transparent;
 }
 
-.countdown {
+.countdown, .the-news {
+	margin-top: 5em;
 	text-align: center;
 	padding: 0.5em;
 	/*background-color: rgba(47, 93, 144, 1)*/;
 	background-color: #0081E0;
 }
 
-.countdown h3 {
+.countdown h3, .the-news h3 {
 	color: #fff;
+}
+
+.box.news {
+	background-color: rgba(0, 129, 224, 0.04);
+	border-radius: 6px;
 }
 
 .countdown #getting-started {

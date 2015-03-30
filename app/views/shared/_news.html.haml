@@ -1,7 +1,15 @@
-.news{:style => "margin-bottom: 5em;"}
-  %h3.news-headline
-    #{title}
-    %br/
-    <span class="" style="font-size: 0.6em">#{created_at.strftime("%d.%m.%Y %H:%M")}</span> 
-  %p
-    =body
+/.news{:style => "margin-bottom: 5em;"}
+/  %h3.news-headline
+/    #{title}
+/    %br/
+/    <span class="" style="font-size: 0.6em">#{created_at.strftime("%d.%m.%Y %H:%M")}</span> 
+/  %p
+/    =body
+
+.col-md-4
+  .box.news
+    %h2 #{title}
+    %p
+      #{created_at.strftime("%d.%m.%Y %H:%M")}
+      %br/
+      #{body}
