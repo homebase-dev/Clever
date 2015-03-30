@@ -42,6 +42,9 @@ gem 'devise-i18n'
 gem 'kaminari'
 #braintree support
 gem 'braintree'
+# add cms settings
+gem "rails-settings-cached", "0.4.1"
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
