@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  mount RailsSettingsUi::Engine, at: 'settings'
   resources :question_contexts
 
   resources :checks

@@ -1,20 +1,20 @@
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript
   function initialize() {
-    var cleverLearningLatLng = new google.maps.LatLng(47.306863, 11.072543);
+    var positionLatLng = new google.maps.LatLng(#{t 'clever.address.lat'}, #{t 'clever.address.lng'});
 
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
-      center: cleverLearningLatLng, //44.5403, -78.5463
+      center: positionLatLng, //44.5403, -78.5463 
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions)
 
     var marker = new google.maps.Marker({
-        position: cleverLearningLatLng,
+        position: positionLatLng,
         map: map,
-        title: 'Clever Learning!'
+        title: '#{t 'clever.address.owner'}'
     });
 
   }
@@ -33,26 +33,22 @@
       %p.text-center
   .col-lg-10
     %address
-      %strong Clever Learning
+      %strong=t 'clever.address.owner'
       %br/
-      Untermarkt 9 / Eingang Wallnöfer-Platz Ost / 1.Stock
+      =t 'clever.address.street'
       %br/
-      6410 Telfs
+      #{t 'clever.address.zip'} #{t 'clever.address.city'}
       %br/
-      Österreich
-      %br/
-      %abbr{:title => "Phone"} Tel.
-      +4369917288735
-      %br/
-      %abbr{:title => "Web"} Web
-      %a{:href => "http://www.clever-learning.at/"} http://www.clever-learning.at/
+      =t 'clever.address.country'
       %br/
     %address
-      %strong Mag. Stefan Stillebacher
+      %abbr{:title => "Phone"} Tel.
+      =t 'clever.address.phone'
       %br/
-      %abbr{:title => "E-Mail"} E-mail
-      %a{:href => "mailto:#"} office@clever-learning.at
+      %abbr{:title => "Phone"} E-mail
+      %a{:href => "mailto:#"}=t 'clever.address.email'
       %br/
+     
 .row
   .col-lg-2
     / <a href="#" class="thumbnail category"><img src="res/img/location.png" alt="..."><p class="text-center"></p></a>

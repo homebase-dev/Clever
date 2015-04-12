@@ -8,29 +8,22 @@
       = image_tag("placeholder_icon.png", alt: "Impressum icon")
       %p.text-center
   .col-lg-10
+    %h2 Kontaktdaten
+    %br/
     %address
-      %strong Clever-Learning GesBR
+      %strong=t 'clever.address.owner'
       %br/
-      Inhaber
+      =t 'clever.address.street'
       %br/
-      Mag. Stefan Stillebacher
+      #{t 'clever.address.zip'} #{t 'clever.address.city'}
       %br/
-      Mag. Wolfgang Webhofer
-      %br/
-    %address
-      %strong Clever Learning
-      %br/
-      Untermarkt 9 / Eingang Wallnöfer-Platz Ost / 1.Stock
-      %br/
-      6410 Telfs
-      %br/
-      Österreich
+      =t 'clever.address.country'
       %br/
     %address
       %abbr{:title => "Phone"} Tel.
-      +43 699 17288735
+      =t 'clever.address.phone'
       %br/
       %abbr{:title => "Phone"} E-mail
-      %a{:href => "mailto:#"} office@clever-learning.at
+      %a{:href => "mailto:#"}=t 'clever.address.email'
       %br/
     %p Für die Richtigkeit und Vollständigkeit der gebotenen Informationen wird keine Gewähr übernommen. Den via Internet bereitgestellten Informationen kommt keine Rechtsverbindlichkeit zu. Verschiedene Elemente auf unserer Seite sind urheberrechtlich oder durch andere gesetzliche Regelungen geschützt. Wir weisen darauf hin, dass es ohne unsere ausdrückliche Zustimmung nicht gestattet ist, unser Angebot im ganzen oder irgendeines seiner rechtlich geschützten Elemente zu kopieren oder sonst wie zu erwerten. Haftungshinweis: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.

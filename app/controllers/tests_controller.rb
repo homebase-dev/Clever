@@ -42,13 +42,15 @@ class TestsController < ApplicationController
     
     category = Category.find_by_id(params[:category_id])
     
-    if category.question_contexts.empty?
+        
+    if category && category.question_contexts.empty?
       flash[:error] = "Die Kategorie "+category.name+" hat leider noch keine Fragenkontexte, versuche es später nocheinmal."
       redirect_to(:back) and return
     end
     
-    random_questions = pick_random_questions(category, @nb_of_contexts, @nb_of_questions)    
+    random_questions = pick_random_questions(category, @nb_of_contexts, @nb_of_questions) 
     
+
     #random_questions = pick_random_questions(category)
     puts "RESULT QUESTIONS"
     print_questions(random_questions)
@@ -59,13 +61,34 @@ class TestsController < ApplicationController
     create_test_assignations(random_questions)
  
     redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
-    #respond_with(@test)
   end
   
   
   
   def pick_random_questions(category, nb_of_contexts, nb_of_questions)
     random_questions = []
+    
+    # TODO fix, DRY
+    if category.blank? #Mixed Category was choosen
+      all_categories = Category.all.published
+      
+      all_categories.each do |category|
+        if category.question_contexts.count == 1
+          only_context = category.question_contexts.first
+          random_questions.concat pick_random_questions_from_question_context(only_context, nb_of_questions)
+        elsif category.question_contexts.count > 1
+          random_contexts = pick_random_contexts_from_category(category, nb_of_contexts)
+          
+          random_contexts.each do |context|
+            random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)
+          end
+          
+        end
+      end
+      
+      return random_questions
+    end
+    
     
     if category.question_contexts.count == 1
       only_context = category.question_contexts.first
@@ -162,17 +185,7 @@ class TestsController < ApplicationController
     @assignation =  @test.assignations[@assignation_number]#@test.questions[@question_number]
     @previous_assignation =  @test.assignations[@assignation_number-1]
     
-    if no_more_steps?(@assignation, @assignation_number, @test.questions.count)
-      redirect_to test_result_path(:id => @test.id) and return
-    end
-    
-    
     @question = @assignation.try(:question)
-    
-    @workflow = @assignation.question.question_context.test_workflow
-    @did_context_change = did_context_change?(@assignation, @previous_assignation)
-    @show_context = show_context?(@assignation, @previous_assignation)
-    
     
     if @previous_assignation.present?
       #if there are any prevous checks, remove them, since now there are now ones
@@ -193,6 +206,15 @@ class TestsController < ApplicationController
     end
     
     @timer_elapsed_seconds = (Time.now - @test.start).to_i
+    
+    
+    if no_more_steps?(@assignation, @assignation_number, @test.questions.count)
+      redirect_to test_result_path(:id => @test.id) and return
+    end
+
+    @workflow = @assignation.question.question_context.test_workflow
+    @did_context_change = did_context_change?(@assignation, @previous_assignation)
+    @show_context = show_context?(@assignation, @previous_assignation)
         
     respond_with(@question)
   end

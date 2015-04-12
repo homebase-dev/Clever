@@ -7,12 +7,12 @@
 %br/
 
 
-- (Quiz.all.published).each_slice(4) do |quiz_row|
+- @quizzes.each_slice(4) do |quiz_row|
   .row
     - quiz_row.each do |quiz|
       .col-lg-3
         %a.thumbnail.category{:href => "#{static_pages_quiz_categories_path(:id => quiz.id)}"}
           = image_tag(quiz.image.thumb, alt: "") 
           %p.text-center=quiz.name
-
-
+  
+  

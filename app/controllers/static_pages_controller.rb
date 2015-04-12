@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
   def home
+    @next_med_exam_date = Settings.next_med_exam_date
     @novelties = (Novelty.all.published.order('created_at DESC'))
   end
 
@@ -27,6 +28,12 @@ class StaticPagesController < ApplicationController
   end
 
   def quiz
+    @quizzes = Quiz.all.published
+    
+    if @quizzes.size == 1
+      redirect_to static_pages_quiz_categories_path(:id => @quizzes.first.id)
+    end
+    
   end
   
   def profile_status
@@ -59,9 +66,9 @@ class StaticPagesController < ApplicationController
     render action: static_pages_profile_status_path and return unless nonce
     
     #TODO create order instance
-              
+    membership_price = t 'clever.membership.price'; 
     result = Braintree::Transaction.sale(
-      :amount => "29.90",
+      :amount => membership_price,
       :payment_method_nonce => nonce,   
       :custom_fields => {
         :clever_user_id => @user.id

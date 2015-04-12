@@ -36,9 +36,13 @@
           /%p
           /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
     .item
-      = image_tag("home/carousel/f2.jpg", alt: "First slide")
-    /.item
-    /  = image_tag("carousel/c3.png", alt: "First slide")
+      = image_tag("home/carousel/f3.jpg", alt: "Second slide")
+      .container
+        .carousel-caption
+          %h1.super Teste dich
+          %h1 Es motiviert!
+    .item
+      = image_tag("home/carousel/f2.jpg", alt: "Third slide")
     /.item
     /  = image_tag("carousel/c4.png", alt: "First slide")
 
@@ -56,22 +60,21 @@
   .row
     .col-md-4
       .box
-        = image_tag("home/Play.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
         %h2 Kostenlos testen
-        %p Versuche dich am kostenlosen Testfragebogen und prüfe deinen Vorbereitungsstatus auf eine Prüfung. Der Fragebogen besteht aus 20 Fragen aus dem Fachgebiet Medizin. Erhalte hiermit auch einen Einblick wie unser einfaches aber effektives Lernsystem funktioniert.
-        %a.btn.btn-default{:href => "#{static_pages_quiz_path}", :role => "button"} Kostenlos Testen
+        %a.glow{:href => "#{static_pages_quiz_path}"} 
+          = image_tag("home/Play.png", alt: "Gratis testen icon", style: "width: 140px; height: 140px;", class: "img-circle")
+
     .col-md-4
       .box
-        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
-        %h2 Fragen?
-        %p Erfahre mehr über unser Lernsystem: wie funktioniert es, wo kann es dir helfen, wieviel kostet es? Häufig gestellte Fragen werden hier beantwortet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
-        %a.btn.btn-default{:href => "#{static_pages_faq_path}", :role => "button"} Zu den Antworten
+        %h2 Test starten
+        %a.glow{:href => "#{static_pages_quiz_path}"} 
+          /static_pages_news_path
+          = image_tag("home/daumen.png", alt: "Test starten icon", style: "width: 140px; height: 140px;", class: "img-circle")
     .col-md-4
       .box
-        = image_tag("home/daumen.png", alt: "Neuigkeiten icon", style: "width: 140px; height: 140px;", class: "img-circle")
-        %h2 Neuigkeiten
-        %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Was gibts Neues?
+        %h2 Fragen/Antworten
+        %a.glow{:href => "#{static_pages_faq_path}"}
+          = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", style: "width: 140px; height: 140px;", class: "img-circle")
   
 
   /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
@@ -104,11 +107,17 @@
     /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
   .col-md-5
     %img.featurette-image.img-responsive.thumbnail{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}/
-
-%br/
-%br/
-  
-%hr.featurette-divider/
+    %p
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+/%hr.featurette-divider/
 /.row.featurette
 /  .col-md-12
 /    %h1.the-news Neuigkeiten
@@ -117,12 +126,12 @@
 /    - @novelties.first(3).each do |novelty|
 /      = render "shared/news", title: novelty.title, body: novelty.text, created_at: novelty.created_at
 
-.row
-  .col-md-12
-    %h2.featurette-heading.text-center
-      Neuigkeiten
-      %br/
-    %br/
+/.row
+/  .col-md-12
+/    %h3.featurette-heading.text-center
+/      Neues
+/    %br/
+/    %br/
     
 .marketing-area
   .row
@@ -131,9 +140,8 @@
 .row
   .col-md-4
   .col-md-4
-    %br/
     %p.text-center
-      %a.btn.btn-default{:href => "#{static_pages_news_path}", :role => "button"} Alle Neuigkeiten
+      %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
   .col-md-4
     
 /%hr.featurette-divider/
@@ -146,7 +154,7 @@
       %h3 Der nächste Aufnahmetest beginnt in:
       #getting-started
         :javascript
-          $("#getting-started").countdown("2016/01/01", function(event) {
+          $("#getting-started").countdown("#{@next_med_exam_date}", function(event) {
             $(this).text(
               event.strftime('%D Tagen %H:%M:%S')
             );

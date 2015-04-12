@@ -8,6 +8,15 @@
   Kategorie, wählst du diese, werden Fragen aus allen Kategorien zusammengemischt.
 %br/
 
+.row
+  .col-lg-3
+    =link_to tests_path(:nb_of_contexts => 1, :nb_of_questions => 10), :method => :post, :class => "a thumbnail category" do
+      /= image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+      /- if category.image.nil?
+      %p.text-center Durchmischt
+      /- else
+      /  &nbsp;
+      
 
 - (@quiz.categories.published).each_slice(4) do |category_row|
   .row

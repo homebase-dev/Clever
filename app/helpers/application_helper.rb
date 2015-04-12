@@ -30,5 +30,9 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+  
+  def number_to_euro(amount) 
+    number_to_currency(amount,:unit=>'€')
+  end
     
 end

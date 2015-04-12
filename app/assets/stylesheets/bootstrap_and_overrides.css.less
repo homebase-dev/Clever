@@ -58,6 +58,12 @@
 }
 
 .navbar-default .navbar-nav > li > a {
+  -webkit-transition: all 0.5s linear;
+     -moz-transition: all 0.5s linear;
+      -ms-transition: all 0.5s linear;
+       -o-transition: all 0.5s linear;
+          transition: all 0.5s linear;
+            
   color: #fff;
   font-weight: bold;
   font-size: 1.3em;  
@@ -67,8 +73,14 @@
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #ddd;
+    color: #FFDB93; /*ddd*/
     background-color: transparent;
+    
+    -webkit-filter: saturate(3);
+    -moz-filter:  saturate(3);
+    -ms-filter:  saturate(3);
+    -o-filter:  saturate(3);
+    filter: saturate(3);
 }
 
 /* new navbar overrides */

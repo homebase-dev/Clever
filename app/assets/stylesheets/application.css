@@ -48,6 +48,7 @@ a.btn-primary:visited {
 }
 
 
+
 h1.super {
 	font-size: 5em;
 	letter-spacing: -3px;
@@ -89,7 +90,7 @@ h1.super {
 #quality-seal {
 	position: absolute;
 	width: 9em;
-	top: 0.2em;
+	top: -1em;
 	right: -0.5em;
 }
 
@@ -99,7 +100,7 @@ h1.super {
 	margin-top: -3.5em !important;
 	position: absolute;
 	top: 3.5em;
-	right: 9.5em;
+	right: 13em;
 	/*left: 50%;
 	transform: translate(-50%, 0px);*/
 }
@@ -188,3 +189,48 @@ h1.super {
 	top: 2px;
 }
 
+
+/* Images within links are brightened on hover */
+
+a.glow {
+    background: #fff;
+}
+
+a.glow img {
+    -webkit-transition: all 0.5s linear;
+       -moz-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+         -o-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+}
+
+a.glow:hover img {
+    /*opacity: 0.7;*/
+	-webkit-filter: saturate(3);
+	-moz-filter:  saturate(3);
+	-ms-filter:  saturate(3);
+	-o-filter:  saturate(3);
+	filter: saturate(3);
+}
+/* end brightened */
+
+
+
+a.brighten {
+  -webkit-transition: all 0.5s linear;
+     -moz-transition: all 0.5s linear;
+      -ms-transition: all 0.5s linear;
+       -o-transition: all 0.5s linear;
+          transition: all 0.5s linear;
+}
+
+a.brighten:hover {
+    color: #FFDB93;
+    background-color: transparent;
+    
+    -webkit-filter: saturate(3);
+    -moz-filter:  saturate(3);
+    -ms-filter:  saturate(3);
+    -o-filter:  saturate(3);
+    filter: saturate(3);
+}

@@ -44,6 +44,8 @@ gem 'kaminari'
 gem 'braintree'
 # add cms settings
 gem "rails-settings-cached", "0.4.1"
+# add ui for cms settings
+gem 'rails-settings-ui', '~> 0.3.0'
 
 
 # Use SCSS for stylesheets

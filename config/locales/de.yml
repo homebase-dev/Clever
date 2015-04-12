@@ -203,3 +203,36 @@ de:
       short: ! '%d. %B, %H:%M Uhr'
       normal: ! '%d.%m.%Y %H:%M'
     pm: nachmittags
+    
+  settings:
+    attributes:
+      next_med_exam_date: # setting name
+        name: 'Datum des nächsten Med AufnahmeTests (Format: "2016/01/24")'
+      membership_price_euro: # setting name
+        name: 'Membership Preis in Euro'
+      take_categories_from_quizzes_with_id:
+        name: 'Zeite Kategorien aus den Quizzes mit der ID (Format: "[1,2,3]")'  
+      test_number_contexts: # setting name
+        name: 'Fragen-Kontexte pro Test'
+      test_number_questions: # setting name
+        name: 'Fragen pro Test'
+    index:
+      save_all: 'Speichern'  
+    errors:
+      default_missing: 'Kein Default Wert'
+      
+  clever:
+    email_support: 'stefan@stillebacher.at'
+    address: 
+      owner: 'Mag. Stefan Stillebacher'
+      street: 'Saglstraße 64'
+      city: 'Telfs'
+      zip: '6410'
+      country: 'Österreich'
+      email: 'stefan@stillebacher.at'
+      phone: '+43 699 17288735'
+      lat: 47.315121
+      lng: 11.087683
+    membership:
+      price: 29.90
+
