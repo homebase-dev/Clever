@@ -34,5 +34,9 @@ module ApplicationHelper
   def number_to_euro(amount) 
     number_to_currency(amount,:unit=>'€')
   end
+  
+  def membership_price_euro
+    number_to_euro(Settings[:membership_price_euro])
+  end
     
 end

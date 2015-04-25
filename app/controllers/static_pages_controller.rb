@@ -66,7 +66,7 @@ class StaticPagesController < ApplicationController
     render action: static_pages_profile_status_path and return unless nonce
     
     #TODO create order instance
-    membership_price = t 'clever.membership.price'; 
+    membership_price = Settings[:membership_price_euro]
     result = Braintree::Transaction.sale(
       :amount => membership_price,
       :payment_method_nonce => nonce,   

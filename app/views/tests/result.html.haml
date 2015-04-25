@@ -27,6 +27,7 @@
 .row 
   .col-lg12
     %h3 Kontrolle
+    %p Richtige Antworten sind <span class="correct">grün</span>, falsche <span class="wrong">rot</span> markiert.
     #accordion.panel-group
       - @test.assignations.each_with_index do |assignation, index|
         .panel.panel-default
@@ -46,7 +47,7 @@
               %br/
               - assignation.question.answers.each_with_index do |answer, index_2|
                 %ul.list-group
-                  %a.list-group-item.no-boarder{:href => "#", :class => "#{assignation.answer_passed?(answer) ? 'correct-answer' : 'wrong-answer' }"}
+                  %a.list-group-item.no-border.no-hover{:href => "#", :class => "#{assignation.answer_passed?(answer) ? 'correct-answer' : 'wrong-answer' }"}
                     .answer
                       - if assignation.answer_checked?(answer) 
                         / answer.correct?

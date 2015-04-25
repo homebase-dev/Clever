@@ -2,7 +2,7 @@
 
 Settings.defaults[:next_med_exam_date] = '01/07/15'
 Settings.defaults[:membership_price_euro] = 29.90
-Settings.defaults[:take_categories_from_quizzes_with_id] = [1]
+#Settings.defaults[:take_categories_from_quizzes_with_id] = "1" #do this over attribute published from quiz
 Settings.defaults[:test_number_contexts] = 10
 Settings.defaults[:test_number_questions] = 10
 

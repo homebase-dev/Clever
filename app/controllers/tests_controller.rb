@@ -3,6 +3,8 @@ class TestsController < ApplicationController
 
   respond_to :html
 
+  layout "application_no_navbar", only: [:step, :result]
+
   def index
     @tests = Test.all.order('id DESC').page(params[:page]).per(50)
     respond_with(@tests)
@@ -27,8 +29,14 @@ class TestsController < ApplicationController
       @test = Test.new(test_params)
     end
     
-    @nb_of_contexts = params[:nb_of_contexts].to_i
-    @nb_of_questions = params[:nb_of_questions].to_i
+    @nb_of_contexts = 1 
+    @nb_of_questions = 3
+
+    if current_user && (current_user.member? || current_user.can_manage?)
+      @nb_of_contexts = params[:nb_of_contexts].to_i
+      @nb_of_questions = params[:nb_of_questions].to_i
+    end
+    
     
     #TODO check if nb_of_questions >0 && <= category.question.count
     

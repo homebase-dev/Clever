@@ -96,7 +96,10 @@ font-size: 18px;
    blue background-color: rgba(51, 122, 183, 0.10);*/
 }
 
-
+.list-group-item.no-hover {
+   pointer-events: none;
+   cursor: default;
+}
 
 .thumbnail.category img {
   margin-top: 15px;

@@ -6,10 +6,10 @@
 %ul.nav.nav-tabs
   %li.active{:role => "presentation"}
     %a{:href => "#"}
-      Dein Account Status
+      Meine Account Status
       / %i.fa.fa-exclamation-triangle{:style => "font-size: 1em"}
   %li{:role => "presentation"}
-    = link_to "Deine Daten", static_pages_profile_data_path
+    = link_to "Meine Daten", static_pages_profile_data_path
     
 %br/
 %br/
@@ -19,8 +19,8 @@
     label_css_class: "label-warning", 
     img: "creditcard.png", 
     status_label: "Eingeschränkt", 
-    status_msg: "Dein Account ist derzeit eingeschränkt und du hast damit nur eingeschränkten Zugriff auf unsere Lerninhalte. Aktiviere deinen Account für #{number_to_euro(t 'clever.membership.price')} mit der Kreditkarte, dies ermöglicht dir vollen Zugriff auf unser Angebot und du kannst dich uneingeschränkt weiterbilden. Wir freuen uns, dich effizient auf deine Prüfungen vorzubereiten!", 
-    button_caption: "Account für #{number_to_euro(t 'clever.membership.price')} aktivieren",
+    status_msg: "Dein Account ist derzeit eingeschränkt und du hast damit nur eingeschränkten Zugriff auf unsere Lerninhalte. Aktiviere deinen Account für #{membership_price_euro} mit der Kreditkarte, dies ermöglicht dir vollen Zugriff auf unser Angebot und du kannst dich uneingeschränkt weiterbilden. Wir freuen uns, dich effizient auf deine Prüfungen vorzubereiten!", 
+    button_caption: "Account für #{membership_price_euro} aktivieren",
     button_path: static_pages_payment_path
 -elsif current_user.role_name == 'member'
   = render "static_pages/profile/account_status", 
@@ -28,23 +28,23 @@
     img: "unlocked.png", 
     status_label: "Uneingeschränkt", 
     status_msg: "Dein Account ist bis zum bis 29.11.2014 uneingeschränkt aktiv, innerhalb dieses Zeitraumes kannst du auf unser gesamtes Angebot zurückgreifen und dich uneingeschränkt fortbilden. Wenn du mit unserem Angebot zufrieden bist, hast du hier auch die Möglichkeit dienen Account für ein weiteres Jahr zu verlängern.", 
-    button_caption: "Account für #{number_to_euro(t 'clever.membership.price')} ein weiteres Jahr verlängern",
+    button_caption: "Account für #{membership_price_euro} ein weiteres Jahr verlängern",
     button_path: static_pages_payment_path
 -elsif current_user.role_name == 'banned'
   = render "static_pages/profile/account_status", 
     label_css_class: "label-danger", 
     img: "lock.png", 
     status_label: "Gesperrt", 
-    status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: #{t 'clever.support_email'}", 
+    status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: #{t 'clever.email_support'}", 
     button_caption: "E-mail an das Support-Team schreiben",
-    button_path: "mailto:#{t 'clever.support_email'}"
+    button_path: "mailto:#{t 'clever.email_support'}"
 -else
   = render "static_pages/profile/account_status", 
     label_css_class: "label-success", 
     img: "unlocked.png", 
     status_label: current_user.role_name, 
-    status_msg: "Bei Fragen wende dich an das Support Team: #{t 'clever.support_email'}", 
+    status_msg: "Bei Fragen wende dich an das Support Team: #{t 'clever.email_support'}", 
     button_caption: "E-mail an das Support-Team schreiben",
-    button_path: "mailto:#{t 'clever.support_email'}"
+    button_path: "mailto:#{t 'clever.email_support'}"
 
         
