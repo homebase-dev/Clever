@@ -5,7 +5,7 @@
       Kategorie:
       =@category.name
 
-.row
+.row{:"data-no-turbolink" => true}
   .col-lg-12
     %h2 
     - @category.question_contexts.each_with_index do |question_context, index_1|

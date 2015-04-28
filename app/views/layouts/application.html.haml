@@ -10,11 +10,10 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Asap:400,700", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Lato:400,900", :rel => "stylesheet", :type => "text/css"}
   %body
-    :javascript
-      MathJax.Hub.Typeset();
     
     = render "layouts/navbar"
     .container
       = render "layouts/flash_notice"
       = yield
       = render "layouts/footer"
+      
