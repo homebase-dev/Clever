@@ -5,7 +5,7 @@
     /%small #{@question_number+1}/#{@test.questions.count}
 .row
   .col-lg-12
-    .progress
+    .progress.flat-corners
       .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: 100%"}
         %span.sr-only Auswertung 
           
@@ -21,25 +21,23 @@
       %small.quiz-result-positiv #{@test.result_in_percent} %
     %p{:style => "font-size: 0.9em"} Du hast #{@test.passed_assignations} von #{@test.assignations.count} Fragen richtig beantwortet
     %p{:style => "font-size: 0.9em"} Zeit: #{time_ago_in_words @test.duration_in_sec.seconds.from_now}
-    %br/
   .col-sm-2
-%br/
-%br/
+
 .row{:"data-no-turbolink" => true}
   .col-lg-12
-    %h3 Kontrolle
+    %h3 Kontrolle:
     %p Richtige Antworten sind <span class="correct">grün</span>, falsche <span class="wrong">rot</span> markiert.
     #accordion.panel-group
       - @test.assignations.each_with_index do |assignation, index|
         .panel.panel-default
-          .panel-heading{:class => "#{assignation.passed? ? '' : 'wrong-answer'}"}
+          .panel-heading.flat-corners{:class => "#{assignation.passed? ? '' : 'wrong-answer'}"}
             %h4.panel-title
               %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
           %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
             .panel-body.scale-images 
               
               .panel.panel-primary
-                .panel-heading
+                .panel-heading.flat-corners
                   %h3.panel-title
                     Frage
                   / Frage #{index+1}/#{@test.questions.count}
@@ -67,7 +65,7 @@
               
               - if assignation.question.try(:solution) && !assignation.question.solution.blank?
                 .panel.panel-success
-                  .panel-heading
+                  .panel-heading.flat-corners
                     %h3.panel-title
                       Lösung
                   .panel-body.scale-images 
@@ -75,5 +73,5 @@
 
 .row 
   .col-lg-12
-    %a.btn.btn-default.pull-right{:href => "#{static_pages_quiz_path}"} Andere Kategorie
-    =link_to 'Nochmal', tests_path(:category_id => @question.question_context.category.id, :nb_of_contexts => 3, :nb_of_questions => 3), :method => :post, :class => "btn btn-default pull-right space-right" 
+    %a.btn.btn-default.pull-right.flat-corners{:href => "#{static_pages_quiz_path}"} Andere Kategorie
+    =link_to 'Nochmal', tests_path(:category_id => @question.question_context.category.id, :nb_of_contexts => 3, :nb_of_questions => 3), :method => :post, :class => "btn btn-default pull-right space-right flat-corners" 
