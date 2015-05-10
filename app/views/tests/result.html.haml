@@ -11,21 +11,22 @@
           
     
 .row
-  .col-lg-4
-  .col-lg-1
-    = image_tag("result_15.png", alt: "Result icon", :style => "margin-top: 1em; height: 6em;")
-  .col-lg-3
+  .col-sm-2
+  .col-sm-4
+    %p.pull-right
+      = image_tag("result_15.png", alt: "Result icon", :style => "margin-top: 1em; height: 6em;")
+  .col-sm-4
     %h1
       Ergebnis:
       %small.quiz-result-positiv #{@test.result_in_percent} %
     %p{:style => "font-size: 0.9em"} Du hast #{@test.passed_assignations} von #{@test.assignations.count} Fragen richtig beantwortet
     %p{:style => "font-size: 0.9em"} Zeit: #{time_ago_in_words @test.duration_in_sec.seconds.from_now}
     %br/
-  .col-lg-4
+  .col-sm-2
 %br/
 %br/
 .row{:"data-no-turbolink" => true}
-  .col-lg12
+  .col-lg-12
     %h3 Kontrolle
     %p Richtige Antworten sind <span class="correct">grün</span>, falsche <span class="wrong">rot</span> markiert.
     #accordion.panel-group

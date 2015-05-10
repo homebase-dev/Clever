@@ -180,10 +180,12 @@
             .answer-text=preview_html_field(answer.text)
             
       .row
-        .col-lg-12
+        .col-xs-5
           - if @assignation_number > 0
-            %a.btn.btn-default.pull-left{:href => test_step_path(:id => @test, :assignation_number => @assignation_number), :role => "button"} Zurück
-          %a.btn.btn-default.pull-right{:id => 'next-link', :href => "#", :role => "button"} Weiter
+            %a.btn.btn-default.pull-left.full-width{:href => test_step_path(:id => @test, :assignation_number => @assignation_number), :role => "button"} Zurück
+        .col-xs-2
+        .col-xs-5
+          %a.btn.btn-default.pull-right.full-width{:id => 'next-link', :href => "#", :role => "button"} Weiter
           / test_step_path(:id => @test, :question_number => @question_number+2)
 
 -if @question.question_context.category.single_question_select?
