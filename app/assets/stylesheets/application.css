@@ -194,8 +194,9 @@ h1.super {
 	background-color: transparent;
 }
 
-.countdown, .the-news {
-	margin-top: 5em;
+.countdown {
+	margin-top: 1em;
+	margin-bottom: 1em;
 	text-align: center;
 	padding: 0.5em;
 	/*background-color: rgba(47, 93, 144, 1)*/;
@@ -225,7 +226,7 @@ h1.super {
 	font-size: 1.5em;
 	padding-bottom: 1em;
 	
-	font-size: 4em;
+	font-size: 2em;
 	font-weight: bold;
 	padding-top: 4px;
 }
@@ -233,7 +234,7 @@ h1.super {
 #timer {
 	font-size: 0.8em;
 	position: absolute;
-	right: 2em;
+	right: 2.5em;
 	top: 2px;
 }
 

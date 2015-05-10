@@ -58,27 +58,20 @@
 /.container
 .marketing-area
   .row
-    .col-xs-4
+    .col-sm-4
       .box
         %h3 Kostenlos testen
-    .col-xs-4
-      .box
-        %h3 Test starten
-    .col-xs-4
-      .box
-        %h3 Fragen / Antworten
-  .row
-    .col-xs-4
-      .box
         %a.glow{:href => "#{static_pages_quiz_path}"} 
           = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
-    .col-xs-4
+    .col-sm-4
       .box
+        %h3 Test starten
         %a.glow{:href => "#{static_pages_quiz_path}"} 
           /static_pages_news_path
           = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
-    .col-xs-4
+    .col-sm-4
       .box
+        %h3 Fragen / Antworten
         %a.glow{:href => "#{static_pages_faq_path}"}
           = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
 
