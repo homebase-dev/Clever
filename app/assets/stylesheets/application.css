@@ -16,13 +16,53 @@
 
 /* cause of the fixed navbar (otherwise body behind navbar) */
 body { 
-	padding-top: 130px; 
+	padding-top: 50px;/* 105px; */ 
 }
 
 /* scale images within question or context panel-bodyies */
 .panel-body.scale-images img{
 	max-width: 100%;
 	height: auto !important;
+}
+
+.hspacer {
+	height: 6px;
+}
+
+.marketing-area {
+	background-color: #3E3E3E;
+	color: #fff;
+}
+
+.featurette-bg1 {
+	/*background-color: #5CC0FF;*/
+}
+
+.featurette-bg2 {
+	/*background-color: #8FD4FF;*/
+}
+
+.news-section {
+	padding-top: 1em;
+	background-color: #3E3E3E;
+	color: #fff;
+}
+
+.countdown-section {
+	background-color: #0081E0;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.glow-button {
+	max-width: 100px;
+	width: 100%;
 }
 
 /*.the-news, .news-headline {
@@ -50,7 +90,7 @@ a.btn-primary:visited {
 
 
 h1.super {
-	font-size: 5em;
+	/*font-size: 5em;*/
 	letter-spacing: -3px;
 	color: rgba(0, 224, 216, 0.54); /*rgba(255, 255, 255, 0.53);*/
 	font-weight: bold;
@@ -164,22 +204,34 @@ h1.super {
 	padding: 0.5em;
 	/*background-color: rgba(47, 93, 144, 1)*/;
 	background-color: #0081E0;
+	border-radius: 0px !important;
 }
 
 .countdown h3, .the-news h3 {
 	color: #fff;
 }
 
+.box > h3 {
+	font-weight: bold;
+}
+
 .box.news {
-	background-color: rgba(0, 129, 224, 0.04);
-	border-radius: 6px;
+	/*background-color: rgba(0, 129, 224, 0.04);*/
+	/*border-radius: 6px;*/
+	margin-left: 1em;
+	border-left: 18px solid #FFF;
+	padding-left: 0.8em;
 }
 
 .countdown #getting-started {
-	color: #fff;
+	color: #FFDB93;
 	text-align: center;
 	font-size: 1.5em;
 	padding-bottom: 1em;
+	
+	font-size: 4em;
+	font-weight: bold;
+	padding-top: 4px;
 }
 
 #timer {
@@ -193,7 +245,11 @@ h1.super {
 /* Images within links are brightened on hover */
 
 a.glow {
-    background: #fff;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+a.glow:hover {
+	background-color: rgba(255, 255, 255, 0);
 }
 
 a.glow img {
@@ -211,7 +267,6 @@ a.glow:hover img {
 	-ms-filter:  saturate(3);
 	-o-filter:  saturate(3);
 	filter: saturate(3);
-}
 /* end brightened */
 
 

@@ -8,22 +8,23 @@
         %span.icon-bar
         %span.icon-bar
       %a{:href => "#{static_pages_home_path}"}
-        =image_tag "logo.png", :class => "navbar-brand", :style => "min-height: 6em"
-    #navbar.navbar-collapse.collapse{:style => "margin-top: 5em"}
+        =image_tag "logo.png", :class => "navbar-brand navbar-brand-clever "
+        /, :style => "min-height: 6em"
+    #navbar.navbar-collapse.collapse
       /%i.fa.fa-thumbs-o-up.navbar-thumb 
       
-      =image_tag "navbar/siegel.png", :id => "quality-seal"
+      /=image_tag "navbar/siegel.png", :id => "quality-seal"
       
-      #jm-search-social.clearfix
-        #jm-social
-          .custom
-            .fb-like.fb_iframe_widget{"data-action" => "recommend", "data-href" => "https://www.facebook.com/cleverlearning", "data-layout" => "button_count", "data-share" => "true", "data-show-faces" => "true", "fb-iframe-plugin-query" => "action=recommend&app_id=&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", "fb-xfbml-state" => "rendered"}
-              %span{:style => "vertical-align: bottom; width: 160px; height: 20px;"}
-                %iframe{:allowtransparency => "true", :frameborder => "0", :height => "1000px", :name => "ff0cf456c3721e", :scrolling => "no", :src => "http://www.facebook.com/v2.0/plugins/like.php?action=recommend&app_id=&channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FrFG58m7xAig.js%3Fversion%3D41%23cb%3Dfc8918349fa8e4%26domain%3Dwww.clever-learning.at%26origin%3Dhttp%253A%252F%252Fwww.clever-learning.at%252Ff33473fdb0b9408%26relation%3Dparent.parent&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", :style => "border: medium none; visibility: visible; width: 160px; height: 20px;", :title => "fb:like Facebook Social Plugin", :width => "1000px"}
-          .custom
-            %p.jm-icons
-              %a{:href => "https://www.facebook.com/cleverlearning", :style => "display: inline-block;", :target => "_blank"}
-                =image_tag "navbar/facebook_small.png", :class => "rotate"
+      /#jm-search-social.clearfix
+      /  #jm-social
+      /    .custom
+      /      .fb-like.fb_iframe_widget{"data-action" => "recommend", "data-href" => "https://www.facebook.com/cleverlearning", "data-layout" => "button_count", "data-share" => "true", "data-show-faces" => "true", "fb-iframe-plugin-query" => "action=recommend&app_id=&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", "fb-xfbml-state" => "rendered"}
+      /        %span{:style => "vertical-align: bottom; width: 160px; height: 20px;"}
+      /          %iframe{:allowtransparency => "true", :frameborder => "0", :height => "1000px", :name => "ff0cf456c3721e", :scrolling => "no", :src => "http://www.facebook.com/v2.0/plugins/like.php?action=recommend&app_id=&channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FrFG58m7xAig.js%3Fversion%3D41%23cb%3Dfc8918349fa8e4%26domain%3Dwww.clever-learning.at%26origin%3Dhttp%253A%252F%252Fwww.clever-learning.at%252Ff33473fdb0b9408%26relation%3Dparent.parent&container_width=108&href=https%3A%2F%2Fwww.facebook.com%2Fcleverlearning&layout=button_count&locale=de_DE&sdk=joey&share=true&show_faces=true", :style => "border: medium none; visibility: visible; width: 160px; height: 20px;", :title => "fb:like Facebook Social Plugin", :width => "1000px"}
+      /    .custom
+      /      %p.jm-icons
+      /        %a{:href => "https://www.facebook.com/cleverlearning", :style => "display: inline-block;", :target => "_blank"}
+      /          =image_tag "navbar/facebook_small.png", :class => "rotate"
                 
       
       

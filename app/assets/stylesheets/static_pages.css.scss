@@ -187,10 +187,15 @@ font-size: 18px;
 
 /* LANDING PAGE */
 
+
+.marketing-area {
+  padding-bottom: 1.3em;
+}
+
 .marketing-area .box {
   /*background-color: #F8F8F8;*/
-  margin-bottom: 1em;
-  padding: 1em;
+  /*margin-bottom: 1em;*/
+  /*padding: 1em;*/
 }
 
 .marketing-area .box p {
@@ -203,6 +208,33 @@ font-size: 18px;
 
 .marketing-area a:hover {
   background-color: #fff;
+}
+
+/*.featurette-heading {
+  margin-top: 0px;
+}*/
+
+.quote-left {
+  text-align: right;
+  border-right: 18px solid #bbb;
+  padding-right: 0.4em;
+  
+  font-style: italic;
+  color: #bbb;
+}
+
+.quote-right {
+  text-align: left;
+  border-left: 18px solid #bbb;
+  padding-left: 0.4em;
+  
+  font-style: italic;
+  color: #bbb;
+}
+
+.quote-left > span.autor, .quote-right > span.autor {
+  color: #777;
+  font-size: 45%;
 }
 
 /*body {
