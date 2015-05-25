@@ -17,7 +17,7 @@
         var expires = "expires="+d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
       }
-    
+      
       function getCookie(cname) {
           var name = cname + "=";
           var ca = document.cookie.split(';');
@@ -28,11 +28,8 @@
           }
           return "";
       }
-      //END TODO
       
-      
-      $( document ).ready(function() {​
-      
+      $( document ).ready(function() {
         var timer = $('#timer');
         var timer_placeholder = $('#timer-placeholder');
         
