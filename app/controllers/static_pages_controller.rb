@@ -104,8 +104,8 @@ class StaticPagesController < ApplicationController
       end
       
       #TODO create pdf bill
-      #TODO test if works
-      UserMailer.bill_email(current_user).deliver_now
+      #TODO send mail 
+      #UserMailer.bill_email(current_user).deliver!
       
       #TODO set success in order instance
       flash[:notice] = "Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!" 
