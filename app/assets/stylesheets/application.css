@@ -43,8 +43,8 @@ body {
 }
 
 .news-section {
-	padding-top: 1em;
-	background-color: #3E3E3E;
+	/*padding-top: 1em;
+	background-color: #3E3E3E;*/
 	color: #fff;
 }
 
@@ -215,9 +215,38 @@ h1.super {
 .box.news {
 	/*background-color: rgba(0, 129, 224, 0.04);*/
 	/*border-radius: 6px;*/
-	margin-left: 1em;
+	/**margin-left: 1em;
 	border-left: 18px solid #FFF;
-	padding-left: 0.8em;
+	padding-left: 0.8em;*/
+}
+
+.box.news.head {
+    font-weight: bold;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #45a1e5; /*#F6C800; /*0081E0;*/
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.box.news.body {
+    background-color: #ededed;
+    color: #555;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 6px;
+}
+
+.box.news.footer {
+    background-color: #f8f8f8;
+    color: #555;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: right;
 }
 
 .countdown #getting-started {

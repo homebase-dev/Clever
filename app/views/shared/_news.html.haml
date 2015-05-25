@@ -8,8 +8,8 @@
 
 .col-md-4
   .box.news
-    %h4 #{title}
-    %p
-      #{created_at.strftime("%d.%m.%Y %H:%M")}
-      %br/
-      #{body}
+    %h4.box.news.head #{title}
+    %p.box.news.body
+      #{created_at.strftime("%d.%m.%Y %H:%M")} - #{body}
+    /%p.box.news.footer
+    /  #{created_at.strftime("%d.%m.%Y %H:%M")}
