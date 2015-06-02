@@ -1,0 +1,62 @@
+.context-box{:id => "context_#{@question.id}"}
+  .panel.panel-primary.flat-corners
+    .panel-heading.flat-corners
+      %h3.panel-title Kontext
+      .question_countdown
+        #getting-started
+    .panel-body.scale-images
+      /%p ONLY AT BEGINNING changed -> show with counter
+      =preview_html_field(@question.question_context.content)
+      %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'lets-go', :href => "#", :role => "button"} Los gehts!
+      
+
+:javascript
+  function setTimeUpCookie() {
+    setCookie("isContextVisibleOnlyAtBeginningTimeUp_#{@test.id}_#{@question.question_context.id}", true, 1);
+  }  
+  
+  function timeUp() {
+    console.log("time is up, lets go!");
+    doOnLetsGoButtonClick();
+  }
+    
+  function startContextTimer() {
+    console.log("timer started: #{@question.question_context.display_time_milliseconds}" );
+    setTimeout( timeUp, "#{@question.question_context.display_time_milliseconds}" );
+  
+    $("#getting-started").countdown("#{@question.question_context.countdown_date_in_milliseconds}", function(event) {
+      $(this).text(
+        event.strftime('Bearbeitungszeit: %H:%M:%S')
+      );
+    });
+  }
+      
+  function hideLetsGoButton() {
+    var letsGo = $("#lets-go");
+    letsGo.hide();
+  }
+  
+  function doOnLetsGoButtonClick() {
+    console.log("clicked lets go!");
+    setTimeUpCookie();
+    hideContext();
+    showQuestion();
+  }
+  
+  $( document ).ready(function() {
+    $('#lets-go').click(function (event) {
+      doOnLetsGoButtonClick();
+    });
+    
+    var isContextVisibleTimeUp = getCookie("isContextVisibleOnlyAtBeginningTimeUp_#{@test.id}_#{@question.question_context.id}");
+    
+    if (isContextVisibleTimeUp) {
+      console.log("time is already up, don't show context...");
+      $('#lets-go').click(); 
+    } else {
+      console.log("show context...");
+      hideQuestion();
+      showContext();
+      startContextTimer();
+    }
+  });

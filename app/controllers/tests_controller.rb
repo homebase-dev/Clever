@@ -64,7 +64,7 @@ class TestsController < ApplicationController
     print_questions(random_questions)
     
     #TODO uncomment
-    #@test.save!
+    @test.save!
     
     create_test_assignations(random_questions)
  
@@ -191,7 +191,11 @@ class TestsController < ApplicationController
     @checked_answers = params[:ca]
     
     @assignation =  @test.assignations[@assignation_number]#@test.questions[@question_number]
-    @previous_assignation =  @test.assignations[@assignation_number-1]
+    if @assignation_number-1 >= 0
+      @previous_assignation = @test.assignations[@assignation_number-1]
+    else 
+      @previous_assignation = nil
+    end
     
     @question = @assignation.try(:question)
     
