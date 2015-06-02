@@ -73,6 +73,10 @@ font-size: 18px;
   float: left;
 }
 
+.list-group.no-bottom-margin {
+  margin-bottom: 0px;
+}
+
 .list-group-item.selected-answer {
   /*color: #337ab7 !important;*/
   background-color: rgba(245, 245, 245, 0.25);
