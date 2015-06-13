@@ -2,6 +2,8 @@
 class StaticPagesController < ApplicationController
   layout "application"
   
+  layout "application_no_navbar", only: [:print_category]
+  
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
   def home
@@ -128,6 +130,12 @@ class StaticPagesController < ApplicationController
   
   def category_overview
     @category = Category.find(params[:id])
+  end
+  
+  def print_category
+    @category = Category.find(params[:id])
+    @show_solutions = params[:show_solutions]
+    @hide_footer = true;
   end
   
   def quiz_readme

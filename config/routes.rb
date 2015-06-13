@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'static_pages/quiz_categories'
   get 'static_pages/quiz_readme'
   get 'static_pages/category_overview'
+  get 'static_pages/print_category'
   get 'static_pages/profile_status'
   get 'static_pages/profile_data'
   get 'static_pages/admin'

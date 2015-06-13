@@ -1,0 +1,26 @@
+.question-box{:id => "question_#{question.id}"}
+  .panel.panel-primary.flat-corners
+    .panel-heading.flat-corners
+      %h3.panel-title Frage #{question_number}
+    .panel-body.scale-images
+      =preview_html_field(question.text)
+      
+  - question.answers.each_with_index do |answer, index|
+    %ul.list-group.no-bottom-margin
+      = link_to "#", :onclick => "return false;", :class=> "list-group-item no-boarder" do 
+        .answer{:id => "answer-#{answer.id}"}
+          .answer-badge-q3
+            -if answer.correct? && show_solution
+              %i.fa.fa-check-square-o
+            - else
+              %i.fa.fa-square-o
+            =answer_char(index)
+        .answer-text=preview_html_field(answer.text)
+        
+  -if !question.solution.empty? && show_solution
+    .panel-body.scale-images
+      =preview_html_field(question.solution)
+  
+  .spacer{:style => "margin-top: 20px;"}
+  
+//ATTENTION: atm just used in print_category.html.haml

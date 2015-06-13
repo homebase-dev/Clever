@@ -27,6 +27,10 @@ class QuestionContext < ActiveRecord::Base
     (DateTime.now.strftime('%Q').to_d + display_time_milliseconds).to_i
   end
 
+  def visible?
+    is_context_visible = ( self.test_workflow != TestWorkflow.find_by_name('context_not_visible') )
+  end
+
   private
   
   def set_default_test_workflow

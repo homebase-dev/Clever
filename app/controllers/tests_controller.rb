@@ -80,12 +80,12 @@ class TestsController < ApplicationController
     if category.blank? #Mixed Category was choosen
       all_categories = Category.all.published
       
-      all_categories.each do |category|
-        if category.question_contexts.count == 1
-          only_context = category.question_contexts.first
+      all_categories.each do |c|
+        if c.question_contexts.count == 1
+          only_context = c.question_contexts.first
           random_questions.concat pick_random_questions_from_question_context(only_context, nb_of_questions)
-        elsif category.question_contexts.count > 1
-          random_contexts = pick_random_contexts_from_category(category, nb_of_contexts)
+        elsif c.question_contexts.count > 1
+          random_contexts = pick_random_contexts_from_category(c, nb_of_contexts)
           
           random_contexts.each do |context|
             random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)

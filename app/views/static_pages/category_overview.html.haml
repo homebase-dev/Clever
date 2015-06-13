@@ -5,6 +5,11 @@
       Kategorie:
       =@category.name
 
+.row
+  .col-lg-12
+    = link_to "Druckansicht", static_pages_print_category_path(:id => @category), :class => 'btn btn-default btn-xs', data: { no_turbolink: true }
+    = link_to "Druckansicht mit Lösungen", static_pages_print_category_path(:id => @category, :show_solutions => true), :class => 'btn btn-default btn-xs', data: { no_turbolink: true }
+    
 .row{:"data-no-turbolink" => true}
   .col-lg-12
     %h2 

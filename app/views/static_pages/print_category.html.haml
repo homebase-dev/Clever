@@ -1,0 +1,44 @@
+.page-header
+  %h1=@category.name
+
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 
+    - @category.question_contexts.each_with_index do |question_context, index_1|
+      -if question_context.visible?
+        .panel.panel-default.flat-corners
+          .panel-heading
+            Kontext #{index_1+1}
+          .panel-body.scale-images
+            =preview_html_field(question_context.content)
+            .spacer{:style => "margin-top: 60px;"}
+            
+            - question_context.questions.each_with_index do |question, index_2|
+              = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+      - else
+        - question_context.questions.each_with_index do |question, index_2|
+          = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+
+/            - question_context.questions.each_with_index do |question, index_2|
+/              .panel.panel-primary
+/                .panel-heading
+/                  %h3.panel-title Frage #{index_2+1}
+/                .panel-body.scale-images 
+/                  %p=preview_html_field(question.text)
+/              - question.answers.each_with_index do |answer, index_3|
+/                %ul.list-group
+/                  %a.list-group-item.no-boarder{:href => "#", :class => "#{answer.correct? ? 'selected-answer' : ''}"}
+/                    .answer
+/                      - if answer.correct?
+/                        .answer-badge-q3.selected
+/                          %i.fa.fa-check-square-o
+/                          / %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
+/                          =answer_char(index_3)
+/                          / =index_2
+/                      - else
+/                        .answer-badge-q3
+/                          %i.fa.fa-square-o
+/                          / %span.glyphicon.glyphicon-unchecked{"aria-hidden" => "true"}
+/                          =answer_char(index_3)
+/                          / =index_2
+/                      .answer-text= preview_html_field(answer.text)
