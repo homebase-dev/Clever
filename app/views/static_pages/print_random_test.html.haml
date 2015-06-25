@@ -1,0 +1,103 @@
+.page-header
+  %h1 Test
+
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Zahlenfolgen (10 Fragen, 15 Minuten Zeit)
+    - @zahlenfolgen_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Gedächtnis und Merkfähigkeit (Lernphase: 8 Minuten Zeit)
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext
+      .panel-body.scale-images
+        =preview_html_field(@gedaechtnis_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+    %pagebreak   
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Gedächtnis und Merkfähigkeit (Reproduktionsphase: 25 Fragen, 15 Minuten Zeit)
+    - @gedaechtnis_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Figuren zusammensetzten (15 Fragen, 20 Minuten Zeit)
+    - @figuren_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Wortflüssigkeit (15 Fragen, 20 Minuten Zeit)
+    - @wortfluessigkeit_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Implikationen erkennen (10 Fragen, 10 Minuten Zeit)
+    - @implikationen_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Soziales Entscheiden (#{@soziales_questions.count} Fragen)
+    - @soziales_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak 
+      
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Biologie (40 Fragen)
+    - @biologie_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Chemie (24 Fragen)
+    - @chemie_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Physik (16 Fragen)
+    - @physik_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Mathematik (10 Fragen)
+    - @mathematik_questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
+    %pagebreak
+      
+      
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 Testverständtnis (10 Fragen, 30 Minuten)
+    - @textverstaendtnis_contexts.each_with_index do |question_context, index_1|
+      .panel.panel-default.flat-corners
+        .panel-heading
+          Kontext #{index_1+1}
+        .panel-body.scale-images
+          =preview_html_field(question_context.content)
+          .spacer{:style => "margin-top: 60px;"}
+          - if question_context.content.split.size < 300
+            - question_context.questions.take(1).each_with_index do |question, index_2|
+              = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+          - else
+            - question_context.questions.take(6).each_with_index do |question, index_2|
+              = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+      

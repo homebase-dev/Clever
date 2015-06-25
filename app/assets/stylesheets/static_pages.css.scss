@@ -277,4 +277,6 @@ font-size: 18px;
   margin-top: -20px;
 }
 
-
+@media print {
+    pagebreak {page-break-after: always;}
+}

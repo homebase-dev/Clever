@@ -2,7 +2,7 @@
 class StaticPagesController < ApplicationController
   layout "application"
   
-  layout "application_no_navbar", only: [:print_category]
+  layout "application_no_navbar", only: [:print_category, :print_random_test]
   
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
@@ -137,6 +137,49 @@ class StaticPagesController < ApplicationController
     @show_solutions = params[:show_solutions]
     @hide_footer = true;
   end
+  
+  def print_random_test
+    @zahlenfolgen_questions = pick_random_questions_from_question_context(Category.find_by_id(6).question_contexts.first, 15)
+    
+    @gedaechtnis_context = Category.find_by_id(5).question_contexts.shuffle.first
+    @gedaechtnis_questions = pick_random_questions_from_question_context(@gedaechtnis_context, 25)
+    
+    @figuren_questions = pick_random_questions_from_question_context(Category.find_by_id(13).question_contexts.second, 15) #TODO server side broken
+    @wortfluessigkeit_questions = pick_random_questions_from_question_context(Category.find_by_id(7).question_contexts.first, 15)
+    @implikationen_questions = pick_random_questions_from_question_context(Category.find_by_id(8).question_contexts.first, 10)
+    
+    @soziales_context = Category.find_by_id(14).question_contexts.first
+    ten_percent_question_count = (@soziales_context.questions.count * 0.1).round
+    @soziales_questions = pick_random_questions_from_question_context(Category.find_by_id(14).question_contexts.first, ten_percent_question_count)
+    
+    @biologie_questions = pick_random_questions_from_question_context(Category.find_by_id(3).question_contexts.first, 40)
+    @chemie_questions = pick_random_questions_from_question_context(Category.find_by_id(11).question_contexts.first, 24)
+    @physik_questions = pick_random_questions_from_question_context(Category.find_by_id(2).question_contexts.first, 16)
+    @mathematik_questions = pick_random_questions_from_question_context(Category.find_by_id(1).question_contexts.first, 10)
+    
+    #@textverstaendtnis_contexts = Category.find_by_id(10).question_contexts.shuffle.take(10)
+    
+    small_texts_added = 0
+    big_texts_added = 0
+    @textverstaendtnis_contexts = []
+    Category.find_by_id(10).question_contexts.shuffle.each do |context|
+      if context.content.split.size >= 300 
+        if big_texts_added < 1
+          @textverstaendtnis_contexts << context
+          big_texts_added += 1   
+        end          
+      else
+        if small_texts_added < 4
+          @textverstaendtnis_contexts << context
+          small_texts_added += 1
+        end
+      end
+    end
+
+    @show_solutions = params[:show_solutions]
+    @hide_footer = true;
+  end
+  
   
   def quiz_readme
     
