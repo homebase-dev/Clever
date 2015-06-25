@@ -1,0 +1,14 @@
+.col-sm-3
+  %p.bold
+    =questions.first.question_context.category.name
+  %p
+    - questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+  %p
+    %br/

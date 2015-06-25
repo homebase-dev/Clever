@@ -1,0 +1,52 @@
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 
+      Testverständtnis 
+      %small=instructions
+      
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext 1
+      .panel-body.scale-images
+        =preview_html_field(big_context_questions.first.question_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+          - big_context_questions.each_with_index do |question, index|
+            = render "shared/question", question: question, question_number: index+1, show_solution: show_solution
+    
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext 2
+      .panel-body.scale-images
+        =preview_html_field(small_context1_questions.first.question_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+          - small_context1_questions.each_with_index do |question, index|
+            = render "shared/question", question: question, question_number: index+1, show_solution: show_solution
+    
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext 3
+      .panel-body.scale-images
+        =preview_html_field(small_context2_questions.first.question_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+          - small_context2_questions.each_with_index do |question, index|
+            = render "shared/question", question: question, question_number: index+1, show_solution: show_solution
+    
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext 4
+      .panel-body.scale-images
+        =preview_html_field(small_context3_questions.first.question_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+          - small_context3_questions.each_with_index do |question, index|
+            = render "shared/question", question: question, question_number: index+1, show_solution: show_solution
+    
+    .panel.panel-default.flat-corners
+      .panel-heading
+        Kontext 5
+      .panel-body.scale-images
+        =preview_html_field(small_context4_questions.first.question_context.content)
+        .spacer{:style => "margin-top: 60px;"}
+          - small_context4_questions.each_with_index do |question, index|
+            = render "shared/question", question: question, question_number: index+1, show_solution: show_solution
+            
+    %pagebreak

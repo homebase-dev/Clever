@@ -139,6 +139,10 @@ class StaticPagesController < ApplicationController
   end
   
   def print_random_test
+    #@show_solution = "true"
+    
+    @test_id = random_test_id()
+    
     @zahlenfolgen_questions = pick_random_questions_from_question_context(Category.find_by_id(6).question_contexts.first, 15)
     
     @gedaechtnis_context = Category.find_by_id(5).question_contexts.shuffle.first
@@ -159,18 +163,34 @@ class StaticPagesController < ApplicationController
     
     #@textverstaendtnis_contexts = Category.find_by_id(10).question_contexts.shuffle.take(10)
     
+    @textverstaendtnis_big_context_questions = nil
+    @textverstaendtnis_small_context1_questions = nil
+    @textverstaendtnis_small_context2_questions = nil
+    @textverstaendtnis_small_context3_questions = nil
+    @textverstaendtnis_small_context4_questions = nil
+    
     small_texts_added = 0
     big_texts_added = 0
-    @textverstaendtnis_contexts = []
+    #@textverstaendtnis_contexts = []
     Category.find_by_id(10).question_contexts.shuffle.each do |context|
       if context.content.split.size >= 300 
         if big_texts_added < 1
-          @textverstaendtnis_contexts << context
+          #@textverstaendtnis_contexts << context
+          @textverstaendtnis_big_context_questions = context.questions.shuffle.take(6)
           big_texts_added += 1   
         end          
       else
         if small_texts_added < 4
-          @textverstaendtnis_contexts << context
+          if small_texts_added == 0
+            @textverstaendtnis_small_context1_questions = context.questions.shuffle.take(1)
+          elsif small_texts_added == 1
+            @textverstaendtnis_small_context2_questions = context.questions.shuffle.take(1)
+          elsif small_texts_added == 2
+            @textverstaendtnis_small_context3_questions = context.questions.shuffle.take(1)
+          elsif small_texts_added == 3
+            @textverstaendtnis_small_context4_questions = context.questions.shuffle.take(1)
+          end
+          #@textverstaendtnis_contexts << context
           small_texts_added += 1
         end
       end

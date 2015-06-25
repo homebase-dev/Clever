@@ -1,13 +1,10 @@
 .page-header
-  %h1 Test
+  %h1 
+    Test
+    <small>ID: #{@test_id}</small>
 
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Zahlenfolgen (10 Fragen, 15 Minuten Zeit)
-    - @zahlenfolgen_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
+= render "shared/print_random_test/category_test", questions: @zahlenfolgen_questions, instructions: "(10 Fragen, 15 Minuten Zeit)", show_solution: @show_solution
+
 .row{:"data-no-turbolink" => true}
   .col-lg-12
     %h2 Gedächtnis und Merkfähigkeit (Lernphase: 8 Minuten Zeit)
@@ -19,85 +16,46 @@
         .spacer{:style => "margin-top: 60px;"}
     %pagebreak   
       
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Gedächtnis und Merkfähigkeit (Reproduktionsphase: 25 Fragen, 15 Minuten Zeit)
-    - @gedaechtnis_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Figuren zusammensetzten (15 Fragen, 20 Minuten Zeit)
-    - @figuren_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
+= render "shared/print_random_test/category_test", questions: @gedaechtnis_questions, instructions: "(Reproduktionsphase: 25 Fragen, 15 Minuten Zeit)", show_solution: @show_solution
 
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Wortflüssigkeit (15 Fragen, 20 Minuten Zeit)
-    - @wortfluessigkeit_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
+= render "shared/print_random_test/category_test", questions: @figuren_questions, instructions: "(15 Fragen, 20 Minuten Zeit)", show_solution: @show_solution
+  
+= render "shared/print_random_test/category_test", questions: @wortfluessigkeit_questions, instructions: "(15 Fragen, 20 Minuten Zeit)", show_solution: @show_solution
+  
+= render "shared/print_random_test/category_test", questions: @implikationen_questions, instructions: "(10 Fragen, 10 Minuten Zeit)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test", questions: @soziales_questions, instructions: "(#{@soziales_questions.count} Fragen)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test", questions: @biologie_questions, instructions: "(40 Fragen)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test", questions: @chemie_questions, instructions: "(24 Fragen)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test", questions: @physik_questions, instructions: "(16 Fragen)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test", questions: @mathematik_questions, instructions: "(10 Fragen)", show_solution: @show_solution
+
+= render "shared/print_random_test/category_test_textverstaendtnis", big_context_questions: @textverstaendtnis_big_context_questions, small_context1_questions: @textverstaendtnis_small_context1_questions, small_context2_questions: @textverstaendtnis_small_context2_questions, small_context3_questions: @textverstaendtnis_small_context3_questions, small_context4_questions: @textverstaendtnis_small_context4_questions, instructions: "(10 Fragen, 30 Minuten)", show_solution: @show_solution
+ 
       
 .row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Implikationen erkennen (10 Fragen, 10 Minuten Zeit)
-    - @implikationen_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
+  .col-sm-12
+    %h1 
+      Lösungen für Test
+      <small>ID: #{@test_id}</small>
+    
 .row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Soziales Entscheiden (#{@soziales_questions.count} Fragen)
-    - @soziales_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak 
-      
-      
+  = render "shared/print_random_test/solution_of_question", questions: @zahlenfolgen_questions
+  = render "shared/print_random_test/solution_of_question", questions: @gedaechtnis_questions
+  = render "shared/print_random_test/solution_of_question", questions: @figuren_questions
+  = render "shared/print_random_test/solution_of_question", questions: @wortfluessigkeit_questions
 .row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Biologie (40 Fragen)
-    - @biologie_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
+  = render "shared/print_random_test/solution_of_question", questions: @implikationen_questions
+  = render "shared/print_random_test/solution_of_question", questions: @soziales_questions
+  = render "shared/print_random_test/solution_of_question", questions: @biologie_questions
+  = render "shared/print_random_test/solution_of_question", questions: @chemie_questions
 .row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Chemie (24 Fragen)
-    - @chemie_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Physik (16 Fragen)
-    - @physik_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Mathematik (10 Fragen)
-    - @mathematik_questions.each_with_index do |question, index_1|
-      = render "shared/question", question: question, question_number: index_1+1, show_solution: @show_solutions
-    %pagebreak
-      
-      
-.row{:"data-no-turbolink" => true}
-  .col-lg-12
-    %h2 Testverständtnis (10 Fragen, 30 Minuten)
-    - @textverstaendtnis_contexts.each_with_index do |question_context, index_1|
-      .panel.panel-default.flat-corners
-        .panel-heading
-          Kontext #{index_1+1}
-        .panel-body.scale-images
-          =preview_html_field(question_context.content)
-          .spacer{:style => "margin-top: 60px;"}
-          - if question_context.content.split.size < 300
-            - question_context.questions.take(1).each_with_index do |question, index_2|
-              = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
-          - else
-            - question_context.questions.take(6).each_with_index do |question, index_2|
-              = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
-      
+  = render "shared/print_random_test/solution_of_question", questions: @physik_questions
+  = render "shared/print_random_test/solution_of_question", questions: @mathematik_questions
+  = render "shared/print_random_test/solution_of_question", questions: @implikationen_questions
+  = render "shared/print_random_test/solution_of_textverstaendtnis", big_context_questions: @textverstaendtnis_big_context_questions, small_context1_questions: @textverstaendtnis_small_context1_questions, small_context2_questions: @textverstaendtnis_small_context2_questions, small_context3_questions: @textverstaendtnis_small_context3_questions, small_context4_questions: @textverstaendtnis_small_context4_questions
+

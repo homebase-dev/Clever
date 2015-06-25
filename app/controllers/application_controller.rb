@@ -86,4 +86,17 @@ class ApplicationController < ActionController::Base
     
     random_questions
   end
+  
+  
+  
+  def random_string(size) 
+    range = [*'A'..'Z']
+    Array.new(size){ range.sample }.join
+  end
+  
+  def random_test_id
+    test_id = random_string(3) + "-" + random_string(3) + "-" + random_string(3) + "-" + random_string(3)
+  end
+  
+  
 end

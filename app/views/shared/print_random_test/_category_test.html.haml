@@ -1,0 +1,8 @@
+.row{:"data-no-turbolink" => true}
+  .col-lg-12
+    %h2 
+      =questions.first.question_context.category.name 
+      %small=instructions
+    - questions.each_with_index do |question, index_1|
+      = render "shared/question", question: question, question_number: index_1+1, show_solution: show_solution
+    %pagebreak      

@@ -1,0 +1,64 @@
+.col-sm-3
+  %p.bold
+    =big_context_questions.first.question_context.category.name
+    
+  %p
+    Kontext 1
+    %br/
+    - big_context_questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+    
+  %p
+    Kontext 2
+    %br/
+    - small_context1_questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+    
+  %p
+    Kontext 3
+    %br/
+    - small_context2_questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+    
+  %p
+    Kontext 4
+    %br/
+    - small_context3_questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+    
+  %p
+    Kontext 5
+    %br/
+    - small_context4_questions.each_with_index do |question, index_1|
+      Frage #{index_1+1}
+      - question.answers.each do |answer, index_2|
+        - if answer.correct?
+          %i.fa.fa-check-square-o
+        - else
+          %i.fa.fa-square-o
+      %br/
+    

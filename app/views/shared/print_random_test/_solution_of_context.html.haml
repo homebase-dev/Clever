@@ -1,0 +1,19 @@
+ %p.bold=question_contexts.first.category.name
+ - question_contexts.each_with_index do |question_context, index_1|
+  Kontext #{index_1+1}
+  - if question_context.content.split.size < 300
+    - question_context.questions.take(1).each_with_index do |question, index_2|
+      = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+  - else
+    - question_context.questions.take(6).each_with_index do |question, index_2|
+      = render "shared/question", question: question, question_number: index_2+1, show_solution: @show_solutions
+      
+%p.bold=questions.first.question_context.category.name
+- questions.each_with_index do |question, index_1|
+  %br/
+  Frage #{index_1+1}
+  - question.answers.each do |answer, index_2|
+    - if answer.correct?
+      %i.fa.fa-check-square-o
+    - else
+      %i.fa.fa-squa
