@@ -1,5 +1,5 @@
 .page-header
-  %h1
+  %h3
     =@question.question_context.category.name
     %small Test
     /%small #{@question_number+1}/#{@test.questions.count}
@@ -26,7 +26,7 @@
 .row{:"data-no-turbolink" => true}
   .col-lg-12
     %h3 Kontrolle:
-    %p Richtige Antworten sind <span class="correct">grün</span>, falsche <span class="wrong">rot</span> markiert.
+    %p Richtige Antworten sind <span class="correct" style="padding-left: 1.5em;">grün</span>, falsche <span class="wrong" style="padding-left: 1.5em;">rot</span> markiert.
     #accordion.panel-group
       - @test.assignations.each_with_index do |assignation, index|
         .panel.panel-default

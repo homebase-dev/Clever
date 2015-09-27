@@ -35,9 +35,11 @@
         /- else
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Infos
+            Info
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
+            %li
+              =link_to "Testablauf", static_pages_zahnmedizin_path
             %li
               =link_to "MedAT-Humanmedizin", static_pages_humanmedizin_path
             %li
@@ -52,7 +54,11 @@
             %li
               =link_to "Vorbereitungskurse", static_pages_vorbereitungskurse_path
         %li
-          =link_to "Kostenlos testen", static_pages_quiz_path
+          -if user_signed_in?
+            =link_to "Test starten", static_pages_quiz_path
+          -else
+            =link_to "Kostenlos testen", static_pages_quiz_path
+          
         %li
           -if user_signed_in? && !current_user.try(:can_manage?)
             =link_to "Meine Daten", static_pages_profile_status_path
@@ -66,7 +72,7 @@
                   =link_to "CMS Verwalten", static_pages_admin_path
                 %li
                   =link_to "Meine Daten", static_pages_profile_status_path
-            
+
       %ul.nav.navbar-nav.navbar-right
         %li
           -if user_signed_in?

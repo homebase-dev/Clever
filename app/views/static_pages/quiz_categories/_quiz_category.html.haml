@@ -1,0 +1,14 @@
+- if category.question_contexts.size > 1
+  /TODO outsource vars into glob file
+  =link_to tests_path(:category_id => category.id, :nb_of_contexts => Settings[:test_number_contexts], :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
+    = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+    - if category.image.nil?
+      %p.text-center=category.name
+    - else
+- else
+  =link_to tests_path(:category_id => category.id, :nb_of_contexts => 1, :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
+    = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+    - if category.image.nil?
+      %p.text-center=category.name
+    - else
+      &nbsp;

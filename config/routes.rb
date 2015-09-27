@@ -68,6 +68,9 @@ Rails.application.routes.draw do
 
   get "tests/:category_id/new", :controller => "tests", :action => "new", :as =>:new_test_from_category
   get "tests/:id/step/:assignation_number", :controller => "tests", :action => "step", :as => :test_step
+  #TODO test
+  get "tests/:id/start", :controller => "tests", :action => "start", :as => :test_start
+  
   get "tests/:id/result", :controller => "tests", :action => "result", :as => :test_result
 
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }

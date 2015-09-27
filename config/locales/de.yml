@@ -222,14 +222,14 @@ de:
       default_missing: 'Kein Default Wert'
       
   clever:
-    email_support: 'stefan@stillebacher.at'
+    email_support: 'office@aufnahmetest.at'
     address: 
       owner: 'Mag. Stefan Stillebacher'
       street: 'Saglstraße 64'
       city: 'Telfs'
       zip: '6410'
       country: 'Österreich'
-      email: 'stefan@stillebacher.at'
+      email: 'office@aufnahmetest.at'
       phone: '+43 699 17288735'
       lat: 47.315121
       lng: 11.087683

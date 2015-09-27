@@ -4,37 +4,102 @@
     %small 
       =@quiz.name 
 %p
-  Wähle eine Kategorie für die dein Test zusammengestellt werden soll. Es gibt auch eine <strong> Durchmischt </strong>
-  Kategorie, wählst du diese, werden Fragen aus allen Kategorien zusammengemischt.
+  Wähle eine Kategorie für die dein Test zusammengestellt werden soll. 
+  /Es gibt auch eine <strong> Durchmischt </strong> Kategorie, wählst du diese, werden Fragen aus allen Kategorien zusammengemischt.
 %br/
 
 .row
-  .col-sx-3
+  .col-xs-12
+    %h2.text-center Gesamttest
+    
+.row
+  .col-sx-12
     =link_to tests_path(:nb_of_contexts => 1, :nb_of_questions => 10), :method => :post, :class => "a thumbnail category" do
-      /= image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+      = image_tag("gesamttest_icon.png", alt: "Thumbnail der Kategorie Gestamttest") 
       /- if category.image.nil?
-      %p.text-center Durchmischt
+      /%p.text-center Gesamttest
       /- else
       /  &nbsp;
       
+.hspacer-4x
+      
+/ For dynamic behaviour, shows all categories
+/- (@quiz.categories.published).each_slice(3) do |category_row|
+/  .row
+/    - category_row.each do |category|
+/      .col-xs-4
+/        - if category.question_contexts.size > 1
+/          /TODO outsource vars into glob file
+/          =link_to tests_path(:category_id => category.id, :nb_of_contexts => Settings[:test_number_contexts], :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
+/            = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+/            - if category.image.nil?
+/              %p.text-center=category.name
+/            - else
+/              &nbsp;
+/        - else
+/          =link_to tests_path(:category_id => category.id, :nb_of_contexts => 1, :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
+/            = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
+/            - if category.image.nil?
+/              %p.text-center=category.name
+/            - else
+/              &nbsp;
 
-- (@quiz.categories.published).each_slice(3) do |category_row|
-  .row
-    - category_row.each do |category|
-      .col-xs-4
-        - if category.question_contexts.size > 1
-          /TODO outsource vars into glob file
-          =link_to tests_path(:category_id => category.id, :nb_of_contexts => Settings[:test_number_contexts], :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
-            = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
-            - if category.image.nil?
-              %p.text-center=category.name
-            - else
-              &nbsp;
-        - else
-          =link_to tests_path(:category_id => category.id, :nb_of_contexts => 1, :nb_of_questions => Settings[:test_number_questions]), :method => :post, :class => "a thumbnail category" do
-            = image_tag(category.image.thumb, alt: "Thumbnail der Kategorie #{category.name}") 
-            - if category.image.nil?
-              %p.text-center=category.name
-            - else
-              &nbsp;
 
+
+.row
+  .col-xs-12
+    %h2.text-center BMS – Basiskenntnistest für Medizinische Studien
+.row
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(1)
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(2)
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(3)
+.row
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(11)
+      
+      
+.row
+  .col-xs-12
+    %h2.text-center Textverständnis
+.row
+  .col-xs-4
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(10)
+    
+    
+.row
+  .col-xs-12
+    %h2.text-center Kognitive Fähigkeiten
+.row
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(5)
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(6)
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(7)
+.row
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(13)
+      
+
+.row
+  .col-xs-12
+    %h2.text-center Implikationen erkennen
+.row
+  .col-xs-4
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(8)
+
+      
+.row
+  .col-xs-12
+    %h2.text-center Soziales Entscheiden
+.row
+  .col-xs-4
+  .col-xs-4
+    = render "static_pages/quiz_categories/quiz_category", category: Category.find_by_id(14)
+
+      

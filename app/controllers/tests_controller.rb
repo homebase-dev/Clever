@@ -31,7 +31,7 @@ class TestsController < ApplicationController
     
     @nb_of_contexts = 1 
     @nb_of_questions = 3
-
+    
     if current_user && (current_user.member? || current_user.can_manage?)
       @nb_of_contexts = params[:nb_of_contexts].to_i
       @nb_of_questions = params[:nb_of_questions].to_i
@@ -68,7 +68,8 @@ class TestsController < ApplicationController
     
     create_test_assignations(random_questions)
  
-    redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
+    redirect_to test_start_path(:id => @test.id)
+    #redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
   end
   
     
@@ -97,6 +98,13 @@ class TestsController < ApplicationController
   
   
   # ---------------- Perform a test actions  --------------------
+
+  def start
+    @test = Test.find_by_id(params[:id])
+    @assignation_number = 0
+    @assignation =  @test.assignations[@assignation_number]
+    @question = @assignation.try(:question)
+  end
 
   def new_test_from_category
     @test = Test.new

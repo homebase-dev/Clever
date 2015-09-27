@@ -43,6 +43,10 @@
           %h3 Es motiviert!
     .item
       = image_tag("home/carousel/f2.jpg", alt: "Third slide")
+      .container
+        .carousel-caption
+          %h3 Gemeinsam für den MedAt lernen und
+          %h1.super bestehen!
     /.item
     /  = image_tag("carousel/c4.png", alt: "First slide")
 
@@ -71,7 +75,8 @@
           = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
     .col-sm-4
       .box
-        %h3 Fragen / Antworten
+        %h3 Tipps / Blog / FAQ
+        /Fragen / Antworten
         %a.glow{:href => "#{static_pages_faq_path}"}
           = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
 
@@ -80,7 +85,30 @@
   /= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
 
 /<span class="visible-xs">SIZE XS smaller 750px</span><span class="visible-sm">SIZE SM 750px</span><span class="visible-md">SIZE MD 970px</span><span class="visible-lg">SIZE LG 1170px</span> 
-  
+
+.hspacer-4x
+
+.row
+  .col-sm-12
+    %p.text-justify
+      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+
+.hspacer-4x
+
+.row
+  .col-sm-12
+    .div.text-center{:style => "background-color: #F0F0F0; padding-top: 1em; padding-bottom: 4em;"}
+      %h3.bold Videoüberschrift
+      %p
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "400em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
+  /.col-sm-12.hidden-xs.hidden-sm .hidden-md.hidden-lg
+  /  %p.text-center{:style => "background-color: #F0F0F0; padding-top: 2em; padding-bottom: 2em;"}
+  /    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "350em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
+
+
 /%hr.featurette-divider/
 .hspacer-4x
 
@@ -88,12 +116,12 @@
   .row.featurette
     .col-md-7
       %h2.featurette-heading.quote-left
-        &#8220;Hab mich damit auf die Aufnahmeprüfung vorbereitet,
-        %span.text-muted es motiviert!&#8221;<br/>
-        %span.autor Marcus Aureluis -
+        &#8220;Das Material ist perfekt vorsortiert und 
+        %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
+        %span.autor Dr. Stefan Ulmer – Praktischer Arzt
       /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
     .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}
+      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('p2_dr_stefan_ulmer.jpg')}"}
 
 /%hr.featurette-divider/
 .hspacer-4x
@@ -101,27 +129,14 @@
 .featurette-bg2
   .row.featurette
     .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}/
+      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('p1_brigitte_sipos.jpg')}"}/
     .col-md-7
       %h2.featurette-heading.quote-right
-        &#8220;Die Tests helfen wirklich weiter,
-        %span.text-muted da das Material gut vorsortiert wurde&#8221;<br/>
-        %span.autor - Marcus Aureluis
+        &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
+        %span.text-muted BESTANDEN!!!&#8221;<br/>
+        %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
   /%hr.featurette-divider/
 
-/%hr.featurette-divider/
-.hspacer-4x
-
-.featurette-bg1
-  .row.featurette
-    .col-md-7
-      %h2.featurette-heading.quote-left
-        &#8220;Hab sogar am Smartphone gequizt,
-        %span.text-muted endlich bestanden!&#8221;<br/>
-        %span.autor Marcus Aureluis -
-      /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-    .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('placeholder_person.png')}"}/
 
 /%hr.featurette-divider/
 .hspacer-4x
@@ -143,6 +158,8 @@
 /    %br/
     
 /.hspacer
+
+= image_tag("home/Siegel.jpg", alt: "Qualitätssiegel")
     
 .news-section
   .row
@@ -168,6 +185,6 @@
           :javascript
             $("#getting-started").countdown("#{@next_med_exam_date}", function(event) {
               $(this).text(
-                event.strftime('%D Tagen %H:%M:%S')
+                event.strftime('%m Monate %D Tagen %H Stunden')
               );
             });
