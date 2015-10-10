@@ -65,6 +65,9 @@ Rails.application.routes.draw do
   get 'static_pages/vorbereitungskurse'
   
   post 'static_pages/pay'
+  
+  get 'static_pages/invoice_pdf'
+  
 
   get "tests/:category_id/new", :controller => "tests", :action => "new", :as =>:new_test_from_category
   get "tests/:id/step/:assignation_number", :controller => "tests", :action => "step", :as => :test_step

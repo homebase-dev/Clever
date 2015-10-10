@@ -205,4 +205,22 @@ class StaticPagesController < ApplicationController
     
   end
   
+  
+  
+  def invoice_pdf
+
+    #respond_with(@quiz)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = InvoicePdf.new(current_user)
+        send_data pdf.render, :filename => "invoice_user_#{current_user.id}.pdf",
+                              :type => "application/pdf",
+                              :disposition => "inline"
+      end
+    end
+  end
+  
+  
+  
 end
