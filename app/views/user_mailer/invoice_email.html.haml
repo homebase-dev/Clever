@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      = t 'invoice.email.headline', :firstname => @user.firstname
+    %p
+      = t 'invoice.email.body_html'
+    /  You have successfully payed for example.com,
+    /  your usernameId is: #{@user.id}.
+    /  %br/
+    /%p
+    /  To login to the site, just follow this link: #{@url}.
+    /%p 
+    /  Thanks for joining and have a great day!

@@ -233,4 +233,12 @@ de:
       phone: '+43 699 17288735'
       lat: 47.315121
       lng: 11.087683
-
+      
+  invoice:
+    bt_success: 'Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!'
+    bt_failure: 'Bei der Bezahlung trat ein Fehler auf, versuchen Sie es später nocheinmal oder kontaktiere den Support. Fehlermeldung: %{braintree_response}'
+    email:
+      sender: 'tian.hofer@gmail.com'
+      subject: 'Willkommen bei aufnahmetest.at! (Ihre Rechnung befindet sich im Anhang)'
+      headline: 'Hallo %{firstname},'
+      body_html: 'Vielen Dank für dass du dich bei aufnahmetest.at registriert hast, du kannst jetzt unser volles Angebot nutzen.<br /><br />Im Anhang findest du deine Rechnung.'

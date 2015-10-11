@@ -99,4 +99,13 @@ class ApplicationController < ActionController::Base
   end
   
   
+  
+  def create_invoice_pdf(user, date) 
+    pdf = InvoicePdf.new(user)
+    pdf_filename = "public/storage/invoices/#{date}uid#{user.id}.pdf"
+    pdf.render_file pdf_filename
+    pdf_filename
+  end
+  
+  
 end

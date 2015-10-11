@@ -37,10 +37,10 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
+  address:              'smtp.gmail.com', #TODO
   port:                 587,
-  domain:               'example.com',
-  user_name:            '', #TODO
+  domain:               'gmail.com', #TODO
+  user_name:            '', #TODO attention, you have to restart server after changes
   password:             '', #TODO
   authentication:       'plain',
   enable_starttls_auto: true  }

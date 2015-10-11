@@ -17,16 +17,8 @@ class InvoicePdf < Prawn::Document
     body
   end
 
-
-  
   def header
-    text "MMag. Stefan Stillebacher", :align => :right
-    move_down 5
-    text "Saglstraße 64", :align => :right
-    move_down 5
-    text "6410 Telfs", :align => :right
-    move_down 5
-    text "UID-Nr. ATU67516912", :align => :right
+    text "MMag. Stefan Stillebacher\nSaglstraße 64\n6410 Telfs\nUID-Nr. ATU67516912", :align => :right, :leading => 10
   end
   
   def body
@@ -48,15 +40,7 @@ class InvoicePdf < Prawn::Document
     
     move_down 30
     
-    text "Wir wünschen Ihnen alles Gute!"
-    
-    move_down 20
-    
-    text "Beste Grüße"
-    
-    move_down 20
-    
-    text "MMag. Stefan Stillebacher"    
+    text "Wir wünschen Ihnen alles Gute!\nBeste Grüße\nMMag. Stefan Stillebacher", :leading => 20
   end
   
   def price_table

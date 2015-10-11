@@ -58,6 +58,7 @@ class StaticPagesController < ApplicationController
   
   def pay
     @user = current_user
+    @date_now = Time.new.strftime("%d.%m.%Y")
     #@creditcard_number = params[:creditcard_number]
     #@creditcard_expiration_date  = params[:creditcard_expiration_date]
     #@creditcard_cnc = params[:creditcard_cnc]
@@ -100,23 +101,32 @@ class StaticPagesController < ApplicationController
     )
     
     if result.success?
-      if current_user.role == Role.find_by_name('registered')
-        current_user.role = Role.find_by_name('member')
-        current_user.save!
+      if @user.role == Role.find_by_name('registered')
+        @user.role = Role.find_by_name('member')
+        @user.save!
       end
       
-      #TODO create pdf bill
-      #TODO send mail 
-      #UserMailer.bill_email(current_user).deliver!
+      pdf_filename = create_invoice_pdf(@user, @date_now)
+      
+      UserMailer.invoice_email(@user, pdf_filename).deliver!
+      
+      puts result.to_yaml
       
       #TODO set success in order instance
-      flash[:notice] = "Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!" 
+      flash[:notice] = t 'invoice.bt_success'
+      redirect_to static_pages_profile_status_path
     else
       #TODO set fail in order instance
-      flash[:alert] = "Bei der Bezahlung trat ein Fehler auf, versuchen Sie es später nocheinmal. #{result.transaction.processor_response_text}"
+      #result.transaction.processor_response_code
+      #=> "2001"
+      #result.transaction.processor_response_text
+      #=> "Insufficient Funds"
+      
+      puts result.to_yaml
+      #puts result.errors
+      flash[:error] = t 'invoice.bt_failure', :braintree_response => result.message #result.transaction.processor_response_text
+      redirect_to static_pages_payment_path
     end  
-    
-    redirect_to static_pages_profile_status_path
     
   end
   
@@ -206,18 +216,23 @@ class StaticPagesController < ApplicationController
   end
   
   
-  
+  # TODO remove (till now just for testing..)
   def invoice_pdf
 
-    #respond_with(@quiz)
+    # puts "RENDERING PDF FILE!"
+    # pdf = InvoicePdf.new(current_user)#Prawn::Document.new
+    # pdf.render_file "assignment.pdf"
+
+    ##respond_with(@quiz)
+    
     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = InvoicePdf.new(current_user)
-        send_data pdf.render, :filename => "invoice_user_#{current_user.id}.pdf",
-                              :type => "application/pdf",
-                              :disposition => "inline"
-      end
+     format.html
+     format.pdf do
+       pdf = InvoicePdf.new(current_user)
+       send_data pdf.render, :filename => "invoice_user_#{current_user.id}.pdf",
+                             :type => "application/pdf",
+                             :disposition => "inline"
+     end
     end
   end
   
