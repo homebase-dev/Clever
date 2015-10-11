@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330132349) do
+ActiveRecord::Schema.define(version: 20151011205043) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -85,6 +85,20 @@ ActiveRecord::Schema.define(version: 20150330132349) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invoices", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",           precision: 5, scale: 2
+    t.string   "message"
+    t.string   "transaction_id"
+    t.string   "transaction_code"
+    t.string   "transaction_text"
+    t.boolean  "success"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
 
   create_table "novelties", force: true do |t|
     t.string   "title"

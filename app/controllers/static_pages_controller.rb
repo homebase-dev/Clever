@@ -100,13 +100,16 @@ class StaticPagesController < ApplicationController
       :channel => "CleverLearningQuiz"
     )
     
+    invoice = Invoice.new(:user => @user, :amount => membership_price, :message => result.try(:message), :transaction_id => result.try(:transaction).id, :transaction_code => result.try(:transaction).processor_response_code, :transaction_text => result.try(:transaction).processor_response_text, :success => result.try(:success?))
+    invoice.save!
+    
     if result.success?
       if @user.role == Role.find_by_name('registered')
         @user.role = Role.find_by_name('member')
         @user.save!
       end
       
-      pdf_filename = create_invoice_pdf(@user, @date_now)
+      pdf_filename = create_invoice_pdf(@user, @date_now, invoice)
       
       UserMailer.invoice_email(@user, pdf_filename).deliver!
       

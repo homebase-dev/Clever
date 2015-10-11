@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
     
+  resources :invoices
+
   mount RailsSettingsUi::Engine, at: 'settings'
   resources :question_contexts
 

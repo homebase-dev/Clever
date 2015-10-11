@@ -1,11 +1,11 @@
 class InvoicePdf < Prawn::Document
 
-  def initialize(user)
+  def initialize(user, invoice)
     super()
     @user = user
     #@result = result
     
-    @invoice_number = 0
+    @invoice_number = invoice.id
     @subscription_start = Time.new.strftime("%d.%m.%Y")
     @subscription_end = "1. Juli 2016"
     @price_netto = 20.3;
