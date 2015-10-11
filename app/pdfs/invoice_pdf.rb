@@ -8,7 +8,8 @@ class InvoicePdf < Prawn::Document
     @invoice_number = invoice.id
     @subscription_start = Time.new.strftime("%d.%m.%Y")
     @subscription_end = "1. Juli 2016"
-    @price_netto = 20.3;
+    # TODO calculate tax
+    @price_netto = 20.30;
     @price_tax = 3.34;
     @price_total = 23.64;
 

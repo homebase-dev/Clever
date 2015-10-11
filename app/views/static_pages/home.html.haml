@@ -27,7 +27,7 @@
     %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
   .carousel-inner{:role => "listbox"}
     .item.active
-      = image_tag("home/carousel/f1.jpg", alt: "First slide")
+      = image_tag("home/carousel/carousel1.jpg", alt: "First slide")
       .container
         .carousel-caption
           %h1.super MedAT - aufnahmetest.at
@@ -36,13 +36,13 @@
           /%p
           /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
     .item
-      = image_tag("home/carousel/f3.jpg", alt: "Second slide")
+      = image_tag("home/carousel/carousel2.jpg", alt: "Second slide")
       .container
         .carousel-caption
           %h1.super Teste dich
           %h3 Es motiviert!
     .item
-      = image_tag("home/carousel/f2.jpg", alt: "Third slide")
+      = image_tag("home/carousel/carousel3.jpg", alt: "Third slide")
       .container
         .carousel-caption
           %h3 Gemeinsam für den MedAt lernen und
@@ -121,7 +121,7 @@
         %span.autor Dr. Stefan Ulmer – Praktischer Arzt
       /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
     .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('p2_dr_stefan_ulmer.jpg')}"}
+      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
 
 /%hr.featurette-divider/
 .hspacer-4x
@@ -129,7 +129,7 @@
 .featurette-bg2
   .row.featurette
     .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('p1_brigitte_sipos.jpg')}"}/
+      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
     .col-md-7
       %h2.featurette-heading.quote-right
         &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
