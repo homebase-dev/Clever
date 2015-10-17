@@ -56,7 +56,7 @@
   %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
     %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
     %span.sr-only Next
-        
+
 .hspacer
 
 /.container
@@ -86,6 +86,31 @@
 
 /<span class="visible-xs">SIZE XS smaller 750px</span><span class="visible-sm">SIZE SM 750px</span><span class="visible-md">SIZE MD 970px</span><span class="visible-lg">SIZE LG 1170px</span> 
 
+.hspacer
+
+/ AddToAny BEGIN
+.row
+  .col-sm-12
+    .sharebuttons
+      .a2a_kit.a2a_kit_size_32.a2a_default_style
+        %a.a2a_dd{:href => "https://www.addtoany.com/share?linkurl=www.aufnahmetest.at&linkname=Aufnahmetest.at"}
+        %a.a2a_button_facebook
+        %a.a2a_button_twitter
+        %a.a2a_button_google_plus
+        %a.a2a_button_email
+        /%a.a2a_button_pinterest
+        %a.a2a_button_whatsapp
+        /%a.a2a_button_tumblr
+        /%a.a2a_button_google_gmail
+      :javascript
+        var a2a_config = a2a_config || {};
+        a2a_config.linkname = "Aufnahmetest.at";
+        a2a_config.linkurl = "www.aufnahmetest.at";
+        a2a_config.locale = "de";
+        a2a_config.num_services = 12;
+      %script{:src => "//static.addtoany.com/menu/page.js", :type => "text/javascript"}
+      / AddToAny END
+
 .hspacer-4x
 
 .row
@@ -103,7 +128,7 @@
     .div.text-center{:style => "background-color: #F0F0F0; padding-top: 1em; padding-bottom: 4em;"}
       %h3.bold Videoüberschrift
       %p
-        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "400em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "400em", :src => "https://www.youtube.com/embed/DA_Bn2Zyv1Q", :width => "100%"}
   /.col-sm-12.hidden-xs.hidden-sm .hidden-md.hidden-lg
   /  %p.text-center{:style => "background-color: #F0F0F0; padding-top: 2em; padding-bottom: 2em;"}
   /    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "350em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
@@ -111,32 +136,34 @@
 
 /%hr.featurette-divider/
 .hspacer-4x
-
-.featurette-bg1
-  .row.featurette
-    .col-md-7
-      %h2.featurette-heading.quote-left
-        &#8220;Das Material ist perfekt vorsortiert und 
-        %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
-        %span.autor Dr. Stefan Ulmer – Praktischer Arzt
-      /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-    .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
+.marketing-area{:style => "background-color: #F2F2F2; padding-top: 2em;"}
+  .featurette-bg1
+    .row.featurette
+      .col-md-7
+        %h2.featurette-heading.quote-left
+          &#8220;Das Material ist perfekt vorsortiert und 
+          %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
+          %span.autor Dr. Stefan Ulmer – Praktischer Arzt
+        /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      .col-md-5
+        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
 
 /%hr.featurette-divider/
 .hspacer-4x
 
-.featurette-bg2
-  .row.featurette
-    .col-md-5
-      %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
-    .col-md-7
-      %h2.featurette-heading.quote-right
-        &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
-        %span.text-muted BESTANDEN!!!&#8221;<br/>
-        %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
-  /%hr.featurette-divider/
-
+.marketing-area{:style => "background-color: #F2F2F2; padding-top: 2em;"}
+  .featurette-bg2
+    .row.featurette
+      .col-md-5
+        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
+      .col-md-7
+        %h2.featurette-heading.quote-right
+          &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
+          %span.text-muted BESTANDEN!!!&#8221;<br/>
+          %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
+          = image_tag("home/Siegel.jpg", alt: "Qualitätssiegel", style: "height: 9em")
+    /%hr.featurette-divider/
+  
 
 /%hr.featurette-divider/
 .hspacer-4x
@@ -159,7 +186,11 @@
     
 /.hspacer
 
-= image_tag("home/Siegel.jpg", alt: "Qualitätssiegel")
+
+/.marketing-area{:style => "background-color: #F2F2F2"}
+/  .row
+/    %p.text-center
+/      = image_tag("home/Siegel.jpg", alt: "Qualitätssiegel", style: "height: 15em")
     
 .news-section
   .row

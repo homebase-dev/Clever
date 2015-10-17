@@ -241,4 +241,52 @@ class StaticPagesController < ApplicationController
   
   
   
+  ##################################
+  # 'Info' pages from navbar       #
+  ##################################
+  
+  def info_general
+  end
+  
+  def info_test
+  end
+  
+  def info_tips
+  end
+  
+  def info_curriculum
+    #render "static_pages/info/curriculum"
+  end
+  
+  def info_sub_basic
+  end
+  
+  def info_sub_text
+  end
+  
+  def info_sub_figures
+  end
+  
+  def info_sub_numbers
+  end
+  
+  def info_sub_implications
+  end
+  
+  def info_sub_words
+  end
+  
+  def info_sub_social
+  end
+  
+  def info_sub_dent1
+  end
+  
+  def info_sub_dent2
+  end
+  
+  def info_sub_implications
+  end
+    
+  
 end

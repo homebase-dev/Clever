@@ -1,23 +1,23 @@
-- if @assignation_number == 0
-  .page-header
-    %h3
-      =@question.question_context.category.name
-      %small Test
-      /%small #{@assignation_number+1}/#{@test.assignations.count}
-      
+.page-header
+  %h1
+    =@question.question_context.category.name
+    %small Test
+    /%small #{@assignation_number+1}/#{@test.assignations.count}
+    
 .row
   .col-lg-12
     #timer-placeholder{:style => "position: absolute; right: 2em; top: 2px; font-size: 0.8em;"}
       Zeit?
     #timer{:style => "display: none;"}
     :javascript
+      //TODO if needed again put into separate file
       function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
         var expires = "expires="+d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
       }
-      
+    
       function getCookie(cname) {
           var name = cname + "=";
           var ca = document.cookie.split(';');
@@ -28,9 +28,11 @@
           }
           return "";
       }
+      //END TODO
       
       
-      $( document ).ready(function() {
+      $( document ).ready(function() {​
+      
         var timer = $('#timer');
         var timer_placeholder = $('#timer-placeholder');
         
@@ -59,22 +61,16 @@
           timer_placeholder.show();
         });
       });
+    .progress.flat-corners
+      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@assignation_number+1)*100) / @test.assignations.count}", :role => "progressbar", :style => "width: #{((@assignation_number+1)*100) / @test.assignations.count}%"}
+        %span #{@assignation_number+1}/#{@test.assignations.count}
       
-      
-      function showContext() {
-        console.log("showContext()...");
-        var context = $("#context_#{@question.id}");
-        context.show();
-      }
-      
-      function hideContext() {
-        console.log("hideContext()...");
-        var context = $("#context_#{@question.id}");
-        context.hide();
-      }
-      
-      function addContextButtonListener() {
-        $("#show_context_button").click(function (event) {
+    %a.btn.btn-default.btn-xs.pull-right{:href => "#", :role => "button", :id => "show_context_button", :style => "margin-bottom: 0.5em; display: none;"} Zeige Kontext
+
+    .context-box{:id => "context_#{@question.id}"}
+      -if @show_context
+        :javascript
+          $("#show_context_button").click(function (event) {
             var context = $("#context_#{@question.id}");
             
             if(context.is(":visible")) {
@@ -86,84 +82,75 @@
             }
             event.preventDefault(); // Prevent link from following its href
           });
-      }
-      
-      function contextDidChange() {
-        console.log("contextDidChange()...");
-        $("#question_#{@question.id}").hide();
-        
-        $('.first-question').click(function (event) {
-          $("#context_#{@question.id}").hide();
-          $("#question_#{@question.id}").show();   
-          $("#show_context_button").show();  
-          event.preventDefault(); // Prevent link from following its href
-        });
-        
-        $('.first-question-only-begin').click(function (event) {
-          $("#context_#{@question.id}").hide();
-          $("#question_#{@question.id}").show();   
-          event.preventDefault(); // Prevent link from following its href
-        });
-      }
-      
-
-      
-      function showContextButton() {
-        console.log("show context button");
-        $("#show_context_button").show();    
-      }
-      
-      function showQuestion() {
-        console.log("showQuestion");
-        var question = $("#question_#{@question.id}");
-        question.show();
-      }
-      
-      function hideQuestion() {
-        console.log("hideQuestion");
-        var question = $("#question_#{@question.id}");
-        question.hide();
-      }
-      
-
-    .progress.flat-corners
-      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@assignation_number+1)*100) / @test.assignations.count}", :role => "progressbar", :style => "width: #{((@assignation_number+1)*100) / @test.assignations.count}%"}
-        %span #{@assignation_number+1}/#{@test.assignations.count}
-      
-    %a.btn.btn-default.btn-xs.pull-right{:href => "#", :role => "button", :id => "show_context_button", :style => "margin-bottom: 0.5em; display: none;"} Zeige Kontext
-    :javascript
-        console.log(#{@show_context});
-        console.log(#{@did_context_change});
-        
-        
-    /TODO render context, set display to hide from beginning
-    -if @show_context
-      -if @workflow.always_visible?
-        = render "tests/contexts/context_always_visible"
-        :javascript
-          $( document ).ready(function() {
-            addContextButtonListener();
-          });
-      -else
-        = render "tests/contexts/context_visible_only_at_beginning"
-         
-    
-    /then decide to hide or show
-    
-    -if @show_context && @did_context_change
-      -if @workflow.always_visible?
-        :javascript
-          $( document ).ready(function() {
-            hideQuestion();
-          });
-    -else
-      -if @workflow.always_visible?
-        :javascript
-          console.log("fall 3");
-          $( document ).ready(function() {
-            hideContext();
-            showContextButton();
-          });
+        -if @did_context_change
+          :javascript
+            $( document ).ready(function() {
+              $("#question_#{@question.id}").hide();
+  
+              $('.first-question').click(function (event) {
+                $("#context_#{@question.id}").hide();
+                $("#question_#{@question.id}").show();   
+                $("#show_context_button").show();  
+                event.preventDefault(); // Prevent link from following its href
+              });
+              
+              $('.first-question-only-begin').click(function (event) {
+                $("#context_#{@question.id}").hide();
+                $("#question_#{@question.id}").show();   
+                event.preventDefault(); // Prevent link from following its href
+              });
+            });
+          -if @workflow.always_visible?
+            .panel.panel-primary.flat-corners
+              .panel-heading.flat-corners
+                %h3.panel-title Kontext
+              .panel-body.scale-images
+                /%p ALWAYS changed -> show
+                =preview_html_field(@question.question_context.content)
+                %a.btn.btn-default.pull-right.first-question{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
+          -else
+            :javascript
+              $( document ).ready(function() {
+                console.log("timer startet: #{@question.question_context.display_time_milliseconds}" );
+                setTimeout(function(){ $('.first-question-only-begin').click(); console.log("lets go!"); }, "#{@question.question_context.display_time_milliseconds}");
+              
+                $("#getting-started").countdown("#{@question.question_context.countdown_date_in_milliseconds}", function(event) {
+                  $(this).text(
+                    event.strftime('Bearbeitungszeit: %H:%M:%S')
+                  );
+                });
+              });
+            .panel.panel-primary.flat-corners
+              .panel-heading.flat-corners
+                %h3.panel-title Kontext
+                .question_countdown
+                  #getting-started
+              .panel-body.scale-images
+                /%p ONLY AT BEGINNING changed -> show with counter
+                =preview_html_field(@question.question_context.content)
+                %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'next-link', :href => "#", :role => "button"} Los gehts!
+        -else
+          :javascript
+            $( document ).ready(function() {
+              $("#context_#{@question.id}").hide();
+            });
+          -if @workflow.always_visible?
+            :javascript
+              $( document ).ready(function() {
+                $("#show_context_button").show();            
+              });
+            .panel.panel-primary.flat-corners
+              .panel-heading.flat-corners
+                %h3.panel-title Kontext
+              .panel-body.scale-images
+                %p ALWAYS not changed -> MINIMIZED
+                =preview_html_field(@question.question_context.content)
+          -else
+            .panel-heading.flat-corners
+              %h3.panel-title Kontext
+            .panel.panel-primary.flat-corners
+              .panel-body.scale-images
+                %p ONLY AT BEGINNING -> not show
               
                 
               
@@ -179,7 +166,7 @@
         .panel-body.scale-images
           =preview_html_field(@question.text)
       - @question.answers.each_with_index do |answer, index|
-        %ul.list-group.no-bottom-margin
+        %ul.list-group
           / test_step_path(:id => @test, :question_number => @question_number+2)
           = link_to "#", :onclick => "return false;", :class=> "list-group-item no-boarder" do 
             .answer{:id => "answer-#{answer.id}"}
@@ -193,7 +180,7 @@
                 / =index_2
             .answer-text=preview_html_field(answer.text)
             
-      .row{:style => "margin-top: 20px;"}
+      .row
         .col-xs-5
           - if @assignation_number > 0
             %a.btn.btn-default.pull-left.full-width.flat-corners{:href => test_step_path(:id => @test, :assignation_number => @assignation_number), :role => "button"} Zurück

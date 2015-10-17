@@ -19,6 +19,11 @@ body {
 	padding-top: 50px;/* 105px; */ 
 }
 
+/* fixes navbar background color when website on smallest scale */
+.dropdown-menu {
+    background-color: #FFFFFF !important;
+}
+
 /* scale images within question or context panel-bodyies */
 .panel-body.scale-images img{
 	max-width: 100%;
@@ -68,7 +73,15 @@ body {
 }*/
 
 
+.indent-left {
+    padding-left: 15px;
+}
 
+.sharebuttons {
+    float: right;
+    /*margin: auto;
+    width: 216px;*/
+}
 
 a.btn-primary:visited {
 	color: #FFFFFF;

@@ -61,6 +61,21 @@ Rails.application.routes.draw do
   get 'static_pages/admin'
   get 'static_pages/payment'
   
+  get 'static_pages/info/curriculum', to: 'static_pages#info_curriculum'
+  get 'static_pages/info/general', to: 'static_pages#info_general'
+  get 'static_pages/info/test', to: 'static_pages#info_test'
+  get 'static_pages/info/sub/basic', to: 'static_pages#info_sub_basic'
+  get 'static_pages/info/sub/dent1', to: 'static_pages#info_sub_dent1'
+  get 'static_pages/info/sub/dent2', to: 'static_pages#info_sub_dent2'
+  get 'static_pages/info/sub/figures', to: 'static_pages#info_sub_figures'
+  get 'static_pages/info/sub/implications', to: 'static_pages#info_sub_implications'
+  get 'static_pages/info/sub/numbers', to: 'static_pages#info_sub_numbers'
+  get 'static_pages/info/sub/social', to: 'static_pages#info_sub_social'
+  get 'static_pages/info/sub/text', to: 'static_pages#info_sub_text'
+  get 'static_pages/info/sub/words', to: 'static_pages#info_sub_words'
+  get 'static_pages/info/tips', to: 'static_pages#info_tips'
+
+  
   get 'static_pages/ablauf'
   get 'static_pages/humanmedizin'
   get 'static_pages/zahnmedizin'

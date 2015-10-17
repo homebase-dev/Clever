@@ -38,27 +38,75 @@
             Info
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
+            %li 
+              =link_to "Allgemeines zu MedAT-H/Z", static_pages_info_general_path
             %li
-              =link_to "Testablauf", static_pages_zahnmedizin_path
+              =link_to "Testaufbau", static_pages_info_test_path
+              
+            %li{:role => "separator", :class => "divider"}
+              
+            %li{:style => "color: #aaa; margin-left: 20px"}
+              Untertests
+              /=link_to "Untertests", static_pages_home_path  
+                          
+            /%li{:role => "separator", :class => "divider"}
+              
+            %li.indent-left
+              =link_to "Basiskenntnistest - BMS", static_pages_info_sub_basic_path
+            %li.indent-left
+              =link_to "Textverständtnis", static_pages_info_sub_text_path
+            %li.indent-left
+              =link_to "Figuren zusammensetzen", static_pages_info_sub_figures_path
+            %li.indent-left
+              =link_to "Zahlenfolgen", static_pages_info_sub_numbers_path
+            %li.indent-left
+              =link_to "Implikationen erkennen", static_pages_info_sub_implications_path
+            %li.indent-left
+              =link_to "Wortflüssigkeit", static_pages_info_sub_words_path
+            %li.indent-left
+              =link_to "Soziales Entscheiden", static_pages_info_sub_social_path
+            %li.indent-left
+              =link_to "Zahnmedizin: Drähte biegen", static_pages_info_sub_dent1_path
+            %li.indent-left
+              =link_to "Zahnmedizin: Formen spiegeln", static_pages_info_sub_dent2_path
+            %li.indent-left
+              =link_to "Implikationen erkennen", static_pages_info_sub_implications_path
+            %li{:role => "separator", :class => "divider"}
             %li
-              =link_to "MedAT-Humanmedizin", static_pages_humanmedizin_path
-            %li
-              =link_to "MedAT-Zahnmedizin", static_pages_zahnmedizin_path
+              =link_to "Tipps zum Test", static_pages_info_tips_path
+            %li 
+              =link_to "Studienpläne", static_pages_info_curriculum_path
+              
+            /
+            /  =link_to "Testablauf", static_pages_zahnmedizin_path
+            /%li
+            /  =link_to "MedAT-Humanmedizin", static_pages_humanmedizin_path
+            /%li
+            /  =link_to "MedAT-Zahnmedizin", static_pages_zahnmedizin_path
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Unser Angebot
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
-              =link_to "Ablauf Online Test", static_pages_ablauf_path
+              =link_to "Online-Lernportal", static_pages_ablauf_path
             %li
               =link_to "Vorbereitungskurse", static_pages_vorbereitungskurse_path
-        %li
-          -if user_signed_in?
-            =link_to "Test starten", static_pages_quiz_path
-          -else
-            =link_to "Kostenlos testen", static_pages_quiz_path
-          
+        
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Kostenlos testen
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            -if user_signed_in?
+              %li
+                =link_to "Test starten", static_pages_quiz_path
+            -else
+              %li
+                =link_to "Gesamttest", static_pages_quiz_path
+              %li
+                =link_to "Untertest", static_pages_quiz_path
+            
         %li
           -if user_signed_in? && !current_user.try(:can_manage?)
             =link_to "Meine Daten", static_pages_profile_status_path
