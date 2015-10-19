@@ -86,7 +86,7 @@ font-size: 18px;
 
 .list-group-item.correct-answer {
   background-color: rgba(38, 197, 13, 0.13);
-  background-image: url("correct.jpeg");
+  background-image: asset_url("correct.jpeg");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;
@@ -94,7 +94,7 @@ font-size: 18px;
 
 .list-group-item.wrong-answer {
   background-color: rgba(197, 13, 13, 0.13);
-  background-image: url("incorrect.png");
+  background-image: asset_url("incorrect.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;
