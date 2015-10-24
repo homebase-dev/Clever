@@ -86,30 +86,28 @@
 
 /<span class="visible-xs">SIZE XS smaller 750px</span><span class="visible-sm">SIZE SM 750px</span><span class="visible-md">SIZE MD 970px</span><span class="visible-lg">SIZE LG 1170px</span> 
 
-.hspacer
+.hspacer-4x
 
-/ AddToAny BEGIN
 .row
   .col-sm-12
-    .sharebuttons
-      .a2a_kit.a2a_kit_size_32.a2a_default_style
-        %a.a2a_dd{:href => "https://www.addtoany.com/share?linkurl=www.aufnahmetest.at&linkname=Aufnahmetest.at"}
-        %a.a2a_button_facebook
-        %a.a2a_button_twitter
-        %a.a2a_button_google_plus
-        %a.a2a_button_email
-        /%a.a2a_button_pinterest
-        %a.a2a_button_whatsapp
-        /%a.a2a_button_tumblr
-        /%a.a2a_button_google_gmail
-      :javascript
-        var a2a_config = a2a_config || {};
-        a2a_config.linkname = "Aufnahmetest.at";
-        a2a_config.linkurl = "www.aufnahmetest.at";
-        a2a_config.locale = "de";
-        a2a_config.num_services = 12;
-      %script{:src => "//static.addtoany.com/menu/page.js", :type => "text/javascript"}
-      / AddToAny END
+    .text-center
+      %p.bold Besuche uns auch hier!
+      %p{:style => "font-size: 3em;"}
+        = link_to "https://www.facebook.com/aufnahmetest/", :onclick => "", :class=> "share-btn facebook-btn" do
+          %i.fa.fa-facebook-square
+        = link_to "https://twitter.com/aufnahmetest", :onclick => "", :class=> "share-btn twitter-btn" do
+          %i.fa.fa-twitter-square
+        = link_to "https://plus.google.com/u/0/107928789185849411036/posts", :onclick => "", :class=> "share-btn gplus-btn" do
+          %i.fa.fa-google-plus-square
+        = link_to "https://instagram.com/aufnahmetest.at/", :onclick => "", :class=> "share-btn instagram-btn" do
+          %i.fa.fa-instagram
+        = link_to "https://www.linkedin.com/profile/view?id=AAIAABrOg0sBnTOliC2-6yi-4ZH09Y33kFbfRwY&trk=nav_responsive_tab_profile", :onclick => "", :class=> "share-btn linkedin-btn" do      
+          %i.fa.fa-linkedin-square
+
+.row
+  .col-sm-12
+    /= render "shared/a2a_share_button"
+    /= render "shared/shareaholic_share_button"
 
 .hspacer-4x
 
@@ -219,3 +217,11 @@
                 event.strftime('%m Monate %D Tagen %H Stunden')
               );
             });
+            
+
+.hspacer-4x
+        
+.row
+  .col-sm-12
+    = render "shared/shareaholic_share_button"
+    

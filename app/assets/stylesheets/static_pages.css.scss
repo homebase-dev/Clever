@@ -21,6 +21,36 @@ body {
   margin-bottom: 20px;
 }
 
+a.share-btn:hover{
+  background-color: #fff;
+  color: #fff;
+}
+
+.share-btn:hover .fa {
+  background-color: #fff;
+  color: #333;
+}
+
+.facebook-btn {
+  color: #3B5998;
+}
+
+.twitter-btn {
+  color: #2BA9E1;
+}
+
+.linkedin-btn {
+  color: #2BA9E1;
+}
+
+.gplus-btn {
+  color: #DD4B39;
+}
+
+.instagram-btn {
+  color: #007BB6;
+}
+
 
 
 

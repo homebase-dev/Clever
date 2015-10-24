@@ -38,5 +38,14 @@ module ApplicationHelper
   def membership_price_euro
     number_to_euro(Settings[:membership_price_euro])
   end
+  
+  def meta_keywords
+    keywords = %w(aufnahmetest-medizin Vorbereitung-medizin-test medizin-aufnahmeprüfung MedAt-2016-vorbereitung Eignungstest-medizin-online Medizin-aufnahmetest-2016 medizin-vorbereitungskurs-innsbruck-wien-graz-linz Medizin-aufnahmetest-innsbruck-wien-graz-linz Medizin-aufnahmetest-vorbereitung aufnahmetest-online medizin-aufnahmetest-übungen aufnahmetest-vorbereitung-medat aufnahmetest-fragen medizinischer-eignungstest-vorbereiten medat-2016-vorbereitung medizinertest-innsbruck vorbereitungskurs-medizin-aufnahmetest)   
+    keywords.join(',')
+  end
+  
+  def meta_description
+    description = "Online Vorbereitung für den Medizin Aufnahmetest (MedAT) inklusive kostenlose Skripten für Biologie, Physik, Chemie und Mathematik; unzählige Gesamttest mit Zufallsgenerator; alle Untertests wie Kognitive Fähigkeiten, Biologie etc. einzeln üben, Lernstatistiken analysieren und gezielt üben"
+  end
     
 end
