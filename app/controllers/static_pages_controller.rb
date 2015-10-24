@@ -267,6 +267,9 @@ class StaticPagesController < ApplicationController
   def info_sub_figures
   end
   
+  def info_sub_memory
+  end
+  
   def info_sub_numbers
   end
   
@@ -284,9 +287,5 @@ class StaticPagesController < ApplicationController
   
   def info_sub_dent2
   end
-  
-  def info_sub_implications
-  end
-    
   
 end

@@ -73,10 +73,11 @@ Rails.application.routes.draw do
   get 'static_pages/info/sub/social', to: 'static_pages#info_sub_social'
   get 'static_pages/info/sub/text', to: 'static_pages#info_sub_text'
   get 'static_pages/info/sub/words', to: 'static_pages#info_sub_words'
+  get 'static_pages/info/sub/memory', to: 'static_pages#info_sub_memory'
   get 'static_pages/info/tips', to: 'static_pages#info_tips'
 
   
-  get 'static_pages/ablauf'
+  get 'static_pages/online_lernportal'
   get 'static_pages/humanmedizin'
   get 'static_pages/zahnmedizin'
   get 'static_pages/vorbereitungskurse'
