@@ -107,5 +107,13 @@ class ApplicationController < ActionController::Base
     pdf_filename
   end
   
+  def send_invoice_email(user, pdf_filename)
+    begin
+      UserMailer.invoice_email(user, pdf_filename).deliver!
+    rescue => ex
+      logger.error ex.message
+    end
+  end
+  
   
 end

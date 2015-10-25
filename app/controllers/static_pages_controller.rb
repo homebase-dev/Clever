@@ -69,6 +69,7 @@ class StaticPagesController < ApplicationController
     render action: static_pages_profile_status_path and return unless nonce
     
     #TODO create order instance
+    #TODO set euro? (=> bt account settings)
     membership_price = Settings[:membership_price_euro]
     result = Braintree::Transaction.sale(
       :amount => membership_price,
@@ -111,7 +112,7 @@ class StaticPagesController < ApplicationController
       
       pdf_filename = create_invoice_pdf(@user, @date_now, invoice)
       
-      UserMailer.invoice_email(@user, pdf_filename).deliver!
+      send_invoice_email(@user, pdf_filename)
       
       puts result.to_yaml
       

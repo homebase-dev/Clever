@@ -103,6 +103,13 @@ class TestsController < ApplicationController
     @test = Test.find_by_id(params[:id])
     @assignation_number = 0
     @assignation =  @test.assignations[@assignation_number]
+    
+    if @assignation.nil?
+      logger.info "There are no assignations within the thest, probably the category has no context or questions"
+      flash[:error] = "Die gewählte Kategorie hat leider noch keine Fragen, versuche es später nocheinmal."
+      redirect_to static_pages_quiz_path and return
+    end
+    
     @question = @assignation.try(:question)
   end
 

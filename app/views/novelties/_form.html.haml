@@ -17,7 +17,8 @@
   .control-group
     = f.label :text, :class => 'control-label'
     .controls
-      = f.text_field :text, :class => 'form-control'
+      = f.cktext_area :text, :class => 'form-control', :rows => 10
+      /= f.text_field :text, :class => 'form-control'
     = error_span(@novelty[:text])
   .control-group
     = f.label :priority, :class => 'control-label'

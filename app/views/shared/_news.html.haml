@@ -9,7 +9,13 @@
 .col-md-4
   .box.news
     %h4.box.news.head #{title}
-    %p.box.news.body
-      #{created_at.strftime("%d.%m.%Y %H:%M")} - #{body}
+    /%p.box.news.body
+    .box.news.body
+      /%p.text-right
+      /  #{created_at.strftime("%d.%m.%Y %H:%M")}
+      #{preview_html_field(body)}  
+    
+      %p.text-center
+        #{created_at.strftime("%d.%m.%Y %H:%M")}  
     /%p.box.news.footer
     /  #{created_at.strftime("%d.%m.%Y %H:%M")}

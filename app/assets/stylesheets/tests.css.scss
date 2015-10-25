@@ -4,7 +4,7 @@
 
 .wrong {
   color: rgba(197, 13, 13, 0.53);
-  background-image: url("incorrect.png");
+  background-image: asset_url("incorrect.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;
@@ -12,7 +12,7 @@
 
 .correct {
   color: rgba(38, 197, 13, 0.53);
-  background-image: url("correct.jpeg");
+  background-image: asset_url("correct.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;

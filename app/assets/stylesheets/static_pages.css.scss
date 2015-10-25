@@ -21,6 +21,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Home share buttons */
 a.share-btn:hover{
   background-color: #fff;
   color: #fff;
@@ -50,8 +51,7 @@ a.share-btn:hover{
 .instagram-btn {
   color: #007BB6;
 }
-
-
+/* End home share btns */
 
 
 .bs-callout-danger {
@@ -116,7 +116,7 @@ font-size: 18px;
 
 .list-group-item.correct-answer {
   background-color: rgba(38, 197, 13, 0.13);
-  background-image: asset_url("correct.jpeg");
+  background-image: asset_url("correct.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;
