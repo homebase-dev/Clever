@@ -7,26 +7,32 @@ class ApplicationController < ActionController::Base
   def pick_random_questions(category, nb_of_contexts, nb_of_questions)
     random_questions = []
     
-    # TODO fix, DRY
-    if category.blank? #Mixed Category was choosen
-      all_categories = Category.all.published
-      
-      all_categories.each do |c|
-        if c.question_contexts.count == 1
-          only_context = c.question_contexts.first
-          random_questions.concat pick_random_questions_from_question_context(only_context, nb_of_questions)
-        elsif c.question_contexts.count > 1
-          random_contexts = pick_random_contexts_from_category(c, nb_of_contexts)
-          
-          random_contexts.each do |context|
-            random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)
-          end
-          
-        end
-      end
-      
+    if !category
+      logger.warn "pick_random_questions(...) category was empty!"
       return random_questions
     end
+    
+    # Old random question from random category selector...
+    #
+    #if category.blank? #Mixed Category was choosen
+    #  all_categories = Category.all.published
+    #  
+    #  all_categories.each do |c|
+    #    if c.question_contexts.count == 1
+    #      only_context = c.question_contexts.first
+    #      random_questions.concat pick_random_questions_from_question_context(only_context, nb_of_questions)
+    #    elsif c.question_contexts.count > 1
+    #      random_contexts = pick_random_contexts_from_category(c, nb_of_contexts)
+    #      
+    #      random_contexts.each do |context|
+    #        random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)
+    #      end
+    #      
+    #    end
+    #  end
+    #  
+    #  return random_questions
+    #end
     
     
     if category.question_contexts.count == 1
@@ -35,6 +41,11 @@ class ApplicationController < ActionController::Base
     elsif category.question_contexts.count > 1
       random_contexts = pick_random_contexts_from_category(category, nb_of_contexts)
       
+      if random_contexts.empty?
+        logger.warn "pick_random_questions(...) Category with id #{category.id} has only question_contexts which have no questions!"         
+      end
+      
+      # TODO fix logic (when one empty context, skip)
       random_contexts.each do |context|
         random_questions.concat pick_random_questions_from_question_context(context, nb_of_questions)
       end
@@ -47,19 +58,19 @@ class ApplicationController < ActionController::Base
   
   def pick_random_contexts_from_category(category, nb_of_contexts) 
     random_contexts = []
-    $i = 0
+    i = 0
     all_contexts_mixed = category.question_contexts.shuffle
     
-    while $i < nb_of_contexts do
-      context = all_contexts_mixed[$i]
-      
-      if context.present?
-        random_contexts << context
-      else
-        break
+    while i < nb_of_contexts do
+      context = all_contexts_mixed[i]
+
+      i += 1
+            
+      if context.blank? || context.questions.empty?
+        next
       end
       
-      $i +=1
+      random_contexts << context
     end
     
     random_contexts
@@ -68,20 +79,28 @@ class ApplicationController < ActionController::Base
   
   def pick_random_questions_from_question_context(question_context, nb_of_questions) 
     random_questions = []
-    $i = 0
+    i = 0
     
     all_questions_mixed = question_context.questions.shuffle
     
-    while $i < nb_of_questions do
-      question = all_questions_mixed[$i]
+    while i < nb_of_questions do
+      question = all_questions_mixed[i]
       
-      if question.present?
-        random_questions << question
-      else
-        break
+      i += 1
+      
+      if question.blank? || question.answers.empty?
+        next
       end
       
-      $i +=1
+      random_questions << question
+      
+      #if question.present?
+      #  random_questions << question
+      #else
+      #  break
+      #end
+      #
+      #i +=1
     end
     
     random_questions

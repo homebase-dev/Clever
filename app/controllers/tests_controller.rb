@@ -23,59 +23,108 @@ class TestsController < ApplicationController
   end
 
   def create
+    @is_paying_member = current_user && (current_user.member? || current_user.can_manage?)
+    @do_total_test = (params[:total_test] == "true")
+    
     @test = Test.new
         
     if params[:test].present?
       @test = Test.new(test_params)
     end
     
-    @nb_of_contexts = 1 
-    @nb_of_questions = 3
     
-    if current_user && (current_user.member? || current_user.can_manage?)
-      @nb_of_contexts = params[:nb_of_contexts].to_i
-      @nb_of_questions = params[:nb_of_questions].to_i
-    end
-    
-    
-    #TODO check if nb_of_questions >0 && <= category.question.count
-    
-    @test.testee = current_user
-    @test.start = Time.now
-    
-    puts "PARAMS"
-    puts params.inspect
-    puts "CATEGORY_ID"
-    puts params[:category_id]
-    
-    category = Category.find_by_id(params[:category_id])
-    
-        
-    if category && category.question_contexts.empty?
-      flash[:error] = "Die Kategorie "+category.name+" hat leider noch keine Fragenkontexte, versuche es später nocheinmal."
-      redirect_to(:back) and return
-    end
-    
-    random_questions = pick_random_questions(category, @nb_of_contexts, @nb_of_questions) 
-    
+    if @do_total_test 
+      # TODO make test for member and guest
+      puts "**************** is total test!"
 
-    #random_questions = pick_random_questions(category)
-    puts "RESULT QUESTIONS"
-    print_questions(random_questions)
+      @test.testee = current_user
+      @test.start = Time.now
+      
+      # basiskenntnistest
+      @biology_test = create_bkt_subtest(3, 40)
+      @chemistry_test = create_bkt_subtest(11, 23)
+      @physics_test = create_bkt_subtest(2, 16)
+      @math_test = create_bkt_subtest(1, 10)
+
+      @test.tests.push(@biology_test, @chemistry_test, @physics_test, @math_test)
+      
+      puts @test.inspect     
+      
+      # textverständtnis
+      
+            
+      # mittagspause
+      
+      
+      # figuren zusammensetzten
+      #@figure_test = create_subtest(13, 1, 15, 20*60) 
+      
+      # gedächtnis und merkfähigkeit (lernphase) <--- PROBLEM
+      
+      # zahlenfolgen
+      @numbers_test = create_subtest(6, 1, 15, 15*60) 
+      @test.tests.push(@numbers_test)
+      
+      # implikationen erkennen
+      #@implications_test = create_subtest(8, 1, 10, 10*60) 
+      
+      # gedächtnis und merkfähigkeit (reproduktionsphase)
+      
+      # wortflüssigkeit
+      #@words_test = create_subtest(7, 1, 15, 20*60) 
+      
+      # soziales entscheiden
+      #@social_test = create_subtest(14, 1, 10, 15*60) 
+      
+      @test.save!
+    else
+      puts "**************** is partial test!"
+      @nb_of_contexts = 1 
+      @nb_of_questions = 3
+      
+      if @payingMember
+        @nb_of_contexts = params[:nb_of_contexts].to_i
+        @nb_of_questions = params[:nb_of_questions].to_i
+      end
+      
+      #TODO check if nb_of_questions >0 && <= category.question.count
+      
+      @test.testee = current_user
+      @test.start = Time.now
+      
+      puts "PARAMS"
+      puts params.inspect
+      puts "CATEGORY_ID"
+      puts params[:category_id]
+      
+      category = Category.find_by_id(params[:category_id])
+      
+          
+      if category && category.question_contexts.empty?
+        flash[:error] = "Die Kategorie #{category.name} hat leider noch keine Fragenkontexte, versuche es später nocheinmal."
+        redirect_to(:back) and return
+      end
+      
+      random_questions = pick_random_questions(category, @nb_of_contexts, @nb_of_questions) 
+
+  
+      #random_questions = pick_random_questions(category)
+      puts "RESULT QUESTIONS"
+      print_questions(random_questions)
+      
+      @test.save!
+      
+      create_test_assignations(@test, @random_questions)
+    end
     
-    #TODO uncomment
-    @test.save!
-    
-    create_test_assignations(random_questions)
- 
     redirect_to test_start_path(:id => @test.id)
     #redirect_to test_step_path(:id => @test.id, :assignation_number => 1) and return
   end
   
     
-  def create_test_assignations(questions)
+  def create_test_assignations(test, questions)
     questions.each do |q|
-      assignation = Assignation.new(:test => @test, :question => q)
+      assignation = Assignation.new(:test => test, :question => q)
       assignation.save!
     end
   end
@@ -105,8 +154,8 @@ class TestsController < ApplicationController
     @assignation =  @test.assignations[@assignation_number]
     
     if @assignation.nil?
-      logger.info "There are no assignations within the thest, probably the category has no context or questions"
-      flash[:error] = "Die gewählte Kategorie hat leider noch keine Fragen, versuche es später nocheinmal."
+      logger.info "Test could not be started. There are no assignations within the thest, probably the category has no context or questions"
+      flash[:error] = "Der Test konnte nicht gestartet werden, die gewählte Kategorie hat leider noch keine Fragen. Versuche es später nocheinmal."
       redirect_to static_pages_quiz_path and return
     end
     
@@ -214,5 +263,35 @@ class TestsController < ApplicationController
 
     def test_params
       params.require(:test).permit(:testee_id, :start, :end)
+    end
+    
+    def create_total_test
+       
+    end
+    
+    def create_partial_test
+      
+    end
+    
+    def create_bkt_subtest(category_id, number_of_questions)
+      test = Test.new
+      test.available_time_sec = 60*20 # 20 min
+      test.test_type = Test.test_types[:part_of_bkt]
+      category = Category.find_by_id(category_id)
+      random_questions = pick_random_questions(category, 1, number_of_questions)
+      create_test_assignations(test, random_questions)
+      test.save!
+      test
+    end
+    
+    def create_subtest(category_id, nb_of_contexts, nb_of_questions, available_time_sec) 
+      test = Test.new
+      test.available_time_sec = available_time_sec
+      test.test_type = Test.test_types[:test]
+      category = Category.find_by_id(category_id)
+      random_questions = pick_random_questions(category, nb_of_contexts, nb_of_questions)
+      create_test_assignations(test, random_questions)
+      test.save!
+      test
     end
 end

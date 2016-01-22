@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011205043) do
+ActiveRecord::Schema.define(version: 20160117182833) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -178,8 +178,13 @@ ActiveRecord::Schema.define(version: 20151011205043) do
     t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "test_id"
+    t.string   "description"
+    t.integer  "available_time_sec"
+    t.integer  "test_type",          default: 0
   end
 
+  add_index "tests", ["test_id"], name: "index_tests_on_test_id", using: :btree
   add_index "tests", ["testee_id"], name: "index_tests_on_testee_id", using: :btree
 
   create_table "users", force: true do |t|

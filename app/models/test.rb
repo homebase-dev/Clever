@@ -2,6 +2,8 @@ class Test < ActiveRecord::Base
   belongs_to :testee, :class_name => "User"
   has_many :assignations
   has_many :questions, :through => :assignations
+  has_many :tests
+  enum test_type: { test: 0, pause: 1 , test_learnphase: 2, test_reproductionphase: 3, part_of_bkt: 4}
   
   
   def passed_assignations

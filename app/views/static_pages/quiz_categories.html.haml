@@ -14,7 +14,7 @@
     
 .row
   .col-sx-12
-    =link_to tests_path(:nb_of_contexts => 1, :nb_of_questions => 10), :method => :post, :class => "a thumbnail category" do
+    =link_to tests_path(:total_test => true), :method => :post, :class => "a thumbnail category" do
       = image_tag("gesamttest_icon.png", alt: "Thumbnail der Kategorie Gestamttest") 
       /- if category.image.nil?
       /%p.text-center Gesamttest
