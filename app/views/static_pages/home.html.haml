@@ -59,30 +59,32 @@
 
 .hspacer
 
-/.container
+.container
 .marketing-area
   .row
-    .col-sm-4
+    .col-xs-4
       .box
         %h3 Kostenlos testen
-        %a.glow{:href => "#{static_pages_quiz_path}"} 
-          = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
-    .col-sm-4
+        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+        /%a.glow{:href => "#{static_pages_quiz_path}"} 
+        /  = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+    .col-xs-4
       .box
         %h3 Test starten
-        %a.glow{:href => "#{static_pages_quiz_path}"} 
-          /static_pages_news_path
-          = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
-    .col-sm-4
+        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+        /%a.glow{:href => "#{static_pages_quiz_path}"} 
+        /  = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+    .col-xs-4
       .box
-        %h3 Tipps / Blog / FAQ
+        %h3 Blog / FAQ / FAQ
+        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
         /Fragen / Antworten
-        %a.glow{:href => "#{static_pages_faq_path}"}
-          = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
+        /%a.glow{:href => "#{static_pages_faq_path}"}
+        /  = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
 
 
-  /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
-  /= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+/  /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
+/  /= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
 
 /<span class="visible-xs">SIZE XS smaller 750px</span><span class="visible-sm">SIZE SM 750px</span><span class="visible-md">SIZE MD 970px</span><span class="visible-lg">SIZE LG 1170px</span> 
 
@@ -112,60 +114,101 @@
 .hspacer-4x
 
 .row
-  .col-sm-12
-    %p.text-justify
-      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+  .col-sm-4
+    %ul.list-group.feat
+      %li.list-group-item.feat.caption Die Online Vorbereitung zum besten Preis!
+      %li.list-group-item.feat Jetzt nur EUR 49,90!
+      %li.list-group-item.feat Vorher kostenlos testen und überzeugen!
+      %li.list-group-item.feat Unkomplizierte und schnelle Anmeldung!
+  .col-sm-4
+    %ul.list-group
+      %li.list-group-item.feat.caption Weit über 1000 Fragen von Spezialisten entwickelt!
+      %li.list-group-item.feat Unterschiedliche Schwierigkeiten
+      %li.list-group-item.feat Ständig neue Fragen
+      %li.list-group-item.feat Immer wieder neue Tests per Zufallsgenerator
+  .col-sm-4
+    %ul.list-group
+      %li.list-group-item.feat.caption Weitere Vorteile
+      %li.list-group-item.feat Einfacher Aufbau
+      %li.list-group-item.feat Abdeckung der Themengebiete
+      %li.list-group-item.feat Aufzeichnung der Ergebnisse / Statistik
+      %li.list-group-item.feat Zusätzlich Skripten zum Wissensteil
+      %li.list-group-item.feat Live Vorbereitungskurse
 
 .hspacer-4x
+.hspacer-4x
+/ Video ausblenden
+/.row
+/  .col-sm-12
+/    .div.text-center{:style => "background-color: #F0F0F0; padding-top: 1em; padding-bottom: 4em;"}
+/      %h3.bold Videoüberschrift
+/      %p
+/        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "400em", :src => "https://www.youtube.com/embed/DA_Bn2Zyv1Q", :width => "100%"}
+/  /.col-sm-12.hidden-xs.hidden-sm .hidden-md.hidden-lg
+/  /  %p.text-center{:style => "background-color: #F0F0F0; padding-top: 2em; padding-bottom: 2em;"}
+/  /    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "350em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
 
 .row
   .col-sm-12
-    .div.text-center{:style => "background-color: #F0F0F0; padding-top: 1em; padding-bottom: 4em;"}
-      %h3.bold Videoüberschrift
-      %p
-        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "400em", :src => "https://www.youtube.com/embed/DA_Bn2Zyv1Q", :width => "100%"}
-  /.col-sm-12.hidden-xs.hidden-sm .hidden-md.hidden-lg
-  /  %p.text-center{:style => "background-color: #F0F0F0; padding-top: 2em; padding-bottom: 2em;"}
-  /    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "350em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
-
+    %table.page-slicer-caption
+      %td
+        %hr/
+      %td.caption Empfehlungen
+      %td
+        %hr/
 
 /%hr.featurette-divider/
 .hspacer-4x
-.marketing-area{:style => "background-color: #F2F2F2; padding-top: 2em;"}
+.hspacer-4x
+
+.marketing-area.testimonials.right
   .featurette-bg1
     .row.featurette
-      .col-md-7
+      .col-xs-10
         %h2.featurette-heading.quote-left
           &#8220;Das Material ist perfekt vorsortiert und 
           %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
           %span.autor Dr. Stefan Ulmer – Praktischer Arzt
         /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      .col-md-5
-        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
+      .col-xs-2
+        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.pull-right{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
 
 /%hr.featurette-divider/
 .hspacer-4x
 
-.marketing-area{:style => "background-color: #F2F2F2; padding-top: 2em;"}
+.marketing-area.testimonials.left
   .featurette-bg2
     .row.featurette
-      .col-md-5
+      .col-xs-2
         %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
-      .col-md-7
+      .col-xs-10
         %h2.featurette-heading.quote-right
           &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
           %span.text-muted BESTANDEN!!!&#8221;<br/>
           %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
-          = image_tag("home/Siegel.jpg", alt: "Qualitätssiegel", style: "height: 9em")
+          = image_tag("home/siegel.png", alt: "Qualitätssiegel", class: "thumb-up-img")
     /%hr.featurette-divider/
   
-
-/%hr.featurette-divider/
+.hspacer-4x
 .hspacer-4x
 
+/.marketing-area{:style => "background-color: #F2F2F2"}
+/.row
+/  %p.text-right
+/    = image_tag("home/siegel.png", alt: "Qualitätssiegel", style: "height: 15em")
+    
+/%hr.featurette-divider/
+.row
+  .col-sm-12
+    %table.page-slicer-caption
+      %td
+        <hr class="bolder">
+      %td.caption Neuigkeiten
+      %td
+        <hr>
+        
+.hspacer-4x
+.hspacer-4x
 /%hr.featurette-divider/
 /.row.featurette
 /  .col-md-12
@@ -185,11 +228,6 @@
 /.hspacer
 
 
-/.marketing-area{:style => "background-color: #F2F2F2"}
-/  .row
-/    %p.text-center
-/      = image_tag("home/Siegel.jpg", alt: "Qualitätssiegel", style: "height: 15em")
-    
 .news-section
   .row
     - @novelties.first(3).each do |novelty|
@@ -201,6 +239,10 @@
         %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
     .col-md-4
     
+.hspacer-4x
+.hspacer-4x
+
+
     
 /%hr.featurette-divider/
 .hspacer

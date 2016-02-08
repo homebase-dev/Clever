@@ -9,12 +9,12 @@ class InvoicePdf < Prawn::Document
     @subscription_start = Time.new.strftime("%d.%m.%Y")
     @subscription_end = "1. Juli 2016"
 
-    @price_netto = ((invoice.amount/120) * 100).round(2)
-    @price_tax = (invoice.amount - @price_netto).round(2);
+    #@price_netto = ((invoice.amount/120) * 100).round(2)
+    #@price_tax = (invoice.amount - @price_netto).round(2);
     @price_total = (@price_netto + @price_tax).round(2);
 
-    @price_netto = ApplicationController.helpers.number_to_currency(@price_netto, unit: "€", separator: ".", delimiter: "", format: "%u %n")
-    @price_tax = ApplicationController.helpers.number_to_currency(@price_tax, unit: "€", separator: ".", delimiter: "", format: "%u %n")
+    #@price_netto = ApplicationController.helpers.number_to_currency(@price_netto, unit: "€", separator: ".", delimiter: "", format: "%u %n")
+    #@price_tax = ApplicationController.helpers.number_to_currency(@price_tax, unit: "€", separator: ".", delimiter: "", format: "%u %n")
     @price_total = ApplicationController.helpers.number_to_currency(@price_total, unit: "€", separator: ".", delimiter: "", format: "%u %n")
 
     #font :Helvetica, :style => :normal
@@ -49,7 +49,8 @@ class InvoicePdf < Prawn::Document
   end
   
   def price_table
-    data = [["Nettobetrag", "#{@price_netto}"], ["20% Umsatzsteuer", "#{@price_tax}"], ["Gesamt", "#{@price_total}"]]
+    #data = [["Nettobetrag", "#{@price_netto}"], ["20% Umsatzsteuer", "#{@price_tax}"], ["Gesamt", "#{@price_total}"]]
+    data = [["Gesamt", "#{@price_total}"]]
     table(data, :position => :right, :column_widths => [135, 135])  do
       row(2).font_style = :bold
       column(1).align = :right

@@ -75,7 +75,7 @@ class StaticPagesController < ApplicationController
       :amount => membership_price,
       :payment_method_nonce => nonce,   
       :custom_fields => {
-        :clever_user_id => @user.id
+        :medat_user_id => @user.id
       },   
       #:order_id => "order id",
       #:merchant_account_id => "my id",
@@ -98,7 +98,7 @@ class StaticPagesController < ApplicationController
       :options => {
         :submit_for_settlement => true
       },
-      :channel => "CleverLearningQuiz"
+      :channel => "medATQuiz"
     )
     
     invoice = Invoice.new(:user => @user, :amount => membership_price, :message => result.try(:message), :transaction_id => result.try(:transaction).id, :transaction_code => result.try(:transaction).processor_response_code, :transaction_text => result.try(:transaction).processor_response_text, :success => result.try(:success?))

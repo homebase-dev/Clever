@@ -3,27 +3,29 @@
     Impressum
     / <small>Subtext for header</small>
 .row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("placeholder_icon.png", alt: "Impressum icon")
-      %p.text-center
-  .col-lg-10
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("placeholder_icon.png", alt: "Impressum icon")
+  /    %p.text-center
+  .col-lg-12
     %h2 Kontaktdaten
     %br/
     %address
-      %strong=t 'clever.address.owner'
+      %strong=t 'medAT.address.owner'
       %br/
-      =t 'clever.address.street'
+      =t 'medAT.address.street'
       %br/
-      #{t 'clever.address.zip'} #{t 'clever.address.city'}
+      #{t 'medAT.address.zip'} #{t 'medAT.address.city'}
       %br/
-      =t 'clever.address.country'
+      =t 'medAT.address.country'
       %br/
     %address
       %abbr{:title => "Phone"} Tel.
-      =t 'clever.address.phone'
+      =t 'medAT.address.phone'
       %br/
       %abbr{:title => "Phone"} E-mail
-      %a{:href => "mailto:#"}=t 'clever.address.email'
+      %a{:href => "mailto:#"}=t 'medAT.address.email'
       %br/
     %p Für die Richtigkeit und Vollständigkeit der gebotenen Informationen wird keine Gewähr übernommen. Den via Internet bereitgestellten Informationen kommt keine Rechtsverbindlichkeit zu. Verschiedene Elemente auf unserer Seite sind urheberrechtlich oder durch andere gesetzliche Regelungen geschützt. Wir weisen darauf hin, dass es ohne unsere ausdrückliche Zustimmung nicht gestattet ist, unser Angebot im ganzen oder irgendeines seiner rechtlich geschützten Elemente zu kopieren oder sonst wie zu erwerten. Haftungshinweis: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+    
+    .hspacer-4x

@@ -35,16 +35,16 @@
     label_css_class: "label-danger", 
     img: "lock.png", 
     status_label: "Gesperrt", 
-    status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: #{t 'clever.email_support'}", 
+    status_msg: "Dein Account wurde gesperrt! Bitte wende dich an unseren Support: #{t 'medAT.email_support'}", 
     button_caption: "E-mail an das Support-Team schreiben",
-    button_path: "mailto:#{t 'clever.email_support'}"
+    button_path: "mailto:#{t 'medAT.email_support'}"
 -else
   = render "static_pages/profile/account_status", 
     label_css_class: "label-success", 
     img: "unlocked.png", 
     status_label: current_user.role_name, 
-    status_msg: "Bei Fragen wende dich an das Support Team: #{t 'clever.email_support'}", 
+    status_msg: "Bei Fragen wende dich an das Support Team: #{t 'medAT.email_support'}", 
     button_caption: "E-mail an das Support-Team schreiben",
-    button_path: "mailto:#{t 'clever.email_support'}"
+    button_path: "mailto:#{t 'medAT.email_support'}"
 
-        
+.hspacer-4x 

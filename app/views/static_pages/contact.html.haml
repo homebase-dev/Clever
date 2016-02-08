@@ -1,7 +1,7 @@
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript
   function initialize() {
-    var positionLatLng = new google.maps.LatLng(#{t 'clever.address.lat'}, #{t 'clever.address.lng'});
+    var positionLatLng = new google.maps.LatLng(#{t 'medAT.address.lat'}, #{t 'medAT.address.lng'});
 
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
@@ -14,7 +14,7 @@
     var marker = new google.maps.Marker({
         position: positionLatLng,
         map: map,
-        title: '#{t 'clever.address.owner'}'
+        title: '#{t 'medAT.address.owner'}'
     });
 
   }
@@ -33,20 +33,20 @@
       %p.text-center
   .col-lg-10
     %address
-      %strong=t 'clever.address.owner'
+      %strong=t 'medAT.address.owner'
       %br/
-      =t 'clever.address.street'
+      =t 'medAT.address.street'
       %br/
-      #{t 'clever.address.zip'} #{t 'clever.address.city'}
+      #{t 'medAT.address.zip'} #{t 'medAT.address.city'}
       %br/
-      =t 'clever.address.country'
+      =t 'medAT.address.country'
       %br/
     %address
       %abbr{:title => "Phone"} Tel.
-      =t 'clever.address.phone'
+      =t 'medAT.address.phone'
       %br/
       %abbr{:title => "Phone"} E-mail
-      %a{:href => "mailto:#"}=t 'clever.address.email'
+      %a{:href => "mailto:#"}=t 'medAT.address.email'
       %br/
      
 .row

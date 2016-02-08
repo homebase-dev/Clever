@@ -7,10 +7,21 @@
     .panel-body.scale-images
       /%p ONLY AT BEGINNING changed -> show with counter
       =preview_html_field(@question.question_context.content)
-      %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'lets-go', :href => "#", :role => "button"} Los gehts!
-      
+      %a.btn.btn-default.pull-right.first-question-only-begin{:id => 'lets-go', :href => "#", :role => "button"} 
+        - if @test_learnphase
+          Lernphase vorzeitig beenden und weiter
+        - else 
+          Los gehts!
+
 
 :javascript
+  var isTestLearnphase = "#{@test_learnphase}";
+  var stepToNextAssignationUrl = "#{test_step_path(:id => @test, :assignation_number => @assignation_number+1, :skip_pause => true, :skip_learning_phase => true)}";
+
+  console.log("")
+  
+  console.log("test_learnphase: "+isTestLearnphase);
+  
   function setTimeUpCookie() {
     setCookie("isContextVisibleOnlyAtBeginningTimeUp_#{@test.id}_#{@question.question_context.id}", true, 1);
   }  
@@ -32,15 +43,18 @@
   }
       
   function hideLetsGoButton() {
-    var letsGo = $("#lets-go");
-    letsGo.hide();
+    $('#lets-go').hide();
+  }
+  
+  function stepToNextAssignation() {
+    window.location.href = stepToNextAssignationUrl;
   }
   
   function doOnLetsGoButtonClick() {
     console.log("clicked lets go!");
     setTimeUpCookie();
     hideContext();
-    showQuestion();
+    isTestLearnphase ? stepToNextAssignation() : showQuestion();
   }
   
   $( document ).ready(function() {

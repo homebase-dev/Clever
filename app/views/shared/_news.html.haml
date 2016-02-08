@@ -6,6 +6,17 @@
 /  %p
 /    =body
 
+
+/.col-md-12
+/  .box.news
+/    %h4.box.news.head.text-center #{title}
+/    .box.news.body
+/      #{preview_html_field(body)}  
+/    
+/      %p.text-left
+/        #{created_at.strftime("%d.%m.%Y %H:%M")}  
+
+
 .col-md-4
   .box.news
     %h4.box.news.head #{title}

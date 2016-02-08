@@ -1,0 +1,30 @@
+.page-header
+  %h3
+    #{@pause_minutes} Pause
+    %small Zeit zum Verschnaufen...
+    /%small #{@question_number+1}/#{@test.questions.count}
+.row
+  .col-lg-12
+    %p 
+      Im richtigen Medizintest hättest du jetzt eine kleine Verschnaufspause von:
+      
+    %h4#countdown
+      :javascript
+        $("#countdown").countdown("#{@pause_finished_date}", function(event) {
+          $(this).text(
+            event.strftime('%M Minuten %S Sekunden')
+          );
+        });
+      
+    %p
+      Wenn du möchtest kannst du aber auch sofort weitermachen!
+    
+
+.hspacer-4x
+
+.row
+  .col-lg-12
+    %p.text-center
+      = link_to "Weiter gehts!".html_safe, test_step_path(:id => @test.id, :assignation_number => @assignation_number, :skip_pause => true), :class => 'btn btn-success', data: { no_turbolink: true }
+      
+.hspacer-4x

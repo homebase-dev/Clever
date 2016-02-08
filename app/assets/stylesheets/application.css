@@ -54,7 +54,7 @@ body {
 }
 
 .countdown-section {
-	background-color: #0081E0;
+	background-color: #3E3E3E; /*#0081E0; */
 }
 
 
@@ -213,7 +213,7 @@ h1.super {
 	text-align: center;
 	padding: 0.5em;
 	/*background-color: rgba(47, 93, 144, 1)*/;
-	background-color: #0081E0;
+	background-color: #3E3E3E; /*#0081E0;*/
 	border-radius: 0px !important;
 }
 
@@ -234,22 +234,25 @@ h1.super {
 }
 
 .box.news.head {
-    font-weight: bold;
+    /*font-weight: bold;*/
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: #45a1e5; /*#F6C800; /*0081E0;*/
+    background-color: #F6F6F6; /*E6D38B;*/
+    color: #3E3E3E;
+    /*background-color: #45a1e5; /*#F6C800; /*0081E0;*/
     margin-bottom: 6px;
     text-align: center;
+   	padding-left: 0.5em;
 }
 
 .box.news.body {
-    background-color: #ededed;
-    color: #555;
-    padding-top: 1em;
-    /*padding-bottom: 1em;*/
+    background-color: #FCFCFC; /*#3E3E3E; /*#F2F2F2; /*#ededed;*/
+    /*color: #555;*/
+    color: #3E3E3E;
+    padding-top: 6px;
     padding-left: 6px;
     padding-right: 6px;
-    margin-bottom: 6px;
+    padding-bottom: 6px;
 }
 
 .box.news.footer {

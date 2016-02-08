@@ -3,12 +3,12 @@
     Registrieren
     / <small>Subtext for header</small>
 .row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("passport.png", alt: "Registration icon")
-      %p.text-center
-    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
-  .col-lg-10
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("passport.png", alt: "Registration icon")
+  /    %p.text-center
+  /  %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
+  .col-lg-12
   
     .panel.panel-primary
       .panel-heading
@@ -59,4 +59,5 @@
               = check_box_tag :accept_tos 
               Ich akzeptiere die AGB
           = f.submit "Registrieren", :class => 'btn btn-success pull-right'
+          %a.btn.btn-default.pull-right.btn.space-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
         / = render "devise/shared/links"

@@ -3,14 +3,19 @@
     Häufig gestellte Fragen
     / <small>Subtext for header</small>
 .row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("placeholder_icon.png", alt: "FAQ icon")
-      %p.text-center
-    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
-  .col-lg-10
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("placeholder_icon.png", alt: "FAQ icon")
+  /    %p.text-center
+  /  %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
+  .col-lg-12
+    - if @top_faq.nil? && @older_faqs.empty?
+      Noch keine Einträge vorhanden. 
+      
     - if @top_faq
       = render "shared/panel", panel_css_class: "panel-primary", title: @top_faq.title, body: @top_faq.text, created_at: @top_faq.created_at
     
     - @older_faqs.each do |faq|
       = render "shared/panel", panel_css_class: "panel-default", title: faq.title, body: faq.text, created_at: faq.created_at
+      
+    .hspacer-4x

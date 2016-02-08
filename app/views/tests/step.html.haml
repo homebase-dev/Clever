@@ -1,9 +1,9 @@
-- if @assignation_number == 0
+- if @assignation_number == 1
   .page-header
     %h3
       =@question.question_context.category.name
       %small Test
-      /%small #{@assignation_number+1}/#{@test.assignations.count}
+      /%small #{@assignation_number}/#{@test.assignations.count}
       
 .row
   .col-lg-12
@@ -127,13 +127,14 @@
       
 
     .progress.flat-corners
-      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{((@assignation_number+1)*100) / @test.assignations.count}", :role => "progressbar", :style => "width: #{((@assignation_number+1)*100) / @test.assignations.count}%"}
-        %span #{@assignation_number+1}/#{@test.assignations.count}
+      .progress-bar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{(@assignation_number*100) / @test.assignation_count}", :role => "progressbar", :style => "width: #{(@assignation_number*100) / @test.assignation_count}%"}
+        %span #{@assignation_number}/#{@test.assignation_count}
       
     %a.btn.btn-default.btn-xs.pull-right{:href => "#", :role => "button", :id => "show_context_button", :style => "margin-bottom: 0.5em; display: none;"} Zeige Kontext
     :javascript
-        console.log(#{@show_context});
-        console.log(#{@did_context_change});
+        console.log("show_context: " + #{@show_context});
+        console.log("did_context_change: "+#{@did_context_change});
+        console.log("test_change: "+#{@test_change})
         
         
     /TODO render context, set display to hide from beginning
@@ -195,8 +196,8 @@
             
       .row{:style => "margin-top: 20px;"}
         .col-xs-5
-          - if @assignation_number > 0
-            %a.btn.btn-default.pull-left.full-width.flat-corners{:href => test_step_path(:id => @test, :assignation_number => @assignation_number), :role => "button"} Zurück
+          - if @assignation_number > 1
+            %a.btn.btn-default.pull-left.full-width.flat-corners{:href => test_step_path(:id => @test, :assignation_number => @assignation_number-1), :role => "button"} Zurück
         .col-xs-2
         .col-xs-5
           %a.btn.btn-default.pull-right.full-width.flat-corners{:id => 'next-link', :href => "#", :role => "button"} Weiter
@@ -249,7 +250,7 @@
     $('a#next-link').on('click', function() {
       var checked_answer_param = getCheckedAnswersParam();
       console.info(checked_answer_param)
-      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
+      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+1}?"+checked_answer_param;
     });
 - else
   :javascript
@@ -292,6 +293,6 @@
     $('a#next-link').on('click', function() {
       var checked_answer_param = getCheckedAnswersParam();
       console.info(checked_answer_param)
-      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+2}?"+checked_answer_param;
+      this.href = "/tests/"+"#{@test.id}"+"/step/"+"#{@assignation_number+1}?"+checked_answer_param;
     });
 

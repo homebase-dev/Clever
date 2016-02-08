@@ -221,7 +221,7 @@ de:
     errors:
       default_missing: 'Kein Default Wert'
       
-  clever:
+  medAT:
     email_support: 'office@aufnahmetest.at'
     address: 
       owner: 'Mag. Stefan Stillebacher'
@@ -238,7 +238,10 @@ de:
     bt_success: 'Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!'
     bt_failure: 'Bei der Bezahlung trat ein Fehler auf, versuchen Sie es später nocheinmal oder kontaktiere den Support. Fehlermeldung: %{braintree_response}'
     email:
-      sender: 'tian.hofer@gmail.com'
-      subject: 'Willkommen bei aufnahmetest.at! (Ihre Rechnung befindet sich im Anhang)'
+      sender: 'tian.hofer@gmail.com' #'TODO'
+      subject: 'Anmeldung bei aufnahmetest.at' #'Willkommen bei aufnahmetest.at! (Ihre Rechnung befindet sich im Anhang)'
       headline: 'Hallo %{firstname},'
-      body_html: 'Vielen Dank für dass du dich bei aufnahmetest.at registriert hast, du kannst jetzt unser volles Angebot nutzen.<br /><br />Im Anhang findest du deine Rechnung.'
+      body_html: 'Vielen Dank für die Registrierung bei aufnahmetest.at <br /><br />Ihre Zugangsdaten sind:<br /> - Benutzer: %{username}<br /><br /> Anbei finden Sie die Rechnung.<br /><br />Beste Grüße<br />Das Team von aufnahmetest.at'
+      
+
+

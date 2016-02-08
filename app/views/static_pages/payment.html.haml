@@ -9,20 +9,22 @@
     Registration
     / <small>Subtext for header</small>
 .row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("placeholder_icon.png", alt: "Payment icon")
-      %p.text-center
-    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Später
-  .col-lg-10
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("placeholder_icon.png", alt: "Payment icon")
+  /    %p.text-center
+  /  %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Später
+  .col-lg-12
     .panel.panel-primary
       .panel-heading
         %h3.panel-title Schritt 2/2: Account freischalten
       .panel-body
         %p
-          Gib deine Kreditkarteninformationen ein und bezahlte #{membership_price_euro} für die Freischaltung deines Accounts.
-          %br>/
+          Gib deine Kreditkarteninformationen ein und bezahlte #{membership_price_euro} für die Freischaltung deines Accounts. 
+          %br
           Damit erhälst du für 1 Jahr vollen Zugriff auf unser gesamtes Fortbildungsangebot!
+          %br
+          Neben Kreditkarten ist auch die Zahlung per PayPal möglich, drücke dafür auf die untenstehende, blaue PayPal Schaltfläche.
           
         %p.form-control-static.account-status.inactive
           %span.label.label-warning Preis: #{membership_price_euro} für 1 Jahr
@@ -35,7 +37,8 @@
           #dropin  
           %br/
           = submit_tag "#{membership_price_euro} bezahlen und Registration abschließen", :class => 'btn btn-success pull-right'
-       
+          %a.btn.btn-default.pull-right.btn.space-right{:href => "#{static_pages_home_path}", :role => "button"} Später
+          
         %br/
         %br/
         

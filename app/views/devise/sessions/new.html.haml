@@ -3,20 +3,20 @@
     Login
     / <small>Subtext for header</small>
 .row
-  .col-lg-2
-    %a.thumbnail.category{:href => "#"}
-      = image_tag("lock_key.png", alt: "Impressum icon")
-      %p.text-center
-  .col-lg-10
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("lock_key.png", alt: "Impressum icon")
+  /    %p.text-center
+  .col-lg-12
     .text-center
       %br/
-      = link_to "Neu hier? Registriere dich!", new_registration_path(resource_name), :class => "btn btn-success", :style => "color: #fff;"
+      = link_to ("Neu hier? <br />Registriere dich!").html_safe, new_registration_path(resource_name), :class => "btn btn-success", :style => "color: #fff;"
       %br/
       %br/
-      %a.btn.btn-primary.btn.pull-center{:href => "#{user_omniauth_authorize_path(:facebook)}", :role => "button"} 
-        %i.fa.fa-facebook &nbsp;&nbsp;&nbsp;&nbsp; Mit Facebook Anmelden/Registrieren
-      %br/
-      %br/
+      /%a.btn.btn-primary.btn.pull-center{:href => "#{user_omniauth_authorize_path(:facebook)}", :role => "button"} 
+      /  %i.fa.fa-facebook &nbsp;&nbsp;&nbsp;&nbsp; Mit Facebook Anmelden/Registrieren
+      /%br/
+      /%br/
       
     %table{:width => "100%"}
       %td
@@ -43,3 +43,4 @@
     %br/
     = render "devise/shared/links"
     
+    .hspacer-4x

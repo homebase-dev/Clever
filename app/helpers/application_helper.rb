@@ -47,5 +47,40 @@ module ApplicationHelper
   def meta_description
     description = "Online Vorbereitung für den Medizin Aufnahmetest (MedAT) inklusive kostenlose Skripten für Biologie, Physik, Chemie und Mathematik; unzählige Gesamttest mit Zufallsgenerator; alle Untertests wie Kognitive Fähigkeiten, Biologie etc. einzeln üben, Lernstatistiken analysieren und gezielt üben"
   end
+  
+  def time_ago_in_words_for_secs(time_in_seconds)
+    time = "Nicht verfügbar"
+    
+    time_in_seconds = time_in_seconds.to_f
+    
+    if time_in_seconds.blank? || (time_in_seconds.is_a? Integer)
+      return time
+    end
+    
+    time = time_ago_in_words(time_in_seconds.seconds.from_now)
+  end
+  
+  def duration_string_from_secs(duration_in_seconds)
+    
+    if duration_in_seconds.blank?
+      duration_in_seconds = 0
+    end
+        
+    mins = (duration_in_seconds / 60).to_i
+    secs = (duration_in_seconds % 60).to_i
+       
+    #duration_string = Time.at(duration_in_seconds).utc.strftime("%H:%M:%S")
+    if mins == 0 && secs == 0
+      duration_string = "#{secs.to_i} Sek."
+    elsif secs == 0
+      duration_string = "#{mins.to_i} Min."
+    elsif mins == 0
+      duration_string = "#{secs} Sek."
+    else
+      duration_string = "#{mins} Min. #{secs} Sek."
+    end
+    
+    duration_string
+  end
     
 end

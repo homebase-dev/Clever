@@ -1,6 +1,7 @@
 .page-header
   %h3
-    =@question.question_context.category.name
+    =@test.description
+    /=@question.question_context.category.name
     %small Test
     /%small #{@question_number+1}/#{@test.questions.count}
 .row
@@ -11,28 +12,49 @@
           
     
 .row
-  .col-sm-2
-  .col-sm-4
-    %p.pull-right
-      = image_tag("result_15.png", alt: "Result icon", :style => "margin-top: 1em; height: 6em;")
-  .col-sm-4
+  /.col-sm-2
+  .col-sm-12
+    /%p.pull-right
+    /  = image_tag("result_15.png", alt: "Result icon", :style => "margin-top: 1em; height: 6em;")
+    /.col-sm-4
     %h1
       Ergebnis:
-      %small.quiz-result-positiv #{@test.result_in_percent} %
-    %p{:style => "font-size: 0.9em"} Du hast #{@test.passed_assignations} von #{@test.assignations.count} Fragen richtig beantwortet
-    %p{:style => "font-size: 0.9em"} Zeit: #{time_ago_in_words @test.duration_in_sec.seconds.from_now}
-  .col-sm-2
+      %small.quiz-result-positiv #{@score_in_percent} %
+    %p{:style => "font-size: 0.9em"} Du hast #{@score} von #{@max_score} Fragen richtig beantwortet
+    %p{:style => "font-size: 0.9em"} Zeit: #{duration_string_from_secs @test.duration_in_sec}
+    /.col-sm-8
 
 .row{:"data-no-turbolink" => true}
   .col-lg-12
     %h3 Kontrolle:
-    %p Richtige Antworten sind <span class="correct" style="padding-left: 1.5em;">grün</span>, falsche <span class="wrong" style="padding-left: 1.5em;">rot</span> markiert.
+    %p Richtige Antworten sind <span class="correct" style="padding-left: 1.5em;">grün</span>, falsche <span class="wrong" style="padding-left: 1.5em;">rot</span> markiert. <br/><br/>
     #accordion.panel-group
-      - @test.assignations.each_with_index do |assignation, index|
+      - visible_assignations_index = 0
+      - @assignations.each_with_index do |assignation, index|
+        - next_assignation = @assignations[index+1]
+        - test1 = assignation.test
+        - test2 = next_assignation.present? ? next_assignation.test : nil
+        - test1_duration_secs = test1.present? ? test1.duration_in_sec : nil
+        - test1_available_secs = test1.present? ? test1.available_time_sec : nil
+        - test2_duration_secs = test2.present? ? test2.duration_in_sec : nil
+        - test2_available_secs = test2.present? ? test2.available_time_sec : nil
+        
+        - if index == 0
+          %h4=test1.description 
+          %p Zeit: #{duration_string_from_secs(test1_duration_secs)} von #{duration_string_from_secs(test1_available_secs)} 
+
+        / skip assignations from tests of type learnphase
+        - if assignation.test.test_learnphase?
+          / TODO put into partial
+          - if assignation.belongs_to_different_test?(next_assignation) && index < (@assignations.count - 1)
+            %h4=test2.description
+            %p Zeit: #{duration_string_from_secs(test2_duration_secs)} von #{duration_string_from_secs(test2_available_secs)} 
+          - next
+
         .panel.panel-default
           .panel-heading.flat-corners{:class => "#{assignation.passed? ? '' : 'wrong-answer'}"}
             %h4.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{index+1}
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{visible_assignations_index+1}
           %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
             .panel-body.scale-images 
               
@@ -70,8 +92,18 @@
                       Lösung
                   .panel-body.scale-images 
                     = assignation.question.solution
+                    
+                    
+        - if assignation.belongs_to_different_test?(next_assignation) && index < (@assignations.count - 1)
+          %h4=test2.description
+          %p Zeit: #{duration_string_from_secs(test2_duration_secs)} von #{duration_string_from_secs(test2_available_secs)} 
+        
+        - visible_assignations_index+=1
 
 .row 
   .col-lg-12
     %a.btn.btn-default.pull-right.flat-corners{:href => "#{static_pages_quiz_path}"} Andere Kategorie
-    =link_to 'Nochmal', tests_path(:category_id => @question.question_context.category.id, :nb_of_contexts => 3, :nb_of_questions => 3), :method => :post, :class => "btn btn-default pull-right space-right flat-corners" 
+    /- if @total_test
+    /  =link_to 'Nochmal', tests_path(:total_test => true), :method => :post, :class => "btn btn-default pull-right space-right flat-corners" 
+    /- else
+    /  =link_to 'Nochmal', tests_path(:category_id => @question.question_context.category.id, :nb_of_contexts => 3, :nb_of_questions => 3), :method => :post, :class => "btn btn-default pull-right space-right flat-corners" 
