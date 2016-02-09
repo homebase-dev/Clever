@@ -23,11 +23,11 @@ class TestsController < ApplicationController
   end
   
   def create
-    puts "create test".yellow.on_white
+    #puts "create test".yellow.on_white
     is_paying_member = current_user && (current_user.member? || current_user.can_manage?)
     do_total_test = (params[:total_test] == "true")
-    nb_of_contexts = params[:nb_of_contexts]
-    nb_of_questions = params[:nb_of_questions]
+    nb_of_contexts = params[:nb_of_contexts].to_i
+    nb_of_questions = params[:nb_of_questions].to_i
     
     if params[:test].present?
       @test = Test.new(test_params)
@@ -37,7 +37,7 @@ class TestsController < ApplicationController
       if is_paying_member
         @test = create_new_total_test(current_user, true)
       else
-        @test = create_new_total_test_for_guest()
+        @test = create_new_total_test_for_guest(current_user)
       end
     else
       category_id = params[:category_id]
@@ -51,7 +51,7 @@ class TestsController < ApplicationController
       if is_paying_member
         @test = create_partial_test(current_user, category, nb_of_contexts, nb_of_questions, true)
       else
-        @test = create_new_partial_test_for_guest(category)
+        @test = create_new_partial_test_for_guest(current_user, category)
       end
     end
     
@@ -83,56 +83,56 @@ class TestsController < ApplicationController
     @assignation_number = params[:assignation_number].to_i
     @assignation_number = 1 if (@assignation_number.blank? || @assignation_number < 1)
     #@do_check_answers = (params[:do_check_answers] == "true")
-    puts "STEP test: #{@test.id}, assignation_number: #{@assignation_number}".red.on_white
+    #puts "STEP test: #{@test.id}, assignation_number: #{@assignation_number}".red.on_white
         
         
-    puts ">>> assignations --------".yellow.on_white
+    #puts ">>> assignations --------".yellow.on_white
     @assignation_index = @assignation_number - 1
     next_assignation_index = @assignation_index+1
     previous_assignation_index = @assignation_index-1
     
     @assignation = @test.assignation(@assignation_index)
-    puts "  assignation (index: #{@assignation_index}): #{@assignation.inspect}".yellow.on_white
+    #puts "  assignation (index: #{@assignation_index}): #{@assignation.inspect}".yellow.on_white
     
     @previous_assignation = @test.assignation(previous_assignation_index)
-    puts "  previous_assignation (index: #{previous_assignation_index}): #{@previous_assignation.inspect}".yellow.on_white
+    #puts "  previous_assignation (index: #{previous_assignation_index}): #{@previous_assignation.inspect}".yellow.on_white
     
-    next_assignation = @test.assignation(next_assignation_index)
-    puts "  next_assignation (index: #{next_assignation_index}): #{next_assignation.inspect}".yellow.on_white
+    #next_assignation = @test.assignation(next_assignation_index)
+    #puts "  next_assignation (index: #{next_assignation_index}): #{next_assignation.inspect}".yellow.on_white
 
-    puts "-------------------------".yellow.on_white
+    #puts "-------------------------".yellow.on_white
     
     
     @checked_answers = params[:ca]
     @timer_elapsed_seconds = calculate_elapsed_seconds(@assignation)
     @previous_test = @test.previous_leaf_from_assignation(@test, @assignation)
     
-    puts ">>> special flags ----------".yellow.on_white
+    #puts ">>> special flags ----------".yellow.on_white
     @skip_test_intro = (params[:skip_test_intro] == "true")
     @skip_pause = (params[:skip_pause] == "true")
     @skip_learning_phase = (params[:skip_learning_phase] == "true")
-    puts "  skip_test_intro: #{@skip_test_intro}".yellow.on_white
-    puts "  skip_pause #{@skip_pause}".yellow.on_white
-    puts "  skip_learning_phase #{@skip_learning_phase}".yellow.on_white
-    puts "---------------------------".yellow.on_white
+    #puts "  skip_test_intro: #{@skip_test_intro}".yellow.on_white
+    #puts "  skip_pause #{@skip_pause}".yellow.on_white
+    #puts "  skip_learning_phase #{@skip_learning_phase}".yellow.on_white
+    #puts "---------------------------".yellow.on_white
     
     #puts "TEST start: #{@test.start}".yellow.on_white
 
     #puts "ELAPSED SECS: #{Time.now} - #{} #{@timer_elapsed_seconds}".yellow.on_white
     
     
-    puts ">>> check no_more_steps ---------------".green.on_white
+    #puts ">>> check no_more_steps ---------------".green.on_white
     #puts "no_more_steps?: #{@assignation.inspect}, #{@assignation_number}, #{@test.questions.count}".yellow.on_white
     no_more_steps = @assignation.nil? #no_more_steps?(@assignation) #, @assignation_number, @test.questions.count)
-    puts "  no_more_steps: #{no_more_steps}".yellow.on_white
+    #puts "  no_more_steps: #{no_more_steps}".yellow.on_white
     if no_more_steps
-      puts "  do_check_answers: #{@do_check_answers}".blue.on_black
+      #puts "  do_check_answers: #{@do_check_answers}".blue.on_black
       set_checked_answers(@previous_assignation, @checked_answers)
       
-      puts "  goto result".blue.on_black
+      #puts "  goto result".blue.on_black
       redirect_to test_result_path(:id => @test.id, :last_assignation_number => @assignation_number-1) and return
     end
-    puts "---------------------------------------".yellow.on_white
+    #puts "---------------------------------------".yellow.on_white
     
     
     @workflow = @assignation.question.question_context.test_workflow
@@ -143,49 +143,49 @@ class TestsController < ApplicationController
     
     #TODO move below no_more_steps?
     @test_changed = @assignation.belongs_to_different_test?(@previous_assignation)
-    puts "  test_changed: #{@test_changed}".yellow.on_white
+    #puts "  test_changed: #{@test_changed}".yellow.on_white
 
-    puts ">>> check time_for_a_break -----------".green.on_white
-    puts "  previous_test.pause? #{@previous_test.pause?}" if @previous_test
+    #puts ">>> check time_for_a_break -----------".green.on_white
+    #puts "  previous_test.pause? #{@previous_test.pause?}" if @previous_test
     #puts "assignation.test: #{@assignation.test.inspect}".yellow.on_white
     @time_for_a_break = @test_changed && @previous_test.present? && @previous_test.pause? && !@skip_pause && !@skip_test_intro
-    puts "  time_for_a_break: #{@time_for_a_break}".yellow.on_white
+    #puts "  time_for_a_break: #{@time_for_a_break}".yellow.on_white
     if @time_for_a_break
-      puts "  do_check_answers: #{@do_check_answers}".blue.on_black
+      #puts "  do_check_answers: #{@do_check_answers}".blue.on_black
       set_checked_answers(@previous_assignation, @checked_answers)
       
-      puts "  goto break".blue.on_black
+      #puts "  goto break".blue.on_black
       redirect_to test_pause_path(:id => @test.id, :assignation_number => @assignation_number, :pause_test_id => @previous_test.id) and return
     end  
-    puts "--------------------------------------".yellow.on_white
+    #puts "--------------------------------------".yellow.on_white
     
     
-    puts ">>> check test_learnphase ----------------------".green.on_white
+    #puts ">>> check test_learnphase ----------------------".green.on_white
     #TODO einen schritt zurückversetzten???
     @test_learnphase = @assignation.test.test_learnphase? && !@skip_learning_phase
-    puts "  learning_phase: #{@test_learnphase}".yellow.on_white
-    puts "  learning_phase".blue.on_black if @test_learnphase
-    puts "  next_assignation_number: #{@assignation_number+1}".yellow.on_white if @test_learnphase
-    puts "------------------------------------------------".yellow.on_white
+    #puts "  learning_phase: #{@test_learnphase}".yellow.on_white
+    #puts "  learning_phase".blue.on_black if @test_learnphase
+    #puts "  next_assignation_number: #{@assignation_number+1}".yellow.on_white if @test_learnphase
+    #puts "------------------------------------------------".yellow.on_white
     
-    puts ">>> check test_reproductionphase ----------------------".green.on_white
+    #puts ">>> check test_reproductionphase ----------------------".green.on_white
     #TODO einen schritt zurückversetzten???
     @test_reproductionphase = @assignation.test.test_reproductionphase?
-    puts "  test_reproductionphase: #{@test_reproductionphase}".yellow.on_white
-    puts "  test_reproductionphase".blue.on_black if @test_reproductionphase
-    puts "------------------------------------------------".yellow.on_white
+    #puts "  test_reproductionphase: #{@test_reproductionphase}".yellow.on_white
+    #puts "  test_reproductionphase".blue.on_black if @test_reproductionphase
+    #puts "------------------------------------------------".yellow.on_white
     
 
     
-    puts ">>> check show_test_intro ----------------------------".green.on_white
+    #puts ">>> check show_test_intro ----------------------------".green.on_white
     show_test_intro = @test_changed && !@skip_test_intro
-    puts "  show_test_intro(test_changed: #{@test_changed}, skip_test_intro: #{@skip_test_intro}): #{show_test_intro}".yellow.on_white
+    #puts "  show_test_intro(test_changed: #{@test_changed}, skip_test_intro: #{@skip_test_intro}): #{show_test_intro}".yellow.on_white
     if show_test_intro
       if !@skip_pause
-        puts "  do_check_answers: #{@do_check_answers}".blue.on_black
+        #puts "  do_check_answers: #{@do_check_answers}".blue.on_black
         set_checked_answers(@previous_assignation, @checked_answers)
       end
-      puts "  goto show_test_intro (same assignation)".blue.on_black
+      #puts "  goto show_test_intro (same assignation)".blue.on_black
       set_test_end_to_now(@previous_assignation.test) if @previous_assignation
       redirect_to test_start_path(:id => @test.id, :assignation_number => @assignation_number) and return
     end  
@@ -193,13 +193,13 @@ class TestsController < ApplicationController
     do_set_checked_answers = !@skip_test_intro #no checking after an intro
     @question = @assignation.try(:question)
     if do_set_checked_answers
-      puts ">>> do check answers -------------".yellow.on_white
-      puts "  do_check_answers: #{@do_check_answers}".blue.on_black
+      #puts ">>> do check answers -------------".yellow.on_white
+      #puts "  do_check_answers: #{@do_check_answers}".blue.on_black
       set_checked_answers(@previous_assignation, @checked_answers)
-      puts "----------------------------------".yellow.on_white
+      #puts "----------------------------------".yellow.on_white
     end    
     
-    puts ">>> goto next Step -----------------------------------".blue.on_black
+    #puts ">>> goto next Step -----------------------------------".blue.on_black
     
     respond_with(@question)
   end
@@ -214,10 +214,10 @@ class TestsController < ApplicationController
     
     set_test_start_to_now(@test) if (@assignation_number == 1) #set global test.start
     
-    puts "START: test: #{@test.id}, assignation_number: #{@assignation_number}".red.on_white
+    #puts "START: test: #{@test.id}, assignation_number: #{@assignation_number}".red.on_white
     
     @assignation = @test.assignation(@assignation_index) #was 0
-    puts "assignation: #{@assignation.inspect}".yellow.on_white
+    #puts "assignation: #{@assignation.inspect}".yellow.on_white
     
     if @assignation.nil?
       logger.info "Test could not be started. There are no assignations within the test, probably the category has no context or questions"
@@ -233,10 +233,10 @@ class TestsController < ApplicationController
   def pause
     @test = Test.find_by_id(params[:id])
     @pause_test = Test.find_by_id(params[:pause_test_id])
-    puts "@pause_test: #{@pause_test.inspect}".red.on_white
+    #puts "@pause_test: #{@pause_test.inspect}".red.on_white
     @assignation_number = params[:assignation_number].to_i 
     @pause_finished_date = @pause_test.available_time_sec.seconds.from_now.in_time_zone('Vienna').strftime("%Y/%m/%d %H:%M:%S")
-    puts "pause duration: #{@pause_finished_date}, #{@pause_test.available_time_sec.seconds.from_now}".red.on_white
+    #puts "pause duration: #{@pause_finished_date}, #{@pause_test.available_time_sec.seconds.from_now}".red.on_white
     @pause_minutes = (@pause_test.available_time_sec / 60).to_i
   end
 
@@ -245,8 +245,8 @@ class TestsController < ApplicationController
     @test = Test.find_by_id(params[:id])
     #@question = @test.questions[0]
     @question = @test.assignation(0).question
-    #@test.end = Time.now
-    #@test.save!
+
+    @total_test = true if @test && @test.tests.any?
     
     @last_assignation_number = params[:last_assignation_number].to_i
     puts "RESULT test: #{@test.id}, last_assignation_number: #{@last_assignation_number}".red.on_white
@@ -267,8 +267,12 @@ class TestsController < ApplicationController
     
     local_test = @test.assignation(last_assignation_index).test
     
+    @test.userscore_percent = @score_in_percent
+    
     set_test_end_to_now(@test) #global test.end
     set_test_end_to_now(local_test) #local test.end
+    
+    #@test.save!
     
     respond_with(@test)
   end
@@ -282,7 +286,7 @@ class TestsController < ApplicationController
     end
 
     def test_params
-      params.require(:test).permit(:testee_id, :start, :end)
+      params.require(:test).permit(:user_id, :start, :end)
     end
 
 end

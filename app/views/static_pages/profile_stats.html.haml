@@ -1,0 +1,41 @@
+.page-header
+  %h1
+    Profil
+    / <small>Subtext for header</small>
+    
+%ul.nav.nav-tabs
+  %li{:role => "presentation"}
+    = link_to "Mein Account Status", static_pages_profile_status_path 
+  %li{:role => "presentation"}
+    = link_to "Meine Daten", static_pages_profile_data_path 
+  %li.active{:role => "presentation"}
+    = link_to "Meine Statistik", "#"
+    
+%br/
+%br/
+
+.row
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("placeholder_icon.png", alt: "Profil Informationen icon")
+  /    %p.text-center
+  .col-lg-12
+    %p
+      Durchgeführte Tests: #{@tests.count}
+    %p
+      Durchschnittliches Testergebnis: #{@average_test_score} %
+      
+    .hspacer-4x
+    
+    %table.table.table-striped.table-hover
+      %tr
+        %th Zeitpunkt
+        %th Test
+        %th Wertung
+      - @tests.each do |test|
+        %tr
+          %td #{test.created_at.strftime("%d.%m.%Y %H:%M")}
+          %td #{test.description}
+          %td #{test.userscore_percent} %
+
+    .hspacer-4x

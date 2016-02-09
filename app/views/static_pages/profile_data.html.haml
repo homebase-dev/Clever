@@ -8,6 +8,8 @@
     = link_to "Mein Account Status", static_pages_profile_status_path 
   %li.active{:role => "presentation"}
     = link_to "Meine Daten", "#"
+  %li{:role => "presentation"}
+    = link_to "Meine Statistik", static_pages_profile_stats_path 
     
 %br/
 %br/
@@ -34,24 +36,24 @@
       .form-group
         = f.label :lastname, :class => 'control-label'
         = f.text_field :lastname, :class => 'form-control'
-      .form-group
-        = f.label :phone, :class => 'control-label'
-        = f.text_field :phone, :class => 'form-control'
-      .form-group
-        = f.label :birthdate, :class => 'control-label'
-        = f.date_field :birthdate, :class => 'form-control'
-      .form-group
-        = f.label :street, :class => 'control-label'
-        = f.text_field :street, :class => 'form-control'
-      .form-group
-        = f.label :zip, :class => 'control-label'
-        = f.text_field :zip, :class => 'form-control'
-      .form-group
-        = f.label :city, :class => 'control-label'
-        = f.text_field :city, :class => 'form-control'
-      .form-group
-        = f.label :country, :class => 'control-label'
-        = f.text_field :country, :class => 'form-control'
+      /.form-group
+      /  = f.label :phone, :class => 'control-label'
+      /  = f.text_field :phone, :class => 'form-control'
+      /.form-group
+      /  = f.label :birthdate, :class => 'control-label'
+      /  = f.date_field :birthdate, :class => 'form-control'
+      /.form-group
+      /  = f.label :street, :class => 'control-label'
+      /  = f.text_field :street, :class => 'form-control'
+      /.form-group
+      /  = f.label :zip, :class => 'control-label'
+      /  = f.text_field :zip, :class => 'form-control'
+      /.form-group
+      /  = f.label :city, :class => 'control-label'
+      /  = f.text_field :city, :class => 'form-control'
+      /.form-group
+      /  = f.label :country, :class => 'control-label'
+      /  = f.text_field :country, :class => 'form-control'
       = f.submit "Speichern", :class => 'btn btn-default'
 
     .hspacer-4x

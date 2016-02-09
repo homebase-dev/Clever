@@ -54,7 +54,7 @@ body {
 }
 
 .countdown-section {
-	background-color: #3E3E3E; /*#0081E0; */
+	background-color: #0081E0; /*#3E3E3E; */
 }
 
 
@@ -213,7 +213,7 @@ h1.super {
 	text-align: center;
 	padding: 0.5em;
 	/*background-color: rgba(47, 93, 144, 1)*/;
-	background-color: #3E3E3E; /*#0081E0;*/
+	background-color: #0081E0; /*#3E3E3E;*/
 	border-radius: 0px !important;
 }
 

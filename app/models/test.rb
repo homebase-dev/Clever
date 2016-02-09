@@ -1,5 +1,5 @@
 class Test < ActiveRecord::Base
-  belongs_to :testee, :class_name => "User"
+  belongs_to :user
   has_many :assignations
   has_many :questions, :through => :assignations
   has_many :tests
@@ -254,8 +254,10 @@ class Test < ActiveRecord::Base
   end
 
   
-  def score_in_percent(options)
-    max_score = self.max_score(options) 
+  def score_in_percent(options = {})
+    percent = 0
+    max_score = self.max_score(options)
+    return percent if max_score == 0
     score = self.score(options)
     result = (100 * score) / max_score
   end

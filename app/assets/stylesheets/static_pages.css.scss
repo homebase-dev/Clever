@@ -291,6 +291,10 @@ font-size: 18px;
   top: 1.5em;
 }
 
+.quality-seal-img {
+  height: 20em;
+}
+
 .page-slicer-caption {
   width: 100%;
 }
@@ -359,11 +363,18 @@ ul.list-group .feat {
   background-color: #FCFCFC;
 }
 ul.list-group .feat.caption {
-  background-color: #3E3E3E;
-  color: #E6D38B;
+  background-color: #E6D38B; /*#3E3E3E;*/
+  color: #ffffff; /*#E6D38B;*/
   font-weight: bold;
 }
 
+ul.list-group .feat.divider {
+  background-color: #0081e0; 
+  color: #ffffff; 
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 2em;
+}
     
 
 /*body {

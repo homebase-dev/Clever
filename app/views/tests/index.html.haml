@@ -5,7 +5,7 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:testee_id)
+      %th= model_class.human_attribute_name(:user_id)
       %th= model_class.human_attribute_name(:start)
       %th= model_class.human_attribute_name(:end)
       %th= model_class.human_attribute_name(:created_at)
@@ -14,7 +14,7 @@
     - @tests.each do |test|
       %tr
         %td= link_to test.id, test_path(test)
-        %td= test.testee_id
+        %td= test.user_id
         %td= test.start
         %td= test.end
         %td= l test.created_at

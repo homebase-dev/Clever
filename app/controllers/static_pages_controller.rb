@@ -46,6 +46,12 @@ class StaticPagesController < ApplicationController
     @user = current_user
   end
   
+  def profile_stats
+    @user = current_user
+    @tests = @user.tests.order('created_at DESC')
+    @average_test_score = average_test_score(@tests)
+  end
+  
   def admin
    
   end

@@ -12,7 +12,6 @@
     - if @top_novelty
       = render "shared/panel", panel_css_class: "panel-primary", title: @top_novelty.title, body: @top_novelty.text, created_at: @top_novelty.created_at
 
-  
     - @older_novelties.each do |novelty|
       = render "shared/panel", panel_css_class: "panel-default", title: novelty.title, body: novelty.text, created_at: novelty.created_at
       

@@ -82,5 +82,6 @@ module ApplicationHelper
     
     duration_string
   end
+  
     
 end

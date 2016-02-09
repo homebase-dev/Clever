@@ -18,6 +18,9 @@ class Assignation < ActiveRecord::Base
   
   def passed?
     passed = true
+    
+    return false if question.nil?
+    
     question.answers.each do |answer|
       return false if !answer_passed?(answer)
     end

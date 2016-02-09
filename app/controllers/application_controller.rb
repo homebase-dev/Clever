@@ -5,16 +5,16 @@ class ApplicationController < ActionController::Base
   
   
   
-  def create_new_total_test(testee, pick_randomly)
-      puts "creating new total test!"
+  def create_new_total_test(user, pick_randomly)
+      #puts "creating new total test!"
 
       test = Test.new
       
-      test.testee = testee
+      test.user = user
       test.start = Time.now
       test.description = 'Gesamttest'
       
-      if testee
+      if user && (user.member? || user.can_manage?)
         test = add_tests_to_total_test(test, pick_randomly)
       else
         test = add_tests_to_total_test_for_guest(test, pick_randomly)
@@ -134,10 +134,10 @@ class ApplicationController < ActionController::Base
   end
   
   
-  def create_new_total_test_for_guest()
-      puts "creating new total test for guests!"
+  def create_new_total_test_for_guest(user)
+      #puts "creating new total test for guests!"
 
-      test = create_new_total_test(nil, false)
+      test = create_new_total_test(user, false)
       
       test.test_type = Test.test_types[:guest_test]
    
@@ -155,7 +155,7 @@ class ApplicationController < ActionController::Base
     category = Category.find_by_id(category_id)
     
     if category
-      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+      #puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
       picked_questions = pick_questions(category, nb_of_contexts, nb_of_questions, pick_randomly)
       create_test_assignations(test, picked_questions)
     end
@@ -165,14 +165,14 @@ class ApplicationController < ActionController::Base
   end
   
   
-  def create_partial_test(testee, category, nb_of_contexts, nb_of_questions, pick_randomly)
-      puts "**************** is partial test!".yellow.on_white
+  def create_partial_test(user, category, nb_of_contexts, nb_of_questions, pick_randomly)
+      #puts "**************** is partial test!".yellow.on_white
       
       test = Test.new
 
       #TODO check if nb_of_questions >0 && <= category.question.count
       
-      test.testee = testee
+      test.user = user
       test.description = category.name
       test.start = Time.now
       
@@ -186,8 +186,8 @@ class ApplicationController < ActionController::Base
       
       picked_questions = pick_questions(category, nb_of_contexts, nb_of_questions, pick_randomly) 
   
-      puts "RESULT QUESTIONS"
-      print_questions(picked_questions)
+      #puts "RESULT QUESTIONS"
+      #print_questions(picked_questions)
       
       test.save!
       
@@ -197,10 +197,10 @@ class ApplicationController < ActionController::Base
       test
   end
   
-  def create_new_partial_test_for_guest(category)
-      puts "**************** is partial test!".yellow.on_white
+  def create_new_partial_test_for_guest(user, category)
+      #puts "**************** is partial test!".yellow.on_white
       
-      test = create_partial_test(nil, category, 1, 3, false);
+      test = create_partial_test(user, category, 1, 3, false);
       
       test.test_type = Test.test_types[:guest_test]
       
@@ -358,7 +358,7 @@ class ApplicationController < ActionController::Base
     show_context = false
     
     if assignation.test.test_reproductionphase?
-      puts "reproduction_phase -> don't show context".yellow.on_white
+      #puts "reproduction_phase -> don't show context".yellow.on_white
       return show_context
     end
     
@@ -403,7 +403,7 @@ class ApplicationController < ActionController::Base
     
     test.start = Time.now
     test.save!
-    puts "SET test.start test.id #{test.id} -> #{test.start}".yellow.on_black
+    #puts "SET test.start test.id #{test.id} -> #{test.start}".yellow.on_black
   end
     
   def set_test_end_to_now(test)
@@ -413,7 +413,7 @@ class ApplicationController < ActionController::Base
     end
     test.end = Time.now
     test.save!
-    puts "SET test.end test.id #{test.id} -> #{test.end}".yellow.on_black
+    #puts "SET test.end test.id #{test.id} -> #{test.end}".yellow.on_black
   end
 
   def calculate_elapsed_seconds(assignation)
@@ -460,5 +460,22 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  
+  def average_test_score(tests)
+    average_test_score = 0
+    
+    return average_test_score if ( tests.nil? || tests.empty? )
+    
+    sum_scores = 0
+    tests.each do |t|
+      sum_scores += t.userscore_percent.to_f
+    end
+    
+    if tests.any?
+      average_test_score = sum_scores / tests.count
+    end
+      
+    average_test_score
+  end
   
 end

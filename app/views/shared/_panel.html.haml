@@ -2,5 +2,5 @@
   .panel-heading
     %h3.panel-title #{title} <span class="pull-right" style="font-size: 0.7em">#{created_at.strftime("%d.%m.%Y %H:%M")}</span>
   .panel-body
-    =body
+    =body.html_safe
     

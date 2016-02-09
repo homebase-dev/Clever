@@ -138,6 +138,16 @@ de:
       update: ! '%{model} aktualisieren'
     links:
       confirm: 'Wirklich löschen?'
+      
+    label:
+      user:
+        firstname: 'Vorname'
+        lastname: 'Nachname'
+        email: 'E-Mail'
+        password: 'Passwort'
+        password_confirmation: 'Passwort wiederholen'
+      
+      
   number:
     currency:
       format:

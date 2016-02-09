@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :role
 
+  has_many :tests #, foreign_key: "testee_id", class_name: "Test" 
+
   def fullname
     "#{try(:firstname)} #{try(:lastname)}"
   end

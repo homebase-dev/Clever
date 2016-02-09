@@ -150,12 +150,9 @@
 
 .row
   .col-sm-12
-    %table.page-slicer-caption
-      %td
-        %hr/
-      %td.caption Empfehlungen
-      %td
-        %hr/
+    %ul.list-group
+      %li.list-group-item.feat.divider Empfehlungen
+
 
 /%hr.featurette-divider/
 .hspacer-4x
@@ -196,16 +193,22 @@
 /.row
 /  %p.text-right
 /    = image_tag("home/siegel.png", alt: "Qualitätssiegel", style: "height: 15em")
-    
+   
 /%hr.featurette-divider/
+
 .row
   .col-sm-12
-    %table.page-slicer-caption
-      %td
-        <hr class="bolder">
-      %td.caption Neuigkeiten
-      %td
-        <hr>
+    %ul.list-group
+      %li.list-group-item.feat.divider Neuigkeiten
+
+/.row
+/  .col-sm-12
+/    %table.page-slicer-caption
+/      %td
+/        <hr class="bolder">
+/      %td.caption Neuigkeiten
+/      %td
+/        <hr>
         
 .hspacer-4x
 .hspacer-4x
@@ -243,7 +246,6 @@
 .hspacer-4x
 
 
-    
 /%hr.featurette-divider/
 .hspacer
 

@@ -10,9 +10,9 @@
           - @test.errors.full_messages.each do |msg|
             %li= msg
   .form-group
-    = f.label :testee_id, :class => 'control-label'
-    = f.text_field :testee_id, :class => 'form-control'
-    = error_span(@test[:testee_id])
+    = f.label :user_id, :class => 'control-label'
+    = f.text_field :user_id, :class => 'form-control'
+    = error_span(@test[:user_id])
   .form-group
     = f.label :category_id, :class => 'control-label'
     = text_field_tag :category_id, nil, :class => 'form-control'
