@@ -84,6 +84,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #gem 'rvm-capistrano', group: :development
 
 # use bundle exec cap... in order to use the bundle version of cap, not the global one, in case there are more cap versions..
+# ATTENTION: don't forget to checkout submodule with the capistrano recipies (antiloop stuff)
 group :development do
   gem 'rvm-capistrano', '1.4.4' #ATTENTION: order inportant, must be before capistrano!
   gem 'capistrano', '2.15.5'
