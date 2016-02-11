@@ -1,6 +1,7 @@
 - flash.each do |key, msg|
   - if key == "notice"
     / = content_tag :div, msg, class: "alert alert-success"
+    .hspacer
     .alert.alert-success
       #{msg}
       %button.close{"data-dismiss" => "alert", :type => "button"}
@@ -8,6 +9,7 @@
         %span.sr-only Close
   - elsif key == "alert"
     / = content_tag :div, msg, class: "alert alert-warning"
+    .hspacer
     .alert.alert-warning
       #{msg}
       %button.close{"data-dismiss" => "alert", :type => "button"}
@@ -15,6 +17,7 @@
         %span.sr-only Close
   - elsif key == "error"
     / = content_tag :div, msg, class: "alert alert-error"
+    .hspacer
     .alert.alert-warning
       #{msg}
       %button.close{"data-dismiss" => "alert", :type => "button"}

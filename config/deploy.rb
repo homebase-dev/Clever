@@ -17,7 +17,6 @@ set :repository,  "https://github.com/homebase-dev/Clever.git"
 
 #set :shared_children, shared_children + %w{public/uploads}  #Add public/uploads to shared_folder and create symlink to it
 
-# TODO stopped working suddenly, had to comment out - CH
-#["base", "rails", "nginx", "logrotate"].each { |recipe| 
-#  load(File.join("config", "deploy", "setup", recipe)) 
-#}
+["base", "rails", "nginx", "logrotate"].each { |recipe| 
+  load(File.join("config", "deploy", "setup", recipe)) 
+}

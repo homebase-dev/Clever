@@ -83,8 +83,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #gem 'capistrano-ext', group: :development
 #gem 'rvm-capistrano', group: :development
 
-# Falls du capistrano global als gem und im Gemfile installiert hast musst du aufpassen welches verwendet wird. Mit bundle exec cap ... 
-# wird das aus dem Gemfile verwendet und wenn du nur cap ... die globale Version.
+# use bundle exec cap... in order to use the bundle version of cap, not the global one, in case there are more cap versions..
 group :development do
   gem 'rvm-capistrano', '1.4.4' #ATTENTION: order inportant, must be before capistrano!
   gem 'capistrano', '2.15.5'

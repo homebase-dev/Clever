@@ -65,22 +65,45 @@
     .col-xs-4
       .box
         %h3 Kostenlos testen
-        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
-        /%a.glow{:href => "#{static_pages_quiz_path}"} 
-        /  = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
     .col-xs-4
       .box
         %h3 Test starten
-        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
-        /%a.glow{:href => "#{static_pages_quiz_path}"} 
-        /  = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
     .col-xs-4
       .box
-        %h3 Blog / FAQ / FAQ
+        %h3 Tipps / Blog / FAQ
+  .row
+    .col-xs-4
+      .box
+        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+    .col-xs-4
+      .box
+        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+    .col-xs-4
+      .box
         = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
-        /Fragen / Antworten
-        /%a.glow{:href => "#{static_pages_faq_path}"}
-        /  = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
+
+
+/.marketing-area
+/  .row
+/    .col-xs-4
+/      .box
+/        %h3 Kostenlos testen
+/        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+/        /%a.glow{:href => "#{static_pages_quiz_path}"} 
+/        /  = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+/    .col-xs-4
+/      .box
+/        %h3 Test starten
+/        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+/        /%a.glow{:href => "#{static_pages_quiz_path}"} 
+/        /  = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+/    .col-xs-4
+/      .box
+/        %h3 Tipps / Blog / FAQ
+/        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
+/        /Fragen / Antworten
+/        /%a.glow{:href => "#{static_pages_faq_path}"}
+/        /  = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
 
 
 /  /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
@@ -136,7 +159,6 @@
       %li.list-group-item.feat Live Vorbereitungskurse
 
 .hspacer-4x
-.hspacer-4x
 / Video ausblenden
 /.row
 /  .col-sm-12
@@ -156,18 +178,17 @@
 
 /%hr.featurette-divider/
 .hspacer-4x
-.hspacer-4x
 
 .marketing-area.testimonials.right
   .featurette-bg1
     .row.featurette
-      .col-xs-10
+      .col-xs-8
         %h2.featurette-heading.quote-left
           &#8220;Das Material ist perfekt vorsortiert und 
           %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
           %span.autor Dr. Stefan Ulmer – Praktischer Arzt
         /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      .col-xs-2
+      .col-xs-4
         %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.pull-right{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
 
 /%hr.featurette-divider/
@@ -176,17 +197,16 @@
 .marketing-area.testimonials.left
   .featurette-bg2
     .row.featurette
-      .col-xs-2
-        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.full-width{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
-      .col-xs-10
+      .col-xs-4
+        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
+      .col-xs-8
         %h2.featurette-heading.quote-right
           &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
           %span.text-muted BESTANDEN!!!&#8221;<br/>
           %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
-          = image_tag("home/siegel.png", alt: "Qualitätssiegel", class: "thumb-up-img")
     /%hr.featurette-divider/
-  
-.hspacer-4x
+
+
 .hspacer-4x
 
 /.marketing-area{:style => "background-color: #F2F2F2"}
@@ -211,7 +231,7 @@
 /        <hr>
         
 .hspacer-4x
-.hspacer-4x
+
 /%hr.featurette-divider/
 /.row.featurette
 /  .col-md-12
@@ -243,9 +263,14 @@
     .col-md-4
     
 .hspacer-4x
-.hspacer-4x
 
-
+.row
+  .col-xs-2
+  .col-xs-8
+    %p.text-center
+      = image_tag("home/siegel.png", alt: "Qualitätssiegel", class: "quality-seal-img ")
+  .col-xs-2
+  
 /%hr.featurette-divider/
 .hspacer
 
@@ -268,4 +293,4 @@
 .row
   .col-sm-12
     = render "shared/shareaholic_share_button"
-    
+ 

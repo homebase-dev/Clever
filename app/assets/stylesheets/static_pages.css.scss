@@ -280,19 +280,14 @@ font-size: 18px;
   filter: FlipH;
   -ms-filter: "FlipH";
 }
-/*
-.marketing-area.testimonials.right .thumbnail {
-}*/
 
-.thumb-up-img {
-  position: absolute;
-  right: 3.5em;
-  height: 5em;
-  top: 1.5em;
+.marketing-area.testimonials img {
+  max-height: 30em;
 }
 
 .quality-seal-img {
-  height: 20em;
+  max-height: 20em;
+  max-width: 100%;
 }
 
 .page-slicer-caption {
@@ -314,14 +309,6 @@ font-size: 18px;
   font-weight: bold;
   margin-bottom: 2em !important;
   font-size: 2em;
-}
-
-.hspacer-1x {
-  margin-top: 0.5em;
-}
-
-.hspacer-2x {
-  margin-top: 1em;
 }
 
 h2.featurette-heading {

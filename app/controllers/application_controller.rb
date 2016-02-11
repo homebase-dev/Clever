@@ -475,7 +475,7 @@ class ApplicationController < ActionController::Base
       average_test_score = sum_scores / tests.count
     end
       
-    average_test_score
+    average_test_score.round(2)
   end
   
 end
