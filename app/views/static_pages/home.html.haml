@@ -139,26 +139,68 @@
 .row
   .col-sm-4
     %ul.list-group.feat
-      %li.list-group-item.feat.caption Die Online Vorbereitung zum besten Preis!
-      %li.list-group-item.feat Jetzt nur EUR 49,90!
-      %li.list-group-item.feat Vorher kostenlos testen und überzeugen!
-      %li.list-group-item.feat Unkomplizierte und schnelle Anmeldung!
+      %li.list-group-item.feat.advantages.caption 
+        %i.fa.fa-star
+        &nbsp;
+        Die Online Vorbereitung zum besten Preis!
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Jetzt nur EUR 49,90!
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Vorher kostenlos testen und überzeugen!
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Unkomplizierte und schnelle Anmeldung!
   .col-sm-4
     %ul.list-group
-      %li.list-group-item.feat.caption Weit über 1000 Fragen von Spezialisten entwickelt!
-      %li.list-group-item.feat Unterschiedliche Schwierigkeiten
-      %li.list-group-item.feat Ständig neue Fragen
-      %li.list-group-item.feat Immer wieder neue Tests per Zufallsgenerator
+      %li.list-group-item.feat.advantages.caption 
+        %i.fa.fa-star
+        &nbsp;
+        Weit über 1000 Fragen von Spezialisten entwickelt!
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Unterschiedliche Schwierigkeiten
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Ständig neue Fragen
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Immer wieder neue Tests per Zufallsgenerator
   .col-sm-4
     %ul.list-group
-      %li.list-group-item.feat.caption Weitere Vorteile
-      %li.list-group-item.feat Einfacher Aufbau
-      %li.list-group-item.feat Abdeckung der Themengebiete
-      %li.list-group-item.feat Aufzeichnung der Ergebnisse / Statistik
-      %li.list-group-item.feat Zusätzlich Skripten zum Wissensteil
-      %li.list-group-item.feat Live Vorbereitungskurse
+      %li.list-group-item.feat.advantages.caption 
+        %i.fa.fa-star
+        &nbsp;
+        Weitere Vorteile
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Einfacher Aufbau
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Abdeckung der Themengebiete
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Aufzeichnung der Ergebnisse / Statistik
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Zusätzlich Skripten zum Wissensteil
+      %li.list-group-item.feat.advantages 
+        %i.fa.fa-star-o
+        &nbsp;
+        Live Vorbereitungskurse
 
-.hspacer-4x
+/.hspacer-4x
 / Video ausblenden
 /.row
 /  .col-sm-12
@@ -170,44 +212,131 @@
 /  /  %p.text-center{:style => "background-color: #F0F0F0; padding-top: 2em; padding-bottom: 2em;"}
 /  /    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "350em", :src => "https://www.youtube.com/embed/xWmB9lDE7_w", :width => "100%"}
 
+/.row
+/  .col-sm-12
+/    %ul.list-group
+/      %li.list-group-item.feat.divider Empfehlungen
+
+
+/%hr.featurette-divider/
+
+/.hspacer-4x
+/
+/.marketing-area.testimonials.right
+/  .featurette-bg1
+/    .row.featurette
+/      .col-xs-8
+/        %h2.featurette-heading.quote-left
+/          &#8220;Das Material ist perfekt vorsortiert und 
+/          %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
+/          %span.autor Dr. Stefan Ulmer – Praktischer Arzt
+/        /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+/      .col-xs-4
+/        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.pull-right{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
+/
+//%hr.featurette-divider/
+/.hspacer-4x
+/
+/.marketing-area.testimonials.left
+/  .featurette-bg2
+/    .row.featurette
+/      .col-xs-4
+/        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
+/      .col-xs-8
+/        %h2.featurette-heading.quote-right
+/          &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
+/          %span.text-muted BESTANDEN!!!&#8221;<br/>
+/          %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
+/    /%hr.featurette-divider/
+/
+/
+/.hspacer-4x
+
+
+
+
+
+
+/.row
+/  .col-md-12
+/    #quote-carousel.carousel.slide{"data-ride" => "carousel"}
+/      / Carousel Slides / Quotes
+/      .carousel-inner.text-center
+/        / Quote 1
+/        .item.active
+/          %blockquote
+/            .row
+/              .col-sm-8.col-sm-offset-2
+/                %p Das Material ist perfekt vorsortiert und bereitet optimal auf den MedAT vor!
+/                %small Dr. Stefan Ulmer – Praktischer Arzt
+/        / Quote 2
+/        .item
+/          %blockquote
+/            .row
+/              .col-sm-8.col-sm-offset-2
+/                %p Ich habe sogar am Smartphone bei aufnahmetest.at geübt – BESTANDEN!!! 
+/                %small Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
+/      / Bottom Carousel Indicators
+/      %ol.carousel-indicators
+/        %li.active{"data-slide-to" => "0", "data-target" => "#quote-carousel"}
+/          %img.img-responsive{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
+/        %li{"data-slide-to" => "1", "data-target" => "#quote-carousel"}
+/          %img.img-responsive{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}
+/      / Carousel Buttons Next/Prev
+/      %a.left.carousel-control{"data-slide" => "prev", :href => "#quote-carousel"}
+/        %i.fa.fa-chevron-left
+/      %a.right.carousel-control{"data-slide" => "next", :href => "#quote-carousel"}
+/        %i.fa.fa-chevron-right
+
+
+
+
 .row
-  .col-sm-12
-    %ul.list-group
-      %li.list-group-item.feat.divider Empfehlungen
+  .col-md-12
+    .tcb-quote-carousel
+      /.quote
+      /  %i.fa.fa-quote-left.fa-4x
+      #fade-quote-carousel.carousel.slide.carousel-fade{"data-interval" => "8000", "data-ride" => "carousel"}
+        / Carousel indicators
+        %ol.carousel-indicators
+          %li.active{"data-slide-to" => "0", "data-target" => "#fade-quote-carousel"}
+          %li{"data-slide-to" => "1", "data-target" => "#fade-quote-carousel"}
+        / Carousel items
+        .carousel-inner
+          .item.active
+            %blockquote.testimonial
+              %p
+                %i.fa.fa-quote-left.fa 
+                &nbsp;
+                Das Material ist perfekt vorsortiert und bereitet optimal auf den MedAT vor!
+                &nbsp;
+                %i.fa.fa-quote-right.fa    
+                %small Dr. Stefan Ulmer – Praktischer Arzt
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+            .profile-circle
+              %img.img-responsive{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
+              
+          .item
+            %blockquote.testimonial
+              %p
+                %i.fa.fa-quote-left.fa  
+                &nbsp;
+                Ich habe sogar am Smartphone bei aufnahmetest.at geübt – BESTANDEN!!! 
+                &nbsp;
+                %i.fa.fa-quote-right.fa    
+                %small Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+                %i.fa.fa-star.gold
+            .profile-circle
+              %img.img-responsive{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}
 
-
-/%hr.featurette-divider/
-.hspacer-4x
-
-.marketing-area.testimonials.right
-  .featurette-bg1
-    .row.featurette
-      .col-xs-8
-        %h2.featurette-heading.quote-left
-          &#8220;Das Material ist perfekt vorsortiert und 
-          %span.text-muted bereitet optimal auf den MedAT vor!&#8221;<br/>
-          %span.autor Dr. Stefan Ulmer – Praktischer Arzt
-        /%p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-      .col-xs-4
-        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin.pull-right{:alt => "Generic placeholder image", :src => "#{image_path('home/p2_dr_stefan_ulmer.jpg')}"}
-
-/%hr.featurette-divider/
-.hspacer-4x
-
-.marketing-area.testimonials.left
-  .featurette-bg2
-    .row.featurette
-      .col-xs-4
-        %img.featurette-image.img-responsive.thumbnail.no-bottom-margin{:alt => "Generic placeholder image", :src => "#{image_path('home/p1_brigitte_sipos.jpg')}"}/
-      .col-xs-8
-        %h2.featurette-heading.quote-right
-          &#8220;Ich habe sogar am Smartphone bei aufnahmetest.at geübt – 
-          %span.text-muted BESTANDEN!!!&#8221;<br/>
-          %span.autor Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
-    /%hr.featurette-divider/
-
-
-.hspacer-4x
 
 /.marketing-area{:style => "background-color: #F2F2F2"}
 /.row
@@ -216,10 +345,24 @@
    
 /%hr.featurette-divider/
 
+/.row
+/  .col-sm-12
+/    %ul.list-group
+/      %li.list-group-item.feat.divider Neuigkeiten
+
+
+.hspacer-4x
+.hspacer-4x
+
+.row.news-section
+  - @novelties.first(3).each do |novelty|
+    = render "shared/news", title: novelty.title, body: novelty.text, created_at: novelty.created_at
 .row
-  .col-sm-12
-    %ul.list-group
-      %li.list-group-item.feat.divider Neuigkeiten
+  .col-md-4
+  .col-md-4
+    %p.text-center
+      %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
+  .col-md-4
 
 /.row
 /  .col-sm-12
@@ -230,7 +373,11 @@
 /      %td
 /        <hr>
         
+        
+        
 .hspacer-4x
+              
+              
 
 /%hr.featurette-divider/
 /.row.featurette
@@ -251,18 +398,18 @@
 /.hspacer
 
 
-.news-section
-  .row
-    - @novelties.first(3).each do |novelty|
-      = render "shared/news", title: novelty.title, body: novelty.text, created_at: novelty.created_at
-  .row
-    .col-md-4
-    .col-md-4
-      %p.text-center
-        %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
-    .col-md-4
+/.news-section
+/  .row
+/    - @novelties.first(3).each do |novelty|
+/      = render "shared/news", title: novelty.title, body: novelty.text, created_at: novelty.created_at
+/  .row
+/    .col-md-4
+/    .col-md-4
+/      %p.text-center
+/        %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
+/    .col-md-4
     
-.hspacer-4x
+/.hspacer-4x
 
 .row
   .col-xs-2

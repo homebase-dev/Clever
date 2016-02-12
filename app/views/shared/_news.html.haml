@@ -17,16 +17,80 @@
 /        #{created_at.strftime("%d.%m.%Y %H:%M")}  
 
 
-.col-md-4
-  .box.news
-    %h4.box.news.head #{title}
-    /%p.box.news.body
-    .box.news.body
-      /%p.text-right
-      /  #{created_at.strftime("%d.%m.%Y %H:%M")}
-      #{preview_html_field(body)}  
+/.col-md-4
+/  .box.news
+/    %h4.box.news.head #{title}
+/    /%p.box.news.body
+/    .box.news.body
+/      /%p.text-right
+/      /  #{created_at.strftime("%d.%m.%Y %H:%M")}
+/      #{preview_html_field(body)}  
+/    
+/      %p.text-center
+/        #{created_at.strftime("%d.%m.%Y %H:%M")}  
+/    /%p.box.news.footer
+/    /  #{created_at.strftime("%d.%m.%Y %H:%M")}
     
-      %p.text-center
-        #{created_at.strftime("%d.%m.%Y %H:%M")}  
-    /%p.box.news.footer
-    /  #{created_at.strftime("%d.%m.%Y %H:%M")}
+
+/.col-md-4.col-sm-6
+/  .block-text.text-right
+/    %a.text-right{:href => "#", :title => ""} #{created_at.strftime("%d.%m.%Y %H:%M")}
+/  %ul.list-group.feat
+/    %li.list-group-item.feat.news.caption 
+/      %span
+/        %i.fa.fa-rss{:alt => "Neuigkeit"} &nbsp;
+/      #{title}
+/    %li.list-group-item.feat.news #{preview_html_field(body)}  
+    
+
+.col-md-4.col-sm-12
+  .news
+    %p.news-headline
+      #{title}
+      /&nbsp;
+      /%i.fa.fa-certificate
+      
+    %p.news-date
+      %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+      #{created_at.strftime("%d.%m.%Y %H:%M")}
+    %p.news-text
+      #{preview_html_field(body)} 
+    %p.news-icon.text-right
+      %i.fa.fa-newspaper-o 
+      
+/.col-md-12.col-sm-12
+/  .block-text{:style => "background-color: #FCFCFC;"}
+/    %a
+/      %i.fa.fa-certificate
+/      &nbsp;
+/      #{title}
+/    .mark
+/      %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+/      #{created_at.strftime("%d.%m.%Y %H:%M")}
+/    %p 
+/      #{preview_html_field(body)}  
+  
+/    .news{:style => "background-color: #FCFCFC;"}
+/      %p.headline #{title}
+/      .mark
+/        %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+/        #{created_at.strftime("%d.%m.%Y %H:%M")}
+/      %p 
+/        #{preview_html_field(body)}  
+/
+/.row.news-section
+/  .col-md-12.col-sm-12
+/    .block-text{:style => "background-color: #FCFCFC;"}
+/      %a{:href => "#", :title => ""} #{title}
+/      .mark
+/        %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+/        #{created_at.strftime("%d.%m.%Y %H:%M")}
+/      %p 
+/        #{preview_html_field(body)}  
+      
+  
+/  .person-text
+/    .reviewer
+/      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg"}/
+/    %a{:href => "#", :title => ""} Someone Famous
+/    %i United States
