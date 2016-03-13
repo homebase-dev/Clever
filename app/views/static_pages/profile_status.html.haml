@@ -29,9 +29,7 @@
     label_css_class: "label-success", 
     img: "unlocked.png", 
     status_label: "Uneingeschränkt", 
-    status_msg: "Dein Account ist bis zum bis 29.11.2014 uneingeschränkt aktiv, innerhalb dieses Zeitraumes kannst du auf unser gesamtes Angebot zurückgreifen und dich uneingeschränkt fortbilden. Wenn du mit unserem Angebot zufrieden bist, hast du hier auch die Möglichkeit dienen Account für ein weiteres Jahr zu verlängern.", 
-    button_caption: "Account für #{membership_price_euro} ein weiteres Jahr verlängern",
-    button_path: static_pages_payment_path
+    status_msg: "Dein Account ist bis zum bis #{current_user.membership_expiration_date_formatted} uneingeschränkt aktiv, innerhalb dieses Zeitraumes kannst du auf unser gesamtes Angebot zurückgreifen und dich uneingeschränkt fortbilden."
 -elsif current_user.role_name == 'banned'
   = render "static_pages/profile/account_status", 
     label_css_class: "label-danger", 

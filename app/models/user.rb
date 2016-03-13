@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :role
 
   has_many :tests #, foreign_key: "testee_id", class_name: "Test" 
+  
+  has_many :invoices
 
   def fullname
     "#{try(:firstname)} #{try(:lastname)}"
@@ -51,7 +53,44 @@ class User < ActiveRecord::Base
       #user.image = auth.info.image # assuming the user model has an image
     end
   end
+  
+  def membership_expiration_date_formatted
+    formatted_date = membership_expiration_date
+    if formatted_date.present?
+      formatted_date = membership_expiration_date.strftime("%d.%m.%Y")
+    end
+    formatted_date
+  end
+  
+  def membership_expiration_date
+    invoice = latest_successful_invoice
+    return nil if invoice.blank?
+    expiration_date = invoice.membership_expiration_date
+    expiration_date
+  end
+  
+  def membership_expired?
+    membership_expired = true
+    
+    expiration_date = membership_expiration_date
+    
+    if expiration_date.present?
+      membership_expired = DateTime.now.to_date > expiration_date
+    end
+    
+    membership_expired
+  end
 
+  def latest_successful_invoice
+    latest_successful_invoice = nil
+    
+    self.invoices.each do |invoice|
+      next if !invoice.success || invoice.membership_expiration_date.blank?
+      latest_successful_invoice = invoice
+    end
+
+    latest_successful_invoice    
+  end
 
   private
 

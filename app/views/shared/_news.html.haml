@@ -44,19 +44,34 @@
     
 
 .col-md-4.col-sm-12
-  .news
-    %p.news-headline
+  %ul.list-group.feat
+    %li.list-group-item.feat.news.caption 
+      %i.fa.fa-thumb-tack
+      &nbsp;
       #{title}
-      /&nbsp;
-      /%i.fa.fa-certificate
-      
-    %p.news-date
-      %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
-      #{created_at.strftime("%d.%m.%Y %H:%M")}
-    %p.news-text
+    %li.list-group-item.feat.news
+      %p.news-icon.text-left
+        %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+        #{created_at.strftime("%d.%m.%Y %H:%M")}
+        <br/><br/>
       #{preview_html_field(body)} 
-    %p.news-icon.text-right
-      %i.fa.fa-newspaper-o 
+
+ 
+ 
+ 
+/  .news
+/    %p.news-headline
+/      #{title}
+/      /&nbsp;
+/      /%i.fa.fa-certificate
+/      
+/    %p.news-date
+/      %i.fa.fa-clock-o{:alt => "Datum"} &nbsp;
+/      #{created_at.strftime("%d.%m.%Y %H:%M")}
+/    %p.news-text
+/      #{preview_html_field(body)} 
+/    %p.news-icon.text-right
+/      %i.fa.fa-newspaper-o 
       
 /.col-md-12.col-sm-12
 /  .block-text{:style => "background-color: #FCFCFC;"}

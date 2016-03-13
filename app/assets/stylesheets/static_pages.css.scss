@@ -367,6 +367,11 @@ blockquote.testimonial p {
   line-height: 1.5em;
 }
 
+blockquote.testimonial {
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+}
+
 
 ul.list-group .feat.news {
   border: none;
@@ -424,7 +429,7 @@ ul.list-group .feat.news.caption {
 }
 
 .tcb-quote-carousel p {
-   font-size: 1.5em;
+   font-size: 1em;
 }
 
 .tcb-quote-carousel .item blockquote p::before {
@@ -433,8 +438,8 @@ ul.list-group .feat.news.caption {
 
 .tcb-quote-carousel {
   background: #fff;
-  padding-top: 30px;
-  margin-top: 40px;
+  /*padding-top: 30px;
+  margin-top: 40px;*/
 }
 .tcb-quote-carousel .quote {
   color: rgba(0, 0, 0, 0.1);
@@ -461,7 +466,9 @@ ul.list-group .feat.news.caption {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 100px !important;
+  margin-top: 5px;
 }
+
 .carousel-fade .carousel-inner .item {
   transition-property: opacity;
 }
@@ -488,7 +495,7 @@ ul.list-group .feat.news.caption {
  */
 
 .news {
-  padding: 15px 18px;
+  /*padding: 15px 18px;*/
   /*box-shadow: 0 3px 0 #ff066f;*/
   background-color: #FCFCFC;
 }
@@ -520,6 +527,7 @@ ul.list-group .feat.news.caption {
 
 .news-section p.news-icon {
   color: #45A1E5;
+  margin-bottom: 0px;
 }
 
 

@@ -219,13 +219,15 @@ de:
       next_med_exam_date: # setting name
         name: 'Datum des nächsten Med AufnahmeTests (Format: "2016/01/24")'
       membership_price_euro: # setting name
-        name: 'Membership Preis in Euro'
+        name: 'Membership Preis in Euro (Format: "49.9")'
       #take_categories_from_quizzes_with_id:
       #  name: 'Zeige Kategorien der Quizze (Format: [Quiz1_id, Quiz2_id, ...], Beispiel: "[1,2,3]")'  
       test_number_contexts: # setting name
         name: 'Fragen-Kontexte pro Test'
       test_number_questions: # setting name
         name: 'Fragen pro Test'
+      membership_season_end_date:
+        name: 'Aktuelles Membership-Auslaufdatum (Format: "2016/01/24")'
     index:
       save_all: 'Speichern'  
     errors:
@@ -245,13 +247,14 @@ de:
       lng: 11.087683
       
   invoice:
-    bt_success: 'Die Bezahlung wurde erfolgreich abgeschlossen. Sie können jetzt unser volles Angebot nutzen!'
-    bt_failure: 'Bei der Bezahlung trat ein Fehler auf, versuchen Sie es später nocheinmal oder kontaktiere den Support. Fehlermeldung: %{braintree_response}'
+    bt_success: 'Die Bezahlung wurde erfolgreich abgeschlossen. Du kannst jetzt unser volles Angebot nutzen!'
+    bt_failure: 'Bei der Bezahlung trat ein Fehler auf, bitte versuche es später nocheinmal oder kontaktiere den Support. Fehlermeldung: %{braintree_response}'
+    membership_price_not_set_error: 'Bei der Bezahlung trat ein Fehler auf, bitte versuche es später nocheinmal oder kontaktiere den Support. Fehlermeldung: membership_price not set'
     email:
       sender: 'tian.hofer@gmail.com' #'TODO'
       subject: 'Anmeldung bei aufnahmetest.at' #'Willkommen bei aufnahmetest.at! (Ihre Rechnung befindet sich im Anhang)'
       headline: 'Hallo %{firstname},'
-      body_html: 'Vielen Dank für die Registrierung bei aufnahmetest.at <br /><br />Ihre Zugangsdaten sind:<br /> - Benutzer: %{username}<br /><br /> Anbei finden Sie die Rechnung.<br /><br />Beste Grüße<br />Das Team von aufnahmetest.at'
+      body_html: 'Vielen Dank für die Registrierung bei aufnahmetest.at <br /><br />Ihre Zugangsdaten sind:<br /> - Benutzer: <b>%{username}</b><br />- <a href="%{new_user_password_path}">Passwort vergessen?</a><br /><br /> Anbei finden Sie die Rechnung.<br /><br />Beste Grüße<br />Das Team von aufnahmetest.at'
       
 
 

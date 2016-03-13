@@ -60,50 +60,50 @@
 .hspacer
 
 .container
-.marketing-area
-  .row
-    .col-xs-4
-      .box
-        %h3 Kostenlos testen
-    .col-xs-4
-      .box
-        %h3 Test starten
-    .col-xs-4
-      .box
-        %h3 Tipps / Blog / FAQ
-  .row
-    .col-xs-4
-      .box
-        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
-    .col-xs-4
-      .box
-        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
-    .col-xs-4
-      .box
-        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
-
-
 /.marketing-area
 /  .row
 /    .col-xs-4
 /      .box
 /        %h3 Kostenlos testen
-/        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
-/        /%a.glow{:href => "#{static_pages_quiz_path}"} 
-/        /  = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
 /    .col-xs-4
 /      .box
 /        %h3 Test starten
-/        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
-/        /%a.glow{:href => "#{static_pages_quiz_path}"} 
-/        /  = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
 /    .col-xs-4
 /      .box
 /        %h3 Tipps / Blog / FAQ
+/  .row
+/    .col-xs-4
+/      .box
+/        = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+/    .col-xs-4
+/      .box
+/        = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+/    .col-xs-4
+/      .box
 /        = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
-/        /Fragen / Antworten
-/        /%a.glow{:href => "#{static_pages_faq_path}"}
-/        /  = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
+
+
+.marketing-area
+  .row
+    .col-xs-4
+      .box
+        %h3 Kostenlos testen
+        %a.glow{:href => "#{static_pages_quiz_path}"} 
+          = image_tag("home/Play.png", alt: "Gratis testen icon", class: "img-circle glow-button")
+    .col-xs-4
+      .box
+        %h3 Test starten
+        -if @user.present? && @user.member?
+          %a.glow{:href => "#{static_pages_quiz_path}"} 
+            = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+        -else
+          %a.glow{:href => "#{user_session_path}"} 
+            = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
+    .col-xs-4
+      .box
+        %h3 FAQ / Blog
+        %a.glow{:href => "#{static_pages_faq_path}"}
+          = image_tag("home/FAQ.png", alt: "Häufige Fragen icon", class: "img-circle glow-button")
 
 
 /  /.fb-like{"data-share" => "true", "data-width" => "450", "data-show-faces" => "true"}
@@ -146,7 +146,7 @@
       %li.list-group-item.feat.advantages 
         %i.fa.fa-star-o
         &nbsp;
-        Jetzt nur EUR 49,90!
+        Jetzt nur #{membership_price_euro}!
       %li.list-group-item.feat.advantages 
         %i.fa.fa-star-o
         &nbsp;
@@ -289,7 +289,7 @@
 /        %i.fa.fa-chevron-right
 
 
-
+.hspacer-4x
 
 .row
   .col-md-12
@@ -306,11 +306,7 @@
           .item.active
             %blockquote.testimonial
               %p
-                %i.fa.fa-quote-left.fa 
-                &nbsp;
                 Das Material ist perfekt vorsortiert und bereitet optimal auf den MedAT vor!
-                &nbsp;
-                %i.fa.fa-quote-right.fa    
                 %small Dr. Stefan Ulmer – Praktischer Arzt
                 %i.fa.fa-star.gold
                 %i.fa.fa-star.gold
@@ -323,11 +319,7 @@
           .item
             %blockquote.testimonial
               %p
-                %i.fa.fa-quote-left.fa  
-                &nbsp;
                 Ich habe sogar am Smartphone bei aufnahmetest.at geübt – BESTANDEN!!! 
-                &nbsp;
-                %i.fa.fa-quote-right.fa    
                 %small Brigitte Sipos – Studentin an der Medizinischen Universität Innsbruck
                 %i.fa.fa-star.gold
                 %i.fa.fa-star.gold
@@ -350,8 +342,7 @@
 /    %ul.list-group
 /      %li.list-group-item.feat.divider Neuigkeiten
 
-
-.hspacer-4x
+.hspacer-2x
 .hspacer-4x
 
 .row.news-section
@@ -426,11 +417,12 @@
     .col-md-12
       .jumbotron.countdown{"data-no-turbolink" => true}
         %h3 Der nächste Aufnahmetest beginnt in:
+        / countdown js from: http://hilios.github.io/jQuery.countdown/documentation.html
         #getting-started
           :javascript
             $("#getting-started").countdown("#{@next_med_exam_date}", function(event) {
               $(this).text(
-                event.strftime('%m Monate %D Tagen %H Stunden')
+                event.strftime('%m Monate %d Tagen %H Stunden')
               );
             });
             

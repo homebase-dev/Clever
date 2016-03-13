@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208215854) do
+ActiveRecord::Schema.define(version: 20160313181538) do
 
   create_table "answers", force: true do |t|
     t.text     "text"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160208215854) do
 
   create_table "invoices", force: true do |t|
     t.integer  "user_id"
-    t.decimal  "amount",           precision: 5, scale: 2
+    t.decimal  "amount",                     precision: 5, scale: 2
     t.string   "message"
     t.string   "transaction_id"
     t.string   "transaction_code"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160208215854) do
     t.boolean  "success"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "membership_expiration_date"
   end
 
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree

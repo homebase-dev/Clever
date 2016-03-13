@@ -478,4 +478,22 @@ class ApplicationController < ActionController::Base
     average_test_score.round(2)
   end
   
+  
+  def membership_season_end_date
+    membership_season_end_date = nil
+    
+    membership_season_end_date_str = Settings.membership_season_end_date
+    if membership_season_end_date_str.present? 
+      membership_season_end_date = Date.strptime(membership_season_end_date_str, "%Y/%m/%d")
+    end
+    
+    membership_season_end_date
+  end
+  
+  Warden::Manager.after_authentication do |user,auth,opts|
+    if user.present? && !user.can_manage? && user.membership_expired? 
+      user.update_attribute(:role, Role.find_by_name('registered')) #remove member privilege, if membership expired (managment is excluded)
+    end
+  end
+  
 end

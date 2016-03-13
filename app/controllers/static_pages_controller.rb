@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:profile_status, :profile_data]
   
   def home
+    @user = current_user
     @next_med_exam_date = Settings.next_med_exam_date
     @novelties = (Novelty.all.published.order('created_at DESC'))
   end
@@ -65,11 +66,7 @@ class StaticPagesController < ApplicationController
   def pay
     @user = current_user
     @date_now = Time.new.strftime("%d.%m.%Y")
-    #@creditcard_number = params[:creditcard_number]
-    #@creditcard_expiration_date  = params[:creditcard_expiration_date]
-    #@creditcard_cnc = params[:creditcard_cnc]
     
-    #TODO do payment processing
     nonce = params[:payment_method_nonce]
     
     render action: static_pages_profile_status_path and return unless nonce
@@ -77,11 +74,16 @@ class StaticPagesController < ApplicationController
     #TODO create order instance
     #TODO set euro? (=> bt account settings)
     membership_price = Settings[:membership_price_euro]
+    if membership_price.blank?
+      flash[:error] = t 'invoice.membership_price_not_set_error'
+      redirect_to static_pages_profile_status_path
+    end
+    
     result = Braintree::Transaction.sale(
       :amount => membership_price,
       :payment_method_nonce => nonce,   
       :custom_fields => {
-        :medat_user_id => @user.id
+        :medat_user_url => users_edit_admin_url(:id => @user.id)
       },   
       #:order_id => "order id",
       #:merchant_account_id => "my id",
@@ -104,10 +106,17 @@ class StaticPagesController < ApplicationController
       :options => {
         :submit_for_settlement => true
       },
-      :channel => "medATQuiz"
+      :channel => "medAT"
     )
     
-    invoice = Invoice.new(:user => @user, :amount => membership_price, :message => result.try(:message), :transaction_id => result.try(:transaction).id, :transaction_code => result.try(:transaction).processor_response_code, :transaction_text => result.try(:transaction).processor_response_text, :success => result.try(:success?))
+    invoice = Invoice.new(:user => @user, 
+                          :amount => membership_price, 
+                          :message => result.try(:message), 
+                          :transaction_id => result.try(:transaction).id, 
+                          :transaction_code => result.try(:transaction).processor_response_code, 
+                          :transaction_text => result.try(:transaction).processor_response_text, 
+                          :success => result.try(:success?),
+                          :membership_expiration_date => membership_season_end_date)
     invoice.save!
     
     if result.success?

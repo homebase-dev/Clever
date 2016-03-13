@@ -6,7 +6,7 @@
     /%h1
     /  = t 'invoice.email.headline', :firstname => @user.firstname
     %p
-      = t 'invoice.email.body_html', :username => @user.email
+      = t 'invoice.email.body_html', :username => @user.email, :new_user_password_path => new_user_password_url
     /  You have successfully payed for example.com,
     /  your usernameId is: #{@user.id}.
     /  %br/

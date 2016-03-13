@@ -5,13 +5,22 @@ class InvoicePdf < Prawn::Document
     @user = user
     #@result = result
     
+    date_format = "%d.%m.%Y"
+    
     @invoice_number = invoice.id
-    @subscription_start = Time.new.strftime("%d.%m.%Y")
-    @subscription_end = "1. Juli 2016"
+    @subscription_start = Time.new.strftime(date_format)
+    @subscription_end = "1. Juli des Folgejahres"
+  
+    next_exam_date_string = Settings.next_med_exam_date
+    if next_exam_date_string.present? 
+      next_exam_date = Date.strptime(next_exam_date_string, "%Y/%m/%d")
+      @subscription_end = next_exam_date.strftime(date_format)
+    end
 
     #@price_netto = ((invoice.amount/120) * 100).round(2)
-    #@price_tax = (invoice.amount - @price_netto).round(2);
-    @price_total = (@price_netto + @price_tax).round(2);
+    #@price_tax = (invoice.amount - @price_netto).round(2)
+    #@price_total = (@price_netto + @price_tax).round(2)
+    @price_total = invoice.amount
 
     #@price_netto = ApplicationController.helpers.number_to_currency(@price_netto, unit: "€", separator: ".", delimiter: "", format: "%u %n")
     #@price_tax = ApplicationController.helpers.number_to_currency(@price_tax, unit: "€", separator: ".", delimiter: "", format: "%u %n")

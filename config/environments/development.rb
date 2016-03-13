@@ -35,13 +35,17 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   
+  # Added by ch
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com', #TODO
-  port:                 587,
-  domain:               'gmail.com', #TODO
-  user_name:            '', #TODO attention, you have to restart server after changes
-  password:             '', #TODO
+  address:              'mail.antiloop.com',
+  port:                 465,
+  domain:               'aufnahmetest.at',
+  user_name:            'office@aufnahmetest.at', #TODO attention, you have to restart server after changes
+  password:             '', 
   authentication:       'plain',
+  ssl:                  true,
   enable_starttls_auto: true  }
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+  
 end

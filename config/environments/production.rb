@@ -76,4 +76,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
+  # Added by ch
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'mail.antiloop.com', 
+  port:                 465,
+  domain:               'aufnahmetest.at', 
+  user_name:            'office@aufnahmetest.at', #TODO attention, you have to restart server after changes
+  password:             '', 
+  authentication:       'plain',
+  ssl:                  true,
+  enable_starttls_auto: true  }
+  config.action_mailer.default_url_options = {:host => "aufnahmetest.at"}
+  
 end

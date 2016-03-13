@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   def update_email
     @user = current_user
     
-    puts params.inspect
+    #puts params.inspect
     
     email_confirmation = params[:email_confirmation] 
     email = user_params[:email]
