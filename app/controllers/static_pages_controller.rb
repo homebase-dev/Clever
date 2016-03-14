@@ -60,6 +60,7 @@ class StaticPagesController < ApplicationController
   
   def payment
     @user = current_user
+    @membership_season_end_date = membership_season_end_date
     @client_token = Braintree::ClientToken.generate
   end
   

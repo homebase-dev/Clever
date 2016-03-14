@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   #TODO add authentication
   def edit_admin
     if !current_user.admin?
-      flash[:error] = "Sie sind nicht berechtigt diese Operation auszuführen."
+      flash[:error] = "Du bist nicht berechtigt diese Operation auszuführen."
       redirect_to static_pages_home_path and return
     end
     
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   #TODO put authentication outside
   def update_admin
     if !current_user.admin?
-      flash[:error] = "Sie sind nicht berechtigt diese Operation auszuführen."
+      flash[:error] = "Du bist nicht berechtigt diese Operation auszuführen."
       redirect_to users_index_path and return
     end
     

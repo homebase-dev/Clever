@@ -39,6 +39,12 @@ module ApplicationHelper
     number_to_euro(Settings[:membership_price_euro])
   end
   
+  def formatted_date(date)
+    date_formatted = "not defined"
+    date_formatted = date.strftime("%d.%m.%Y") if date.present?
+    date_formatted
+  end
+  
   def meta_keywords
     keywords = %w(aufnahmetest-medizin Vorbereitung-medizin-test medizin-aufnahmeprüfung MedAt-2016-vorbereitung Eignungstest-medizin-online Medizin-aufnahmetest-2016 medizin-vorbereitungskurs-innsbruck-wien-graz-linz Medizin-aufnahmetest-innsbruck-wien-graz-linz Medizin-aufnahmetest-vorbereitung aufnahmetest-online medizin-aufnahmetest-übungen aufnahmetest-vorbereitung-medat aufnahmetest-fragen medizinischer-eignungstest-vorbereiten medat-2016-vorbereitung medizinertest-innsbruck vorbereitungskurs-medizin-aufnahmetest)   
     keywords.join(',')

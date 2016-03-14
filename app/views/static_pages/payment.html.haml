@@ -22,12 +22,12 @@
         %p
           Gib deine Kreditkarteninformationen ein und bezahlte #{membership_price_euro} für die Freischaltung deines Accounts. 
           %br
-          Damit erhälst du für 1 Jahr vollen Zugriff auf unser gesamtes Fortbildungsangebot!
+          Damit erhälst du bis zum #{formatted_date(@membership_season_end_date)} vollen Zugriff auf unser gesamtes Fortbildungsangebot!
           %br
           Neben Kreditkarten ist auch die Zahlung per PayPal möglich, drücke dafür auf die untenstehende, blaue PayPal Schaltfläche.
           
         %p.form-control-static.account-status.inactive
-          %span.label.label-warning Preis: #{membership_price_euro} für 1 Jahr
+          %span.label.label-warning Preis: #{membership_price_euro} für die aktuelle Lernsaison (Endet am: #{formatted_date(@membership_season_end_date)})
         %br/
         %h3 Bezahlen 
         %hr
