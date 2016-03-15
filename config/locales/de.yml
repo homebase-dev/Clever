@@ -228,6 +228,8 @@ de:
         name: 'Fragen pro Test'
       membership_season_end_date:
         name: 'Aktuelles Membership-Auslaufdatum (Format: "2016/01/24")'
+      send_invoice_to_customer:
+        name: 'Automatische Email (inkl. Rechnung) an Kunden bei dessen Bezahlung'
     index:
       save_all: 'Speichern'  
     errors:
@@ -255,6 +257,6 @@ de:
       subject: 'Anmeldung bei aufnahmetest.at' #'Willkommen bei aufnahmetest.at! (Ihre Rechnung befindet sich im Anhang)'
       headline: 'Hallo %{firstname},'
       body_html: 'Vielen Dank für die Registrierung bei aufnahmetest.at <br /><br />Ihre Zugangsdaten sind:<br /> - Benutzer: <b>%{username}</b><br />- <a href="%{new_user_password_path}">Passwort vergessen?</a><br /><br /> Anbei finden Sie die Rechnung.<br /><br />Beste Grüße<br />Das Team von aufnahmetest.at'
-      
+      debug_receiver: 'tian.hofer@gmail.com'      
 
 
