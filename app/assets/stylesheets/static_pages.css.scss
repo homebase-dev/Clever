@@ -346,13 +346,15 @@ ul.list-group .feat.advantages {
   border: none;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
-  background-color: #FCFCFC;
+  background-color: #FEFAF7; /*#FCFCFC;*/
 }
 ul.list-group .feat.advantages.caption {
-  background-color: #E6D38B; /*#3E3E3E;*/
+  background-color: #FB6017; /*#E6D38B; /*#3E3E3E;*/
   text-align: center;
   color: #ffffff; /*#E6D38B;*/
   font-weight: bold;
+  font-size: 1.5em;
+  height: 3em;
 }
 
 ul.list-group .feat.divider {

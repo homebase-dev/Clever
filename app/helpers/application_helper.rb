@@ -51,7 +51,7 @@ module ApplicationHelper
   end
   
   def meta_description
-    description = "Online Vorbereitung für den Medizin Aufnahmetest (MedAT) inklusive kostenlose Skripten für Biologie, Physik, Chemie und Mathematik; unzählige Gesamttest mit Zufallsgenerator; alle Untertests wie Kognitive Fähigkeiten, Biologie etc. einzeln üben, Lernstatistiken analysieren und gezielt üben"
+    description = "Medizin Aufnahmetest -  Online Vorbereitungskurse für den Aufnahmetest für das Medizinstudium (MedAT) in Wien, Graz und Innsbruck"
   end
   
   def time_ago_in_words_for_secs(time_in_seconds)
