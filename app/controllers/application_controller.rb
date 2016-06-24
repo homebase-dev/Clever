@@ -446,10 +446,14 @@ class ApplicationController < ActionController::Base
   
   
   def create_invoice_pdf(user, date, invoice) 
-    pdf = InvoicePdf.new(user, invoice)
-    pdf_filename = "public/storage/invoices/#{date}uid#{user.id}iid#{invoice.id}.pdf"
-    pdf.render_file pdf_filename
-    pdf_filename
+    begin
+      pdf = InvoicePdf.new(user, invoice)
+      pdf_filename = "public/storage/invoices/#{date}uid#{user.id}iid#{invoice.id}.pdf"
+      pdf.render_file pdf_filename
+      pdf_filename
+    rescue => ex
+      logger.error ex.message
+    end
   end
   
   def send_invoice_email(user, pdf_filename)

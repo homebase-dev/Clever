@@ -65,6 +65,7 @@ class StaticPagesController < ApplicationController
   end
   
   def pay
+    Rails.logger.info "Payment process started".yellow
     @user = current_user
     @date_now = Time.new.strftime("%d.%m.%Y")
     
@@ -120,23 +121,30 @@ class StaticPagesController < ApplicationController
                           :membership_expiration_date => membership_season_end_date)
     invoice.save!
     
+    Rails.logger.info "PAYMENT invoice object".yellow
+    Rails.logger.info invoice.to_yaml
+    Rails.logger.info "PAYMENT braintree transaction result".yellow
+    Rails.logger.info result.to_yaml
+    
     if result.success?
+      Rails.logger.info "PAYMENT braintree transaction successful".yellow
       if @user.role == Role.find_by_name('registered')
         @user.role = Role.find_by_name('member')
         @user.save!
       end
       
       pdf_filename = create_invoice_pdf(@user, @date_now, invoice)
-      
+      Rails.logger.info "PAYMENT pdf was created".yellow
       send_invoice_email(@user, pdf_filename)
+      Rails.logger.info "PAYMENT invoice mail was sent".yellow
       
-      puts result.to_yaml
+      #puts result.to_yaml
       
-      #TODO set success in order instance
+      Rails.logger.info "PAYMENT process was successfully completed!".yellow
       flash[:notice] = t 'invoice.bt_success'
       redirect_to static_pages_profile_status_path
     else
-      #TODO set fail in order instance
+      Rails.logger.info "PAYMENT braintree transaction failed".yellow
       #result.transaction.processor_response_code
       #=> "2001"
       #result.transaction.processor_response_text
