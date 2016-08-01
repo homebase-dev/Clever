@@ -238,7 +238,8 @@ de:
   medAT:
     email_support: 'office@aufnahmetest.at'
     address: 
-      owner: 'Mag. Stefan Stillebacher'
+      company: 'aufnahmetest.at'
+      owner: 'MMag. Stefan Stillebacher'
       street: 'Saglstraße 64'
       city: 'Telfs'
       zip: '6410'

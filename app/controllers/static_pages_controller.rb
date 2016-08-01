@@ -313,4 +313,7 @@ class StaticPagesController < ApplicationController
   def info_sub_dent2
   end
   
+  def info_scripts
+  end
+  
 end

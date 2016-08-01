@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'static_pages/info/sub/words', to: 'static_pages#info_sub_words'
   get 'static_pages/info/sub/memory', to: 'static_pages#info_sub_memory'
   get 'static_pages/info/tips', to: 'static_pages#info_tips'
+  get 'static_pages/info/scripts', to: 'static_pages#info_scripts'
 
   
   get 'static_pages/online_lernportal'
