@@ -57,7 +57,9 @@
           .checkbox
             %label
               = check_box_tag :accept_tos 
-              Ich akzeptiere die AGB
+              Ich akzeptiere die 
+              = link_to static_pages_terms_path, :target => "_blank" do
+                %abbr{:title => "ABG anzeigen"} AGB
           = f.submit "Registrieren", :class => 'btn btn-success pull-right'
           %a.btn.btn-default.pull-right.btn.space-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
         / = render "devise/shared/links"
