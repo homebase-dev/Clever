@@ -76,9 +76,9 @@
               =link_to "Tipps zum Test", static_pages_info_tips_path
             %li 
               =link_to "Studienpläne", static_pages_info_curriculum_path
-            -if user_signed_in? && (current_user.try(:member?) || current_user.try(:can_manage?))
-              %li 
-                =link_to "Skripten", static_pages_info_scripts_path
+          - if user_signed_in? && (current_user.try(:member?) || current_user.try(:can_manage?))
+            %li 
+              =link_to "Skripten", static_pages_info_scripts_path
             %li{:role => "separator", :class => "divider"}
             %li
               =link_to "AGB und Rücktrittsrecht", static_pages_terms_path

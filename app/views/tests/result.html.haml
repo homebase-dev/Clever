@@ -27,7 +27,7 @@
 .row{:"data-no-turbolink" => true}
   .col-lg-12
     %h3 Kontrolle:
-    %p Richtige Antworten sind <span class="correct" style="padding-left: 1.5em;">grün</span>, falsche <span class="wrong" style="padding-left: 1.5em;">rot</span> markiert. <br/><br/>
+    %p Die richtige Antworten sind <span class="correct" style="padding-left: 1.5em;">grün</span> markiert. <br/><br/>
     #accordion.panel-group
       - visible_assignations_index = 0
       - @assignations.each_with_index do |assignation, index|
@@ -52,7 +52,7 @@
           - next
 
         .panel.panel-default
-          .panel-heading.flat-corners{:class => "#{assignation.passed? ? '' : 'wrong-answer'}"}
+          .panel-heading.flat-corners{:class => "#{assignation.passed? ? 'correct-answer' : 'wrong-answer'}"}
             %h4.panel-title
               %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-question-#{index}"} Frage #{visible_assignations_index+1}
           %div.panel-collapse.collapse{:id => "collapse-question-#{index}"}
@@ -68,7 +68,7 @@
               %br/
               - assignation.question.answers.each_with_index do |answer, index_2|
                 %ul.list-group
-                  %a.list-group-item.no-border.no-hover{:href => "#", :class => "#{assignation.answer_passed?(answer) ? 'correct-answer' : 'wrong-answer' }"}
+                  %a.list-group-item.no-border.no-hover{:href => "#", :class => "#{answer.correct? ? 'correct-answer' : '' }"}
                     .answer
                       - if assignation.answer_checked?(answer) 
                         / answer.correct?

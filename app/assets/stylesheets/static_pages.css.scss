@@ -124,7 +124,7 @@ font-size: 18px;
 
 .list-group-item.wrong-answer {
   background-color: rgba(197, 13, 13, 0.13);
-  background-image: asset_url("incorrect.png");
+  /*background-image: asset_url("incorrect.png");*/
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 1em 1em;
@@ -208,8 +208,8 @@ font-size: 18px;
 }
 
 .panel-heading.correct-answer{
-  /*color: #fff !important;*/
-  /*background-color: #26C50D !important;*/
+  color: #fff !important;
+  background-color: rgba(89, 197, 13, 0.5) !important;
 }
 
 .btn.space-right {
