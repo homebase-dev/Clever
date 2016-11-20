@@ -27,7 +27,8 @@
     %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
   .carousel-inner{:role => "listbox"}
     .item.active
-      = image_tag("home/carousel/carousel1.jpg", alt: "First slide")
+      %a{:href => "#{new_user_session_path}"} 
+        = image_tag("home/carousel/carousel1.jpg", alt: "First slide")
       /.container
       /  .carousel-caption
       /    %h1.super MedAT - aufnahmetest.at
@@ -36,13 +37,15 @@
       /    /%p
       /    /  %a.btn.btn-lg.btn-primary.multi-line-button{:href => "#{new_user_registration_path}", :role => "button"} Starte gleich los und registriere dich
     .item
-      = image_tag("home/carousel/carousel2.jpg", alt: "Second slide")
+      %a{:href => "#{new_user_session_path}"} 
+        = image_tag("home/carousel/carousel2.jpg", alt: "Second slide")
       /.container
       /  .carousel-caption
       /    %h1.super Teste dich
       /    %h3 Es motiviert!
     .item
-      = image_tag("home/carousel/carousel3.jpg", alt: "Third slide")
+      %a{:href => "#{new_user_session_path}"} 
+        = image_tag("home/carousel/carousel3.jpg", alt: "Third slide")
       /.container
       /  .carousel-caption
       /    %h3 Gemeinsam für den MedAt lernen und
@@ -160,7 +163,7 @@
       %li.list-group-item.feat.advantages.caption 
         %i.fa.fa-star
         &nbsp;
-        Weit über 1000 Fragen von Spezialisten entwickelt!
+        Über 2000 Fragen von Spezialisten entwickelt!
       %li.list-group-item.feat.advantages 
         %i.fa.fa-star-o
         &nbsp;
@@ -195,10 +198,7 @@
         %i.fa.fa-star-o
         &nbsp;
         Zusätzlich Skripten zum Wissensteil
-      %li.list-group-item.feat.advantages 
-        %i.fa.fa-star-o
-        &nbsp;
-        Live Vorbereitungskurse
+
 
 /.hspacer-4x
 / Video ausblenden
