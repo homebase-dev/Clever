@@ -28,14 +28,14 @@
         %td= category.creator.id
         %td
           = link_to 'Anzeigen', category, :class => 'btn btn-default btn-xs' 
-          = link_to 'Editieren', edit_category_path(category), :class => 'btn btn-default btn-xs' 
+          = link_to 'Editieren', edit_category_path(category), :class => 'btn btn-default btn-xs', data: { no_turbolink: true } 
           /= link_to 'Fragen', quiz_category_questions_path(@quiz, category), :class => 'btn btn-primary btn-xs' 
           = link_to 'Fragenkontexte', quiz_category_question_contexts_path(@quiz, category), :class => 'btn btn-primary btn-xs' 
           = link_to 'Löschen', category, method: :delete, data: { confirm: 'Kategorie "'+category.name+ '" wirklich löschen?' }, :class => 'btn btn-xs btn-danger' 
           = link_to 'Übersicht', static_pages_category_overview_path(:id => category.id), :class => 'btn btn-xs btn-default'
            
 /= link_to "Zurück", quizzes_path, :class => "btn btn-default"     
-= link_to 'Neue Kategorie', new_quiz_category_path(@quiz), :class => 'btn btn-success'                                                                           
+= link_to 'Neue Kategorie', new_quiz_category_path(@quiz), :class => 'btn btn-success', data: { no_turbolink: true }                                                                           
 %br
 \#{link_to 'Zurück', quizzes_path}
 
