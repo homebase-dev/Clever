@@ -10,12 +10,12 @@
   /  %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
   .col-lg-12
     - if @top_novelty
-      = render "shared/panel", panel_css_class: "panel-primary", title: @top_novelty.title, body: @top_novelty.text, created_at: @top_novelty.created_at
+      = render "shared/novelty", panel_css_class: "panel-primary", novelty: @top_novelty
 
     - @older_novelties.each do |novelty|
-      = render "shared/panel", panel_css_class: "panel-default", title: novelty.title, body: novelty.text, created_at: novelty.created_at
+      = render "shared/novelty", panel_css_class: "panel-default", novelty: novelty
       
     %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
-    
+ 
     .hspacer-4x
     .hspacer-4x

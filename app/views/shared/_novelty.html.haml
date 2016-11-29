@@ -1,0 +1,47 @@
+/.panel{class: "#{panel_css_class}"}
+/  .panel-heading
+/    %h3.panel-title #{title} <span class="pull-right" style="font-size: 0.7em">#{created_at.strftime("%d.%m.%Y %H:%M")}</span>
+/  .panel-body
+/    =image_tag image_url
+/    =body.html_safe
+   
+
+.row
+  .col-xs-12
+    =image_tag novelty.image.novelty.url, class: 'novelty-img'
+.row
+  .col-xs-2
+    .novelty-box.date
+      %p
+        %span.day
+          #{novelty.created_at.strftime("%d")}
+          %br/
+        %span.month-year
+          #{novelty.created_at.strftime("%m, %Y")}
+    .novelty-box.news
+      %p
+        %i.fa.fa-pencil
+  .col-xs-10
+    %h3.novelty-title
+      = link_to novelty.title, novelty_path(novelty)
+    %p
+      %span 
+        Von: Stefan 
+      %span.pipe
+        | 
+      %span 
+        #{novelty.created_at.strftime("%d.%m.%Y %H:%M")}
+      %span.pipe
+        | 
+      %span 
+        Kategorie: News
+    %p.novelty-text
+      =preview_html_field_text_only(novelty.text, 300)
+    
+.row
+  .col-xs-12
+    %p.pull-right
+      = link_to "Weiterlesen >", novelty_path(novelty)
+      
+    .novelty-bar
+    

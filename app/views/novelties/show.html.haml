@@ -1,35 +1,28 @@
 - model_class = Novelty
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.titleize
-%dl.dl-horizontal
-  %dt
-    %strong
-      = model_class.human_attribute_name(:title)
-      \:
-  %dd= @novelty.title
-  %dt
-    %strong
-      = model_class.human_attribute_name(:text)
-      \:
-  %dd= @novelty.text
-  %dt
-    %strong
-      = model_class.human_attribute_name(:published)
-      \:
-  %dd= @novelty.published
-  %dt
-    %strong
-      = model_class.human_attribute_name(:priority)
-      \:
-  %dd= @novelty.priority
-= link_to t('.back', :default => t("helpers.links.back")), |
-  novelties_path, :class => 'btn btn-default'              |
--#
-= link_to t('.edit', :default => t("helpers.links.edit")), |
-  edit_novelty_path(@novelty), :class => 'btn btn-default' |
--#
-= link_to t('.destroy', :default => t("helpers.links.destroy")),                                               |
-  novelty_path(@novelty),                                                                                      |
-  :method => 'delete',                                                                                         |
-  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, |
-  :class => 'btn btn-danger'                                                                                   |
+  %h1
+    = @novelty.title
+.row
+  .col-lg-12
+    = image_tag @novelty.image.novelty.url, :style => 'width: 100%'
+    
+    .novelty-text
+      = @novelty.text.html_safe
+      
+    %p.novelty-footer
+      %span 
+        Von: Stefan 
+      %span.pipe
+        | 
+      %span 
+        #{@novelty.created_at.strftime("%d.%m.%Y %H:%M")}
+      %span.pipe
+        | 
+      %span 
+        Kategorie: News
+      
+    
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_news_path}", :role => "button"} Zurück
+     
+    .hspacer-4x
+    .hspacer-4x

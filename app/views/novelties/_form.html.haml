@@ -15,6 +15,12 @@
       = f.text_field :title, :class => 'form-control'
     = error_span(@novelty[:title])
   .control-group
+    = f.label :image, :class => 'control-label'
+    (wird auf 1024x450 skaliert)
+    .controls
+      = f.file_field :image, multiple: false
+    = error_span(@novelty[:image])
+  .control-group
     = f.label :text, :class => 'control-label'
     .controls
       = f.cktext_area :text, :class => 'form-control', :rows => 10
@@ -32,4 +38,4 @@
     = error_span(@novelty[:published])
   = f.submit nil, :class => 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), |
-    novelties_path, :class => 'btn btn-default'                  |
+    novelties_path, :class => 'btn btn-default'

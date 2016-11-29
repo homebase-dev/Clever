@@ -534,4 +534,67 @@ ul.list-group .feat.news.caption {
 
 
 
+/*
+ * NOVELTIES
+ */
+
+.novelty-img {
+  width: 100%; 
+  margin-top: 2em; 
+  margin-bottom: 2em;  
+}
+
+.novelty-box {
+  width: 100%; 
+  text-align: center; 
+}
+
+.novelty-box.date .day, .novelty-box.news p {
+  font-size: 2em; 
+  font-weight: bold;
+}
+
+
+.novelty-box.date p {
+  background-color: #0081E0; 
+  color: #fff; 
+  padding: 1em; 
+  margin-bottom: 3px;
+  padding-top: 1.5em;
+}
+
+
+.novelty-box.news p {
+  background-color: #eef0f2; 
+  color: #A1A1A1; 
+  padding: 0.9em; 
+}
+
+span.pipe {
+  padding-left: 0.5em; 
+  padding-right: 0.5em;
+}
+
+.novelty-bar {
+  border-bottom: 1px solid #eef0f2; 
+  margin: 2em 0em 2em 0em;
+}
+
+.novelty-text {
+  margin-top: 2em;
+}
+
+.novelty-title {
+  margin-top: 5px;
+}
+
+.novelty-footer {
+  margin-top: 2em;
+  padding: 0.6em 0 0.5em 0;
+  border-top: 1px solid #eef0f2;
+  border-bottom: 1px solid #eef0f2;
+}
+
+
+
 

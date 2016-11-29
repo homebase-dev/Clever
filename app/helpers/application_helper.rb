@@ -2,7 +2,7 @@ module ApplicationHelper
   
   def preview_html_field(field, first_n_chars=nil)
     if first_n_chars.present? && field.length > first_n_chars
-      "#{field[0..first_n_chars].strip.html_safe} ..."
+      "#{field[0..first_n_chars].strip.html_safe} [...]"
     else
       if field.blank?
           "&nbsp;".html_safe
@@ -12,6 +12,10 @@ module ApplicationHelper
     end
   end
   
+  def preview_html_field_text_only(field, first_n_chars=nil)
+    html_preview = preview_html_field(field, first_n_chars)
+    ActionView::Base.full_sanitizer.sanitize(html_preview)
+  end
   
   def render_boolean(value)
     if value

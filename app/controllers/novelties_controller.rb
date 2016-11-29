@@ -4,7 +4,7 @@ class NoveltiesController < ApplicationController
   respond_to :html
 
   def index
-    @novelties = Novelty.all
+    @novelties = Novelty.all.order({ created_at: :desc })
     respond_with(@novelties)
   end
 
@@ -42,6 +42,6 @@ class NoveltiesController < ApplicationController
     end
 
     def novelty_params
-      params.require(:novelty).permit(:title, :text, :published, :priority)
+      params.require(:novelty).permit(:title, :text, :published, :priority, :image)
     end
 end
