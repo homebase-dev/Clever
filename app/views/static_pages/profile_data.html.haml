@@ -3,13 +3,7 @@
     Profil
     / <small>Subtext for header</small>
     
-%ul.nav.nav-tabs
-  %li{:role => "presentation"}
-    = link_to "Mein Account Status", static_pages_profile_status_path 
-  %li.active{:role => "presentation"}
-    = link_to "Meine Daten", "#"
-  %li{:role => "presentation"}
-    = link_to "Meine Statistik", static_pages_profile_stats_path 
+= render "shared/profile_tabs", tab_data: 'active', link_data: '#', user: current_user
     
 %br/
 %br/
@@ -21,6 +15,14 @@
   /    %p.text-center
   .col-lg-12
     = form_for @user, :url => users_update_path do |f|
+      -if @user.blogger?
+        .form-group
+          = f.label :avatar, :class => 'control-label'
+          (wird auf 200x200 skaliert)
+          = f.file_field :avatar, multiple: false
+          %br/
+          = image_tag @user.avatar.try(:avatar).try(:url)
+          = error_span(@user[:image]) 
       .form-group
         = f.label :email, :class => 'control-label'
         %p

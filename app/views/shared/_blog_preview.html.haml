@@ -1,0 +1,37 @@
+- last_blog_entry = user.blog_entries.published.last
+- if last_blog_entry
+  .row
+    .col-xs-4.col-sm-2
+      =image_tag user.avatar.try(:url), class: 'avatar-img'   
+      .novelty-box.date
+        %p
+          %span.day
+            #{last_blog_entry.created_at.strftime("%d")}
+            %br/
+          %span.month-year
+            #{last_blog_entry.created_at.strftime("%m, %Y")}
+    .col-xs-8.col-sm-10
+      %h3.novelty-title
+        /#{user.firstname}'s Blog 
+        = link_to last_blog_entry.title, blog_entry_path(last_blog_entry)
+      %p
+        %span 
+          Von: #{user.try(:firstname)}
+        %span.pipe
+          | 
+        %span 
+          #{last_blog_entry.created_at.strftime("%d.%m.%Y %H:%M")}
+        %span.pipe
+          | 
+        %span 
+          Kategorie: Userblog
+      %p.novelty-text
+        =preview_html_field_text_only(last_blog_entry.text, 300)
+      
+  .row
+    .col-xs-12
+      %p.pull-right
+        = link_to "Zum Blog von #{user.try(:firstname)} >", static_pages_blog_path(:id => user.id)
+        
+      .novelty-bar
+    

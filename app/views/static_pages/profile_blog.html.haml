@@ -1,0 +1,52 @@
+.page-header
+  %h1
+    Mein Blog
+    / <small>Subtext for header</small>
+
+= render "shared/profile_tabs", tab_blog: 'active', link_blog: '#', user: current_user
+    
+%br/
+%br/
+
+.row
+  /.col-lg-2
+  /  %a.thumbnail.category{:href => "#"}
+  /    = image_tag("placeholder_icon.png", alt: "Profil Informationen icon")
+  /    %p.text-center
+  .col-lg-12
+  
+    %table.table.table-striped
+      %thead
+        %tr
+          /%th Id
+          %th Titel
+          %th Text
+          %th Veröffentlicht?
+          /%th #User Id
+          %th Erstellt am
+          %th
+      %tbody
+        - @blog_entries.each do |blog_entry|
+          %tr
+            /%td= link_to blog_entry.id, blog_entry_path(blog_entry)
+            %td= blog_entry.title
+            %td= preview_html_field(blog_entry.text, 50)
+            %td= render_boolean(blog_entry.published)
+            /%td= blog_entry.user_id
+            %td= blog_entry.created_at_formatted
+            %td
+              = link_to 'Editieren', edit_blog_entry_path(blog_entry), :class => 'btn btn-default btn-xs', data: { no_turbolink: true } 
+              = link_to 'Löschen', blog_entry_path(blog_entry), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+    
+    = link_to 'Neu', new_blog_entry_path, :class => 'btn btn-success', data: { no_turbolink: true } 
+    
+    .row
+      .col-lg-10
+        = paginate @blog_entries  
+
+    .hspacer-4x
+    
+
+
+
+    

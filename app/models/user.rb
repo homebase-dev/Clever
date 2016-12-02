@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   has_many :tests #, foreign_key: "testee_id", class_name: "Test" 
   
   has_many :invoices
+  
+  has_many :blog_entries
+  
+  mount_uploader :avatar, ImageUploader
 
   def fullname
     "#{try(:firstname)} #{try(:lastname)}"

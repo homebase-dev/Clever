@@ -3,13 +3,7 @@
     Profil
     / <small>Subtext for header</small>
     
-%ul.nav.nav-tabs
-  %li{:role => "presentation"}
-    = link_to "Mein Account Status", static_pages_profile_status_path 
-  %li{:role => "presentation"}
-    = link_to "Meine Daten", static_pages_profile_data_path 
-  %li.active{:role => "presentation"}
-    = link_to "Meine Statistik", "#"
+= render "shared/profile_tabs", tab_stats: 'active', link_stats: '#', user: current_user
     
 %br/
 %br/

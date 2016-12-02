@@ -342,6 +342,7 @@
 /    %ul.list-group
 /      %li.list-group-item.feat.divider Neuigkeiten
 
+
 .hspacer-2x
 .hspacer-4x
 
@@ -355,6 +356,19 @@
     %p.text-center
       %a{:href => "#{static_pages_news_path}"} Ältere Neuigkeiten ...
   .col-md-4
+
+
+.hspacer-2x
+
+.row
+  .col-xs-12
+    %h2.home-caption Userblogs
+
+.hspacer-4x
+
+- @bloggers.each do |blogger|
+  = render "shared/blog_preview", user: blogger
+
 
 /.row
 /  .col-sm-12

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
     
+  resources :blog_entries
+
   resources :invoices
 
   mount RailsSettingsUi::Engine, at: 'settings'
@@ -60,8 +62,10 @@ Rails.application.routes.draw do
   get 'static_pages/profile_status'
   get 'static_pages/profile_data'
   get 'static_pages/profile_stats'
+  get 'static_pages/profile_blog'
   get 'static_pages/admin'
   get 'static_pages/payment'
+  get 'static_pages/blog'
   
   get 'static_pages/info/curriculum', to: 'static_pages#info_curriculum'
   get 'static_pages/info/general', to: 'static_pages#info_general'

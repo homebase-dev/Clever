@@ -1,0 +1,19 @@
+- tab_data = tab_data || ""
+- tab_stats = tab_stats || ""
+- tab_blog = tab_blog || ""
+
+- link_status = static_pages_profile_status_path || link_status
+- link_data = static_pages_profile_data_path || link_data
+- link_stats = static_pages_profile_stats_path || link_stats
+- link_blog = static_pages_profile_blog_path || link_blog
+
+%ul.nav.nav-tabs
+  %li{:role => "presentation", :class => "" || tab_status}
+    = link_to "Mein Account Status", link_status
+  %li{:role => "presentation", :class => tab_data}
+    = link_to "Meine Daten", link_data
+  %li{:role => "presentation", :class => tab_stats}
+    = link_to "Meine Statistik", link_stats
+  -if user && user.blogger?
+    %li{:role => "presentation", :class => tab_blog}
+      = link_to "Mein Blog", link_blog

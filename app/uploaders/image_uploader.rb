@@ -11,6 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # storage :fog
   
   version :novelty, if: :is_novelty_image?
+  version :avatar, if: :is_avatar_image?
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -38,6 +39,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :novelty do 
     process :resize_to_fill => [1024,450] #works now
   end
+  
+  version :avatar do 
+    process :resize_to_fill => [200,200] #works now
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -55,6 +60,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   def is_novelty_image? picture
     model.class.name == 'Novelty'
+  end
+  
+  def is_avatar_image? picture
+    model.class.name == 'User'
   end
 
 end

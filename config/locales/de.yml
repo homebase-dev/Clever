@@ -138,6 +138,9 @@ de:
       update: ! '%{model} aktualisieren'
     links:
       confirm: 'Wirklich löschen?'
+      cancel: 'Abbrechen'
+    titles:
+      edit: '%{model} editieren' 
       
     label:
       user:
@@ -213,6 +216,17 @@ de:
       short: ! '%d. %B, %H:%M Uhr'
       normal: ! '%d.%m.%Y %H:%M'
     pm: nachmittags
+
+  activerecord:
+    models:
+      blog_entry: 
+        one: 'Blog Eintrag'
+        other: 'Blog Einträge'
+    attributes:
+      blog_entry:
+        title: 'Titel'
+        text: 'Text'
+        published: 'Veröffentlicht?'
     
   settings:
     attributes:

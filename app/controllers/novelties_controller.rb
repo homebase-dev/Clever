@@ -4,7 +4,8 @@ class NoveltiesController < ApplicationController
   respond_to :html
 
   def index
-    @novelties = Novelty.all.order({ created_at: :desc })
+    @novelties = Novelty.all.order({ created_at: :desc }).page(params[:page]).per(20)
+    #@novelties = Novelty.all.order({ created_at: :desc })
     respond_with(@novelties)
   end
 

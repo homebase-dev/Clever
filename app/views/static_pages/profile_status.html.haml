@@ -3,15 +3,7 @@
     Profil
     / <small>Subtext for header</small>
     
-%ul.nav.nav-tabs
-  %li.active{:role => "presentation"}
-    %a{:href => "#"}
-      Mein Account Status
-      / %i.fa.fa-exclamation-triangle{:style => "font-size: 1em"}
-  %li{:role => "presentation"}
-    = link_to "Meine Daten", static_pages_profile_data_path
-  %li{:role => "presentation"}
-    = link_to "Meine Statistik", static_pages_profile_stats_path 
+= render "shared/profile_tabs", tab_status: 'active', link_status: '#', user: current_user
     
 %br/
 %br/

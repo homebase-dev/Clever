@@ -10,7 +10,7 @@
   .col-xs-12
     =image_tag novelty.image.novelty.url, class: 'novelty-img'
 .row
-  .col-xs-2
+  .col-xs-4.col-sm-2
     .novelty-box.date
       %p
         %span.day
@@ -21,7 +21,7 @@
     .novelty-box.news
       %p
         %i.fa.fa-pencil
-  .col-xs-10
+  .col-xs-8.col-sm-10
     %h3.novelty-title
       = link_to novelty.title, novelty_path(novelty)
     %p

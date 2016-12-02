@@ -10,6 +10,12 @@
           - @user.errors.full_messages.each do |msg|
             %li= msg
   .form-group
+    = f.label :avatar, :class => 'control-label'
+    (wird auf 200x200 skaliert)
+    = f.file_field :avatar, multiple: false
+    = image_tag @user.avatar.try(:avatar).try(:url)
+    = error_span(@user[:image]) 
+  .form-group
     = f.label :email, :class => 'control-label'
     = f.text_field :email, :class => 'form-control'
     = error_span(@user[:email])         
@@ -46,6 +52,11 @@
     = f.text_field :country, :class => 'form-control'     
     = error_span(@user[:country])  
   .form-group
+    = f.label :blogger, :class => 'control-label'
+    = f.check_box :blogger
+    = error_span(@user[:blogger])  
+  .form-group
+    = f.label :role, :class => 'control-label'
     = f.collection_select :role, Role.all, :id, :name, :selected => @user.role.id
     
   = f.submit "Speichern", :class => 'btn btn-default'   

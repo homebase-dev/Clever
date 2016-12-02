@@ -1,0 +1,15 @@
+.page-header
+  %h1
+    #{@user.try(:firstname)}'s Blog
+.row
+  .col-lg-12
+    - if @blog_entries.nil? && @blog_entries.empty?
+      Noch keine Einträge vorhanden. 
+       
+    - @blog_entries.each do |blog_entry|
+      = render "shared/blog_entry", blog_entry: blog_entry
+      
+    %a.btn.btn-default.pull-right{:href => "#{static_pages_home_path}", :role => "button"} Zurück
+      
+    .hspacer-4x
+    .hspacer-4x

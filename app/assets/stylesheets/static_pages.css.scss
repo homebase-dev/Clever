@@ -533,6 +533,18 @@ ul.list-group .feat.news.caption {
 }
 
 
+/**
+ *   Userblogs home captions
+ */
+
+.home-caption {
+  background-color: #0081E0;
+  color: #fff;
+  padding: 0.5em;
+  text-align: center;
+  font-weight: bold;
+}
+
 
 /*
  * NOVELTIES
@@ -593,6 +605,11 @@ span.pipe {
   padding: 0.6em 0 0.5em 0;
   border-top: 1px solid #eef0f2;
   border-bottom: 1px solid #eef0f2;
+}
+
+.avatar-img {
+  width: 100%;
+  margin-bottom: 3px;
 }
 
 

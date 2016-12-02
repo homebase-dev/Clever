@@ -10,6 +10,8 @@ class StaticPagesController < ApplicationController
     @user = current_user
     @next_med_exam_date = Settings.next_med_exam_date
     @novelties = (Novelty.all.published.order('created_at DESC'))
+    #@blog_entries = (BlogEntry.joins(:user).where(:users => {:blogger => true}).all.published.order('created_at DESC'))
+    @bloggers = User.where(:blogger => true).joins(:blog_entries).uniq.all #find all bloggers with at least one blog_entry
   end
 
   def faq
@@ -56,6 +58,11 @@ class StaticPagesController < ApplicationController
     @average_test_score = average_test_score(@tests)
   end
   
+  def profile_blog
+    @user = current_user
+    @blog_entries = current_user.blog_entries.order('created_at DESC').page(params[:page]).per(20)
+  end
+   
   def admin
    
   end
@@ -159,6 +166,11 @@ class StaticPagesController < ApplicationController
       redirect_to static_pages_payment_path
     end  
     
+  end
+  
+  def blog
+    @user = User.find(params[:id])
+    @blog_entries = @user.blog_entries.published.order('created_at DESC').page(params[:page]).per(20)
   end
   
   def quiz_inspect

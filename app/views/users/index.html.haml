@@ -11,6 +11,7 @@
       %th Geburtsdatum
       %th Stadt
       %th Land
+      %th Blogger
       %th Rolle
   %tbody
     - @users.each do |user|
@@ -20,6 +21,7 @@
         %td= user.birthdate
         %td= user.city
         %td= user.country
+        %td= render_boolean(user.blogger)
         %td= user.role_name
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), users_edit_admin_path(:id => user.id), :class => 'btn btn-default btn-xs'

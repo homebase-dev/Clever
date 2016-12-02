@@ -1,0 +1,58 @@
+- model_class = BlogEntry
+.page-header
+  %h1
+    = @blog_entry.title
+    
+.row
+  .col-lg-12
+
+    .novelty-text
+      = @blog_entry.text.html_safe
+      
+    %p.novelty-footer
+      %span 
+        = image_tag @blog_entry.user.avatar.avatar.url, :style => 'margin-right: 1em; max-height: 50px; '
+        Von: #{@blog_entry.user.try(:firstname)}
+      %span.pipe
+        | 
+      %span 
+        #{@blog_entry.created_at.strftime("%d.%m.%Y %H:%M")}
+      %span.pipe
+        | 
+      %span 
+        Kategorie: Userblog
+      
+    - if @back_to_my_blog
+      %a.btn.btn-default.pull-right{:href => "#{static_pages_profile_blog_path}", :role => "button"} Zurück
+    - else
+      %a.btn.btn-default.pull-right{:href => "#{static_pages_blog_path(:id => @blog_entry.user.id)}", :role => "button"} Zurück
+     
+    .hspacer-4x
+    .hspacer-4x
+    
+
+/- model_class = BlogEntry
+/.page-header
+/  %h1=t '.title', :default => model_class.model_name.human.titleize
+/
+/%p
+/  %strong= model_class.human_attribute_name(:title) + ':'
+/  %br
+/  = @blog_entry.title
+/%p
+/  %strong= model_class.human_attribute_name(:text) + ':'
+/  %br
+/  = @blog_entry.text
+/%p
+/  %strong= model_class.human_attribute_name(:published) + ':'
+/  %br
+/  = @blog_entry.published
+/%p
+/  %strong= model_class.human_attribute_name(:user_id) + ':'
+/  %br
+/  = @blog_entry.user_id
+
+
+/= link_to t('.back', :default => t("helpers.links.back")), blog_entries_path, :class => 'btn btn-default'
+/= link_to t('.edit', :default => t("helpers.links.edit")), edit_blog_entry_path(@blog_entry), :class => 'btn btn-default'
+/= link_to t('.destroy', :default => t("helpers.links.destroy")), blog_entry_path(@blog_entry), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
