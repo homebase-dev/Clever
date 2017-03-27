@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       test.start = Time.now
       test.description = 'Gesamttest'
       
-      if user && (user.member? || user.can_manage?)
+      if user && (user.member? || user.can_quiz_for_free?)
         test = add_tests_to_total_test(test, pick_randomly)
       else
         test = add_tests_to_total_test_for_guest(test, pick_randomly)
@@ -495,7 +495,7 @@ class ApplicationController < ActionController::Base
   end
   
   Warden::Manager.after_authentication do |user,auth,opts|
-    if user.present? && !user.can_manage? && user.membership_expired? 
+    if user.present? && !user.can_quiz_for_free? && user.membership_expired? 
       user.update_attribute(:role, Role.find_by_name('registered')) #remove member privilege, if membership expired (managment is excluded)
     end
   end

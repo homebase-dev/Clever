@@ -24,7 +24,7 @@ class TestsController < ApplicationController
   
   def create
     #puts "create test".yellow.on_white
-    is_paying_member = current_user && (current_user.member? || current_user.can_manage?)
+    is_paying_member = current_user && (current_user.member? || current_user.can_quiz_for_free?)
     do_total_test = (params[:total_test] == "true")
     nb_of_contexts = params[:nb_of_contexts].to_i
     nb_of_questions = params[:nb_of_questions].to_i

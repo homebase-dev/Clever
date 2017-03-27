@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     admin? || moderator?
   end
   
+  def can_quiz_for_free?
+    can_manage? || free_member?
+  end
+  
   def moderator?
     role_name == 'moderator'
   end
@@ -46,6 +50,10 @@ class User < ActiveRecord::Base
   
   def member?
     role_name == 'member'
+  end
+  
+  def free_member?
+    role_name == 'free_member'
   end
 
   def self.from_omniauth(auth)

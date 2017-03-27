@@ -96,7 +96,7 @@
     .col-xs-4
       .box
         %h3 Test starten
-        -if @user.present? && @user.member?
+        -if @user.present? && (@user.member? || @user.can_quiz_for_free?)
           %a.glow{:href => "#{static_pages_quiz_path}"} 
             = image_tag("home/daumen.png", alt: "Test starten icon", class: "img-circle glow-button")
         -else
